@@ -22,9 +22,13 @@ export default function IndustriesPage() {
           {landingContent.industries.items.map((industry) => (
             <article
               key={industry.id}
-              className="rounded-lg border border-outline-variant/50 bg-surface-lowest p-5"
+              id={industry.id}
+              className="scroll-mt-28 rounded-lg border border-outline-variant/50 bg-surface-lowest p-5"
             >
-              <h2 className="text-lg font-bold">{industry.name}</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                {industry.focus}
+              </p>
+              <h2 className="mt-2 text-lg font-bold">{industry.name}</h2>
               <p className="mt-2 text-sm leading-6 text-on-surface-variant">
                 {industry.description}
               </p>

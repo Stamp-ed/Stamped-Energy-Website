@@ -23,16 +23,24 @@ export function HowItWorks() {
       }
 
       const steps = gsap.utils.toArray<HTMLElement>("[data-hiw-step]");
+      const line = trackRef.current?.querySelector<HTMLElement>("[data-hiw-line]");
 
       gsap.set(steps, { autoAlpha: 0, y: 28 });
+      if (line) {
+        gsap.set(line, { scaleX: 0, transformOrigin: "left center" });
+      }
 
       const timeline = gsap.timeline();
+
+      if (line) {
+        timeline.to(line, { scaleX: 1, duration: 0.85, ease: "power2.inOut" });
+      }
 
       steps.forEach((step, index) => {
         timeline.to(
           step,
           { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
-          index * 0.1,
+          index === 0 ? "-=0.55" : "-=0.35",
         );
       });
 
@@ -63,8 +71,9 @@ export function HowItWorks() {
 
         <div ref={trackRef} className="relative mt-12">
           <div
+            data-hiw-line
             aria-hidden="true"
-            className="pointer-events-none absolute left-[10%] right-[10%] top-8 hidden h-px bg-gradient-to-r from-primary/10 via-primary/35 to-primary/10 xl:block"
+            className="pointer-events-none absolute left-[8%] right-[8%] top-8 hidden h-[2px] origin-left rounded-full bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20 xl:block"
           />
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">

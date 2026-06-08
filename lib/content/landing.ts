@@ -90,6 +90,16 @@ export const landingContent = {
   workflow: {
     eyebrow: "The Stamped loop",
     title: "From fragmented data to verified savings",
+    description:
+      "Watch the closed loop in motion — connect, observe, prescribe, execute, and verify savings on your next bill.",
+    media: {
+      title: "Five-step closed loop walkthrough",
+      description:
+        "Remotion-authored WebM/GIF loop: signals in → baseline → prescription → WhatsApp workflow → verified savings ledger.",
+      /** Set when the export is ready, e.g. /media/workflow-loop.webm */
+      src: null as string | null,
+      posterAlt: "Stamped Energy five-step workflow: Connect, Observe, Decide, Execute, Verify",
+    },
     steps: [
       {
         id: "connect",
@@ -183,27 +193,32 @@ export const landingContent = {
       {
         id: "automotive",
         name: "Automotive Components",
+        focus: "OEM cost pressure meets rising tariffs",
         description: "Tier 1 and Tier 2 suppliers facing OEM cost pressure and rising electricity tariffs.",
         featured: true,
       },
       {
         id: "die-casting",
         name: "Die Casting",
+        focus: "Shift-start demand spikes on furnaces & compressors",
         description: "High energy intensity, demand spikes at shift start, and furnace-compressor coordination issues.",
       },
       {
         id: "forging",
         name: "Forging",
+        focus: "Heavy loads and MD charge exposure",
         description: "Heavy loads, MD charge exposure, and production-linked SEC variability.",
       },
       {
         id: "heat-treatment",
         name: "Heat Treatment",
+        focus: "Furnace setbacks and weekend holding losses",
         description: "Furnace setback gaps, weekend holding losses, and tariff-sensitive operating windows.",
       },
       {
         id: "rubber-moulding",
         name: "Rubber Moulding",
+        focus: "Curing cycles and idle machine loads",
         description: "Curing cycles, compressor air leaks, and idle machine loads between batches.",
       },
     ] satisfies IndustryItem[],

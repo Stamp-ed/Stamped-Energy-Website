@@ -1,14 +1,61 @@
+"use client";
+
+import { useRef } from "react";
+
+import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { Reveal } from "@/components/ui/Reveal";
 import { landingContent } from "@/lib/content";
+import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function FinalCta() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const { finalCta, contactForm } = landingContent;
+  const { isReady, prefersReducedMotion } = useMotion();
+
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion || !glowRef.current) {
+        return;
+      }
+
+      gsap.to(glowRef.current, {
+        x: 40,
+        y: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
+    },
+    {
+      scope: sectionRef,
+      dependencies: [isReady, prefersReducedMotion],
+    },
+  );
 
   return (
-    <section id="contact" className="bg-primary py-20 text-on-primary md:py-28">
-      <Container>
+    <section
+      ref={sectionRef}
+      id="contact"
+      className="relative overflow-hidden bg-primary py-20 text-on-primary md:py-28"
+    >
+      <div
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-on-primary/10 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-on-primary/8 blur-3xl"
+      />
+
+      <Container className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
           <Reveal>
             <div className="max-w-xl">

@@ -38,6 +38,8 @@ export type HowItWorksStep = {
 export type IndustryItem = {
   id: string;
   name: string;
+  /** Short pain-point line shown on landing cards for quick context */
+  focus: string;
   description: string;
   featured?: boolean;
 };
