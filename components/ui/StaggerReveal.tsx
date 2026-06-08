@@ -6,42 +6,43 @@ import { cn } from "@/lib/utils";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
 import { revealOnScroll } from "@/lib/motion/scrollAnimations";
 
-type RevealProps = {
+type StaggerRevealProps = {
   children: React.ReactNode;
   className?: string;
-  delay?: number;
-  y?: number;
-  x?: number;
+  childSelector?: string;
   stagger?: number;
+  y?: number;
 };
 
-export function Reveal({
+export function StaggerReveal({
   children,
   className,
-  delay = 0,
-  y = 40,
-  x = 0,
-  stagger = 0,
-}: RevealProps) {
+  childSelector = "[data-stagger-item]",
+  stagger = 0.12,
+  y = 36,
+}: StaggerRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       registerGsap();
 
-      const element = ref.current;
-      if (!element) {
+      const container = ref.current;
+      if (!container) {
         return;
       }
 
-      revealOnScroll(element, {
+      const items = container.querySelectorAll(childSelector);
+      if (!items.length) {
+        return;
+      }
+
+      revealOnScroll(items, {
         y,
-        x,
-        delay,
         stagger,
         scrollTrigger: {
-          trigger: element,
-          start: "top 85%",
+          trigger: container,
+          start: "top 80%",
           once: true,
         },
       });

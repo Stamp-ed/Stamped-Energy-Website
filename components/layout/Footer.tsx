@@ -5,12 +5,12 @@ import { footerLinks, siteConfig } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="border-t border-outline-variant/30 bg-inverse-surface text-inverse-on-surface">
+    <footer className="border-t border-outline-variant/30 bg-secondary text-on-secondary">
       <Container className="py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-xl font-bold">{siteConfig.name}</p>
-            <p className="mt-3 max-w-md text-sm leading-6 text-inverse-on-surface/75">
+            <p className="mt-3 max-w-md text-sm leading-6 text-on-secondary/75">
               {siteConfig.tagline}
             </p>
           </div>
@@ -25,7 +25,7 @@ export function Footer() {
                   {"external" in link && link.external ? (
                     <a
                       href={link.href}
-                      className="text-sm text-inverse-on-surface/80 transition-colors hover:text-inverse-on-surface"
+                      className="text-sm text-on-secondary/80 transition-colors hover:text-on-secondary"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -34,7 +34,7 @@ export function Footer() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-sm text-inverse-on-surface/80 transition-colors hover:text-inverse-on-surface"
+                      className="text-sm text-on-secondary/80 transition-colors hover:text-on-secondary"
                     >
                       {link.label}
                     </Link>
@@ -53,7 +53,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-inverse-on-surface/80 transition-colors hover:text-inverse-on-surface"
+                    className="text-sm text-on-secondary/80 transition-colors hover:text-on-secondary"
                   >
                     {link.label}
                   </Link>
@@ -63,7 +63,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-inverse-on-surface/10 pt-6 text-sm text-inverse-on-surface/60">
+        <div className="mt-12 border-t border-on-secondary/10 pt-6 text-sm text-on-secondary/60">
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </div>
       </Container>

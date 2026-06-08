@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { landingContent } from "@/lib/content";
 import { gsap, registerGsap, useGSAP } from "@/lib/motion/gsap";
+import { prefersReducedMotion } from "@/lib/motion/scrollAnimations";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,22 +16,36 @@ export function Hero() {
     () => {
       registerGsap();
 
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      if (prefersReducedMotion) {
+      if (prefersReducedMotion()) {
+        gsap.set("[data-hero]", { autoAlpha: 1, y: 0, scale: 1 });
         return;
       }
 
-      const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+      gsap.set("[data-hero]", { autoAlpha: 0, y: 28 });
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        delay: 0.15,
+      });
 
       timeline
-        .from("[data-hero='eyebrow']", { autoAlpha: 0, y: 16, duration: 0.6 })
-        .from("[data-hero='headline']", { autoAlpha: 0, y: 28, duration: 0.8 }, "-=0.35")
-        .from("[data-hero='subheadline']", { autoAlpha: 0, y: 24, duration: 0.7 }, "-=0.45")
-        .from("[data-hero='cta']", { autoAlpha: 0, y: 20, duration: 0.6, stagger: 0.12 }, "-=0.35")
-        .from("[data-hero='visual']", { autoAlpha: 0, scale: 0.98, duration: 1 }, "-=0.5");
+        .to("[data-hero='eyebrow']", { autoAlpha: 1, y: 0, duration: 0.7 })
+        .to("[data-hero='headline']", { autoAlpha: 1, y: 0, duration: 0.9 }, "-=0.45")
+        .to("[data-hero='subheadline']", { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.55")
+        .to("[data-hero='cta']", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.14 }, "-=0.45")
+        .fromTo(
+          "[data-hero='visual']",
+          { autoAlpha: 0, y: 48, scale: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 1.1, ease: "power2.out" },
+          "-=0.35",
+        );
+
+      gsap.to("[data-hero='grid']", {
+        backgroundPosition: "48px 96px",
+        duration: 20,
+        ease: "none",
+        repeat: -1,
+      });
     },
     { scope: sectionRef },
   );
@@ -42,11 +57,12 @@ export function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,color-mix(in_srgb,var(--brand-secondary-container)_55%,transparent),transparent_58%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_8%,transparent),transparent_70%)]"
       />
       <div
+        data-hero="grid"
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-outline-variant)_35%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-outline-variant)_35%,transparent)_1px,transparent_1px)] [background-size:48px_48px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.4] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-outline-variant)_35%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-outline-variant)_35%,transparent)_1px,transparent_1px)] [background-size:48px_48px]"
       />
 
       <Container className="relative z-10">
@@ -65,7 +81,7 @@ export function Hero() {
           </h1>
           <p
             data-hero="subheadline"
-            className="mx-auto mt-6 max-w-3xl text-base leading-7 text-on-surface-variant md:text-lg"
+            className="mx-auto mt-6 max-w-2xl text-base leading-7 text-on-surface-variant md:text-lg"
           >
             {hero.subheadline}
           </p>
@@ -86,7 +102,7 @@ export function Hero() {
 
         <div
           data-hero="visual"
-          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
+          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest shadow-sm"
         >
           <div className="relative aspect-[16/9] bg-[linear-gradient(135deg,var(--brand-surface-container-low),var(--brand-surface-container-high))]">
             <div className="absolute inset-0 flex items-center justify-center">

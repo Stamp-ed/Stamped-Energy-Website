@@ -12,9 +12,9 @@ import type {
 export const landingContent = {
   hero: {
     eyebrow: "Prescriptive energy intelligence for manufacturers",
-    headline: "AI-powered energy intelligence that turns plant data into verified savings, in rupees.",
+    headline: "AI energy intelligence. Turn data into verified savings",
     subheadline:
-      "Stamped connects to the SCADA, PLCs, meters, and bills you already have, then prescribes exactly what to fix, who should fix it, and whether the saving shows up on your next electricity bill.",
+      "Connect your existing plant data. Get prescriptions with rupee impact. Verify the saving on your next electricity bill.",
     primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
   },

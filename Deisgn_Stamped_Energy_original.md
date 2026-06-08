@@ -15,16 +15,16 @@ colors:
   inverse-on-surface: '#eff2ed'
   outline: '#8f706b'
   outline-variant: '#e3beb8'
-  surface-tint: '#b62517'
-  primary: '#b22215'
+  surface-tint: '#F75440'
+  primary: '#F75440'
   on-primary: '#ffffff'
-  primary-container: '#d53c2b'
+  primary-container: '#F75440'
   on-primary-container: '#fffbff'
   inverse-primary: '#ffb4a8'
-  secondary: '#4a6455'
+  secondary: '#051F13'
   on-secondary: '#ffffff'
   secondary-container: '#ccead6'
-  on-secondary-container: '#506a5a'
+  on-secondary-container: '#ccead6'
   tertiary: '#00666b'
   on-tertiary: '#ffffff'
   tertiary-container: '#008287'
@@ -37,9 +37,9 @@ colors:
   primary-fixed-dim: '#ffb4a8'
   on-primary-fixed: '#410000'
   on-primary-fixed-variant: '#920401'
-  secondary-fixed: '#ccead6'
+  secondary-fixed: '#051F13'
   secondary-fixed-dim: '#b0cdba'
-  on-secondary-fixed: '#062014'
+  on-secondary-fixed: '#ffffff'
   on-secondary-fixed-variant: '#324c3e'
   tertiary-fixed: '#81f4fb'
   tertiary-fixed-dim: '#63d7de'
@@ -119,8 +119,8 @@ The aesthetic leverages **Modern Industrial Minimalism**. It utilizes heavy visu
 ## Colors
 This design system employs a high-contrast palette designed for legibility in varied lighting conditions.
 
-*   **Primary (Vibrant Coral-Red):** Used for critical actions, alerts, and primary branding elements. It signifies energy and urgency.
-*   **Secondary (Deep Obsidian Green):** Used for navigation backgrounds, deep-set headers, and stable state indicators. It provides a grounded, professional anchor.
+*   **Primary (Coral-Orange `#F75440`):** Used for critical actions, alerts, CTAs, and primary branding elements. It signifies energy and urgency.
+*   **Secondary (Deep Forest `#051F13`):** Used for navigation backgrounds, footers, anchor sections, and stable state indicators. It provides a grounded, professional anchor.
 *   **Surface (Warm Grey):** The foundational layer for all application screens, chosen to reduce eye strain compared to pure white while maintaining a clean, modern feel.
 *   **Neutral (Slate Carbon):** Used for primary text and iconography to ensure a strong contrast ratio against the warm grey surface.
 
@@ -145,7 +145,7 @@ This design system uses **Tonal Layering** supplemented by **Low-Contrast Outlin
 *   **Level 0 (Base):** Surface (#F9F9F9).
 *   **Level 1 (Cards/Containers):** Pure White (#FFFFFF) with a 1px solid border in #E0E0E0. No shadow.
 *   **Level 2 (Dropdowns/Modals):** Pure White with a subtle, 4px direct "hard" shadow (Opacity 10%, Black) to simulate a physical object resting on a surface.
-*   **Level 3 (Interactive):** Primary Coral-Red accents define the "active" elevation through color intensity rather than shadow depth.
+*   **Level 3 (Interactive):** Primary Coral-Orange accents define the "active" elevation through color intensity rather than shadow depth.
 
 ## Shapes
 Shapes are geometric and sturdy. The system avoids extreme "pill" shapes to maintain a professional, industrial character.
@@ -156,9 +156,9 @@ Shapes are geometric and sturdy. The system avoids extreme "pill" shapes to main
 *   **Icons:** Use a 2px stroke weight with slightly rounded joins to match the component radius.
 
 ## Components
-*   **Buttons:** Primary buttons use the Coral-Red background with White text. Secondary buttons use the Obsidian Green background. All buttons have a height of 48px for high hit-volume industrial use.
-*   **Input Fields:** Use White backgrounds with a 1px border. On focus, the border thickens to 2px in Obsidian Green. Labels are always positioned above the field using `label-sm`.
+*   **Buttons:** Primary buttons use Coral-Orange (`#F75440`) with white text. Secondary buttons use Deep Forest (`#051F13`) with white text. All buttons have a height of 48px for high hit-volume industrial use.
+*   **Input Fields:** Use White backgrounds with a 1px border. On focus, the border thickens to 2px in Deep Forest (`#051F13`). Labels are always positioned above the field using `label-sm`.
 *   **Cards:** Use White backgrounds, 16px radius, and 24px internal padding. Headers within cards should have a subtle bottom border separator.
-*   **Chips/Status Tags:** Use high-contrast fills for status (e.g., Obsidian Green for 'Optimal', Coral-Red for 'Critical'). Text inside chips should be bold and 12px.
+*   **Chips/Status Tags:** Use high-contrast fills for status (e.g., Deep Forest for 'Optimal', Coral-Orange for 'Critical'). Text inside chips should be bold and 12px.
 *   **Data Grids:** Use Inter for all cell content. Zebra-striping is permitted using a 2% tint of Obsidian Green on alternate rows for high-density scanning.
 *   **KPI Widgets:** Display large numerical values using `display-lg` to ensure they are readable from a distance on factory floor monitors.

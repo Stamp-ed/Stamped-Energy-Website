@@ -1,13 +1,37 @@
+"use client";
+
+import { useRef } from "react";
+
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
+import { registerGsap, useGSAP } from "@/lib/motion/gsap";
+import { revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function FutureMedia() {
+  const sectionRef = useRef<HTMLElement>(null);
   const { futureMedia, credibility } = landingContent;
 
+  useGSAP(
+    () => {
+      registerGsap();
+
+      revealOnScroll("[data-credibility-item]", {
+        y: 24,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: "[data-credibility-list]",
+          start: "top 82%",
+          once: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="py-20 md:py-28">
+    <section ref={sectionRef} className="py-20 md:py-28">
       <Container>
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>
@@ -31,10 +55,11 @@ export function FutureMedia() {
               title={credibility.title}
               description={credibility.founderNote}
             />
-            <ul className="mt-8 space-y-3">
+            <ul data-credibility-list className="mt-8 space-y-3">
               {credibility.placeholders.map((item) => (
                 <li
                   key={item}
+                  data-credibility-item
                   className="rounded-lg border border-dashed border-outline-variant/70 px-4 py-3 text-sm text-on-surface-variant"
                 >
                   {item} placeholder
