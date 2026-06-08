@@ -52,3 +52,40 @@ export type PrescriptionField = {
   label: string;
   value: string;
 };
+
+export type HiwJourneyStep = {
+  id: string;
+  step: number;
+  title: string;
+  tagline: string;
+  description: string;
+  bullets: string[];
+  diagram: "connect" | "observe" | "decide" | "execute" | "verify";
+};
+
+export type HiwStackLayer = {
+  id: string;
+  title: string;
+  subtitle: string;
+  items: string[];
+};
+
+export type HiwIntegrationSource = {
+  id: string;
+  label: string;
+  detail: string;
+};
+
+export type HiwDeploymentPhase = {
+  id: string;
+  week: string;
+  title: string;
+  description: string;
+};
+
+export type HiwMediaSlot = {
+  id: string;
+  title: string;
+  description: string;
+  reason: string;
+};

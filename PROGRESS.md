@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Motion system — GSAP + ScrollTrigger + Lenis (Greenovative-aligned), client-only provider
+How It Works page — animation-heavy scroll storytelling (complete)
 
 ## Completed Phases
 
@@ -18,11 +18,12 @@ Motion system — GSAP + ScrollTrigger + Lenis (Greenovative-aligned), client-on
 - [x] Contact form + `/api/contact` stub route
 - [x] Production build and lint validation
 - [x] GSAP + ScrollTrigger + Lenis motion provider (replaced Framer Motion)
+- [x] Full `/how-it-works` page — pinned journey, intelligence stack, prescription scrub, integrations, deployment timeline
 
 ## Remaining Phases
 
 - [ ] Visual polish pass (hero video, Remotion GIFs, product screenshots)
-- [ ] Full How It Works page content
+- [ ] Remotion GIFs for plant SLD + dashboard walkthrough (placeholders on `/how-it-works`)
 - [ ] Full Industries page content
 - [ ] Blog app (separate deployment + admin portal)
 - [ ] Contact form email/CRM forwarding

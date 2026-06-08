@@ -1,41 +1,33 @@
 import type { Metadata } from "next";
 
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
-import { landingContent } from "@/lib/content";
+import { HiwBeforeAfter } from "@/components/how-it-works/HiwBeforeAfter";
+import { HiwDeployment } from "@/components/how-it-works/HiwDeployment";
+import { HiwIntegrations } from "@/components/how-it-works/HiwIntegrations";
+import { HiwIntelligenceStack } from "@/components/how-it-works/HiwIntelligenceStack";
+import { HiwMediaSlots } from "@/components/how-it-works/HiwMediaSlots";
+import { HiwOpening } from "@/components/how-it-works/HiwOpening";
+import { HiwPageCta } from "@/components/how-it-works/HiwPageCta";
+import { HiwPinnedJourney } from "@/components/how-it-works/HiwPinnedJourney";
+import { HiwPrescriptionWalkthrough } from "@/components/how-it-works/HiwPrescriptionWalkthrough";
 
 export const metadata: Metadata = {
   title: "How It Works",
+  description:
+    "Scroll through Stamped Energy's Connect → Observe → Decide → Execute → Verify workflow — prescriptive energy intelligence for Indian manufacturers.",
 };
 
 export default function HowItWorksPage() {
   return (
-    <section className="py-28 md:py-36">
-      <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="How it works"
-            title="Full workflow page coming soon"
-            description="This route is scaffolded. Greenovative-style scroll storytelling will land here next — the preview below covers the five-step workflow for now."
-          />
-        </Reveal>
-
-        <StaggerReveal className="mt-12 space-y-4">
-          {landingContent.howItWorks.steps.map((step) => (
-            <StaggerItem key={step.id}>
-              <article className="rounded-lg border border-outline-variant/50 bg-surface-lowest p-5">
-                <p className="text-sm font-semibold text-primary">Step {step.step}</p>
-                <h2 className="mt-2 text-lg font-bold">{step.title}</h2>
-                <p className="mt-2 text-sm leading-6 text-on-surface-variant">
-                  {step.description}
-                </p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerReveal>
-      </Container>
-    </section>
+    <>
+      <HiwOpening />
+      <HiwPinnedJourney />
+      <HiwIntelligenceStack />
+      <HiwPrescriptionWalkthrough />
+      <HiwBeforeAfter />
+      <HiwIntegrations />
+      <HiwDeployment />
+      <HiwMediaSlots />
+      <HiwPageCta />
+    </>
   );
 }
