@@ -70,7 +70,7 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5">
+    <form onSubmit={onSubmit} className="space-y-5" suppressHydrationWarning>
       {fields.map((field) => (
         <div key={field.id}>
           <label

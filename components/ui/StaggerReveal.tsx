@@ -1,61 +1,61 @@
 "use client";
 
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactNode } from "react";
 
+import { fadeUpItem, staggerContainer } from "@/lib/motion/variants";
+import { useScrollReveal } from "@/lib/motion/useScrollReveal";
 import { cn } from "@/lib/utils";
-import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 type StaggerRevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  childSelector?: string;
-  stagger?: number;
-  y?: number;
 };
 
-export function StaggerReveal({
-  children,
-  className,
-  childSelector = "[data-stagger-item]",
-  stagger = 0.14,
-  y = 40,
-}: StaggerRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
+type StaggerItemProps = {
+  children: ReactNode;
+  className?: string;
+};
 
-  useGSAP(
-    () => {
-      registerGsap();
+export function StaggerReveal({ children, className }: StaggerRevealProps) {
+  const reduceMotion = useReducedMotion();
+  const { ref, controls, isHydrated } = useScrollReveal();
 
-      const container = ref.current;
-      if (!container) {
-        return;
-      }
+  if (reduceMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
-      const items = container.querySelectorAll(childSelector);
-      if (!items.length) {
-        return;
-      }
-
-      revealOnScroll(items, {
-        y,
-        stagger,
-        duration: 0.85,
-        scrollTrigger: {
-          trigger: container,
-          start: "top 78%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      refreshScrollTriggers();
-    },
-    { scope: ref },
-  );
+  if (!isHydrated) {
+    return (
+      <div ref={ref} className={cn(className)}>
+        {children}
+      </div>
+    );
+  }
 
   return (
-    <div ref={ref} className={cn(className)}>
+    <motion.div
+      ref={ref}
+      className={cn(className)}
+      initial="hidden"
+      animate={controls}
+      variants={staggerContainer}
+    >
       {children}
-    </div>
+    </motion.div>
+  );
+}
+
+export function StaggerItem({ children, className }: StaggerItemProps) {
+  const reduceMotion = useReducedMotion();
+
+  if (reduceMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
+  return (
+    <motion.div className={cn(className)} variants={fadeUpItem}>
+      {children}
+    </motion.div>
   );
 }

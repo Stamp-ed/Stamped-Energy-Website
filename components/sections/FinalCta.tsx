@@ -24,7 +24,7 @@ export function FinalCta() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal from="right">
             <div className="rounded-xl border border-on-primary/20 bg-surface-lowest p-6 text-on-surface shadow-xl md:p-8">
               <h3 className="text-xl font-bold">{contactForm.title}</h3>
               <p className="mt-2 text-sm leading-6 text-on-surface-variant">

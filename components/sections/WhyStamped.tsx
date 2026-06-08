@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
 import { landingContent } from "@/lib/content";
 
 export function WhyStamped() {
@@ -21,17 +21,15 @@ export function WhyStamped() {
 
         <StaggerReveal className="mt-12 grid gap-4 md:grid-cols-2">
           {whyStamped.items.map((item) => (
-            <article
-              key={item.id}
-              data-stagger-item
-              className="accent-card rounded-xl border border-on-secondary/15 bg-surface-lowest p-6 text-on-surface shadow-lg"
-            >
-              <div className="mb-4 h-1 w-10 rounded-full bg-primary" aria-hidden="true" />
-              <h3 className="text-lg font-bold text-on-surface">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-on-surface-variant">
-                {item.description}
-              </p>
-            </article>
+            <StaggerItem key={item.id}>
+              <article className="accent-card rounded-xl border border-on-secondary/15 bg-surface-lowest p-6 text-on-surface shadow-lg">
+                <div className="mb-4 h-1 w-10 rounded-full bg-primary" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-on-surface">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-on-surface-variant">
+                  {item.description}
+                </p>
+              </article>
+            </StaggerItem>
           ))}
         </StaggerReveal>
       </Container>

@@ -1,50 +1,47 @@
 "use client";
 
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactNode } from "react";
 
+import { getRevealVariants } from "@/lib/motion/variants";
+import { useScrollReveal } from "@/lib/motion/useScrollReveal";
 import { cn } from "@/lib/utils";
-import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
+
+type RevealFrom = "up" | "left" | "right" | "scale";
 
 type RevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  from?: RevealFrom;
   delay?: number;
-  y?: number;
-  x?: number;
 };
 
-export function Reveal({ children, className, delay = 0, y = 48, x = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
+export function Reveal({ children, className, from = "up", delay = 0 }: RevealProps) {
+  const reduceMotion = useReducedMotion();
+  const { ref, controls, isHydrated } = useScrollReveal();
 
-  useGSAP(
-    () => {
-      registerGsap();
+  if (reduceMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
-      const element = ref.current;
-      if (!element) {
-        return;
-      }
-
-      revealOnScroll(element, {
-        y,
-        x,
-        delay,
-        scrollTrigger: {
-          trigger: element,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      refreshScrollTriggers();
-    },
-    { scope: ref },
-  );
+  if (!isHydrated) {
+    return (
+      <div ref={ref} className={cn(className)}>
+        {children}
+      </div>
+    );
+  }
 
   return (
-    <div ref={ref} data-animate="scroll" className={cn(className)}>
+    <motion.div
+      ref={ref}
+      className={cn(className)}
+      initial="hidden"
+      animate={controls}
+      variants={getRevealVariants(from)}
+      transition={{ delay }}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }

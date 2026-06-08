@@ -3,7 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { LenisProvider } from "@/lib/motion/LenisProvider";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { siteConfig } from "@/lib/content";
 
 import "./globals.css";
@@ -34,13 +34,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable}`}>
-      <body className="min-h-screen bg-surface text-on-surface antialiased">
-        <LenisProvider>
+    <html
+      lang="en"
+      className={`${inter.variable} ${plusJakartaSans.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className="min-h-screen bg-surface text-on-surface antialiased"
+        suppressHydrationWarning
+      >
+        <MotionProvider>
           <Navbar />
           <main>{children}</main>
           <Footer />
-        </LenisProvider>
+        </MotionProvider>
       </body>
     </html>
   );

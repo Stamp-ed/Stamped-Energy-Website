@@ -119,4 +119,35 @@
     border-color: color-mix(in srgb, var(--brand-primary) 35%, transparent);
     box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--brand-primary) 45%, transparent);
   }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    border-radius: 999px;
+    background-color: var(--brand-primary);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link-active::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes grid-drift {
+    to {
+      background-position: 48px 96px;
+    }
+  }
 }

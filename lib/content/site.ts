@@ -13,6 +13,8 @@ export const navLinks: NavLink[] = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "Industries", href: "/industries" },
   { label: "Blog", href: siteConfig.blogUrl, external: true },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "About Us", href: "/about" },
 ];
 
 export const footerLinks = {
@@ -22,6 +24,8 @@ export const footerLinks = {
     { label: "Blog", href: siteConfig.blogUrl, external: true },
   ],
   company: [
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "About Us", href: "/about" },
     { label: "Contact", href: "#contact" },
   ],
 } as const;
