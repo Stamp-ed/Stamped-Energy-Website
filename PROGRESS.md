@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Landing page MVP — built and validated (build + lint clean)
+Motion system — GSAP + ScrollTrigger + Lenis (Greenovative-aligned), client-only provider
 
 ## Completed Phases
 
@@ -17,6 +17,7 @@ Landing page MVP — built and validated (build + lint clean)
 - [x] `/how-it-works` and `/industries` route scaffolds
 - [x] Contact form + `/api/contact` stub route
 - [x] Production build and lint validation
+- [x] GSAP + ScrollTrigger + Lenis motion provider (replaced Framer Motion)
 
 ## Remaining Phases
 

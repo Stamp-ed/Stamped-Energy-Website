@@ -1,47 +1,62 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
-import { getRevealVariants } from "@/lib/motion/variants";
-import { useScrollReveal } from "@/lib/motion/useScrollReveal";
+import { useMotion } from "@/components/motion/MotionProvider";
+import {
+  easeOut,
+  getRevealFromVars,
+  getRevealToVars,
+  revealDuration,
+  scrollTriggerDefaults,
+  type RevealDirection,
+} from "@/lib/motion/config";
+import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
-
-type RevealFrom = "up" | "left" | "right" | "scale";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  from?: RevealFrom;
+  from?: RevealDirection;
   delay?: number;
 };
 
 export function Reveal({ children, className, from = "up", delay = 0 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
-  const { ref, controls, isHydrated } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { isReady, prefersReducedMotion } = useMotion();
 
-  if (reduceMotion) {
-    return <div className={cn(className)}>{children}</div>;
-  }
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion) {
+        return;
+      }
 
-  if (!isHydrated) {
-    return (
-      <div ref={ref} className={cn(className)}>
-        {children}
-      </div>
-    );
-  }
+      const element = containerRef.current;
+      if (!element) {
+        return;
+      }
+
+      gsap.set(element, getRevealFromVars(from));
+      gsap.to(element, {
+        ...getRevealToVars(from),
+        duration: revealDuration,
+        ease: easeOut,
+        delay,
+        scrollTrigger: {
+          trigger: element,
+          ...scrollTriggerDefaults,
+        },
+      });
+    },
+    {
+      scope: containerRef,
+      dependencies: [isReady, prefersReducedMotion, from, delay],
+    },
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn(className)}
-      initial="hidden"
-      animate={controls}
-      variants={getRevealVariants(from)}
-      transition={{ delay }}
-    >
+    <div ref={containerRef} className={cn(className)}>
       {children}
-    </motion.div>
+    </div>
   );
 }

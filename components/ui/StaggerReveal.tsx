@@ -1,10 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
-import { fadeUpItem, staggerContainer } from "@/lib/motion/variants";
-import { useScrollReveal } from "@/lib/motion/useScrollReveal";
+import { useMotion } from "@/components/motion/MotionProvider";
+import {
+  easeOut,
+  revealDuration,
+  scrollTriggerDefaults,
+  staggerDelay,
+  staggerGap,
+} from "@/lib/motion/config";
+import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
 type StaggerRevealProps = {
@@ -18,44 +24,56 @@ type StaggerItemProps = {
 };
 
 export function StaggerReveal({ children, className }: StaggerRevealProps) {
-  const reduceMotion = useReducedMotion();
-  const { ref, controls, isHydrated } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { isReady, prefersReducedMotion } = useMotion();
 
-  if (reduceMotion) {
-    return <div className={cn(className)}>{children}</div>;
-  }
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion) {
+        return;
+      }
 
-  if (!isHydrated) {
-    return (
-      <div ref={ref} className={cn(className)}>
-        {children}
-      </div>
-    );
-  }
+      const container = containerRef.current;
+      if (!container) {
+        return;
+      }
+
+      const items = container.querySelectorAll<HTMLElement>("[data-stagger-item]");
+      if (!items.length) {
+        return;
+      }
+
+      gsap.set(items, { autoAlpha: 0, y: 24 });
+      gsap.to(items, {
+        autoAlpha: 1,
+        y: 0,
+        duration: revealDuration,
+        ease: easeOut,
+        stagger: staggerGap,
+        delay: staggerDelay,
+        scrollTrigger: {
+          trigger: container,
+          ...scrollTriggerDefaults,
+        },
+      });
+    },
+    {
+      scope: containerRef,
+      dependencies: [isReady, prefersReducedMotion],
+    },
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn(className)}
-      initial="hidden"
-      animate={controls}
-      variants={staggerContainer}
-    >
+    <div ref={containerRef} className={cn(className)}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
 export function StaggerItem({ children, className }: StaggerItemProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={cn(className)}>{children}</div>;
-  }
-
   return (
-    <motion.div className={cn(className)} variants={fadeUpItem}>
+    <div data-stagger-item className={cn(className)}>
       {children}
-    </motion.div>
+    </div>
   );
 }
