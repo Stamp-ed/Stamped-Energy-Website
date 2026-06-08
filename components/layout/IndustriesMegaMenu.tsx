@@ -67,7 +67,7 @@ export function IndustriesMegaMenu({ lightNav = false }: { lightNav?: boolean })
       {/* pt-3 bridges the gap so the pointer can reach the panel without closing */}
       <div
         className={cn(
-          "absolute left-1/2 top-full z-50 w-[min(42rem,calc(100vw-2rem))] -translate-x-1/2 pt-3 transition-all duration-200",
+          "absolute left-1/2 top-full z-50 w-[min(50rem,calc(100vw-2rem))] -translate-x-1/2 pt-3 transition-all duration-200",
           isOpen
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-1 opacity-0",

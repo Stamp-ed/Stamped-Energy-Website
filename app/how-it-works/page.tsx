@@ -8,6 +8,7 @@ import { HiwOpening } from "@/components/how-it-works/HiwOpening";
 import { HiwPageCta } from "@/components/how-it-works/HiwPageCta";
 import { HiwPinnedJourney } from "@/components/how-it-works/HiwPinnedJourney";
 import { HiwPrescriptionWalkthrough } from "@/components/how-it-works/HiwPrescriptionWalkthrough";
+import { IndustryResources } from "@/components/industries/shared/IndustryResources";
 
 export const metadata: Metadata = {
   title: "How It Works",
@@ -25,6 +26,7 @@ export default function HowItWorksPage() {
       <HiwCapabilities />
       <HiwBeforeAfter />
       <HiwDeployment />
+      <IndustryResources />
       <HiwPageCta />
     </>
   );

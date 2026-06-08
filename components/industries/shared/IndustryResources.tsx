@@ -8,15 +8,15 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { industriesContent } from "@/lib/content";
+import { resourcesContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 type IndustryResourcesProps = {
-  content?: typeof industriesContent.automotive.resources;
+  content?: typeof resourcesContent;
 };
 
 export function IndustryResources({ content }: IndustryResourcesProps) {
-  const resources = content ?? industriesContent.automotive.resources;
+  const resources = content ?? resourcesContent;
   const sectionRef = useRef<HTMLElement>(null);
   const { isReady, prefersReducedMotion } = useMotion();
 

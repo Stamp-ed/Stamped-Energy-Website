@@ -9,6 +9,7 @@ import { Problem } from "@/components/sections/Problem";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { WhyStamped } from "@/components/sections/WhyStamped";
 import { WorkflowLoop } from "@/components/sections/WorkflowLoop";
+import { IndustryResources } from "@/components/industries/shared/IndustryResources";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,7 @@ export default function HomePage() {
       <Industries />
       <WhyStamped />
       <FutureMedia />
+      <IndustryResources />
       <FinalCta />
     </>
   );
