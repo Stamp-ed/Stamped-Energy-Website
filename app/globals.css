@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@import "../styles/theme.css";
+
+/*
+ * Tailwind token mapping.
+ * Every utility color resolves to a brand variable from styles/theme.css.
+ * `inline` makes utilities reference the brand var directly so re-theming
+ * is a single-file change and opacity modifiers keep working.
+ */
+@theme inline {
+  /* Surfaces */
+  --color-surface: var(--brand-surface);
+  --color-surface-dim: var(--brand-surface-dim);
+  --color-surface-bright: var(--brand-surface-bright);
+  --color-surface-lowest: var(--brand-surface-container-lowest);
+  --color-surface-low: var(--brand-surface-container-low);
+  --color-surface-container: var(--brand-surface-container);
+  --color-surface-high: var(--brand-surface-container-high);
+  --color-surface-highest: var(--brand-surface-container-highest);
+  --color-surface-variant: var(--brand-surface-variant);
+
+  /* Foreground */
+  --color-on-surface: var(--brand-on-surface);
+  --color-on-surface-variant: var(--brand-on-surface-variant);
+
+  /* Inverse / dark anchor sections */
+  --color-inverse-surface: var(--brand-inverse-surface);
+  --color-inverse-on-surface: var(--brand-inverse-on-surface);
+
+  /* Outlines */
+  --color-outline: var(--brand-outline);
+  --color-outline-variant: var(--brand-outline-variant);
+
+  /* Primary (coral-red) */
+  --color-primary: var(--brand-primary);
+  --color-on-primary: var(--brand-on-primary);
+  --color-primary-container: var(--brand-primary-container);
+  --color-on-primary-container: var(--brand-on-primary-container);
+  --color-inverse-primary: var(--brand-inverse-primary);
+
+  /* Secondary (obsidian green) */
+  --color-secondary: var(--brand-secondary);
+  --color-on-secondary: var(--brand-on-secondary);
+  --color-secondary-container: var(--brand-secondary-container);
+  --color-on-secondary-container: var(--brand-on-secondary-container);
+
+  /* Tertiary (teal) */
+  --color-tertiary: var(--brand-tertiary);
+  --color-on-tertiary: var(--brand-on-tertiary);
+  --color-tertiary-container: var(--brand-tertiary-container);
+  --color-on-tertiary-container: var(--brand-on-tertiary-container);
+
+  /* Error / status */
+  --color-error: var(--brand-error);
+  --color-on-error: var(--brand-on-error);
+  --color-error-container: var(--brand-error-container);
+  --color-on-error-container: var(--brand-on-error-container);
+
+  /* Background alias */
+  --color-background: var(--brand-background);
+  --color-on-background: var(--brand-on-background);
+
+  /* Typography families (wired in app/layout.tsx via next/font) */
+  --font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-family-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+}
+
+@layer components {
+  /* Fixed-fluid hybrid grid: centered content, 1440px max (design system) */
+  .container-page {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+}

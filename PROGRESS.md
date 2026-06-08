@@ -2,18 +2,30 @@
 
 ## Current Phase
 
-Setup — Cursor workflow configuration
+Landing page MVP — built and validated (build + lint clean)
 
 ## Completed Phases
 
 - [x] Project rules created (`.cursor/rules/`)
 - [x] Documentation stubs created
 - [x] `AGENTS.md` orchestration added
+- [x] Site architecture and tech stack defined
+- [x] Next.js 15 + Tailwind v4 + GSAP + Lenis scaffold
+- [x] Centralized theme tokens (`styles/theme.css`)
+- [x] Typed content layer (`lib/content/`)
+- [x] Landing page sections implemented
+- [x] `/how-it-works` and `/industries` route scaffolds
+- [x] Contact form + `/api/contact` stub route
+- [x] Production build and lint validation
 
 ## Remaining Phases
 
-- [ ] Define site architecture and tech stack
-- [ ] Implement initial site structure
+- [ ] Visual polish pass (hero video, Remotion GIFs, product screenshots)
+- [ ] Full How It Works page content
+- [ ] Full Industries page content
+- [ ] Blog app (separate deployment + admin portal)
+- [ ] Contact form email/CRM forwarding
+- [ ] Customer logos, case studies, testimonials
 
 ## Active Blockers
 

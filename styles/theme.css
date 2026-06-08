@@ -1,0 +1,66 @@
+/*
+ * Stamped Energy - Brand Theme (SINGLE SOURCE OF TRUTH FOR COLOR)
+ * -----------------------------------------------------------------
+ * Every color in the site resolves to one of the CSS variables below.
+ * To re-theme the entire website, change values HERE only.
+ * Components must never hardcode hex/rgb values; use Tailwind tokens
+ * (e.g. bg-surface, text-primary) which map to these variables in
+ * app/globals.css.
+ *
+ * Palette: Forge Industrial v2.0 (see Deisgn_Stamped_Energy_original.md)
+ */
+
+:root {
+  /* --- Surfaces (warm grey foundation) --- */
+  --brand-surface: #f7faf5;
+  --brand-surface-dim: #d8dbd6;
+  --brand-surface-bright: #f7faf5;
+  --brand-surface-container-lowest: #ffffff;
+  --brand-surface-container-low: #f1f4f0;
+  --brand-surface-container: #ecefea;
+  --brand-surface-container-high: #e6e9e4;
+  --brand-surface-container-highest: #e0e3df;
+
+  /* --- Foreground / text --- */
+  --brand-on-surface: #191c1a;
+  --brand-on-surface-variant: #5a403c;
+
+  /* --- Inverse (dark obsidian anchor sections: nav, loop, footer) --- */
+  --brand-inverse-surface: #2d312e;
+  --brand-inverse-on-surface: #eff2ed;
+
+  /* --- Outlines / borders --- */
+  --brand-outline: #8f706b;
+  --brand-outline-variant: #e3beb8;
+
+  /* --- Primary (vibrant coral-red: CTAs, rupee figure, critical) --- */
+  --brand-primary: #b22215;
+  --brand-on-primary: #ffffff;
+  --brand-primary-container: #d53c2b;
+  --brand-on-primary-container: #fffbff;
+  --brand-inverse-primary: #ffb4a8;
+  --brand-surface-tint: #b62517;
+
+  /* --- Secondary (deep obsidian green: anchors, stable states) --- */
+  --brand-secondary: #4a6455;
+  --brand-on-secondary: #ffffff;
+  --brand-secondary-container: #ccead6;
+  --brand-on-secondary-container: #506a5a;
+
+  /* --- Tertiary (teal accent) --- */
+  --brand-tertiary: #00666b;
+  --brand-on-tertiary: #ffffff;
+  --brand-tertiary-container: #008287;
+  --brand-on-tertiary-container: #f4ffff;
+
+  /* --- Error / status --- */
+  --brand-error: #ba1a1a;
+  --brand-on-error: #ffffff;
+  --brand-error-container: #ffdad6;
+  --brand-on-error-container: #93000a;
+
+  /* --- Background (alias of surface) --- */
+  --brand-background: #f7faf5;
+  --brand-on-background: #191c1a;
+  --brand-surface-variant: #e0e3df;
+}
