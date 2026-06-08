@@ -10,9 +10,15 @@ type NavLinkItemProps = {
   link: NavLink;
   onNavigate?: () => void;
   mobile?: boolean;
+  lightNav?: boolean;
 };
 
-export function NavLinkItem({ link, onNavigate, mobile = false }: NavLinkItemProps) {
+export function NavLinkItem({
+  link,
+  onNavigate,
+  mobile = false,
+  lightNav = false,
+}: NavLinkItemProps) {
   const pathname = usePathname();
   const isActive =
     !link.external &&
@@ -23,8 +29,11 @@ export function NavLinkItem({ link, onNavigate, mobile = false }: NavLinkItemPro
     mobile
       ? "block py-1 text-on-surface"
       : cn(
-          "nav-link text-on-surface-variant hover:text-on-surface",
-          isActive && "nav-link-active text-on-surface",
+          lightNav
+            ? "nav-link text-on-secondary/80 hover:text-on-secondary"
+            : "nav-link text-on-surface-variant hover:text-on-surface",
+          isActive &&
+            (lightNav ? "nav-link-active text-on-secondary" : "nav-link-active text-on-surface"),
         ),
   );
 

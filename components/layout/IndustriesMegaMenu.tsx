@@ -7,7 +7,7 @@ import { IndustriesExplorerPanel } from "@/components/industries/IndustriesExplo
 import { industriesContent, navLinks } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-export function IndustriesMegaMenu() {
+export function IndustriesMegaMenu({ lightNav = false }: { lightNav?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const industriesLink = navLinks.find((link) => link.megaMenu === "industries");
@@ -47,8 +47,11 @@ export function IndustriesMegaMenu() {
       <Link
         href={industriesLink.href}
         className={cn(
-          "inline-flex items-center gap-2 text-sm font-medium text-on-surface-variant transition-colors hover:text-on-surface",
-          isOpen && "text-on-surface",
+          "inline-flex items-center gap-2 text-sm font-medium transition-colors",
+          lightNav
+            ? "text-on-secondary/80 hover:text-on-secondary"
+            : "text-on-surface-variant hover:text-on-surface",
+          lightNav ? isOpen && "text-on-secondary" : isOpen && "text-on-surface",
         )}
         aria-expanded={isOpen}
         aria-haspopup="true"

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { IndustriesMegaMenu, IndustriesMobileNav } from "@/components/layout/IndustriesMegaMenu";
@@ -11,9 +12,14 @@ import { Container } from "@/components/ui/Container";
 import { navLinks, siteConfig } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+const LIGHT_NAV_ROUTES = ["/industries/automotive"];
+
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isLightNav =
+    !isScrolled && LIGHT_NAV_ROUTES.some((route) => pathname.startsWith(route));
 
   useEffect(() => {
     const onScroll = () => {
@@ -37,11 +43,11 @@ export function Navbar() {
       <Container className="flex h-20 items-center justify-between gap-4">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2.5 font-display text-lg font-bold tracking-tight text-on-surface"
+          className="flex shrink-0 items-center gap-2.5 font-display text-lg font-bold tracking-tight text-primary transition-colors hover:text-primary/90"
         >
           <Image
-            src="/LogoBlack.png"
-            alt=""
+            src="/LogoOrange.png"
+            alt={siteConfig.name}
             width={32}
             height={32}
             className="h-8 w-8 shrink-0"
@@ -56,9 +62,9 @@ export function Navbar() {
         >
           {navLinks.map((link) =>
             link.megaMenu === "industries" ? (
-              <IndustriesMegaMenu key={link.label} />
+              <IndustriesMegaMenu key={link.label} lightNav={isLightNav} />
             ) : (
-              <NavLinkItem key={link.label} link={link} />
+              <NavLinkItem key={link.label} link={link} lightNav={isLightNav} />
             ),
           )}
         </nav>
@@ -71,7 +77,12 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface lg:hidden"
+          className={cn(
+            "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border transition-colors lg:hidden",
+            isLightNav
+              ? "border-on-secondary/40 text-on-secondary hover:border-on-secondary/60"
+              : "border-outline-variant text-on-surface",
+          )}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
           onClick={() => setIsMenuOpen((open) => !open)}
