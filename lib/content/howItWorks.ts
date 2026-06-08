@@ -2,7 +2,6 @@ import type {
   CtaLink,
   HiwCapability,
   HiwDeploymentPhase,
-  HiwIntegrationSource,
   HiwJourneyStep,
   HiwMediaSlot,
   HiwSldNode,
@@ -102,26 +101,40 @@ export const howItWorksContent = {
   capabilities: {
     eyebrow: "Core capabilities",
     title: "Signals → verified savings",
+    description:
+      "Four platform layers — from universal ingestion through closed-loop governance — sized for SME manufacturers.",
     items: [
       {
         id: "ingestion",
         title: "Universal ingestion",
-        description: "Meters, SCADA, PLCs, bills — no control-system changes.",
+        description:
+          "Captures signals from meters, SCADA, PLCs, and utility bills into a continuous, real-time pipeline — without hardware retrofits or changes to your control systems.",
+        mediaSrc: null,
+        mediaAlt: "Data streams from plant systems flowing into Stamped",
       },
       {
         id: "repository",
         title: "Unified energy graph",
-        description: "Time-aligned consumption, production, and cost.",
+        description:
+          "Organises disparate streams into a time-aligned graph that connects consumption, production, and cost for accurate analytics across your plant.",
+        mediaSrc: null,
+        mediaAlt: "Unified energy graph connecting sources and loads",
       },
       {
         id: "intelligence",
         title: "Contextual intelligence",
-        description: "Anomalies and prescriptions with ₹ impact.",
+        description:
+          "Domain-specific models detect anomalies, quantify impact in rupees, and generate prescriptions your plant team can act on — not another passive dashboard.",
+        mediaSrc: null,
+        mediaAlt: "Anomaly detection and prescription generation",
       },
       {
         id: "governance",
         title: "Closed-loop governance",
-        description: "Assign, track, verify — WhatsApp + dashboard.",
+        description:
+          "Assigns actions, tracks execution via WhatsApp and dashboard, and verifies potential vs. realized savings so every opportunity converts into measurable value.",
+        mediaSrc: null,
+        mediaAlt: "Closed-loop action tracking and savings verification",
       },
     ] satisfies HiwCapability[],
   },
@@ -180,25 +193,31 @@ export const howItWorksContent = {
 
   intelligenceStack: {
     eyebrow: "The intelligence layer",
-    title: "From signals to prescriptions",
+    title: "From plant data to verified savings",
     layers: [
       {
-        id: "ingestion",
-        title: "Universal ingestion",
-        subtitle: "Signals → pipeline",
-        items: ["SCADA · PLC · meters · bills", "One time-aligned graph"],
+        id: "connect",
+        title: "Connect your plant",
+        subtitle: "1 · Monitor",
+        items: ["Existing meters, SCADA & bills", "Power, air, steam & process data"],
       },
       {
-        id: "intelligence",
-        title: "Contextual intelligence",
-        subtitle: "Detect → prescribe",
-        items: ["Production-normalized baselines", "₹ quantified prescriptions"],
+        id: "analyze",
+        title: "Analyze continuously",
+        subtitle: "2 · Analyze",
+        items: ["Live + historical telemetry", "Production & shift-aware detection"],
       },
       {
-        id: "orchestration",
-        title: "Closed-loop orchestration",
-        subtitle: "Assign → verify",
-        items: ["WhatsApp + dashboard", "Post-action M&V ledger"],
+        id: "prescribe",
+        title: "Prescribe with context",
+        subtitle: "3 · Prescribe",
+        items: ["Root cause, effort & ₹ impact", "Prioritized for your team"],
+      },
+      {
+        id: "verify",
+        title: "Execute and verify",
+        subtitle: "4 · Track",
+        items: ["WhatsApp + floor workflows", "Verified savings ledger"],
       },
     ] satisfies HiwStackLayer[],
   },
@@ -217,7 +236,7 @@ export const howItWorksContent = {
 
   beforeAfter: {
     eyebrow: "The shift",
-    title: "Before vs. with Stamped",
+    title: "Before vs With Stamped",
     before: {
       title: "Before",
       items: [
@@ -236,19 +255,6 @@ export const howItWorksContent = {
         "Verified ₹ savings",
       ],
     },
-  },
-
-  integrations: {
-    eyebrow: "Works with what you have",
-    title: "No rip-and-replace",
-    sources: [
-      { id: "scada", label: "SCADA / DCS", detail: "Historian & alarms" },
-      { id: "plc", label: "PLCs & CNCs", detail: "Run states & cycles" },
-      { id: "meters", label: "Energy meters", detail: "Incomer & sub-meters" },
-      { id: "bms", label: "BMS / utilities", detail: "HVAC & compressed air" },
-      { id: "erp", label: "ERP / MES", detail: "Orders & shifts" },
-      { id: "bills", label: "Utility bills", detail: "Tariff & MD charges" },
-    ] satisfies HiwIntegrationSource[],
   },
 
   deployment: {

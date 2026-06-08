@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { HiwBeforeAfter } from "@/components/how-it-works/HiwBeforeAfter";
 import { HiwCapabilities } from "@/components/how-it-works/HiwCapabilities";
 import { HiwDeployment } from "@/components/how-it-works/HiwDeployment";
-import { HiwIntegrations } from "@/components/how-it-works/HiwIntegrations";
 import { HiwIntelligenceStack } from "@/components/how-it-works/HiwIntelligenceStack";
 import { HiwOpening } from "@/components/how-it-works/HiwOpening";
 import { HiwPageCta } from "@/components/how-it-works/HiwPageCta";
@@ -20,12 +19,11 @@ export default function HowItWorksPage() {
   return (
     <>
       <HiwOpening />
-      <HiwCapabilities />
       <HiwPinnedJourney />
       <HiwIntelligenceStack />
       <HiwPrescriptionWalkthrough />
+      <HiwCapabilities />
       <HiwBeforeAfter />
-      <HiwIntegrations />
       <HiwDeployment />
       <HiwPageCta />
     </>

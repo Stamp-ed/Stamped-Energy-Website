@@ -1,5 +1,106 @@
 import { gsap } from "@/lib/motion/gsap";
 
+const TIMING = {
+  label: { duration: 0.38, y: -6 },
+  item: { duration: 0.44, stagger: 0.09, x: 14 },
+  accent: { duration: 0.42, delay: 0.42 },
+  footer: { duration: 0.48, delay: 0.62, y: 10 },
+  line: { duration: 0.52, stagger: 0.08, delay: 0.12 },
+} as const;
+
+function animateLabel(diagram: HTMLElement) {
+  const label = diagram.querySelector<HTMLElement>("[data-animate='label']");
+  if (!label) {
+    return;
+  }
+
+  gsap.fromTo(
+    label,
+    { autoAlpha: 0, y: TIMING.label.y },
+    { autoAlpha: 1, y: 0, duration: TIMING.label.duration, ease: "power2.out" },
+  );
+}
+
+function animateItems(
+  diagram: HTMLElement,
+  selector = "[data-animate='item']",
+  options?: { x?: number; y?: number; fromScale?: number },
+) {
+  const items = diagram.querySelectorAll<HTMLElement>(selector);
+  if (!items.length) {
+    return;
+  }
+
+  const from: gsap.TweenVars = { autoAlpha: 0 };
+  const to: gsap.TweenVars = {
+    autoAlpha: 1,
+    duration: TIMING.item.duration,
+    stagger: TIMING.item.stagger,
+    ease: "power2.out",
+    delay: 0.08,
+  };
+
+  if (options?.x !== undefined) {
+    from.x = options.x;
+    to.x = 0;
+  }
+
+  if (options?.y !== undefined) {
+    from.y = options.y;
+    to.y = 0;
+  }
+
+  if (options?.fromScale !== undefined) {
+    from.scale = options.fromScale;
+    to.scale = 1;
+  }
+
+  gsap.fromTo(items, from, to);
+}
+
+function animateAccent(diagram: HTMLElement, options?: { scale?: number; y?: number }) {
+  const accent = diagram.querySelector<HTMLElement>("[data-animate='accent']");
+  if (!accent) {
+    return;
+  }
+
+  gsap.fromTo(
+    accent,
+    {
+      autoAlpha: 0,
+      scale: options?.scale ?? 0.9,
+      y: options?.y ?? 0,
+    },
+    {
+      autoAlpha: 1,
+      scale: 1,
+      y: 0,
+      duration: TIMING.accent.duration,
+      ease: "back.out(1.5)",
+      delay: TIMING.accent.delay,
+    },
+  );
+}
+
+function animateFooter(diagram: HTMLElement) {
+  const footer = diagram.querySelector<HTMLElement>("[data-animate='footer']");
+  if (!footer) {
+    return;
+  }
+
+  gsap.fromTo(
+    footer,
+    { autoAlpha: 0, y: TIMING.footer.y },
+    {
+      autoAlpha: 1,
+      y: 0,
+      duration: TIMING.footer.duration,
+      ease: "power2.out",
+      delay: TIMING.footer.delay,
+    },
+  );
+}
+
 export function animateDiagramPanel(panel: HTMLElement): void {
   const diagram = panel.querySelector<HTMLElement>("[data-diagram]");
   if (!diagram) {
@@ -7,133 +108,96 @@ export function animateDiagramPanel(panel: HTMLElement): void {
   }
 
   const type = diagram.dataset.diagram;
-
   const animatedTargets = diagram.querySelectorAll("[data-animate]");
   gsap.killTweensOf(animatedTargets);
 
-  if (type !== "verify") {
+  if (type === "verify") {
+    const bars = diagram.querySelectorAll<HTMLElement>("[data-animate='item'], [data-animate='accent']");
+    gsap.set(bars, { scaleY: 1, transformOrigin: "bottom center", autoAlpha: 1 });
+  } else {
     gsap.set(animatedTargets, { clearProps: "all" });
   }
 
+  animateLabel(diagram);
+
   if (type === "connect") {
+    animateItems(diagram, "[data-animate='item']", { x: -TIMING.item.x });
+
+    const lines = diagram.querySelectorAll<SVGElement>("[data-animate='line']");
     gsap.fromTo(
-      diagram.querySelectorAll("[data-animate='node']"),
-      { autoAlpha: 0, x: -16 },
-      { autoAlpha: 1, x: 0, stagger: 0.09, duration: 0.45, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      diagram.querySelectorAll("[data-animate='line']"),
+      lines,
       { strokeDashoffset: 120, autoAlpha: 0 },
-      { strokeDashoffset: 0, autoAlpha: 1, stagger: 0.07, duration: 0.55, ease: "power2.out", delay: 0.1 },
+      {
+        strokeDashoffset: 0,
+        autoAlpha: 1,
+        stagger: TIMING.line.stagger,
+        duration: TIMING.line.duration,
+        ease: "power2.out",
+        delay: TIMING.line.delay,
+      },
     );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='hub']"),
-      { scale: 0.88, autoAlpha: 0 },
-      { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(1.4)", delay: 0.3 },
-    );
+
+    animateAccent(diagram, { scale: 0.88 });
     return;
   }
 
   if (type === "observe") {
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='label']"),
-      { autoAlpha: 0, y: -6 },
-      { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='baseline']"),
-      { autoAlpha: 0 },
-      { autoAlpha: 1, duration: 0.4, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='actual']"),
-      { strokeDasharray: 400, strokeDashoffset: 400 },
-      { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut", delay: 0.15 },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='anomaly']"),
-      { scale: 0, autoAlpha: 0 },
-      { scale: 1, autoAlpha: 1, duration: 0.4, ease: "back.out(2)", delay: 0.9 },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='callout']"),
-      { autoAlpha: 0, y: 12 },
-      { autoAlpha: 1, y: 0, duration: 0.5, delay: 1.1 },
-    );
+    const baseline = diagram.querySelector<SVGElement>("[data-animate='baseline']");
+    const actual = diagram.querySelector<SVGPathElement>("[data-animate='actual']");
+
+    if (baseline) {
+      gsap.fromTo(
+        baseline,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.4, ease: "power2.out", delay: 0.08 },
+      );
+    }
+
+    if (actual) {
+      gsap.fromTo(
+        actual,
+        { strokeDasharray: 400, strokeDashoffset: 400 },
+        { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", delay: 0.18 },
+      );
+    }
+
+    animateAccent(diagram, { scale: 0, y: 0 });
+    animateFooter(diagram);
     return;
   }
 
   if (type === "decide") {
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='header']"),
-      { autoAlpha: 0, y: -6 },
-      { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      diagram.querySelectorAll("[data-animate='field']"),
-      { autoAlpha: 0, x: 20 },
-      { autoAlpha: 1, x: 0, stagger: 0.1, duration: 0.42, ease: "power2.out", delay: 0.08 },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='badge']"),
-      { autoAlpha: 0, scale: 0.9 },
-      { autoAlpha: 1, scale: 1, duration: 0.35, delay: 0.5 },
-    );
+    animateItems(diagram, "[data-animate='item']", { x: TIMING.item.x });
+    animateAccent(diagram);
     return;
   }
 
   if (type === "execute") {
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='phone']"),
-      { autoAlpha: 0, x: -18, rotate: -3 },
-      { autoAlpha: 1, x: 0, rotate: 0, duration: 0.5, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      diagram.querySelector("[data-animate='tracker']"),
-      { autoAlpha: 0, x: 14 },
-      { autoAlpha: 1, x: 0, duration: 0.45, ease: "power2.out", delay: 0.12 },
-    );
-    gsap.fromTo(
-      diagram.querySelectorAll("[data-animate='status']"),
-      { autoAlpha: 0, x: 12 },
-      { autoAlpha: 1, x: 0, stagger: 0.08, duration: 0.35, delay: 0.22 },
-    );
+    animateItems(diagram, "[data-animate='item']", { x: TIMING.item.x });
+    animateAccent(diagram, { y: -4 });
     return;
   }
 
   if (type === "verify") {
-    const potential = diagram.querySelector<HTMLElement>("[data-animate='bar-potential']");
-    const realized = diagram.querySelector<HTMLElement>("[data-animate='bar-realized']");
-    const ledger = diagram.querySelector<HTMLElement>("[data-animate='ledger']");
-    const label = diagram.querySelector<HTMLElement>("[data-animate='label']");
+    const potential = diagram.querySelector<HTMLElement>("[data-animate='item']");
+    const realized = diagram.querySelector<HTMLElement>("[data-animate='accent']");
 
-    gsap.set([potential, realized], {
-      scaleY: 1,
-      transformOrigin: "bottom center",
-      autoAlpha: 1,
-    });
-    gsap.set(ledger, { autoAlpha: 1, y: 0 });
-    gsap.set(label, { autoAlpha: 1, y: 0 });
+    if (potential) {
+      gsap.fromTo(
+        potential,
+        { scaleY: 0, transformOrigin: "bottom center" },
+        { scaleY: 1, duration: 0.62, ease: "power2.out", delay: 0.1 },
+      );
+    }
 
-    gsap.fromTo(
-      label,
-      { autoAlpha: 0, y: -8 },
-      { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
-    );
-    gsap.fromTo(
-      potential,
-      { scaleY: 0, transformOrigin: "bottom center" },
-      { scaleY: 1, duration: 0.65, ease: "power2.out", delay: 0.05 },
-    );
-    gsap.fromTo(
-      realized,
-      { scaleY: 0, transformOrigin: "bottom center" },
-      { scaleY: 1, duration: 0.65, ease: "power2.out", delay: 0.25 },
-    );
-    gsap.fromTo(
-      ledger,
-      { autoAlpha: 0, y: 12 },
-      { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.5 },
-    );
+    if (realized) {
+      gsap.fromTo(
+        realized,
+        { scaleY: 0, transformOrigin: "bottom center" },
+        { scaleY: 1, duration: 0.62, ease: "power2.out", delay: 0.28 },
+      );
+    }
+
+    animateFooter(diagram);
   }
 }

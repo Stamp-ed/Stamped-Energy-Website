@@ -81,7 +81,7 @@ export function HiwBeforeAfter() {
                 Reactive · fragmented
               </p>
             </div>
-            <ul className="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-2">
+            <ul className="flex flex-col gap-2 px-5 py-4">
               {beforeAfter.before.items.map((item) => (
                 <li
                   key={item}
@@ -107,7 +107,7 @@ export function HiwBeforeAfter() {
                 Prescriptive · verified
               </p>
             </div>
-            <ul className="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-2">
+            <ul className="flex flex-col gap-2 px-5 py-4">
               {beforeAfter.after.items.map((item) => (
                 <li
                   key={item}

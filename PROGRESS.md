@@ -21,6 +21,7 @@ How It Works — visual-first content pass (condensed copy, diagram-led layout)
 - [x] Full `/how-it-works` page — pinned journey, intelligence stack, prescription scrub, integrations, deployment timeline
 - [x] How It Works opening Option C — interactive plant SLD diagram, Greenovative-aligned hero copy, core capabilities strip
 - [x] How It Works visual pass — shortened copy, diagram-first journey, chip labels, removed optional media text block
+- [x] Core capabilities — Greenovative-style visual cards (SVG animations + full copy, 2×2 grid; `mediaSrc` hook for custom assets)
 
 ## Remaining Phases
 

@@ -150,11 +150,11 @@ export function HiwIntelligenceStack() {
                     {layer.subtitle}
                   </p>
                   <h3 className="mt-2 text-lg font-bold md:text-xl">{layer.title}</h3>
-                  <div className="mt-4 flex flex-1 flex-wrap content-start gap-2">
+                  <div className="mt-4 flex flex-1 flex-col gap-2.5">
                     {layer.items.map((item) => (
                       <span
                         key={item}
-                        className="rounded-full border border-on-secondary/20 bg-inverse-surface/40 px-3 py-1.5 text-xs font-medium text-on-secondary/90 md:text-sm"
+                        className="inline-flex w-full items-center rounded-lg border border-on-secondary/20 bg-inverse-surface/40 px-4 py-2.5 text-xs font-medium leading-snug text-on-secondary/90 md:px-[1.125rem] md:py-3 md:text-[13px] md:leading-5"
                       >
                         {item}
                       </span>
