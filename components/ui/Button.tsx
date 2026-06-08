@@ -26,8 +26,17 @@ type ButtonAsLink = ButtonBaseProps & {
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    "bg-primary text-on-primary border border-primary hover:bg-primary-container",
+  primary: cn(
+    "relative isolate overflow-hidden",
+    "border border-primary bg-primary text-on-primary",
+    "shadow-[0_2px_10px_-4px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)]",
+    "transition-[transform,box-shadow,filter] duration-200 ease-out",
+    "hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_color-mix(in_srgb,var(--brand-primary)_58%,transparent)] hover:brightness-[1.04]",
+    "active:translate-y-0 active:shadow-[0_4px_14px_-6px_color-mix(in_srgb,var(--brand-primary)_42%,transparent)] active:brightness-100",
+    "before:pointer-events-none before:absolute before:inset-0 before:content-[''] before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-on-primary/35 before:to-transparent before:transition-transform before:duration-700 before:ease-out hover:before:translate-x-full",
+    "disabled:hover:translate-y-0 disabled:hover:shadow-[0_2px_10px_-4px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)] disabled:hover:brightness-100",
+    "disabled:before:hidden",
+  ),
   secondary:
     "bg-secondary text-on-secondary border border-secondary hover:opacity-90",
   ghost:
@@ -43,6 +52,10 @@ function isLinkProps(props: ButtonProps): props is ButtonAsLink {
   return "href" in props && Boolean(props.href);
 }
 
+function ButtonInner({ children }: { children: ReactNode }) {
+  return <span className="relative z-10 inline-flex items-center gap-2">{children}</span>;
+}
+
 export function Button(props: ButtonProps) {
   const { children, className, variant = "primary" } = props;
   const classes = cn(baseClasses, variantClasses[variant], className);
@@ -56,14 +69,14 @@ export function Button(props: ButtonProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {children}
+          <ButtonInner>{children}</ButtonInner>
         </a>
       );
     }
 
     return (
       <Link href={props.href} className={classes}>
-        {children}
+        <ButtonInner>{children}</ButtonInner>
       </Link>
     );
   }
@@ -77,7 +90,7 @@ export function Button(props: ButtonProps) {
       onClick={buttonProps.onClick}
       disabled={buttonProps.disabled}
     >
-      {children}
+      <ButtonInner>{children}</ButtonInner>
     </button>
   );
 }

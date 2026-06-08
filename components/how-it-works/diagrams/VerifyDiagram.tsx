@@ -7,7 +7,7 @@ export function VerifyDiagram() {
       eyebrow="Potential vs. realized"
       footer={
         <DiagramCallout>
-          Running ledger: <span className="font-bold text-on-surface">₹2.1L verified</span> since
+          Running ledger: <span className="font-bold text-on-surface">₹14L verified</span> since
           deployment
         </DiagramCallout>
       }
@@ -22,8 +22,8 @@ export function VerifyDiagram() {
               style={{ height: "100%" }}
             />
           </div>
-          <p className="text-xs font-medium text-on-surface-variant md:text-sm">Potential</p>
-          <p className="text-sm font-bold text-on-surface md:text-base">₹38K</p>
+          <p className="text-xs font-medium text-on-surface-variant md:text-sm">Potential / month</p>
+          <p className="text-sm font-bold text-on-surface md:text-base">₹4L</p>
         </div>
         <div className="flex flex-col items-center gap-2">
           <div className="flex h-28 items-end md:h-32">
@@ -33,8 +33,8 @@ export function VerifyDiagram() {
               style={{ height: "82%" }}
             />
           </div>
-          <p className="text-xs font-medium text-on-surface-variant md:text-sm">Realized</p>
-          <p className="text-sm font-bold text-primary md:text-base">₹34K</p>
+          <p className="text-xs font-medium text-on-surface-variant md:text-sm">Realized / month</p>
+          <p className="text-sm font-bold text-primary md:text-base">₹3.4L</p>
         </div>
       </div>
     </DiagramShell>

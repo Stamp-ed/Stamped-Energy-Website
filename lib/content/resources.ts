@@ -17,7 +17,7 @@ export const resourcesContent = {
       type: "case-study",
       title: "Automotive & pump manufacturing: 18% SEC reduction",
       description:
-        "16 verified measures across compressors, furnaces, and shift-start sequencing — IPMVP-style M&V with ₹34L+ monthly energy savings (reference benchmark).",
+        "16 verified measures across compressors, furnaces, and shift-start sequencing — IPMVP-style M&V with ₹12–34L monthly energy savings (reference benchmark).",
       href: "/case-studies",
       tag: "Case study — coming soon",
       imageSrc: RESOURCE_IMAGES.forging,

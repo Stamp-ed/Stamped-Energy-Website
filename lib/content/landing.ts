@@ -141,7 +141,7 @@ export const landingContent = {
       },
       { label: "Who", value: "Electrical maintenance team" },
       { label: "Effort", value: "Scheduling change only. No capital spend." },
-      { label: "Impact", value: "₹38,000/month at current operating hours" },
+      { label: "Impact", value: "₹2.5–4L/month at current operating hours" },
       { label: "When", value: "Apply before next billing cycle" },
     ] satisfies PrescriptionField[],
   },

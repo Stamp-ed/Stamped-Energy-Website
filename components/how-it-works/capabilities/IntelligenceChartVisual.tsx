@@ -241,7 +241,7 @@ export function IntelligenceChartVisual() {
           data-intel-impact
           className="mt-1.5 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary md:text-[11px]"
         >
-          Est. ₹42k / month
+          Est. ₹3.5L / month
         </p>
       </div>
     </div>

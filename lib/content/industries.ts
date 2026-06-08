@@ -125,7 +125,7 @@ export const industriesContent = {
           ],
           metrics: [
             { id: "dc-sec", value: "8–15%", label: "Typical SEC improvement range" },
-            { id: "dc-md", value: "₹15–40K", label: "Monthly MD / demand charge exposure" },
+            { id: "dc-md", value: "₹2–5L", label: "Monthly MD / demand charge savings" },
           ],
         },
         {
@@ -150,7 +150,7 @@ export const industriesContent = {
           ],
           metrics: [
             { id: "fg-md", value: "12–22%", label: "MD / demand charge reduction potential" },
-            { id: "fg-sec", value: "10–18%", label: "SEC improvement with M&V" },
+            { id: "fg-sec", value: "₹3–8L", label: "Monthly energy cost reduction" },
           ],
         },
         {
@@ -175,7 +175,7 @@ export const industriesContent = {
           ],
           metrics: [
             { id: "ht-hold", value: "15–25%", label: "Holding loss recoverable" },
-            { id: "ht-tariff", value: "₹8–25K", label: "Monthly tariff-window savings" },
+            { id: "ht-tariff", value: "₹1.5–4L", label: "Monthly tariff-window savings" },
           ],
         },
         {
@@ -200,7 +200,7 @@ export const industriesContent = {
           ],
           metrics: [
             { id: "rm-air", value: "5–12%", label: "Compressed air system savings" },
-            { id: "rm-cure", value: "10–20%", label: "Curing energy reduction potential" },
+            { id: "rm-cure", value: "₹1.2–3L", label: "Monthly curing & idle-load savings" },
           ],
         },
       ] satisfies IndustrySegment[],
@@ -254,8 +254,8 @@ export const industriesContent = {
           title: "Press shop & body components",
           description:
             "Stagger press and auxiliary startup to avoid simultaneous MD spikes. Zero-investment sequencing prescriptions plus ROI-ranked capital actions.",
-          potentialLabel: "Platform potential",
-          potentialValue: "3–5%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹1.5–3L",
         },
         {
           id: "die-cast",
@@ -263,8 +263,8 @@ export const industriesContent = {
           title: "Die casting cells",
           description:
             "Furnace holding, core cooling compressors, and shot-cycle SEC — normalized by alloy mix and production rate.",
-          potentialLabel: "Platform potential",
-          potentialValue: "8–12%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹2–5L",
         },
         {
           id: "heat-treat",
@@ -272,8 +272,8 @@ export const industriesContent = {
           title: "Heat treatment & carburizing",
           description:
             "Setback gaps, weekend holding, and batch timing against tariff windows — prescribed per furnace with M&V.",
-          potentialLabel: "Platform potential",
-          potentialValue: "10–15%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹1.5–4L",
         },
         {
           id: "compressed-air",
@@ -281,8 +281,8 @@ export const industriesContent = {
           title: "Compressed air & utilities",
           description:
             "Leak detection, over-pressure, and overlapping compressors — a recurring theme across auto component plants.",
-          potentialLabel: "Platform potential",
-          potentialValue: "4–8%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹1.2–2.5L",
         },
         {
           id: "rubber-cure",
@@ -290,8 +290,8 @@ export const industriesContent = {
           title: "Rubber moulding & curing",
           description:
             "Curing cycle optimization, idle press heat, and batch changeover windows with supervisor-ready actions.",
-          potentialLabel: "Platform potential",
-          potentialValue: "8–12%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹1.2–3L",
         },
         {
           id: "demand-md",
@@ -299,8 +299,8 @@ export const industriesContent = {
           title: "Electrical demand & MD management",
           description:
             "Demand windows, power factor, and shift-overlap spikes — tied to rupee impact on your utility bill.",
-          potentialLabel: "Platform potential",
-          potentialValue: "2–5%",
+          potentialLabel: "Est. monthly savings",
+          potentialValue: "₹2–6L",
         },
       ] satisfies IndustryValueArea[],
     },
