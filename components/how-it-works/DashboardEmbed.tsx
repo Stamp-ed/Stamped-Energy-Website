@@ -63,11 +63,16 @@ export function DashboardEmbed({ embed, className }: DashboardEmbedProps) {
         tabIndex={-1}
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-          Embed placeholder
-        </p>
-        <h3 className="mt-3 max-w-md text-lg font-bold text-on-surface">{embed.placeholderTitle}</h3>
-        <p className="mt-2 max-w-lg text-sm leading-6 text-on-surface-variant">
+        <span
+          aria-hidden="true"
+          className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-2xl text-primary"
+        >
+          ▣
+        </span>
+        <h3 className="max-w-sm text-base font-bold text-on-surface md:text-lg">
+          {embed.placeholderTitle}
+        </h3>
+        <p className="mt-1.5 max-w-xs text-xs leading-5 text-on-surface-variant md:text-sm">
           {embed.placeholderDescription}
         </p>
       </div>

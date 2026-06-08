@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
 
 export function HiwMediaSlots() {
-  const dashboardSlot = howItWorksContent.gifSlots[1];
+  const dashboardSlot = howItWorksContent.gifSlots[0];
 
   if (!dashboardSlot) {
     return null;

@@ -1,41 +1,142 @@
 import type {
   CtaLink,
+  HiwCapability,
   HiwDeploymentPhase,
   HiwIntegrationSource,
   HiwJourneyStep,
   HiwMediaSlot,
+  HiwSldNode,
   HiwStackLayer,
   PrescriptionEmbedConfig,
 } from "./types";
 
 export const howItWorksContent = {
   hero: {
-    eyebrow: "How Stamped works",
-    title: "From fragmented plant data to verified rupee savings",
+    eyebrow: "Platform",
+    title: "Prescriptive intelligence on unified plant data",
     description:
-      "Scroll through the full Connect → Observe → Decide → Execute → Verify loop. Each step shows what happens inside the platform — not abstract diagrams, but the actual workflow your plant team will follow.",
+      "One energy graph from meters, SCADA, PLCs, and bills — prescriptions with verified ₹ impact. No retrofit.",
     primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
     secondaryCta: { label: "Back to home", href: "/" } satisfies CtaLink,
+  },
+
+  plantSld: {
+    title: "Your plant energy graph",
+    hint: "Hover or tap a node",
+    nodes: [
+      {
+        id: "incomer",
+        label: "Incomer meter",
+        tooltip: "MD kVA, demand windows, tariff periods.",
+        x: 50,
+        y: 10,
+        kind: "source",
+      },
+      {
+        id: "scada",
+        label: "SCADA / DCS",
+        tooltip: "Historian tags and process states.",
+        x: 14,
+        y: 26,
+        kind: "source",
+      },
+      {
+        id: "plc",
+        label: "PLCs & CNCs",
+        tooltip: "Run states and cycle times.",
+        x: 14,
+        y: 46,
+        kind: "source",
+      },
+      {
+        id: "meters",
+        label: "Sub-meters",
+        tooltip: "Section kWh and demand.",
+        x: 14,
+        y: 66,
+        kind: "source",
+      },
+      {
+        id: "bill",
+        label: "Utility bill",
+        tooltip: "Tariff, MD charges, TOU windows.",
+        x: 14,
+        y: 84,
+        kind: "source",
+      },
+      {
+        id: "stamped",
+        label: "Stamped graph",
+        tooltip: "Time-aligned consumption, production, and cost.",
+        x: 50,
+        y: 50,
+        kind: "hub",
+      },
+      {
+        id: "compressor",
+        label: "Compressors",
+        tooltip: "Shift-start spikes and idle hours.",
+        x: 86,
+        y: 26,
+        kind: "load",
+      },
+      {
+        id: "press",
+        label: "Press lines",
+        tooltip: "Startup patterns vs. production.",
+        x: 86,
+        y: 46,
+        kind: "load",
+      },
+      {
+        id: "furnace",
+        label: "Furnaces / ovens",
+        tooltip: "Setback gaps and holding losses.",
+        x: 86,
+        y: 66,
+        kind: "load",
+      },
+    ] satisfies HiwSldNode[],
+  },
+
+  capabilities: {
+    eyebrow: "Core capabilities",
+    title: "Signals → verified savings",
+    items: [
+      {
+        id: "ingestion",
+        title: "Universal ingestion",
+        description: "Meters, SCADA, PLCs, bills — no control-system changes.",
+      },
+      {
+        id: "repository",
+        title: "Unified energy graph",
+        description: "Time-aligned consumption, production, and cost.",
+      },
+      {
+        id: "intelligence",
+        title: "Contextual intelligence",
+        description: "Anomalies and prescriptions with ₹ impact.",
+      },
+      {
+        id: "governance",
+        title: "Closed-loop governance",
+        description: "Assign, track, verify — WhatsApp + dashboard.",
+      },
+    ] satisfies HiwCapability[],
   },
 
   journey: {
     eyebrow: "The workflow loop",
     title: "Five steps. One closed loop.",
-    description:
-      "Pinned scroll storytelling — inspired by Greenovative's platform walkthrough and Zerowatt's sensor-to-action narrative. Watch each phase build on the last.",
     steps: [
       {
         id: "connect",
         step: 1,
         title: "Connect",
         tagline: "Plug into what you already run",
-        description:
-          "No hardware retrofit. Stamped layers on top of meters, SCADA, PLCs, CNCs, and your utility bill — the same sources Greenovative and Zerowatt integrate with, sized for SME plants.",
-        bullets: [
-          "Start with incomer meter + monthly bill (fastest path to MD insight)",
-          "Deepen into SCADA, PLC, and production signals over time",
-          "Protocol-agnostic adapters — Modbus, OPC-UA, MQTT, REST",
-        ],
+        description: "",
+        bullets: ["Incomer + bill first", "Modbus · OPC-UA · MQTT"],
         diagram: "connect",
       },
       {
@@ -43,13 +144,8 @@ export const howItWorksContent = {
         step: 2,
         title: "Observe",
         tagline: "Baselines that understand production",
-        description:
-          "Raw kWh is meaningless without context. Stamped normalizes consumption against shifts, production volume, and tariff windows — filtering noise like Greenovative's context-aware engine.",
-        bullets: [
-          "Production-normalized SEC baselines per asset and line",
-          "Near-real-time anomaly detection on demand and idle loads",
-          "Tariff-aware windows (peak, off-peak, MD billing periods)",
-        ],
+        description: "",
+        bullets: ["Production-normalized SEC", "Tariff-aware anomaly detection"],
         diagram: "observe",
       },
       {
@@ -57,13 +153,8 @@ export const howItWorksContent = {
         step: 3,
         title: "Decide",
         tagline: "Prescriptions, not charts",
-        description:
-          "Every insight becomes a structured prescription: what to do, why, who owns it, effort level, and monthly rupee impact — the format plant heads actually act on.",
-        bullets: [
-          "Root cause tied to evidence from your own telemetry",
-          "Rupee impact calculated at current tariff and operating hours",
-          "Prioritized queue — tackle highest-impact items first",
-        ],
+        description: "",
+        bullets: ["What · why · who · ₹", "Prioritized action queue"],
         diagram: "decide",
       },
       {
@@ -71,13 +162,8 @@ export const howItWorksContent = {
         step: 4,
         title: "Execute",
         tagline: "Actions reach the floor",
-        description:
-          "Prescriptions route to the right role via WhatsApp and dashboard — Zerowatt's lesson applied for SME plants where the owner is often the only executor.",
-        bullets: [
-          "WhatsApp-native alerts to supervisors and maintenance",
-          "Open → In Progress → Completed tracking per action",
-          "Re-surfaces if not actioned within 48 hours",
-        ],
+        description: "",
+        bullets: ["WhatsApp to supervisors", "Open → Done tracking"],
         diagram: "execute",
       },
       {
@@ -85,53 +171,34 @@ export const howItWorksContent = {
         step: 5,
         title: "Verify",
         tagline: "Potential vs. realized — in rupees",
-        description:
-          "After execution, Stamped monitors post-action consumption against adjusted baselines and records verified savings — the closed loop Greenovative calls Potential vs. Realized.",
-        bullets: [
-          "M&V against production-adjusted baseline",
-          "Running ledger: total verified savings since deployment",
-          "Defensible numbers for CFO, OEM auditors, and PAT reporting",
-        ],
+        description: "",
+        bullets: ["M&V vs. adjusted baseline", "Running ₹ savings ledger"],
         diagram: "verify",
       },
     ] satisfies HiwJourneyStep[],
   },
 
   intelligenceStack: {
-    eyebrow: "Under the hood",
-    title: "Three layers of intelligence",
-    description:
-      "Greenovative separates a base industrial model from plant-specific fine-tuning. Stamped uses the same principle — global energy physics, localized to your tariffs, shifts, and assets.",
+    eyebrow: "The intelligence layer",
+    title: "From signals to prescriptions",
     layers: [
       {
         id: "ingestion",
         title: "Universal ingestion",
-        subtitle: "Signals → unified pipeline",
-        items: [
-          "SCADA, PLC, BMS, smart meters, utility bills",
-          "Time-aligned streaming into one energy graph",
-          "No change to existing control systems",
-        ],
+        subtitle: "Signals → pipeline",
+        items: ["SCADA · PLC · meters · bills", "One time-aligned graph"],
       },
       {
         id: "intelligence",
         title: "Contextual intelligence",
-        subtitle: "Baselines + anomaly + prescription engine",
-        items: [
-          "Production-normalized baselines and SEC tracking",
-          "Demand spike, idle load, and tariff misalignment detection",
-          "Prescription generation with rupee quantification",
-        ],
+        subtitle: "Detect → prescribe",
+        items: ["Production-normalized baselines", "₹ quantified prescriptions"],
       },
       {
         id: "orchestration",
         title: "Closed-loop orchestration",
-        subtitle: "Assign → track → verify",
-        items: [
-          "Work orders with role assignment and status",
-          "WhatsApp + dashboard delivery",
-          "Post-action M&V and savings ledger",
-        ],
+        subtitle: "Assign → verify",
+        items: ["WhatsApp + dashboard", "Post-action M&V ledger"],
       },
     ] satisfies HiwStackLayer[],
   },
@@ -139,39 +206,34 @@ export const howItWorksContent = {
   prescriptionDemo: {
     eyebrow: "Product preview",
     title: "Prescription dashboard",
-    description:
-      "Explore the prescription queue, detail view, and savings impact — via an embedded demo or recorded walkthrough.",
     embed: {
       iframeSrc: null,
       videoSrc: null,
       iframeTitle: "Stamped Energy prescription dashboard preview",
       placeholderTitle: "Dashboard embed — coming soon",
-      placeholderDescription:
-        "An iframe of the simulated dashboard (or a video of the live product) will load here. Set iframeSrc or videoSrc in content when ready.",
+      placeholderDescription: "Live demo or screen recording loads here when ready.",
     } satisfies PrescriptionEmbedConfig,
   },
 
   beforeAfter: {
     eyebrow: "The shift",
-    title: "Before Stamped vs. with Stamped",
+    title: "Before vs. with Stamped",
     before: {
-      title: "Before Stamped",
+      title: "Before",
       items: [
-        "Bill arrives — waste already happened",
-        "SCADA charts nobody acts on",
-        "Recommendations with no owner or tracking",
-        "Savings claimed but never verified",
-        "Energy treated as fixed overhead",
+        "Bill shock every month",
+        "Scattered systems",
+        "Gut-feel decisions",
+        "Unquantified waste",
       ],
     },
     after: {
       title: "With Stamped",
       items: [
-        "Anomalies caught in near real time",
-        "One operational view across systems",
-        "Prescriptions with rupee impact and owner",
-        "Verified savings ledger in ₹",
-        "Energy managed as a P&L line item",
+        "Ahead-of-time alerts",
+        "One operational view",
+        "Prescriptive actions",
+        "Verified ₹ savings",
       ],
     },
   },
@@ -179,74 +241,60 @@ export const howItWorksContent = {
   integrations: {
     eyebrow: "Works with what you have",
     title: "No rip-and-replace",
-    description:
-      "Zerowatt's integration-first model, adapted for software-only SME deployment. We enhance data fidelity where gaps exist — without stopping production.",
     sources: [
-      { id: "scada", label: "SCADA / DCS", detail: "Historian tags, alarms, process states" },
-      { id: "plc", label: "PLCs & CNCs", detail: "Machine run states, cycle times, load signals" },
-      { id: "meters", label: "Energy meters", detail: "Incomer, sub-meters, demand kVA" },
-      { id: "bms", label: "BMS / utilities", detail: "HVAC, compressed air, steam headers" },
-      { id: "erp", label: "ERP / MES", detail: "Production orders, shift schedules" },
-      { id: "bills", label: "Utility bills", detail: "Tariff structure, MD charges, TOU windows" },
+      { id: "scada", label: "SCADA / DCS", detail: "Historian & alarms" },
+      { id: "plc", label: "PLCs & CNCs", detail: "Run states & cycles" },
+      { id: "meters", label: "Energy meters", detail: "Incomer & sub-meters" },
+      { id: "bms", label: "BMS / utilities", detail: "HVAC & compressed air" },
+      { id: "erp", label: "ERP / MES", detail: "Orders & shifts" },
+      { id: "bills", label: "Utility bills", detail: "Tariff & MD charges" },
     ] satisfies HiwIntegrationSource[],
   },
 
   deployment: {
     eyebrow: "Deployment path",
     title: "Live in weeks, not quarters",
-    description: "Pilot-led rollout designed for Band B/C plants — prove savings before annual commitment.",
     phases: [
       {
         id: "week-1-2",
         week: "Week 1–2",
         title: "Connect & baseline",
-        description: "Meter + bill integration. First baselines and tariff mapping.",
+        description: "Meter + bill live. First baselines.",
       },
       {
         id: "week-3-4",
         week: "Week 3–4",
         title: "First insights",
-        description: "Anomalies surfaced. First prescriptions with rupee estimates.",
+        description: "Anomalies + first prescriptions.",
       },
       {
         id: "month-2",
         week: "Month 2",
         title: "Deepen integration",
-        description: "SCADA/PLC signals added. Production-normalized SEC live.",
+        description: "SCADA/PLC + production SEC.",
       },
       {
         id: "month-3",
         week: "Month 3+",
         title: "Verified savings",
-        description: "First M&V cycle complete. Savings ledger reported in ₹.",
+        description: "M&V complete. ₹ ledger live.",
       },
     ] satisfies HiwDeploymentPhase[],
   },
 
   gifSlots: [
     {
-      id: "plant-sld",
-      title: "Plant single-line diagram (recommended GIF)",
-      description:
-        "Animated energy flow from incomer → sub-meters → major loads, with live highlighting when an anomaly fires.",
-      reason:
-        "A full SLD with dynamic path tracing is hard to maintain as GSAP — Remotion export will look more polished and match Greenovative's digital twin section.",
-    },
-    {
       id: "dashboard-walkthrough",
-      title: "Dashboard walkthrough (optional GIF)",
-      description:
-        "30s screen capture style: prescription queue → detail → mark complete → savings update.",
-      reason:
-        "Real UI chrome and micro-interactions are faster to nail in Remotion than hand-coded mocks that drift from the product.",
+      title: "Dashboard walkthrough",
+      description: "Prescription queue → detail → savings update.",
+      reason: "Optional product UI capture when embed is not ready.",
     },
   ] satisfies HiwMediaSlot[],
 
   finalCta: {
-    eyebrow: "See it on your plant",
-    title: "Walk through your data in a discovery call",
-    description:
-      "We will map your existing meters and systems, estimate addressable waste, and outline a low-risk pilot.",
+    eyebrow: "Next step",
+    title: "Walk through your data",
+    description: "Map your meters, estimate waste, outline a pilot.",
     primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
   },
 } as const;

@@ -81,14 +81,14 @@ export function HiwBeforeAfter() {
                 Reactive · fragmented
               </p>
             </div>
-            <ul className="space-y-0 px-6 py-5">
+            <ul className="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-2">
               {beforeAfter.before.items.map((item) => (
                 <li
                   key={item}
                   data-before-item
-                  className="flex gap-3 border-b border-outline-variant/30 py-3 text-sm leading-6 text-on-surface-variant last:border-0"
+                  className="flex items-center gap-2.5 rounded-lg bg-surface-dim/40 px-3 py-2.5 text-sm font-medium text-on-surface-variant"
                 >
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-outline-variant/30 text-xs text-on-surface-variant">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-outline-variant/30 text-[10px] text-on-surface-variant">
                     ✕
                   </span>
                   {item}
@@ -107,14 +107,14 @@ export function HiwBeforeAfter() {
                 Prescriptive · verified
               </p>
             </div>
-            <ul className="space-y-0 px-6 py-5">
+            <ul className="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-2">
               {beforeAfter.after.items.map((item) => (
                 <li
                   key={item}
                   data-after-item
-                  className="flex gap-3 border-b border-primary/10 py-3 text-sm leading-6 text-on-surface last:border-0"
+                  className="flex items-center gap-2.5 rounded-lg bg-primary/8 px-3 py-2.5 text-sm font-medium text-on-surface"
                 >
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-on-primary">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-on-primary">
                     ✓
                   </span>
                   {item}

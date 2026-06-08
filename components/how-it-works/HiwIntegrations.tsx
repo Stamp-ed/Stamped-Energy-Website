@@ -164,7 +164,6 @@ export function HiwIntegrations() {
         <SectionHeading
           eyebrow={integrations.eyebrow}
           title={integrations.title}
-          description={integrations.description}
           align="center"
           className="mx-auto"
         />
@@ -217,12 +216,12 @@ export function HiwIntegrations() {
               <article
                 key={source.id}
                 data-integration-card
-                className="absolute left-1/2 top-1/2 z-10 w-[9.5rem] rounded-lg border border-outline-variant/50 bg-surface-lowest p-3 shadow-sm md:w-[10.5rem] md:p-4"
+                title={source.detail}
+                className="absolute left-1/2 top-1/2 z-10 flex w-[8.5rem] flex-col items-center justify-center rounded-lg border border-outline-variant/50 bg-surface-lowest px-3 py-3.5 text-center shadow-sm md:w-[9rem] md:py-4"
               >
-                <h3 className="text-sm font-bold text-on-surface">{source.label}</h3>
-                <p className="mt-1 text-[11px] leading-4 text-on-surface-variant">
-                  {source.detail}
-                </p>
+                <h3 className="text-xs font-bold leading-tight text-on-surface md:text-sm">
+                  {source.label}
+                </h3>
               </article>
             ))}
           </div>

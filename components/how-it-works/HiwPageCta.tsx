@@ -50,10 +50,10 @@ export function HiwPageCta() {
           <h2 className="mt-3 font-display text-3xl font-extrabold md:text-4xl">
             {finalCta.title}
           </h2>
-          <p className="mt-4 text-base leading-7 text-on-secondary/85">
+          <p className="mt-3 text-sm leading-6 text-on-secondary/80 md:text-base">
             {finalCta.description}
           </p>
-          <div className="mt-8">
+          <div className="mt-6">
             <Button href={finalCta.primaryCta.href} variant="primary">
               {finalCta.primaryCta.label}
             </Button>

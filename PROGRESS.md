@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-How It Works page — animation-heavy scroll storytelling (complete)
+How It Works — visual-first content pass (condensed copy, diagram-led layout)
 
 ## Completed Phases
 
@@ -19,11 +19,15 @@ How It Works page — animation-heavy scroll storytelling (complete)
 - [x] Production build and lint validation
 - [x] GSAP + ScrollTrigger + Lenis motion provider (replaced Framer Motion)
 - [x] Full `/how-it-works` page — pinned journey, intelligence stack, prescription scrub, integrations, deployment timeline
+- [x] How It Works opening Option C — interactive plant SLD diagram, Greenovative-aligned hero copy, core capabilities strip
+- [x] How It Works visual pass — shortened copy, diagram-first journey, chip labels, removed optional media text block
 
 ## Remaining Phases
 
 - [ ] Visual polish pass (hero video, Remotion GIFs, product screenshots)
-- [ ] Remotion GIFs for plant SLD + dashboard walkthrough (placeholders on `/how-it-works`)
+- [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
+- [ ] Dashboard walkthrough video / live embed for prescription section
+- [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)
 - [ ] Full Industries page content
 - [ ] Blog app (separate deployment + admin portal)
 - [ ] Contact form email/CRM forwarding

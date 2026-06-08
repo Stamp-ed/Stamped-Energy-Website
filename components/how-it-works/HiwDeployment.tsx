@@ -60,7 +60,6 @@ export function HiwDeployment() {
         <SectionHeading
           eyebrow={deployment.eyebrow}
           title={deployment.title}
-          description={deployment.description}
           align="center"
           className="mx-auto"
         />
@@ -84,7 +83,7 @@ export function HiwDeployment() {
                   {phase.week}
                 </p>
                 <h3 className="mt-2 text-base font-bold text-on-surface">{phase.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-on-surface-variant">
+                <p className="mt-1.5 text-xs leading-5 text-on-surface-variant">
                   {phase.description}
                 </p>
               </article>

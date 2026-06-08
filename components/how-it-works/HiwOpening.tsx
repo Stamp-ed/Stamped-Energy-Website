@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { GifPlaceholder } from "@/components/how-it-works/GifPlaceholder";
+import { PlantSldDiagram } from "@/components/how-it-works/PlantSldDiagram";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -11,8 +11,7 @@ import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwOpening() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { hero, gifSlots } = howItWorksContent;
-  const openingSlot = gifSlots[0];
+  const { hero, plantSld } = howItWorksContent;
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -45,22 +44,14 @@ export function HiwOpening() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,color-mix(in_srgb,var(--brand-primary)_12%,transparent),transparent_60%)]"
       />
       <Container className="relative z-10">
-        <div data-hiw-opening>
-          <GifPlaceholder
-            variant="hero"
-            title={openingSlot.title}
-            description={openingSlot.description}
-          />
-        </div>
-
-        <div data-hiw-opening className="mx-auto mt-10 max-w-3xl text-center">
+        <div data-hiw-opening className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
             {hero.eyebrow}
           </p>
-          <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight text-on-surface md:text-4xl">
+          <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight text-on-surface md:text-4xl lg:text-[2.5rem]">
             {hero.title}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-on-surface-variant md:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
             {hero.description}
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -71,10 +62,19 @@ export function HiwOpening() {
               {hero.secondaryCta.label}
             </Button>
           </div>
-          <p className="mt-8 text-xs font-medium uppercase tracking-[0.14em] text-on-surface-variant">
-            Scroll to explore the workflow
-          </p>
         </div>
+
+        <div data-hiw-opening className="mx-auto mt-8 max-w-5xl">
+          <PlantSldDiagram nodes={plantSld.nodes} hint={plantSld.hint} />
+        </div>
+
+        <p
+          data-hiw-opening
+          className="mx-auto mt-6 text-center text-xs font-medium uppercase tracking-[0.14em] text-on-surface-variant/80"
+          aria-hidden="true"
+        >
+          ↓ Scroll the workflow
+        </p>
       </Container>
     </section>
   );

@@ -8,7 +8,7 @@ export function DecideDiagram() {
   return (
     <div
       data-diagram="decide"
-      className="relative flex aspect-[4/3] w-full min-h-[280px] flex-col justify-center rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[320px] md:p-6"
+      className="relative flex aspect-[4/3] w-full min-h-[300px] flex-col justify-center rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[360px] md:p-6"
     >
       <p
         data-animate="header"

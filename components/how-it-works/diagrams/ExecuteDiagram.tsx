@@ -4,7 +4,7 @@ export function ExecuteDiagram() {
   return (
     <div
       data-diagram="execute"
-      className="relative flex aspect-[4/3] w-full min-h-[280px] items-center gap-5 rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[320px] md:gap-7 md:p-6"
+      className="relative flex aspect-[4/3] w-full min-h-[300px] items-center gap-5 rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[360px] md:gap-7 md:p-6"
     >
       <div
         data-animate="phone"

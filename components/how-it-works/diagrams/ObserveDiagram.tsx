@@ -2,7 +2,7 @@ export function ObserveDiagram() {
   return (
     <div
       data-diagram="observe"
-      className="relative flex aspect-[4/3] w-full min-h-[280px] flex-col rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[320px] md:p-6"
+      className="relative flex aspect-[4/3] w-full min-h-[300px] flex-col rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[360px] md:p-6"
     >
       <p
         data-animate="label"

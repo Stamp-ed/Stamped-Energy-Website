@@ -73,3 +73,21 @@ Architecture and workflow decisions for this project.
 **Selected:** GSAP + ScrollTrigger + Lenis via centralized `MotionProvider`, `useGSAP` in `Reveal` / `StaggerReveal` / `Hero`.
 
 **Rationale:** Same proven stack as Greenovative; no SSR animation state; ScrollTrigger waits for Lenis `scrollerProxy` before child components animate; `useGSAP` handles cleanup on route unmount.
+
+---
+
+## ADR-005: How It Works opening — interactive SLD (Option C)
+
+**Date:** 2026-06-08
+
+**Context:** Opening needed to explain unified plant data without a GIF-first hero. Three options were considered: GIF animation, static diagram, or interactive single-line diagram (Locus-style).
+
+**Alternatives:**
+
+1. GIF/WebM plant animation (high production cost, not interactive)
+2. Static illustrated SLD (clear but passive)
+3. Interactive SVG SLD with hover/tap tooltips + core capabilities strip below hero
+
+**Selected:** Option C — `PlantSldDiagram` (9 nodes, hub-and-spoke) + `HiwCapabilities` (4 cards) + refreshed hero copy.
+
+**Rationale:** Teaches the data model on first paint; no asset dependency for MVP; optional custom icons can be swapped in later without layout changes.

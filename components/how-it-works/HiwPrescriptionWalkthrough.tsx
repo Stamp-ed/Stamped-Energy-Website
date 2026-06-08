@@ -16,7 +16,6 @@ export function HiwPrescriptionWalkthrough() {
           <SectionHeading
             eyebrow={prescriptionDemo.eyebrow}
             title={prescriptionDemo.title}
-            description={prescriptionDemo.description}
             align="center"
             className="mx-auto"
           />

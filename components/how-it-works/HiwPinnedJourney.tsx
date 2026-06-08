@@ -144,7 +144,6 @@ export function HiwPinnedJourney() {
         <SectionHeading
           eyebrow={journey.eyebrow}
           title={journey.title}
-          description={journey.description}
           align="center"
           className="mx-auto"
         />
@@ -182,44 +181,42 @@ export function HiwPinnedJourney() {
               ))}
             </div>
 
-            <div className="relative col-span-9 min-h-[min(58vh,560px)] xl:col-span-9">
+            <div className="relative col-span-9 min-h-[min(62vh,600px)] xl:col-span-9">
               {journey.steps.map((step, index) => (
                 <article
                   key={step.id}
                   data-journey-panel
-                  className="absolute inset-0 grid grid-cols-1 items-center gap-10 xl:grid-cols-2 xl:gap-12"
+                  className="absolute inset-0 grid grid-cols-1 items-center gap-8 xl:grid-cols-12 xl:gap-10"
                   style={{
                     visibility: index === 0 ? "visible" : "hidden",
                     opacity: index === 0 ? 1 : 0,
                   }}
                 >
-                  <div className="max-w-xl">
-                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
-                      Step {step.step}
-                    </p>
-                    <h3 className="mt-2 text-3xl font-bold text-on-surface md:text-4xl">
+                  <div className="w-full xl:col-span-7 xl:min-w-0">
+                    <StepDiagram diagram={step.diagram} />
+                  </div>
+                  <div className="max-w-sm xl:col-span-5">
+                    <h3 className="text-2xl font-bold text-on-surface md:text-3xl">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-base font-medium text-on-surface-variant">
+                    <p className="mt-2 text-sm font-medium leading-6 text-on-surface-variant md:text-base">
                       {step.tagline}
                     </p>
-                    <p className="mt-4 text-base leading-7 text-on-surface-variant">
-                      {step.description}
-                    </p>
-                    <ul className="mt-4 space-y-2">
+                    {step.description ? (
+                      <p className="mt-3 text-sm leading-6 text-on-surface-variant">
+                        {step.description}
+                      </p>
+                    ) : null}
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {step.bullets.map((bullet) => (
-                        <li
+                        <span
                           key={bullet}
-                          className="flex gap-2.5 text-sm leading-6 text-on-surface-variant md:text-base md:leading-7"
+                          className="rounded-full border border-primary/25 bg-primary/8 px-3 py-1.5 text-xs font-medium text-on-surface md:text-sm"
                         >
-                          <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
                           {bullet}
-                        </li>
+                        </span>
                       ))}
-                    </ul>
-                  </div>
-                  <div className="w-full xl:min-w-[340px]">
-                    <StepDiagram diagram={step.diagram} />
+                    </div>
                   </div>
                 </article>
               ))}
@@ -228,28 +225,32 @@ export function HiwPinnedJourney() {
         </Container>
       </div>
 
-      <Container className="space-y-12 py-12 lg:hidden">
+      <Container className="space-y-10 py-12 lg:hidden">
         {journey.steps.map((step) => (
           <article
             key={step.id}
             data-journey-panel-mobile
-            className="rounded-xl border border-outline-variant/50 bg-surface-lowest p-5"
+            className="overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
           >
-            <p className="font-display text-3xl font-extrabold text-primary">
-              {String(step.step).padStart(2, "0")}
-            </p>
-            <h3 className="mt-2 text-xl font-bold text-on-surface">{step.title}</h3>
-            <p className="mt-1 text-sm font-medium text-on-surface-variant">{step.tagline}</p>
-            <p className="mt-3 text-sm leading-6 text-on-surface-variant">{step.description}</p>
-            <ul className="mt-4 space-y-2">
-              {step.bullets.map((bullet) => (
-                <li key={bullet} className="text-sm leading-6 text-on-surface-variant">
-                  • {bullet}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6">
+            <div className="p-4 pb-0">
               <StepDiagram diagram={step.diagram} />
+            </div>
+            <div className="p-5 pt-4">
+              <p className="font-display text-2xl font-extrabold text-primary">
+                {String(step.step).padStart(2, "0")}
+              </p>
+              <h3 className="mt-1 text-lg font-bold text-on-surface">{step.title}</h3>
+              <p className="mt-1 text-sm text-on-surface-variant">{step.tagline}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {step.bullets.map((bullet) => (
+                  <span
+                    key={bullet}
+                    className="rounded-full border border-primary/25 bg-primary/8 px-2.5 py-1 text-xs font-medium text-on-surface"
+                  >
+                    {bullet}
+                  </span>
+                ))}
+              </div>
             </div>
           </article>
         ))}

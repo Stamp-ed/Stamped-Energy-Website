@@ -9,7 +9,7 @@ export function ConnectDiagram() {
   return (
     <div
       data-diagram="connect"
-      className="relative flex aspect-[4/3] w-full min-h-[280px] items-center rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[320px] md:p-6"
+      className="relative flex aspect-[4/3] w-full min-h-[300px] items-center rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:min-h-[360px] md:p-6"
     >
       <div className="relative z-10 flex h-full w-[38%] flex-col justify-between py-1">
         {sources.map((source) => (

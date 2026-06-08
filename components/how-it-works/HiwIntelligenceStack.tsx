@@ -127,7 +127,6 @@ export function HiwIntelligenceStack() {
         <SectionHeading
           eyebrow={intelligenceStack.eyebrow}
           title={intelligenceStack.title}
-          description={intelligenceStack.description}
           align="center"
           dark
           className="mx-auto"
@@ -151,14 +150,16 @@ export function HiwIntelligenceStack() {
                     {layer.subtitle}
                   </p>
                   <h3 className="mt-2 text-lg font-bold md:text-xl">{layer.title}</h3>
-                  <ul className="mt-4 flex-1 space-y-2">
+                  <div className="mt-4 flex flex-1 flex-wrap content-start gap-2">
                     {layer.items.map((item) => (
-                      <li key={item} className="flex gap-2 text-sm leading-5 text-on-secondary/85">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-inverse-primary" />
+                      <span
+                        key={item}
+                        className="rounded-full border border-on-secondary/20 bg-inverse-surface/40 px-3 py-1.5 text-xs font-medium text-on-secondary/90 md:text-sm"
+                      >
                         {item}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </article>
 
                 {index < intelligenceStack.layers.length - 1 ? (
