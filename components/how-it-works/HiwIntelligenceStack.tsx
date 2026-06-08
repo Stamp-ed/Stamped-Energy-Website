@@ -6,7 +6,66 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
-import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
+
+const CARD_DURATION = 0.72;
+const ARROW_DURATION = 0.55;
+const STEP_PAUSE = 0.12;
+
+function buildSimpleTimeline(
+  layers: HTMLElement[],
+  arrows: HTMLElement[],
+  axis: "x" | "y",
+) {
+  const fromOffset = axis === "x" ? { x: -20 } : { y: 18 };
+  const toOffset = axis === "x" ? { x: 0 } : { y: 0 };
+  const arrowOrigin = axis === "x" ? "left center" : "top center";
+  const arrowFrom = axis === "x" ? { scaleX: 0 } : { scaleY: 0 };
+  const arrowTo = axis === "x" ? { scaleX: 1 } : { scaleY: 1 };
+
+  gsap.set(layers, { autoAlpha: 0, scale: 0.97, ...fromOffset });
+  gsap.set(arrows, { autoAlpha: 0, transformOrigin: arrowOrigin, ...arrowFrom });
+  gsap.set("[data-stack-glow]", { autoAlpha: 0, scale: 0.92 });
+
+  const timeline = gsap.timeline();
+  let cursor = 0;
+
+  timeline.to(
+    layers[0],
+    { autoAlpha: 1, scale: 1, ...toOffset, duration: CARD_DURATION, ease: "power2.out" },
+    cursor,
+  );
+  cursor += CARD_DURATION + STEP_PAUSE;
+
+  arrows.forEach((arrow, index) => {
+    const nextLayer = layers[index + 1];
+    if (!nextLayer) {
+      return;
+    }
+
+    timeline.to(
+      arrow,
+      { autoAlpha: 1, ...arrowTo, duration: ARROW_DURATION, ease: "power2.inOut" },
+      cursor,
+    );
+    cursor += ARROW_DURATION + STEP_PAUSE;
+
+    timeline.to(
+      nextLayer,
+      { autoAlpha: 1, scale: 1, ...toOffset, duration: CARD_DURATION, ease: "power2.out" },
+      cursor,
+    );
+    cursor += CARD_DURATION + STEP_PAUSE;
+  });
+
+  timeline.to(
+    "[data-stack-glow]",
+    { autoAlpha: 1, scale: 1, duration: 0.45, ease: "power2.out" },
+    cursor,
+  );
+
+  return timeline;
+}
 
 export function HiwIntelligenceStack() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,33 +79,41 @@ export function HiwIntelligenceStack() {
         return;
       }
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
+      const layers = gsap.utils.toArray<HTMLElement>("[data-stack-layer]");
+
+      if (!layers.length) {
+        return;
+      }
+
+      const mm = gsap.matchMedia();
+
+      const playOnce = (arrows: HTMLElement[], axis: "x" | "y", start: string) => {
+        const timeline = buildSimpleTimeline(layers, arrows, axis);
+
+        const scrollTrigger = ScrollTrigger.create({
           trigger: trackRef.current,
-          start: "top 75%",
+          start,
           once: true,
-        },
+          animation: timeline,
+        });
+
+        return () => {
+          scrollTrigger.kill();
+          timeline.kill();
+        };
+      };
+
+      mm.add("(min-width: 1024px)", () => {
+        const arrows = gsap.utils.toArray<HTMLElement>("[data-stack-arrow-draw]");
+        return playOnce(arrows, "x", "top 78%");
       });
 
-      timeline
-        .from("[data-stack-layer]", {
-          autoAlpha: 0,
-          y: 32,
-          scale: 0.96,
-          duration: 0.55,
-          stagger: 0.14,
-          ease: "power2.out",
-        })
-        .from(
-          "[data-stack-arrow]",
-          { scaleX: 0, autoAlpha: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" },
-          "-=0.35",
-        )
-        .from(
-          "[data-stack-glow]",
-          { scale: 0.8, autoAlpha: 0, duration: 0.5, ease: "power2.out" },
-          "-=0.2",
-        );
+      mm.add("(max-width: 1023px)", () => {
+        const mobileArrows = gsap.utils.toArray<HTMLElement>("[data-stack-arrow-draw-mobile]");
+        return playOnce(mobileArrows, "y", "top 82%");
+      });
+
+      return () => mm.revert();
     },
     {
       scope: sectionRef,
@@ -73,7 +140,7 @@ export function HiwIntelligenceStack() {
             className="pointer-events-none absolute inset-x-8 top-1/2 hidden h-24 -translate-y-1/2 rounded-full bg-inverse-primary/10 blur-3xl lg:block"
           />
 
-          <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-2">
+          <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-3">
             {intelligenceStack.layers.map((layer, index) => (
               <Fragment key={layer.id}>
                 <article
@@ -95,13 +162,32 @@ export function HiwIntelligenceStack() {
                 </article>
 
                 {index < intelligenceStack.layers.length - 1 ? (
-                  <div
-                    data-stack-arrow
-                    className="hidden shrink-0 items-center justify-center self-center px-1 lg:flex"
-                    aria-hidden="true"
-                  >
-                    <span className="text-2xl font-light text-inverse-primary">→</span>
-                  </div>
+                  <>
+                    <div
+                      className="flex shrink-0 items-center justify-center self-center py-1 lg:hidden"
+                      aria-hidden="true"
+                    >
+                      <div
+                        data-stack-arrow-draw-mobile
+                        className="flex h-8 origin-top flex-col items-center"
+                      >
+                        <span className="w-[2px] flex-1 rounded-full bg-inverse-primary" />
+                        <span className="-mt-0.5 text-lg leading-none text-inverse-primary">›</span>
+                      </div>
+                    </div>
+
+                    <div
+                      className="hidden w-12 shrink-0 items-center self-center px-1 lg:flex"
+                      aria-hidden="true"
+                    >
+                      <div data-stack-arrow-draw className="flex w-full origin-left items-center">
+                        <span className="h-[2px] flex-1 rounded-full bg-inverse-primary" />
+                        <span className="-ml-0.5 text-xl font-light leading-none text-inverse-primary">
+                          ›
+                        </span>
+                      </div>
+                    </div>
+                  </>
                 ) : null}
               </Fragment>
             ))}

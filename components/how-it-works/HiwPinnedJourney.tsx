@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
 import { animateDiagramPanel } from "@/lib/motion/animateDiagram";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
+import { getPinScrollStart } from "@/lib/motion/pinLayout";
 import { cn } from "@/lib/utils";
 
 export function HiwPinnedJourney() {
@@ -79,12 +80,12 @@ export function HiwPinnedJourney() {
 
         const scrollTrigger = ScrollTrigger.create({
           trigger: pinRef.current,
-          start: "top top",
+          start: getPinScrollStart(),
           end: () => `+=${(panels.length - 1) * 100}%`,
           pin: pinRef.current,
           pinSpacing: true,
           scrub: 0.35,
-          anticipatePin: 1,
+          anticipatePin: 0,
           snap: {
             snapTo: 1 / (panels.length - 1),
             duration: { min: 0.15, max: 0.35 },
@@ -139,7 +140,7 @@ export function HiwPinnedJourney() {
 
   return (
     <section ref={sectionRef} className="bg-surface-low">
-      <Container className="py-16 md:py-20">
+      <Container className="pt-16 pb-6 md:pt-20 md:pb-8">
         <SectionHeading
           eyebrow={journey.eyebrow}
           title={journey.title}
@@ -149,11 +150,8 @@ export function HiwPinnedJourney() {
         />
       </Container>
 
-      <div
-        ref={pinRef}
-        className="hidden min-h-screen items-center justify-center lg:flex"
-      >
-        <Container className="w-full py-6">
+      <div ref={pinRef} className="hidden lg:block">
+        <Container className="w-full pb-12">
           <div className="grid grid-cols-12 items-center gap-10 xl:gap-14">
             <div className="col-span-3 flex flex-col gap-2 xl:col-span-3">
               {journey.steps.map((step, index) => (
@@ -184,7 +182,7 @@ export function HiwPinnedJourney() {
               ))}
             </div>
 
-            <div className="relative col-span-9 min-h-[min(62vh,600px)] xl:col-span-9">
+            <div className="relative col-span-9 min-h-[min(58vh,560px)] xl:col-span-9">
               {journey.steps.map((step, index) => (
                 <article
                   key={step.id}

@@ -1,29 +1,101 @@
+"use client";
+
+import { useRef } from "react";
+
+import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
 
 export function PrescriptionExample() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
   const { prescription } = landingContent;
+  const { isReady, prefersReducedMotion } = useMotion();
+
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion) {
+        return;
+      }
+
+      const fields = gsap.utils.toArray<HTMLElement>("[data-rx-field]");
+      const header = cardRef.current?.querySelector<HTMLElement>("[data-rx-header]");
+      const badge = cardRef.current?.querySelector<HTMLElement>("[data-rx-badge]");
+
+      gsap.set(fields, { autoAlpha: 0.18, x: 16 });
+      if (header) {
+        gsap.set(header, { autoAlpha: 0, y: -8 });
+      }
+      if (badge) {
+        gsap.set(badge, { scale: 0.9, autoAlpha: 0 });
+      }
+
+      const timeline = gsap.timeline();
+
+      if (header) {
+        timeline.to(header, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" });
+      }
+      if (badge) {
+        timeline.to(badge, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, "-=0.15");
+      }
+
+      fields.forEach((field, index) => {
+        timeline.to(
+          field,
+          { autoAlpha: 1, x: 0, duration: 0.42, ease: "power2.out" },
+          index === 0 ? "-=0.05" : "-=0.2",
+        );
+      });
+
+      ScrollTrigger.create({
+        trigger: cardRef.current,
+        start: "top 78%",
+        once: true,
+        animation: timeline,
+      });
+    },
+    {
+      scope: sectionRef,
+      dependencies: [isReady, prefersReducedMotion],
+    },
+  );
 
   return (
-    <section className="py-20 md:py-28">
-      <Container>
+    <section ref={sectionRef} className="relative overflow-hidden py-20 md:py-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,color-mix(in_srgb,var(--brand-primary)_8%,transparent),transparent_55%)]"
+      />
+
+      <Container className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <Reveal from="left">
-            <SectionHeading
-              eyebrow={prescription.eyebrow}
-              title={prescription.title}
-            />
+            <SectionHeading eyebrow={prescription.eyebrow} title={prescription.title} />
+            <p className="mt-4 max-w-md text-sm leading-7 text-on-surface-variant">
+              Each field assembles in sequence — the same experience your maintenance team receives on
+              WhatsApp and in the dashboard.
+            </p>
           </Reveal>
 
           <Reveal from="right">
-            <article className="rounded-xl border-2 border-primary/20 bg-surface-lowest p-6 shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] md:p-8">
-              <div className="mb-6 flex items-center justify-between border-b border-outline-variant/40 pb-4">
+            <article
+              ref={cardRef}
+              className="rounded-xl border-2 border-primary/20 bg-surface-lowest p-6 shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] md:p-8"
+            >
+              <div
+                data-rx-header
+                className="mb-6 flex items-center justify-between border-b border-outline-variant/40 pb-4"
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                   Live prescription example
                 </p>
-                <span className="rounded-md bg-primary px-3 py-1 text-xs font-semibold text-on-primary">
+                <span
+                  data-rx-badge
+                  className="rounded-md bg-primary px-3 py-1 text-xs font-semibold text-on-primary"
+                >
                   Open
                 </span>
               </div>
@@ -32,6 +104,7 @@ export function PrescriptionExample() {
                 {prescription.fields.map((field) => (
                   <div
                     key={field.label}
+                    data-rx-field
                     className="grid gap-1 sm:grid-cols-[88px_1fr]"
                   >
                     <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">

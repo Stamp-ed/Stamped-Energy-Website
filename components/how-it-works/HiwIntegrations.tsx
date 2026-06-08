@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { getPinScrollStart } from "@/lib/motion/pinLayout";
 
 const STAGE_CENTER = { x: 400, y: 280 };
 const SOURCE_COUNT = howItWorksContent.integrations.sources.length;
@@ -96,12 +97,12 @@ export function HiwIntegrations() {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: pinRef.current,
-            start: "top top",
+            start: getPinScrollStart(),
             end: "+=130%",
             pin: pinRef.current,
             pinSpacing: true,
             scrub: 0.65,
-            anticipatePin: 1,
+            anticipatePin: 0,
           },
         });
 
@@ -159,7 +160,7 @@ export function HiwIntegrations() {
 
   return (
     <section ref={sectionRef} className="bg-surface-low">
-      <Container className="py-16 md:py-20">
+      <Container className="pt-16 pb-6 md:pt-20 md:pb-8">
         <SectionHeading
           eyebrow={integrations.eyebrow}
           title={integrations.title}
@@ -169,11 +170,11 @@ export function HiwIntegrations() {
         />
       </Container>
 
-      <div ref={pinRef} className="min-h-screen">
-        <Container className="flex min-h-screen items-center py-10">
+      <div ref={pinRef}>
+        <Container className="pb-12">
           <div
             ref={stageRef}
-            className="relative mx-auto h-[min(68vh,580px)] w-full max-w-4xl"
+            className="relative mx-auto h-[min(62vh,540px)] w-full max-w-4xl md:h-[min(64vh,580px)]"
           >
             <svg
               className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
