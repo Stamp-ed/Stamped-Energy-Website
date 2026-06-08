@@ -17,9 +17,77 @@ const INDUSTRY_IMAGES = {
 export const industriesContent = {
   hub: {
     eyebrow: "Industries",
-    title: "Purpose-built for energy-intensive manufacturing",
+    title: "Built for plants that run on utilities",
     description:
-      "Starting with automotive and its process-intensive supply chain in the NCR belt. Select a vertical to explore how Stamped delivers prescriptive intelligence and verified ₹ savings.",
+      "Stamped starts with automotive and its process-intensive supply chain — where furnaces, compressors, and shift-start sequencing directly hit margin.",
+    heroImageSrc: INDUSTRY_IMAGES.forging,
+    heroImageAlt: "Automotive forging press line in an energy-intensive manufacturing plant",
+    primaryCta: { label: "Explore Automotive", href: "/industries/automotive" } satisfies CtaLink,
+    secondaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    stats: [
+      {
+        id: "hub-sec",
+        value: "12–20%",
+        label: "Typical electricity cost reduction",
+        detail: "Process-intensive SME plants",
+      },
+      {
+        id: "hub-md",
+        value: "15–25%",
+        label: "MD / demand charge reduction",
+        detail: "From incomer meter + bill data",
+      },
+      {
+        id: "hub-processes",
+        value: "4",
+        label: "Automotive processes covered",
+        detail: "Die casting, forging, heat treatment, rubber moulding",
+      },
+    ] satisfies StatItem[],
+    approach: {
+      eyebrow: "How we fit your plant",
+      title: "Industry context, not generic dashboards",
+      items: [
+        {
+          id: "process-baselines",
+          title: "Process-normalized baselines",
+          description:
+            "SEC and demand tracked against production context — shift patterns, batch cycles, and furnace states, not just kWh totals.",
+        },
+        {
+          id: "segment-prescriptions",
+          title: "Segment-specific prescriptions",
+          description:
+            "Die casting shift-start spikes, forging MD exposure, heat-treatment holding losses — each with assigned roles and rupee impact.",
+        },
+        {
+          id: "verified-outcomes",
+          title: "Verified on the next bill",
+          description:
+            "Closed-loop M&V ties every action to adjusted baselines so savings are defensible for plant heads and OEM audits.",
+        },
+      ],
+    },
+    explorer: {
+      eyebrow: "Browse verticals",
+      title: "Select a vertical to explore",
+      description:
+        "Hover a vertical to preview process segments. Automotive is live today — more verticals follow as validation grows.",
+    },
+    featured: {
+      eyebrow: "Live today",
+      title: "Automotive manufacturing",
+      description:
+        "Tier 1 and Tier 2 suppliers under OEM cost pressure — four process segments with expandable playbooks on the industry page.",
+      cta: { label: "Open automotive page", href: "/industries/automotive" } satisfies CtaLink,
+    },
+    finalCta: {
+      eyebrow: "Start with your plant",
+      title: "Not sure which segment fits?",
+      description:
+        "Book a discovery call. We will map your meters, processes, and estimated waste — and outline a low-risk pilot path.",
+      primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    },
     cta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
   },
 

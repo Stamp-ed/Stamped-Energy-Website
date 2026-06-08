@@ -9,6 +9,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { industriesContent } from "@/lib/content";
 import { getSegmentImageFocus } from "@/lib/industries/imageFocus";
+import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +45,7 @@ export function AutomotiveSegments() {
         duration: 0.6,
         stagger: 0.1,
         ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 76%", once: true },
+        scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
       });
     },
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },

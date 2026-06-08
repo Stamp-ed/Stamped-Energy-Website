@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { resourcesContent } from "@/lib/content";
+import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 type IndustryResourcesProps = {
@@ -32,7 +33,7 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
         duration: 0.55,
         stagger: 0.1,
         ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
       });
     },
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },

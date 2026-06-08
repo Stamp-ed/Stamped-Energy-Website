@@ -15,9 +15,11 @@ export const landingContent = {
     headlineLine1: "AI Energy Intelligence",
     headlineLine2: "Turn Data Into Verified Savings",
     subheadline:
-      "Connect your existing plant data. Get prescriptions with rupee impact. Verify the saving on your next electricity bill.",
+      "Connect existing plant data. Get rupee-denominated prescriptions. Verify savings on your next bill.",
     primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
+    visualImageSrc: "/industries/die-casting.jpeg",
+    visualImageAlt: "Molten metal pour in a die casting plant — energy-intensive automotive manufacturing",
   },
 
   trust: {
@@ -32,8 +34,7 @@ export const landingContent = {
   outcomes: {
     eyebrow: "Target outcomes",
     title: "Savings you can verify on the next bill",
-    disclaimer:
-      "Target ranges based on industry benchmarks. Customer-validated figures will replace these as pilot data accumulates.",
+    disclaimer: "Target ranges from industry benchmarks. Pilot-validated figures replace these as data accumulates.",
     stats: [
       {
         id: "bill-reduction",
@@ -70,19 +71,19 @@ export const landingContent = {
         id: "fragmented",
         title: "Fragmented systems",
         description:
-          "SCADA, PLCs, CNCs, meters, and utility bills live in separate systems that never synthesize into one operational picture.",
+          "SCADA, PLCs, meters, and bills live in separate systems — never one operational picture.",
       },
       {
         id: "reactive",
         title: "Reactive decisions",
         description:
-          "By the time the electricity bill arrives, the month's waste has already happened. Decisions stay intuitive, not quantified in rupees.",
+          "The bill arrives after the waste. Decisions stay intuitive, not quantified in rupees.",
       },
       {
         id: "unverified",
         title: "Savings never verified",
         description:
-          "Internal recommendations are made, but nobody tracks execution or confirms whether the saving materialized on the next bill.",
+          "Recommendations are made, but nobody confirms whether savings hit the next bill.",
       },
     ] satisfies ProblemItem[],
   },
@@ -187,7 +188,7 @@ export const landingContent = {
     eyebrow: "Industries",
     title: "Starting with automotive. Built for manufacturing broadly.",
     description:
-      "The initial focus is auto component and process-intensive manufacturing in the NCR belt. The platform is designed to expand across verticals as validation grows.",
+      "Initial focus: auto component and process-intensive manufacturing in the NCR belt. Expanding as validation grows.",
     cta: { label: "View all industries", href: "/industries" } satisfies CtaLink,
     items: [
       {
@@ -196,30 +197,40 @@ export const landingContent = {
         focus: "OEM cost pressure meets rising tariffs",
         description: "Tier 1 and Tier 2 suppliers facing OEM cost pressure and rising electricity tariffs.",
         featured: true,
+        imageSrc: "/industries/forging.jpg",
+        imageAlt: "Automotive forging press line",
       },
       {
         id: "die-casting",
         name: "Die Casting",
-        focus: "Shift-start demand spikes on furnaces & compressors",
-        description: "High energy intensity, demand spikes at shift start, and furnace-compressor coordination issues.",
+        focus: "Shift-start demand spikes",
+        description: "Furnace-compressor coordination and demand spikes at every shift start.",
+        imageSrc: "/industries/die-casting.jpeg",
+        imageAlt: "Die casting molten metal process",
       },
       {
         id: "forging",
         name: "Forging",
-        focus: "Heavy loads and MD charge exposure",
-        description: "Heavy loads, MD charge exposure, and production-linked SEC variability.",
+        focus: "Heavy loads & MD exposure",
+        description: "Production-linked SEC variability and maximum demand charge exposure.",
+        imageSrc: "/industries/forging.jpg",
+        imageAlt: "Industrial forging operation",
       },
       {
         id: "heat-treatment",
         name: "Heat Treatment",
-        focus: "Furnace setbacks and weekend holding losses",
-        description: "Furnace setback gaps, weekend holding losses, and tariff-sensitive operating windows.",
+        focus: "Furnace holding losses",
+        description: "Weekend holding losses and tariff-sensitive operating windows.",
+        imageSrc: "/industries/heat-treatment.webp",
+        imageAlt: "Heat treatment furnace batch operation",
       },
       {
         id: "rubber-moulding",
         name: "Rubber Moulding",
-        focus: "Curing cycles and idle machine loads",
-        description: "Curing cycles, compressor air leaks, and idle machine loads between batches.",
+        focus: "Curing cycles & air leaks",
+        description: "Curing cycles, compressor leaks, and idle loads between batches.",
+        imageSrc: "/industries/rubber-moulding.jpg",
+        imageAlt: "Rubber moulding production line",
       },
     ] satisfies IndustryItem[],
   },
@@ -252,11 +263,13 @@ export const landingContent = {
   },
 
   futureMedia: {
-    eyebrow: "Product walkthrough",
-    title: "See the workflow in action",
+    eyebrow: "In the plant",
+    title: "Built for factory floors, not boardrooms",
     description:
-      "Product demos, Remotion walkthroughs, and workflow GIFs will live here. Placeholder reserved for upcoming media.",
+      "Stamped connects to meters, SCADA, and bills you already run — prescriptions reach maintenance teams on WhatsApp.",
     placeholderLabel: "Product demo media coming soon",
+    imageSrc: "/industries/heat-treatment.webp",
+    imageAlt: "Industrial heat treatment furnace in operation",
   },
 
   credibility: {

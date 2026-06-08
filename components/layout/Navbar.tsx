@@ -12,7 +12,7 @@ import { Container } from "@/components/ui/Container";
 import { navLinks, siteConfig } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-const LIGHT_NAV_ROUTES = ["/industries/automotive"];
+const LIGHT_NAV_ROUTES = ["/industries/automotive", "/industries"];
 
 export function Navbar() {
   const pathname = usePathname();

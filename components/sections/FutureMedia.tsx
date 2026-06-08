@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
@@ -20,12 +22,9 @@ export function FutureMedia() {
         return;
       }
 
-      const placeholders = gsap.utils.toArray<HTMLElement>("[data-cred-placeholder]");
-
-      gsap.set(placeholders, { autoAlpha: 0, x: 16 });
-      gsap.to(placeholders, {
-        autoAlpha: 1,
-        x: 0,
+      gsap.from("[data-cred-link]", {
+        autoAlpha: 0,
+        y: 16,
         duration: 0.5,
         stagger: 0.1,
         ease: "power2.out",
@@ -45,7 +44,7 @@ export function FutureMedia() {
   return (
     <section ref={sectionRef} className="border-t border-outline-variant/30 py-20 md:py-28">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal from="left">
             <SectionHeading
               eyebrow={futureMedia.eyebrow}
@@ -53,14 +52,20 @@ export function FutureMedia() {
               description={futureMedia.description}
             />
             <div className="mt-8 overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest shadow-sm">
-              <div className="relative flex aspect-video items-center justify-center bg-[linear-gradient(135deg,color-mix(in_srgb,var(--brand-primary)_5%,var(--brand-surface-container-low)),var(--brand-surface-container-high))]">
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-primary)_8%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-primary)_8%,transparent)_1px,transparent_1px)] [background-size:40px_40px]"
+              <div className="relative aspect-video overflow-hidden">
+                <Image
+                  src={futureMedia.imageSrc}
+                  alt={futureMedia.imageAlt}
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <p className="relative text-sm font-medium text-on-surface-variant">
-                  {futureMedia.placeholderLabel}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-inverse-primary">
+                    {futureMedia.placeholderLabel}
+                  </p>
+                </div>
               </div>
             </div>
           </Reveal>
@@ -74,21 +79,45 @@ export function FutureMedia() {
               />
             </Reveal>
             <div className="mt-8 space-y-3">
-              {credibility.placeholders.map((item) => (
-                <div
-                  key={item}
-                  data-cred-placeholder
-                  className="flex items-center gap-3 rounded-lg border border-dashed border-outline-variant/70 bg-surface-low px-4 py-3.5 text-sm text-on-surface-variant"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-xs font-bold text-primary"
-                  >
-                    +
-                  </span>
-                  {item} — coming soon
+              <Link
+                href="/case-studies"
+                data-cred-link
+                className="flex items-center gap-4 rounded-xl border border-outline-variant/50 bg-surface-lowest p-4 transition-colors hover:border-primary/35 hover:bg-primary/5"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                  CS
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-on-surface">Case studies</p>
+                  <p className="text-xs text-on-surface-variant">Verified SEC and MD outcomes from pilot plants</p>
                 </div>
-              ))}
+              </Link>
+              <Link
+                href="/how-it-works"
+                data-cred-link
+                className="flex items-center gap-4 rounded-xl border border-outline-variant/50 bg-surface-lowest p-4 transition-colors hover:border-primary/35 hover:bg-primary/5"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                  HIW
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-on-surface">How it works</p>
+                  <p className="text-xs text-on-surface-variant">Connect → Observe → Decide → Execute → Verify</p>
+                </div>
+              </Link>
+              <Link
+                href="/industries"
+                data-cred-link
+                className="flex items-center gap-4 rounded-xl border border-outline-variant/50 bg-surface-lowest p-4 transition-colors hover:border-primary/35 hover:bg-primary/5"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                  IN
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-on-surface">Industries</p>
+                  <p className="text-xs text-on-surface-variant">Automotive process segments — die casting to rubber moulding</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

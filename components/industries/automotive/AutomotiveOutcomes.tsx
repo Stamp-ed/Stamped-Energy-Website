@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { industriesContent } from "@/lib/content";
+import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function AutomotiveOutcomes() {
@@ -26,7 +27,7 @@ export function AutomotiveOutcomes() {
         duration: 0.5,
         stagger: 0.08,
         ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 78%", once: true },
+        scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
       });
     },
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
@@ -62,10 +63,22 @@ export function Hero() {
   );
 
   const visualCard = (
-    <div className="relative aspect-[16/9] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--brand-primary)_6%,var(--brand-surface-container-low)),var(--brand-surface-container-high))]">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <p className="text-sm font-medium text-on-surface-variant">
-          Product video / demo placeholder
+    <div className="relative aspect-[16/9] overflow-hidden">
+      <Image
+        src={hero.visualImageSrc}
+        alt={hero.visualImageAlt}
+        fill
+        className="object-cover object-[center_35%]"
+        sizes="(max-width: 1024px) 100vw, 896px"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-secondary/75 via-secondary/15 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">
+          Process-intensive manufacturing
+        </p>
+        <p className="mt-1 max-w-md text-sm font-medium text-on-secondary/90">
+          Prescriptions tied to furnaces, compressors, and shift-start demand — verified on your next bill.
         </p>
       </div>
     </div>

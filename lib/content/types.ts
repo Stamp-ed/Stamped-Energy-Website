@@ -90,6 +90,8 @@ export type IndustryItem = {
   focus: string;
   description: string;
   featured?: boolean;
+  imageSrc?: string;
+  imageAlt?: string;
 };
 
 export type WhyStampedItem = {

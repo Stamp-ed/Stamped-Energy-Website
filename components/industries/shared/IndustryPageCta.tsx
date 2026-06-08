@@ -6,7 +6,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { industriesContent } from "@/lib/content";
 
 type IndustryPageCtaProps = {
-  content?: typeof industriesContent.automotive.finalCta;
+  content?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryCta: { label: string; href: string };
+  };
 };
 
 export function IndustryPageCta({ content }: IndustryPageCtaProps) {
