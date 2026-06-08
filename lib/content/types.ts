@@ -2,6 +2,7 @@ export type NavLink = {
   label: string;
   href: string;
   external?: boolean;
+  megaMenu?: "industries";
 };
 
 export type CtaLink = {
@@ -14,6 +15,53 @@ export type StatItem = {
   value: string;
   label: string;
   detail?: string;
+};
+
+export type ResourceCard = {
+  id: string;
+  type: "case-study" | "blog";
+  title: string;
+  description: string;
+  href: string;
+  tag?: string;
+  imageSrc: string;
+  imageAlt: string;
+};
+
+export type IndustrySegment = {
+  id: string;
+  slug: string;
+  name: string;
+  focus: string;
+  description: string;
+  /** v1: hash on automotive page; future: `/industries/automotive/[slug]` */
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+  challenges: string[];
+  stampProvides: string[];
+  metrics: StatItem[];
+};
+
+export type IndustryVertical = {
+  id: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  href: string;
+  heroImageSrc: string;
+  heroImageAlt: string;
+  segments: IndustrySegment[];
+};
+
+export type IndustryValueArea = {
+  id: string;
+  step: string;
+  title: string;
+  description: string;
+  potentialLabel: string;
+  potentialValue: string;
 };
 
 export type ProblemItem = {

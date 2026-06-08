@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { IndustriesMegaMenu, IndustriesMobileNav } from "@/components/layout/IndustriesMegaMenu";
 import { NavLinkItem } from "@/components/layout/NavLinkItem";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -53,9 +54,13 @@ export function Navbar() {
           className="hidden flex-1 items-center justify-center gap-6 lg:flex xl:gap-8"
           aria-label="Primary"
         >
-          {navLinks.map((link) => (
-            <NavLinkItem key={link.label} link={link} />
-          ))}
+          {navLinks.map((link) =>
+            link.megaMenu === "industries" ? (
+              <IndustriesMegaMenu key={link.label} />
+            ) : (
+              <NavLinkItem key={link.label} link={link} />
+            ),
+          )}
         </nav>
 
         <div className="hidden shrink-0 lg:block">
@@ -78,14 +83,21 @@ export function Navbar() {
       {isMenuOpen ? (
         <div className="border-t border-outline-variant/40 bg-surface-lowest lg:hidden">
           <Container className="flex flex-col gap-3 py-4">
-            {navLinks.map((link) => (
-              <NavLinkItem
-                key={link.label}
-                link={link}
-                mobile
-                onNavigate={() => setIsMenuOpen(false)}
-              />
-            ))}
+            {navLinks.map((link) =>
+              link.megaMenu === "industries" ? (
+                <IndustriesMobileNav
+                  key={link.label}
+                  onNavigate={() => setIsMenuOpen(false)}
+                />
+              ) : (
+                <NavLinkItem
+                  key={link.label}
+                  link={link}
+                  mobile
+                  onNavigate={() => setIsMenuOpen(false)}
+                />
+              ),
+            )}
             <Button href="#contact" variant="primary" className="mt-2 w-full">
               Book a Discovery Call
             </Button>

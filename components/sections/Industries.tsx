@@ -12,6 +12,14 @@ import { landingContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
+const INDUSTRY_HREFS: Record<string, string> = {
+  automotive: "/industries/automotive",
+  "die-casting": "/industries/automotive#die-casting",
+  forging: "/industries/automotive#forging",
+  "heat-treatment": "/industries/automotive#heat-treatment",
+  "rubber-moulding": "/industries/automotive#rubber-moulding",
+};
+
 const INDUSTRY_CODES: Record<string, string> = {
   automotive: "AC",
   "die-casting": "DC",
@@ -96,7 +104,7 @@ export function Industries() {
           {industries.items.map((industry) => (
             <Link
               key={industry.id}
-              href={`/industries#${industry.id}`}
+              href={INDUSTRY_HREFS[industry.id] ?? `/industries/automotive#${industry.id}`}
               data-industry-card
               data-featured={industry.featured ? "true" : "false"}
               className={cn(

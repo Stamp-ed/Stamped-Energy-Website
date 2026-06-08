@@ -11,7 +11,7 @@ export const siteConfig = {
 
 export const navLinks: NavLink[] = [
   { label: "How It Works", href: "/how-it-works" },
-  { label: "Industries", href: "/industries" },
+  { label: "Industries", href: "/industries", megaMenu: "industries" },
   { label: "Blog", href: siteConfig.blogUrl, external: true },
   { label: "Case Studies", href: "/case-studies" },
   { label: "About Us", href: "/about" },
