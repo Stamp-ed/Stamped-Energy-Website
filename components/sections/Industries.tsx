@@ -26,9 +26,9 @@ export function Industries() {
               key={industry.id}
               data-stagger-item
               className={cn(
-                "h-full rounded-lg border p-6 transition-transform duration-300 hover:-translate-y-1",
+                "accent-card h-full rounded-lg border p-6",
                 industry.featured
-                  ? "border-secondary bg-secondary-container/40"
+                  ? "border-primary bg-primary/8"
                   : "border-outline-variant/50 bg-surface-lowest",
               )}
             >

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function Outcomes() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,14 +18,17 @@ export function Outcomes() {
       registerGsap();
 
       revealOnScroll("[data-outcome-card]", {
-        y: 48,
-        stagger: 0.1,
+        y: 52,
+        stagger: 0.12,
+        duration: 0.9,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
+          start: "top 78%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: sectionRef },
   );
@@ -46,7 +49,7 @@ export function Outcomes() {
             <article
               key={stat.id}
               data-outcome-card
-              className="rounded-lg border border-outline-variant/50 bg-surface-lowest p-6 transition-transform duration-300 hover:-translate-y-1"
+              className="accent-card rounded-lg border border-outline-variant/50 bg-surface-lowest p-6"
             >
               <p className="font-display text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
                 {stat.value}

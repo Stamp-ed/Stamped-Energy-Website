@@ -20,7 +20,7 @@ export function HowItWorks() {
             <article
               key={step.id}
               data-stagger-item
-              className="h-full rounded-lg border border-outline-variant/50 bg-surface-lowest p-5 transition-transform duration-300 hover:-translate-y-1"
+              className="accent-card h-full rounded-lg border border-outline-variant/50 bg-surface-lowest p-5"
             >
               <p className="font-display text-2xl font-extrabold text-primary">
                 {String(step.step).padStart(2, "0")}
@@ -34,7 +34,7 @@ export function HowItWorks() {
         </StaggerReveal>
 
         <Reveal className="mt-10">
-          <Button href={howItWorks.cta.href} variant="secondary">
+          <Button href={howItWorks.cta.href} variant="primary">
             {howItWorks.cta.label}
           </Button>
         </Reveal>

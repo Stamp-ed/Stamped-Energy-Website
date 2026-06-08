@@ -12,7 +12,8 @@ import type {
 export const landingContent = {
   hero: {
     eyebrow: "Prescriptive energy intelligence for manufacturers",
-    headline: "AI energy intelligence. Turn data into verified savings",
+    headlineLine1: "AI Energy Intelligence",
+    headlineLine2: "Turn Data Into Verified Savings",
     subheadline:
       "Connect your existing plant data. Get prescriptions with rupee impact. Verify the saving on your next electricity bill.",
     primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,

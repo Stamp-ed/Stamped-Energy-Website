@@ -67,7 +67,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {
@@ -105,5 +105,18 @@
     .container-page {
       padding-inline: 2.5rem;
     }
+  }
+
+  .accent-card {
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .accent-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--brand-primary) 35%, transparent);
+    box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--brand-primary) 45%, transparent);
   }
 }

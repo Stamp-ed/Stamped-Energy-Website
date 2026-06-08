@@ -22,7 +22,7 @@ export function prefersReducedMotion(): boolean {
 
 export function refreshScrollTriggers(): void {
   registerGsap();
-  ScrollTrigger.refresh();
+  ScrollTrigger.refresh(true);
 }
 
 function resolveTrigger(targets: gsap.TweenTarget): Element | string | undefined {
@@ -44,73 +44,67 @@ function resolveTrigger(targets: gsap.TweenTarget): Element | string | undefined
 export function revealOnScroll(
   targets: gsap.TweenTarget,
   options: RevealOptions = {},
-): gsap.core.Tween | void {
+): gsap.core.Tween | gsap.core.Timeline | void {
   registerGsap();
 
   if (prefersReducedMotion()) {
-    gsap.set(targets, { autoAlpha: 1, x: 0, y: 0, scale: 1 });
+    gsap.set(targets, { opacity: 1, x: 0, y: 0, scale: 1, clearProps: "transform" });
     return;
   }
 
   const {
-    y = 40,
+    y = 48,
     x = 0,
     scale = 1,
-    duration = 0.9,
+    duration = 1,
     delay = 0,
     stagger = 0,
     scrollTrigger,
   } = options;
 
+  gsap.set(targets, { opacity: 0, y, x, scale });
+
   const resolvedScrollTrigger: ScrollTrigger.Vars = {
     trigger: resolveTrigger(targets),
-    start: "top 85%",
-    once: true,
+    start: "top 82%",
+    toggleActions: "play none none none",
     ...scrollTrigger,
   };
 
-  return gsap.fromTo(
-    targets,
-    { autoAlpha: 0, y, x, scale },
-    {
-      autoAlpha: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      duration,
-      delay,
-      stagger,
-      ease: "power3.out",
-      scrollTrigger: resolvedScrollTrigger,
-    },
-  );
+  return gsap.to(targets, {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    duration,
+    delay,
+    stagger,
+    ease: "power3.out",
+    clearProps: "transform",
+    scrollTrigger: resolvedScrollTrigger,
+  });
 }
 
-export function animateCounter(
-  element: HTMLElement,
-  endValue: number,
-  options: { suffix?: string; prefix?: string; duration?: number } = {},
-): gsap.core.Tween | void {
+export function revealOnLoad(
+  targets: gsap.TweenTarget,
+  options: { y?: number; delay?: number; stagger?: number; duration?: number } = {},
+): gsap.core.Timeline {
   registerGsap();
 
+  const { y = 32, delay = 0.1, stagger = 0.12, duration = 0.9 } = options;
+
   if (prefersReducedMotion()) {
-    element.textContent = `${options.prefix ?? ""}${endValue}${options.suffix ?? ""}`;
-    return;
+    gsap.set(targets, { opacity: 1, y: 0 });
+    return gsap.timeline();
   }
 
-  const counter = { value: 0 };
+  gsap.set(targets, { opacity: 0, y });
 
-  return gsap.to(counter, {
-    value: endValue,
-    duration: options.duration ?? 1.6,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: element,
-      start: "top 85%",
-      once: true,
-    },
-    onUpdate: () => {
-      element.textContent = `${options.prefix ?? ""}${Math.round(counter.value)}${options.suffix ?? ""}`;
-    },
+  return gsap.timeline({ delay }).to(targets, {
+    opacity: 1,
+    y: 0,
+    duration,
+    stagger,
+    ease: "power3.out",
   });
 }

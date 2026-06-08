@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 type StaggerRevealProps = {
   children: React.ReactNode;
@@ -18,8 +18,8 @@ export function StaggerReveal({
   children,
   className,
   childSelector = "[data-stagger-item]",
-  stagger = 0.12,
-  y = 36,
+  stagger = 0.14,
+  y = 40,
 }: StaggerRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,12 +40,15 @@ export function StaggerReveal({
       revealOnScroll(items, {
         y,
         stagger,
+        duration: 0.85,
         scrollTrigger: {
           trigger: container,
-          start: "top 80%",
-          once: true,
+          start: "top 78%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: ref },
   );

@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -12,17 +12,9 @@ type RevealProps = {
   delay?: number;
   y?: number;
   x?: number;
-  stagger?: number;
 };
 
-export function Reveal({
-  children,
-  className,
-  delay = 0,
-  y = 40,
-  x = 0,
-  stagger = 0,
-}: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 48, x = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -38,19 +30,20 @@ export function Reveal({
         y,
         x,
         delay,
-        stagger,
         scrollTrigger: {
           trigger: element,
-          start: "top 85%",
-          once: true,
+          start: "top 82%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: ref },
   );
 
   return (
-    <div ref={ref} className={cn(className)}>
+    <div ref={ref} data-animate="scroll" className={cn(className)}>
       {children}
     </div>
   );

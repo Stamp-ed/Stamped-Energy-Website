@@ -33,7 +33,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost:
     "bg-transparent text-on-surface border border-transparent hover:bg-surface-low",
   outline:
-    "bg-transparent text-secondary border-2 border-secondary hover:bg-secondary/5",
+    "bg-transparent text-primary border-2 border-primary hover:bg-primary/8",
 };
 
 const baseClasses =

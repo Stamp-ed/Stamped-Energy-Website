@@ -93,7 +93,7 @@ export function ContactForm() {
             }
             className={cn(
               "h-12 w-full rounded-md border border-outline-variant bg-surface-lowest px-4 text-sm text-on-surface",
-              "outline-none transition-colors focus:border-secondary focus:ring-2 focus:ring-secondary/20",
+              "outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/25",
             )}
           />
         </div>
@@ -104,7 +104,7 @@ export function ContactForm() {
       </Button>
 
       {status === "success" ? (
-        <p className="text-sm font-medium text-secondary">{landingContent.contactForm.successMessage}</p>
+        <p className="text-sm font-medium text-primary">{landingContent.contactForm.successMessage}</p>
       ) : null}
 
       {status === "error" ? (

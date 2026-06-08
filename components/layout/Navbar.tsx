@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -32,8 +33,19 @@ export function Navbar() {
       )}
     >
       <Container className="flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="font-display text-lg font-bold tracking-tight text-on-surface">
-          {siteConfig.name}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-on-surface"
+        >
+          <Image
+            src="/LogoBlack.png"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8 shrink-0"
+            priority
+          />
+          <span>{siteConfig.name}</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -42,7 +54,7 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-on-surface-variant transition-colors hover:text-on-surface"
+                className="text-sm font-medium text-on-surface-variant transition-colors hover:text-primary"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -52,7 +64,7 @@ export function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-on-surface-variant transition-colors hover:text-on-surface"
+                className="text-sm font-medium text-on-surface-variant transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>

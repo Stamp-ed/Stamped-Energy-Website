@@ -29,7 +29,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mb-3 text-xs font-semibold uppercase tracking-[0.14em]",
-            dark ? "text-inverse-primary" : "text-secondary",
+            "text-primary",
           )}
         >
           {eyebrow}
@@ -38,7 +38,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "text-3xl font-bold leading-tight md:text-4xl",
-          dark ? "text-inverse-on-surface" : "text-on-surface",
+          dark ? "text-on-secondary" : "text-on-surface",
         )}
       >
         {title}
@@ -47,7 +47,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 text-base leading-7 md:text-lg",
-            dark ? "text-inverse-on-surface/80" : "text-on-surface-variant",
+            dark ? "text-on-secondary/80" : "text-on-surface-variant",
           )}
         >
           {description}

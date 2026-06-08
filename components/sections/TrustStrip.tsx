@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { landingContent } from "@/lib/content";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function TrustStrip() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,10 +20,12 @@ export function TrustStrip() {
         stagger: 0.1,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 90%",
-          once: true,
+          start: "top 88%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: sectionRef },
   );
@@ -37,7 +39,7 @@ export function TrustStrip() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <p
             data-trust-item
-            className="text-sm font-semibold uppercase tracking-[0.14em] text-secondary"
+            className="text-sm font-semibold uppercase tracking-[0.14em] text-primary"
           >
             {trust.label}
           </p>

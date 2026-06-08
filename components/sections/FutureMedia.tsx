@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function FutureMedia() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,10 +22,12 @@ export function FutureMedia() {
         stagger: 0.1,
         scrollTrigger: {
           trigger: "[data-credibility-list]",
-          start: "top 82%",
-          once: true,
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: sectionRef },
   );

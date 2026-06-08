@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { gsap, registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { prefersReducedMotion, revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { prefersReducedMotion, refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function WorkflowLoop() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,81 +22,83 @@ export function WorkflowLoop() {
 
       if (reducedMotion || isMobile) {
         revealOnScroll("[data-workflow-step]", {
-          y: 32,
-          stagger: 0.1,
+          y: 36,
+          stagger: 0.12,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
+            start: "top 78%",
+            toggleActions: "play none none none",
           },
         });
+        refreshScrollTriggers();
         return;
       }
 
       const steps = gsap.utils.toArray<HTMLElement>("[data-workflow-step]");
       const heading = pinRef.current?.querySelector("[data-workflow-heading]");
 
-      gsap.set(steps, { autoAlpha: 0.25, y: 40, scale: 0.96 });
+      gsap.set(steps, { opacity: 0.3, y: 48, scale: 0.94 });
       if (heading) {
-        gsap.set(heading, { autoAlpha: 0, y: 24 });
+        gsap.set(heading, { opacity: 0, y: 28 });
       }
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
-          end: "+=240%",
+          end: "+=260%",
           pin: true,
-          scrub: 0.6,
+          scrub: 0.5,
           anticipatePin: 1,
         },
       });
 
       if (heading) {
-        timeline.to(heading, { autoAlpha: 1, y: 0, duration: 0.4 });
+        timeline.to(heading, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
       }
 
       steps.forEach((step, index) => {
         timeline.to(
           step,
           {
-            autoAlpha: 1,
+            opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
+            duration: 0.9,
             ease: "power2.out",
           },
-          index * 0.7 + 0.2,
+          index * 0.75 + 0.25,
         );
 
         if (index < steps.length - 1) {
           timeline.to(
             step,
             {
-              autoAlpha: 0.25,
-              y: -16,
-              scale: 0.96,
-              duration: 0.5,
+              opacity: 0.3,
+              y: -20,
+              scale: 0.94,
+              duration: 0.55,
               ease: "power2.inOut",
             },
-            index * 0.7 + 0.65,
+            index * 0.75 + 0.7,
           );
         }
       });
+
+      refreshScrollTriggers();
     },
     { scope: sectionRef },
   );
 
   return (
-    <section ref={sectionRef} className="bg-secondary text-on-secondary">
-      <div ref={pinRef} className="py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+      <div ref={pinRef} className="py-4 md:py-8">
         <Container>
           <div data-workflow-heading>
             <SectionHeading
               eyebrow={workflow.eyebrow}
               title={workflow.title}
               align="center"
-              dark
             />
           </div>
 
@@ -105,13 +107,13 @@ export function WorkflowLoop() {
               <article
                 key={step.id}
                 data-workflow-step
-                className="rounded-lg border border-on-secondary/15 bg-secondary p-5"
+                className="rounded-xl border border-outline-variant/60 bg-surface-lowest p-5 shadow-sm"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                   Step {index + 1}
                 </p>
-                <h3 className="mt-3 text-lg font-bold text-on-secondary">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-on-secondary/75">
+                <h3 className="mt-3 text-lg font-bold text-on-surface">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-on-surface-variant">
                   {step.description}
                 </p>
               </article>

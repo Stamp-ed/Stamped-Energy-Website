@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { revealOnScroll } from "@/lib/motion/scrollAnimations";
+import { refreshScrollTriggers, revealOnScroll } from "@/lib/motion/scrollAnimations";
 
 export function PrescriptionExample() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,20 +25,22 @@ export function PrescriptionExample() {
         scrollTrigger: {
           trigger: "[data-prescription-card]",
           start: "top 78%",
-          once: true,
+          toggleActions: "play none none none",
         },
       });
 
       revealOnScroll("[data-prescription-card]", {
-        x: 60,
+        x: 48,
         y: 0,
         duration: 1,
         scrollTrigger: {
           trigger: "[data-prescription-card]",
-          start: "top 80%",
-          once: true,
+          start: "top 78%",
+          toggleActions: "play none none none",
         },
       });
+
+      refreshScrollTriggers();
     },
     { scope: sectionRef },
   );
@@ -56,10 +58,10 @@ export function PrescriptionExample() {
 
           <article
             data-prescription-card
-            className="rounded-xl border border-outline-variant/60 bg-surface-lowest p-6 md:p-8"
+            className="rounded-xl border-2 border-primary/20 bg-surface-lowest p-6 shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] md:p-8"
           >
             <div className="mb-6 flex items-center justify-between border-b border-outline-variant/40 pb-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-secondary">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                 Live prescription example
               </p>
               <span className="rounded-md bg-primary px-3 py-1 text-xs font-semibold text-on-primary">
