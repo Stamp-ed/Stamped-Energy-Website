@@ -5,7 +5,7 @@ import type {
   HiwJourneyStep,
   HiwMediaSlot,
   HiwStackLayer,
-  PrescriptionField,
+  PrescriptionEmbedConfig,
 } from "./types";
 
 export const howItWorksContent = {
@@ -137,21 +137,18 @@ export const howItWorksContent = {
   },
 
   prescriptionDemo: {
-    eyebrow: "Live example",
-    title: "Watch a prescription assemble",
+    eyebrow: "Product preview",
+    title: "Prescription dashboard",
     description:
-      "This is what lands on your maintenance team's phone — field by field, with evidence and impact.",
-    fields: [
-      { label: "What", value: "Stagger Compressor 1 and Press Line 3 startup by 10 minutes" },
-      {
-        label: "Why",
-        value: "MD spiked at 07:15 Monday — both assets started simultaneously, adding 180 kVA",
-      },
-      { label: "Who", value: "Electrical maintenance / shift supervisor" },
-      { label: "Effort", value: "Scheduling change only. No capital spend." },
-      { label: "Impact", value: "₹38,000/month at current tariff and operating hours" },
-      { label: "When", value: "Apply before next billing cycle" },
-    ] satisfies PrescriptionField[],
+      "Explore the prescription queue, detail view, and savings impact — via an embedded demo or recorded walkthrough.",
+    embed: {
+      iframeSrc: null,
+      videoSrc: null,
+      iframeTitle: "Stamped Energy prescription dashboard preview",
+      placeholderTitle: "Dashboard embed — coming soon",
+      placeholderDescription:
+        "An iframe of the simulated dashboard (or a video of the live product) will load here. Set iframeSrc or videoSrc in content when ready.",
+    } satisfies PrescriptionEmbedConfig,
   },
 
   beforeAfter: {

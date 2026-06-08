@@ -55,6 +55,16 @@ export type PrescriptionField = {
   value: string;
 };
 
+export type PrescriptionEmbedConfig = {
+  /** Interactive demo URL (simulated or live dashboard) */
+  iframeSrc: string | null;
+  /** Fallback: recorded dashboard walkthrough (.webm / .mp4) */
+  videoSrc: string | null;
+  placeholderTitle: string;
+  placeholderDescription: string;
+  iframeTitle: string;
+};
+
 export type HiwJourneyStep = {
   id: string;
   step: number;
