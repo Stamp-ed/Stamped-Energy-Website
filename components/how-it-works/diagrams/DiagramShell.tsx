@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -52,18 +52,21 @@ export function DiagramCard({
   children,
   className,
   animate = "item",
-}: {
+  style,
+  ...rest
+}: Omit<ComponentPropsWithoutRef<"div">, "children"> & {
   children: ReactNode;
-  className?: string;
   animate?: string;
 }) {
   return (
     <div
       data-animate={animate}
+      style={style}
       className={cn(
         "rounded-lg border border-outline-variant/50 bg-surface-lowest px-3 py-2.5 text-on-surface shadow-sm md:px-3.5 md:py-3",
         className,
       )}
+      {...rest}
     >
       {children}
     </div>

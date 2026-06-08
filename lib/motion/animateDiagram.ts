@@ -101,6 +101,71 @@ function animateFooter(diagram: HTMLElement) {
   );
 }
 
+function layoutConnectLines(diagram: HTMLElement): void {
+  const stage = diagram.querySelector<HTMLElement>("[data-connect-stage]");
+  const svg = diagram.querySelector<SVGSVGElement>("[data-connect-svg]");
+  const hubCircle = diagram.querySelector<HTMLElement>("[data-hub-circle]");
+  const sourceEls = diagram.querySelectorAll<HTMLElement>("[data-connect-source]");
+  const lines = diagram.querySelectorAll<SVGLineElement>("[data-connect-line='converge']");
+
+  if (!stage || !svg || !hubCircle || !sourceEls.length || lines.length !== sourceEls.length) {
+    return;
+  }
+
+  const stageRect = stage.getBoundingClientRect();
+  const width = stageRect.width;
+  const height = stageRect.height;
+
+  if (width <= 0 || height <= 0) {
+    return;
+  }
+
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("preserveAspectRatio", "none");
+
+  const circleRect = hubCircle.getBoundingClientRect();
+  const targetX = circleRect.left - stageRect.left + 2;
+  const targetY = circleRect.top + circleRect.height / 2 - stageRect.top;
+
+  sourceEls.forEach((sourceEl, index) => {
+    const line = lines[index];
+    if (!line) {
+      return;
+    }
+
+    const sourceRect = sourceEl.getBoundingClientRect();
+    const startX = sourceRect.right - stageRect.left - 1;
+    const startY = sourceRect.top + sourceRect.height / 2 - stageRect.top;
+
+    line.setAttribute("x1", String(startX));
+    line.setAttribute("y1", String(startY));
+    line.setAttribute("x2", String(targetX));
+    line.setAttribute("y2", String(targetY));
+
+    const length = line.getTotalLength();
+    line.setAttribute("stroke-dasharray", String(length));
+    gsap.set(line, { strokeDashoffset: length, autoAlpha: 0 });
+  });
+}
+
+function animateConnectLines(diagram: HTMLElement): void {
+  layoutConnectLines(diagram);
+
+  const lines = diagram.querySelectorAll<SVGLineElement>("[data-connect-line='converge']");
+  if (!lines.length) {
+    return;
+  }
+
+  gsap.to(lines, {
+    strokeDashoffset: 0,
+    autoAlpha: 1,
+    stagger: TIMING.line.stagger,
+    duration: TIMING.line.duration,
+    ease: "power2.out",
+    delay: TIMING.line.delay,
+  });
+}
+
 export function animateDiagramPanel(panel: HTMLElement): void {
   const diagram = panel.querySelector<HTMLElement>("[data-diagram]");
   if (!diagram) {
@@ -122,22 +187,12 @@ export function animateDiagramPanel(panel: HTMLElement): void {
 
   if (type === "connect") {
     animateItems(diagram, "[data-animate='item']", { x: -TIMING.item.x });
-
-    const lines = diagram.querySelectorAll<SVGElement>("[data-animate='line']");
-    gsap.fromTo(
-      lines,
-      { strokeDashoffset: 120, autoAlpha: 0 },
-      {
-        strokeDashoffset: 0,
-        autoAlpha: 1,
-        stagger: TIMING.line.stagger,
-        duration: TIMING.line.duration,
-        ease: "power2.out",
-        delay: TIMING.line.delay,
-      },
-    );
-
-    animateAccent(diagram, { scale: 0.88 });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        animateConnectLines(diagram);
+      });
+    });
+    animateAccent(diagram, { scale: 0.92 });
     return;
   }
 

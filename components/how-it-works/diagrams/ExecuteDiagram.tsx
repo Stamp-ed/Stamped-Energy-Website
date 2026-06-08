@@ -7,11 +7,35 @@ export function ExecuteDiagram() {
     <DiagramShell diagram="execute" eyebrow="Action delivery & tracking" stageClassName="justify-center">
       <div className="grid h-full grid-cols-2 items-center gap-4 md:gap-5">
         <DiagramCard animate="item" className="h-full">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-            WhatsApp alert
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+              WhatsApp alert
+            </p>
+            <p className="text-[9px] text-on-surface-variant">Shift B · 06:42</p>
+          </div>
+
+          <p className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-on-surface-variant">
+            New prescription assigned
           </p>
+          <p className="mt-1 text-[11px] font-bold leading-snug text-on-surface md:text-xs">
+            Stagger Compressor 1 & Press Line 3 startup
+          </p>
+
           <p className="mt-2 text-[11px] leading-snug text-on-surface md:text-xs">
-            New prescription: Stagger Compressor 1 startup. Est. ₹38K/mo. Tap to acknowledge.
+            <span className="font-semibold text-on-surface">Why:</span> Simultaneous start caused
+            MD spike at shift handover.
+          </p>
+          <p className="mt-1.5 text-[11px] leading-snug text-on-surface md:text-xs">
+            <span className="font-semibold text-on-surface">Impact:</span>{" "}
+            <span className="font-bold text-primary">₹38K / month</span> potential savings
+          </p>
+          <p className="mt-1.5 text-[11px] leading-snug text-on-surface md:text-xs">
+            <span className="font-semibold text-on-surface">Owner:</span> Plant Supervisor ·{" "}
+            <span className="font-semibold text-on-surface">Due:</span> Today, 14:00
+          </p>
+
+          <p className="mt-2.5 rounded-md border border-primary/20 bg-primary/8 px-2 py-1.5 text-[10px] font-semibold text-primary md:text-[11px]">
+            Tap to acknowledge →
           </p>
         </DiagramCard>
 
