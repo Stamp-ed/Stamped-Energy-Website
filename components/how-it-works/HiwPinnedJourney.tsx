@@ -225,7 +225,7 @@ export function HiwPinnedJourney() {
         </Container>
       </div>
 
-      <Container className="space-y-10 py-12 lg:hidden">
+      <Container className="space-y-8 py-10 sm:space-y-10 sm:py-12 lg:hidden">
         {journey.steps.map((step) => (
           <article
             key={step.id}

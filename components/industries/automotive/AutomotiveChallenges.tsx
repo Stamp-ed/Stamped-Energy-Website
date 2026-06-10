@@ -34,7 +34,7 @@ export function AutomotiveChallenges() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -46,7 +46,7 @@ export function AutomotiveChallenges() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-3 md:gap-6">
+        <div className="mx-auto mt-8 grid md:mt-12 max-w-5xl gap-4 md:grid-cols-3 md:gap-6">
           {challenges.stats.map((stat) => (
             <article
               key={stat.id}

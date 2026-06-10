@@ -43,7 +43,7 @@ export function FinalCta() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative overflow-hidden bg-primary py-20 text-on-primary md:py-28"
+      className="relative overflow-hidden bg-primary section-y text-on-primary"
     >
       <div
         ref={glowRef}
@@ -56,7 +56,7 @@ export function FinalCta() {
       />
 
       <Container className="relative z-10">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+        <div className="grid gap-8 md:gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
           <Reveal>
             <div className="max-w-xl">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-on-primary/80">
@@ -72,7 +72,7 @@ export function FinalCta() {
           </Reveal>
 
           <Reveal from="right">
-            <div className="rounded-xl border border-on-primary/20 bg-surface-lowest p-6 text-on-surface shadow-xl md:p-8">
+            <div className="rounded-xl border border-on-primary/20 bg-surface-lowest p-5 text-on-surface shadow-xl sm:p-6 md:p-8">
               <h3 className="text-xl font-bold">{contactForm.title}</h3>
               <p className="mt-2 text-sm leading-6 text-on-surface-variant">
                 {contactForm.description}

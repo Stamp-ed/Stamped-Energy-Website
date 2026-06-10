@@ -11,10 +11,10 @@ import type {
 
 export const howItWorksContent = {
   hero: {
-    eyebrow: "Platform",
-    title: "Prescriptive intelligence on unified plant data",
+    eyebrow: "How Stamped works on your plant",
+    title: "One view of consumption, production, and cost, prescriptions in rupees",
     description:
-      "One energy graph from meters, SCADA, PLCs, and bills — prescriptions with verified ₹ impact. No retrofit.",
+      "Connect incomer meters, bills, SCADA, and PLCs you already run. Assign fixes to your team. Verify savings when the DISCOM bill lands.",
     primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
     secondaryCta: { label: "Back to home", href: "/" } satisfies CtaLink,
   },
@@ -99,40 +99,40 @@ export const howItWorksContent = {
   },
 
   capabilities: {
-    eyebrow: "Core capabilities",
-    title: "Signals → verified savings",
+    eyebrow: "What the platform does",
+    title: "From your plant signals to verified ₹ on the bill",
     description:
-      "Four platform layers — from universal ingestion through closed-loop governance — sized for SME manufacturers.",
+      "Four layers, sized for mid-market auto component plants, not enterprise procurement cycles.",
     items: [
       {
         id: "ingestion",
-        title: "Universal ingestion",
+        title: "Read what you already run",
         description:
-          "Captures signals from meters, SCADA, PLCs, and utility bills into a continuous, real-time pipeline — without hardware retrofits or changes to your control systems.",
+          "Incomer and feeder meters, SCADA historians, PLC tags, utility bills, into one continuous pipeline. No control-system changes.",
         mediaSrc: null,
         mediaAlt: "Data streams from plant systems flowing into Stamped",
       },
       {
         id: "repository",
-        title: "Unified energy graph",
+        title: "One timeline for the whole plant",
         description:
-          "Organises disparate streams into a time-aligned graph that connects consumption, production, and cost for accurate analytics across your plant.",
+          "Consumption, production rate, and tariff cost aligned by time, so a Monday 07:15 spike links to specific assets, not guesswork.",
         mediaSrc: null,
         mediaAlt: "Unified energy graph connecting sources and loads",
       },
       {
         id: "intelligence",
-        title: "Contextual intelligence",
+        title: "Every deviation becomes an assigned action",
         description:
-          "Domain-specific models detect anomalies, quantify impact in rupees, and generate prescriptions your plant team can act on — not another passive dashboard.",
+          "Anomalies quantified in monthly rupees. Prescriptions name asset, root cause, owner, and effort, not another passive chart.",
         mediaSrc: null,
         mediaAlt: "Anomaly detection and prescription generation",
       },
       {
         id: "governance",
-        title: "Closed-loop governance",
+        title: "Track completion. Verify on the bill.",
         description:
-          "Assigns actions, tracks execution via WhatsApp and dashboard, and verifies potential vs. realized savings so every opportunity converts into measurable value.",
+          "WhatsApp to supervisors, status on dashboard, M&V against adjusted baseline, running ledger of verified ₹ saved.",
         mediaSrc: null,
         mediaAlt: "Closed-loop action tracking and savings verification",
       },
@@ -141,166 +141,159 @@ export const howItWorksContent = {
 
   journey: {
     eyebrow: "The workflow loop",
-    title: "Five steps. One closed loop.",
+    title: "Five steps. Same loop every month.",
     steps: [
       {
         id: "connect",
         step: 1,
         title: "Connect",
-        tagline: "Plug into what you already run",
+        tagline: "Start with meter + bill",
         description: "",
-        bullets: ["Incomer + bill first", "Modbus · OPC-UA · MQTT"],
+        bullets: ["Incomer first", "Modbus · OPC-UA · MQTT"],
         diagram: "connect",
       },
       {
         id: "observe",
         step: 2,
         title: "Observe",
-        tagline: "Baselines that understand production",
+        tagline: "Baselines that know your shifts",
         description: "",
-        bullets: ["Production-normalized SEC", "Tariff-aware anomaly detection"],
+        bullets: ["SEC by batch & shift", "Tariff-aware MD detection"],
         diagram: "observe",
       },
       {
         id: "decide",
         step: 3,
         title: "Decide",
-        tagline: "Prescriptions, not charts",
+        tagline: "Prescriptions in rupees",
         description: "",
-        bullets: ["What · why · who · ₹", "Prioritized action queue"],
+        bullets: ["What · why · who · ₹", "Ranked by monthly impact"],
         diagram: "decide",
       },
       {
         id: "execute",
         step: 4,
         title: "Execute",
-        tagline: "Actions reach the floor",
+        tagline: "WhatsApp to the floor",
         description: "",
-        bullets: ["WhatsApp to supervisors", "Open → Done tracking"],
+        bullets: ["Supervisor notification", "Open → done tracking"],
         diagram: "execute",
       },
       {
         id: "verify",
         step: 5,
         title: "Verify",
-        tagline: "Potential vs. realized — in rupees",
+        tagline: "Check the next bill",
         description: "",
-        bullets: ["M&V vs. adjusted baseline", "Running ₹ savings ledger"],
+        bullets: ["Potential vs realised ₹", "Savings ledger for audits"],
         diagram: "verify",
       },
     ] satisfies HiwJourneyStep[],
   },
 
   intelligenceStack: {
-    eyebrow: "The intelligence layer",
+    eyebrow: "End to end",
     title: "From plant data to verified savings",
     layers: [
       {
         id: "connect",
         title: "Connect your plant",
         subtitle: "1 · Monitor",
-        items: ["Existing meters, SCADA & bills", "Power, air, steam & process data"],
+        items: ["Existing meters, SCADA & bills", "Compressors, furnaces, presses"],
       },
       {
         id: "analyze",
-        title: "Analyze continuously",
+        title: "Watch for deviations",
         subtitle: "2 · Analyze",
-        items: ["Live + historical telemetry", "Production & shift-aware detection"],
+        items: ["Shift and batch-aware baselines", "MD spikes tied to assets"],
       },
       {
         id: "prescribe",
-        title: "Prescribe with context",
+        title: "Prescribe in rupees",
         subtitle: "3 · Prescribe",
-        items: ["Root cause, effort & ₹ impact", "Prioritized for your team"],
+        items: ["Root cause, owner & monthly ₹", "Ranked for your team"],
       },
       {
         id: "verify",
         title: "Execute and verify",
         subtitle: "4 · Track",
-        items: ["WhatsApp + floor workflows", "Verified savings ledger"],
+        items: ["WhatsApp + floor workflow", "Verified savings ledger"],
       },
     ] satisfies HiwStackLayer[],
   },
 
   prescriptionDemo: {
-    eyebrow: "Product preview",
-    title: "Prescription dashboard",
+    eyebrow: "Example output",
+    title: "What a prescription looks like on your plant",
     embed: {
       iframeSrc: null,
       videoSrc: null,
-      iframeTitle: "Stamped Energy prescription dashboard preview",
-      placeholderTitle: "Dashboard embed — coming soon",
-      placeholderDescription: "Live demo or screen recording loads here when ready.",
+      iframeTitle: "Stamped Energy prescription example",
+      placeholderTitle: "",
+      placeholderDescription: "",
     } satisfies PrescriptionEmbedConfig,
   },
 
   beforeAfter: {
     eyebrow: "The shift",
-    title: "Before vs With Stamped",
+    title: "Before Stamped vs after the first billing cycle",
     before: {
       title: "Before",
       items: [
-        "Bill shock every month",
-        "Scattered systems",
-        "Gut-feel decisions",
-        "Unquantified waste",
+        "Bill shock, no asset-level explanation",
+        "SCADA here, bill there, PLC somewhere else",
+        "“Shift-start is bad”, no ₹ figure",
+        "Fixes discussed, never verified",
       ],
     },
     after: {
-      title: "With Stamped",
+      title: "After Stamped",
       items: [
-        "Ahead-of-time alerts",
-        "One operational view",
-        "Prescriptive actions",
-        "Verified ₹ savings",
+        "07:15 MD spike tied to Compressor 1 + Furnace 2",
+        "One timeline: production, kW, tariff cost",
+        "₹38,000/month prescription assigned",
+        "Verified saving on next DISCOM bill",
       ],
     },
   },
 
   deployment: {
     eyebrow: "Deployment path",
-    title: "Live in weeks, not quarters",
+    title: "First prescriptions in two weeks, not two quarters",
     phases: [
       {
         id: "week-1-2",
         week: "Week 1–2",
-        title: "Connect & baseline",
-        description: "Meter + bill live. First baselines.",
+        title: "Meter + bill live",
+        description: "Baselines and first MD / tariff prescriptions.",
       },
       {
         id: "week-3-4",
         week: "Week 3–4",
-        title: "First insights",
-        description: "Anomalies + first prescriptions.",
+        title: "First assigned actions",
+        description: "Supervisor tasks on WhatsApp. Execution tracked.",
       },
       {
         id: "month-2",
         week: "Month 2",
         title: "Deepen integration",
-        description: "SCADA/PLC + production SEC.",
+        description: "SCADA / PLC where available. SEC by process.",
       },
       {
         id: "month-3",
         week: "Month 3+",
-        title: "Verified savings",
-        description: "M&V complete. ₹ ledger live.",
+        title: "Verified ₹ ledger",
+        description: "M&V complete. Numbers for plant head and CFO.",
       },
     ] satisfies HiwDeploymentPhase[],
   },
 
-  gifSlots: [
-    {
-      id: "dashboard-walkthrough",
-      title: "Dashboard walkthrough",
-      description: "Prescription queue → detail → savings update.",
-      reason: "Optional product UI capture when embed is not ready.",
-    },
-  ] satisfies HiwMediaSlot[],
+  gifSlots: [] as HiwMediaSlot[],
 
   finalCta: {
     eyebrow: "Next step",
-    title: "Walk through your data",
-    description: "Map your meters, estimate waste, outline a pilot.",
+    title: "Walk through your meter setup and last three bills",
+    description: "We estimate addressable waste and outline a pilot, only if the numbers justify it.",
     primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
   },
 } as const;

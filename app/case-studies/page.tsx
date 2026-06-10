@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
 
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CaseStudiesPage } from "@/components/case-studies/CaseStudiesPage";
+import { listPublishedCaseStudies } from "@/lib/case-studies/studies";
+import { siteConfig } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Case Studies",
+  description:
+    "Real deployments and field pilots showing measurable energy cost, efficiency, and demand outcomes for Indian manufacturers.",
+  openGraph: {
+    title: `Case Studies | ${siteConfig.name}`,
+    description:
+      "Verified outcomes from automotive-adjacent and process-intensive manufacturing plants.",
+  },
 };
 
-export default function CaseStudiesPage() {
-  return (
-    <section className="py-28 md:py-36">
-      <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="Case studies"
-            title="Verified outcomes from the plant floor"
-            description="Customer stories and ROI proof points are coming soon. The landing page shares target outcome ranges while we finalize publishable case studies."
-          />
-        </Reveal>
-      </Container>
-    </section>
-  );
+export const dynamic = "force-dynamic";
+
+export default async function CaseStudiesRoute() {
+  const { studies } = await listPublishedCaseStudies({ limit: 24 });
+  return <CaseStudiesPage studies={studies} />;
 }

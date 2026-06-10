@@ -52,7 +52,7 @@ export function HiwBeforeAfter() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <SectionHeading
           eyebrow={beforeAfter.eyebrow}
@@ -61,7 +61,7 @@ export function HiwBeforeAfter() {
           className="mx-auto"
         />
 
-        <div className="relative mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 md:gap-8">
+        <div className="relative mx-auto mt-8 grid md:mt-12 max-w-5xl gap-6 md:grid-cols-2 md:gap-8">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-surface-lowest text-primary md:flex"

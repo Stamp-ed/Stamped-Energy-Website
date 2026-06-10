@@ -46,7 +46,7 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const baseClasses =
-  "inline-flex h-12 items-center justify-center rounded-md px-6 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
+  "inline-flex h-11 items-center justify-center rounded-md px-5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:h-12 sm:px-6";
 
 function isLinkProps(props: ButtonProps): props is ButtonAsLink {
   return "href" in props && Boolean(props.href);

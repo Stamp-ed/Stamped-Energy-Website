@@ -52,7 +52,7 @@ export function AutomotiveSegments() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface py-20 md:py-28" id="process-segments">
+    <section ref={sectionRef} className="bg-surface section-y" id="process-segments">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -64,7 +64,7 @@ export function AutomotiveSegments() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-14 flex max-w-5xl flex-col gap-5 md:gap-6">
+        <div className="mx-auto mt-8 flex md:mt-14 max-w-5xl flex-col gap-5 md:gap-6">
           {segments.map((segment) => {
             const isOpen = openId === segment.id;
             return (
@@ -72,7 +72,7 @@ export function AutomotiveSegments() {
                 key={segment.id}
                 id={segment.id}
                 data-segment-card
-                className="scroll-mt-28 overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow duration-300 hover:shadow-md"
+                className="scroll-mt-24 overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow duration-300 hover:shadow-md md:scroll-mt-28"
               >
                 <button
                   type="button"

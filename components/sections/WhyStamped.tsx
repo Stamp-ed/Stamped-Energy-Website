@@ -9,12 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-const WHY_ICONS: Record<string, string> = {
-  prescriptive: "◎",
-  "sme-priced": "₹",
-  "software-only": "⧉",
-  "whatsapp-native": "✓",
-};
+const WHY_MARKERS = ["01", "02", "03", "04"];
 
 export function WhyStamped() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -59,7 +54,7 @@ export function WhyStamped() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-secondary py-20 text-on-secondary md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden bg-secondary section-y text-on-secondary">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,color-mix(in_srgb,var(--brand-primary)_16%,transparent),transparent_50%)]"
@@ -74,19 +69,19 @@ export function WhyStamped() {
           <SectionHeading eyebrow={whyStamped.eyebrow} title={whyStamped.title} dark align="center" className="mx-auto" />
         </Reveal>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {whyStamped.items.map((item) => (
+        <div className="mt-8 grid md:mt-12 gap-4 md:grid-cols-2">
+          {whyStamped.items.map((item, index) => (
             <article
               key={item.id}
               data-why-card
-              className="rounded-xl border border-on-secondary/15 bg-surface-lowest p-6 text-on-surface shadow-lg transition-transform duration-300 hover:-translate-y-0.5"
+              className="rounded-xl border border-on-secondary/15 bg-surface-lowest p-5 text-on-surface shadow-lg transition-transform duration-300 hover:-translate-y-0.5 sm:p-6"
             >
               <div className="mb-4 flex items-center gap-3">
                 <span
                   aria-hidden="true"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 font-display text-xs font-extrabold text-primary"
                 >
-                  {WHY_ICONS[item.id] ?? "•"}
+                  {WHY_MARKERS[index]}
                 </span>
                 <div data-why-bar className="h-1 flex-1 rounded-full bg-primary/70" aria-hidden="true" />
               </div>

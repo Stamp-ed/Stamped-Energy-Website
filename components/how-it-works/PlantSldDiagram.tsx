@@ -184,7 +184,7 @@ export function PlantSldDiagram({ nodes, hint, className }: PlantSldDiagramProps
         {activeNode ? (
           <>
             <span className="font-semibold text-on-surface">{activeNode.label}</span>
-            <span className="text-on-surface-variant"> — {activeNode.tooltip}</span>
+            <span className="text-on-surface-variant"> · {activeNode.tooltip}</span>
           </>
         ) : (
           <span>{hint}</span>

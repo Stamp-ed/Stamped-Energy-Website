@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { AutomotiveChallenges } from "@/components/industries/automotive/AutomotiveChallenges";
 import { AutomotiveHero } from "@/components/industries/automotive/AutomotiveHero";
 import { AutomotiveOutcomes } from "@/components/industries/automotive/AutomotiveOutcomes";
-import { AutomotiveMediaSlot } from "@/components/industries/automotive/AutomotiveMediaSlot";
 import { AutomotiveProvides } from "@/components/industries/automotive/AutomotiveProvides";
 import { AutomotiveSegments } from "@/components/industries/automotive/AutomotiveSegments";
 import { AutomotiveValueExplorer } from "@/components/industries/automotive/AutomotiveValueExplorer";
@@ -23,7 +22,6 @@ export default function AutomotiveIndustryPage() {
       <AutomotiveChallenges />
       <AutomotiveValueExplorer />
       <AutomotiveProvides />
-      <AutomotiveMediaSlot />
       <AutomotiveSegments />
       <AutomotiveOutcomes />
       <IndustryResources />

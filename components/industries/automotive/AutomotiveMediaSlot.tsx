@@ -28,7 +28,7 @@ export function AutomotiveMediaSlot({ className }: AutomotiveMediaSlotProps) {
 
         <Reveal className="mx-auto mt-8 max-w-6xl" delay={0.08}>
           <div
-            className="relative flex min-h-[min(72vh,720px)] w-full items-center justify-center overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm"
+            className="relative flex min-h-[min(50vh,28rem)] w-full items-center justify-center overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm md:min-h-[min(72vh,720px)]"
             aria-label={mediaSlot.mediaAlt}
           >
             {mediaSlot.mediaSrc ? (

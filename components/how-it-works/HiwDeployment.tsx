@@ -55,7 +55,7 @@ export function HiwDeployment() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <SectionHeading
           eyebrow={deployment.eyebrow}

@@ -58,7 +58,7 @@ export function HowItWorks() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden bg-surface-low section-y">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"

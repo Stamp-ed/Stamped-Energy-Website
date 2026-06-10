@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
@@ -12,11 +12,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { industriesContent } from "@/lib/content";
 import { getSegmentImageFocus } from "@/lib/industries/imageFocus";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { cn } from "@/lib/utils";
 
 export function IndustriesHubFeatured() {
   const sectionRef = useRef<HTMLElement>(null);
   const { featured } = industriesContent.hub;
   const vertical = industriesContent.verticals[0];
+  const [showSegments, setShowSegments] = useState(false);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -50,7 +52,7 @@ export function IndustriesHubFeatured() {
   }
 
   return (
-    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -64,7 +66,7 @@ export function IndustriesHubFeatured() {
 
         <div
           data-hub-featured
-          className="mx-auto mt-12 max-w-6xl overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm"
+          className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm md:mt-12"
         >
           <div className="grid lg:grid-cols-[1.1fr_1fr]">
             <div className="relative min-h-[14rem] lg:min-h-[22rem]">
@@ -76,7 +78,7 @@ export function IndustriesHubFeatured() {
                 sizes="(max-width: 1024px) 100vw, 55vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-secondary/10 lg:to-secondary/40" />
-              <div className="absolute bottom-0 left-0 p-6 lg:hidden">
+              <div className="absolute bottom-0 left-0 p-5 sm:p-6 lg:hidden">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-inverse-primary">
                   {vertical.name}
                 </p>
@@ -84,7 +86,7 @@ export function IndustriesHubFeatured() {
               </div>
             </div>
 
-            <div className="flex flex-col p-6 md:p-8">
+            <div className="flex flex-col p-5 sm:p-6 md:p-8">
               <div className="hidden lg:block">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
                   {vertical.name}
@@ -95,7 +97,12 @@ export function IndustriesHubFeatured() {
                 </p>
               </div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8">
+              <div
+                className={cn(
+                  "mt-0 grid gap-3 sm:grid-cols-2 lg:mt-8",
+                  !showSegments && "hidden md:grid",
+                )}
+              >
                 {vertical.segments.map((segment) => (
                   <Link
                     key={segment.id}
@@ -124,8 +131,26 @@ export function IndustriesHubFeatured() {
                 ))}
               </div>
 
-              <div className="mt-6 lg:mt-auto lg:pt-6">
-                <Button href={featured.cta.href} variant="primary">
+              <button
+                type="button"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-outline-variant/60 bg-surface-low px-4 py-3 text-sm font-semibold text-on-surface transition-colors hover:border-primary/35 hover:bg-primary/5 md:hidden"
+                aria-expanded={showSegments}
+                onClick={() => setShowSegments((open) => !open)}
+              >
+                {showSegments ? featured.showLessLabel : featured.showMoreLabel}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "text-primary transition-transform duration-200",
+                    showSegments && "rotate-180",
+                  )}
+                >
+                  ▾
+                </span>
+              </button>
+
+              <div className="mt-5 lg:mt-auto lg:pt-6">
+                <Button href={featured.cta.href} variant="primary" className="w-full sm:w-auto">
                   {featured.cta.label}
                 </Button>
               </div>

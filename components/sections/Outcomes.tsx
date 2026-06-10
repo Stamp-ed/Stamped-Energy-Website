@@ -59,7 +59,7 @@ export function Outcomes() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-20 md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden section-y">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,color-mix(in_srgb,var(--brand-primary)_10%,transparent),transparent_55%)]"
@@ -74,7 +74,7 @@ export function Outcomes() {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid md:mt-12 gap-4 md:grid-cols-2 xl:grid-cols-4">
           {outcomes.stats.map((stat) => (
             <article
               key={stat.id}

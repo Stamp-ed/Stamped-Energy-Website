@@ -39,7 +39,7 @@ export function AutomotiveHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden border-b border-outline-variant/40 bg-surface pb-14 pt-28 md:pb-20 md:pt-32"
+      className="page-hero relative overflow-hidden border-b border-outline-variant/40 bg-surface"
     >
       <div className="absolute inset-0">
         <Image
@@ -71,14 +71,14 @@ export function AutomotiveHero() {
           <p data-auto-hero className="mt-4 max-w-xl text-sm leading-7 text-on-secondary/85 md:text-base">
             {automotive.description}
           </p>
-          <div data-auto-hero className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button href={automotive.primaryCta.href} variant="primary">
+          <div data-auto-hero className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <Button href={automotive.primaryCta.href} variant="primary" className="w-full sm:w-auto">
               {automotive.primaryCta.label}
             </Button>
             <Button
               href={automotive.secondaryCta.href}
               variant="outline"
-              className="border-on-secondary/30 bg-on-secondary/5 text-on-secondary hover:bg-on-secondary/10"
+              className="w-full border-on-secondary/30 bg-on-secondary/5 text-on-secondary hover:bg-on-secondary/10 sm:w-auto"
             >
               {automotive.secondaryCta.label}
             </Button>

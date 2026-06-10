@@ -11,7 +11,7 @@ export function HiwMediaSlots() {
   }
 
   return (
-    <section className="border-t border-outline-variant/40 py-20 md:py-24">
+    <section className="section-y border-t border-outline-variant/40">
       <Container>
         <SectionHeading
           eyebrow="Optional media"

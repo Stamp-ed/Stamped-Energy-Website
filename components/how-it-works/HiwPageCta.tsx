@@ -40,7 +40,7 @@ export function HiwPageCta() {
   return (
     <section
       ref={sectionRef}
-      className="bg-secondary py-20 text-on-secondary md:py-28"
+      className="bg-secondary section-y text-on-secondary"
     >
       <Container>
         <div data-hiw-cta className="mx-auto max-w-2xl text-center">

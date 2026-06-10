@@ -19,85 +19,85 @@ export const landingContent = {
     primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     visualImageSrc: "/industries/die-casting.jpeg",
-    visualImageAlt: "Molten metal pour in a die casting plant — energy-intensive automotive manufacturing",
+    visualImageAlt: "Molten metal pour in a die casting plant, energy-intensive automotive manufacturing",
   },
 
   trust: {
-    label: "Built for Indian manufacturers",
+    label: "For plant heads, owners, and electrical HODs",
     items: [
-      "Software-only. No hardware retrofit.",
-      "Designed for auto component and process-intensive plants",
-      "Pilot-led. Verified savings before annual commitment.",
+      "Connects to incomer meters and existing SCADA. No hardware retrofit.",
+      "Actions on WhatsApp to supervisors who can execute tomorrow morning",
+      "Pilot first. One verified saving on the bill before annual commitment.",
     ],
   },
 
   outcomes: {
-    eyebrow: "Target outcomes",
-    title: "Savings you can verify on the next bill",
-    disclaimer: "Target ranges from industry benchmarks. Pilot-validated figures replace these as data accumulates.",
+    eyebrow: "Typical recovery ranges",
+    title: "Numbers that must appear on the bill, not in a slide deck",
+    disclaimer:
+      "Benchmark ranges from comparable plants. Your pilot replaces these with verified figures.",
     stats: [
       {
         id: "bill-reduction",
         value: "12–20%",
-        label: "Monthly electricity cost reduction",
-        detail: "Typical range for process-intensive SME plants",
+        label: "Off your monthly electricity bill",
+        detail: "Process-intensive die casting, forging, heat treatment",
       },
       {
         id: "md-reduction",
         value: "15–25%",
-        label: "Maximum demand charge reduction",
-        detail: "Often achievable from incomer meter + bill data alone",
+        label: "Off maximum demand charges",
+        detail: "Often from incomer meter + bill data alone, no capex",
       },
       {
         id: "waste-elimination",
         value: "10–20%",
-        label: "Non-production energy identified",
-        detail: "Within the first 90 days of deployment",
+        label: "Non-production energy flagged",
+        detail: "Idle loads, holding furnaces, leak air within 90 days",
       },
       {
         id: "payback",
         value: "3–6 mo",
-        label: "Target platform payback",
-        detail: "Subscription cost recovered from verified savings",
+        label: "Subscription paid back from savings",
+        detail: "Target payback once prescriptions are executed",
       },
     ] satisfies StatItem[],
   },
 
   problem: {
-    eyebrow: "The gap",
-    title: "You already have the data. You are still losing money.",
+    eyebrow: "Why the bill keeps winning",
+    title: "You have the data. Nobody closes the loop.",
     items: [
       {
         id: "fragmented",
-        title: "Fragmented systems",
+        title: "SCADA, PLCs, and bills never meet",
         description:
-          "SCADA, PLCs, meters, and bills live in separate systems — never one operational picture.",
+          "Incomer kW, furnace states, and shift schedules sit in separate systems, so nobody sees the same picture when the MD spikes at 07:15.",
       },
       {
         id: "reactive",
-        title: "Reactive decisions",
+        title: "The bill arrives after the waste is gone",
         description:
-          "The bill arrives after the waste. Decisions stay intuitive, not quantified in rupees.",
+          "You know shift-start overlap costs money. Without a rupee figure tied to Compressor 1 and Furnace 2, it stays a gut feel, not a maintenance ticket.",
       },
       {
         id: "unverified",
-        title: "Savings never verified",
+        title: "Good ideas die before the next bill",
         description:
-          "Recommendations are made, but nobody confirms whether savings hit the next bill.",
+          "Stagger startups, fix holding schedules: discussed in meetings, never tracked, never checked against what the incomer meter actually did.",
       },
     ] satisfies ProblemItem[],
   },
 
   workflow: {
-    eyebrow: "The Stamped loop",
-    title: "From fragmented data to verified savings",
+    eyebrow: "The closed loop",
+    title: "Connect → find the leak → assign the fix → check the bill",
     description:
-      "Watch the closed loop in motion — connect, observe, prescribe, execute, and verify savings on your next bill.",
+      "Same cycle every month: your existing infrastructure in, rupee prescriptions out, savings verified when the DISCOM bill lands.",
     media: {
       title: "Five-step closed loop walkthrough",
       description:
-        "Remotion-authored WebM/GIF loop: signals in → baseline → prescription → WhatsApp workflow → verified savings ledger.",
-      /** Set when the export is ready, e.g. /media/workflow-loop.webm */
+        "Connect plant signals, build baselines, prescribe in rupees, route on WhatsApp, verify on the bill.",
       src: null as string | null,
       posterAlt: "Stamped Energy five-step workflow: Connect, Observe, Decide, Execute, Verify",
     },
@@ -105,97 +105,109 @@ export const landingContent = {
       {
         id: "connect",
         title: "Connect",
-        description: "Integrate SCADA, PLCs, CNCs, meters, and bill data from infrastructure you already run.",
+        description:
+          "Incomer meter, utility bills, then SCADA and PLCs you already run. No retrofit program.",
       },
       {
         id: "observe",
         title: "Observe",
-        description: "Build production-normalized baselines and detect deviations in near real time.",
+        description:
+          "Baselines by shift, batch, and tariff window, so a spike on Monday 07:15 is tied to production, not guesswork.",
       },
       {
         id: "decide",
         title: "Decide",
-        description: "Generate prescriptions with root cause, assigned role, effort, and monthly rupee impact.",
+        description:
+          "Specific actions: what to change, why the data shows it, who owns it, monthly ₹ if done.",
       },
       {
         id: "execute",
         title: "Execute",
-        description: "Route actions into a lightweight workflow with WhatsApp and dashboard visibility.",
+        description:
+          "Work items on WhatsApp to supervisors. Open → done. Nothing buried in a report.",
       },
       {
         id: "verify",
         title: "Verify",
-        description: "Measure post-action consumption and build a running ledger of verified savings in rupees.",
+        description:
+          "Post-action consumption vs baseline. Running ledger: verified ₹ saved since go-live.",
       },
     ] satisfies WorkflowStep[],
   },
 
   prescription: {
-    eyebrow: "Not another dashboard",
-    title: "A prescription, not a chart",
+    eyebrow: "Not a dashboard",
+    title: "This is what your maintenance team gets, not a kWh chart",
     fields: [
-      { label: "What", value: "Stagger Compressor 1 and Press Line 3 startup by 10 minutes" },
+      {
+        label: "What",
+        value: "Stagger Compressor 1 and Press Line 3 startup by 10 minutes each shift",
+      },
       {
         label: "Why",
-        value: "Demand spiked at 07:15 Monday because both assets started simultaneously",
+        value:
+          "Incomer demand hit 1,240 kVA at 07:15 Monday. Both assets ramped together with zero production load.",
       },
-      { label: "Who", value: "Electrical maintenance team" },
+      { label: "Who", value: "Electrical maintenance / shift supervisor" },
       { label: "Effort", value: "Scheduling change only. No capital spend." },
-      { label: "Impact", value: "₹2.5–4L/month at current operating hours" },
-      { label: "When", value: "Apply before next billing cycle" },
+      { label: "Impact", value: "₹38,000/month at current tariff and shift pattern" },
+      { label: "When", value: "Before next billing cycle. MD resets monthly." },
     ] satisfies PrescriptionField[],
   },
 
   howItWorks: {
     eyebrow: "How it works",
-    title: "Five steps from connection to verified savings",
-    cta: { label: "Explore the full workflow", href: "/how-it-works" } satisfies CtaLink,
+    title: "Five steps from your existing meters to verified ₹ on the bill",
+    cta: { label: "Full workflow walkthrough", href: "/how-it-works" } satisfies CtaLink,
     steps: [
       {
         id: "connect-systems",
         step: 1,
-        title: "Connect existing systems",
-        description: "Start with meters and bills, then deepen into SCADA, PLCs, and production data.",
+        title: "Connect what you already run",
+        description: "Incomer + bills first. SCADA, PLCs, and production data as available.",
       },
       {
         id: "baseline",
         step: 2,
-        title: "Build energy baseline",
-        description: "Normalize consumption against production context, shifts, and tariff structure.",
+        title: "Baseline normal for your plant",
+        description: "SEC and demand by shift, process, and product mix, not generic benchmarks.",
       },
       {
         id: "detect",
         step: 3,
-        title: "Detect inefficiencies",
-        description: "Surface demand spikes, idle loads, utility waste, and tariff misalignment.",
+        title: "Flag deviations in rupees",
+        description: "MD spikes, holding loads, idle compressors, tariff misalignment, quantified monthly.",
       },
       {
         id: "prescribe",
         step: 4,
-        title: "Generate prescriptions",
-        description: "Turn anomalies into assigned actions with rupee impact and execution tracking.",
+        title: "Assign fixes to your team",
+        description: "What, why, who, effort, ₹ impact tracked until done.",
       },
       {
         id: "verify-savings",
         step: 5,
-        title: "Verify savings",
-        description: "Confirm realized savings against adjusted baselines and build a defensible ledger.",
+        title: "Confirm on the next bill",
+        description: "Potential vs realised savings. Defensible for plant head and OEM audits.",
       },
     ] satisfies HowItWorksStep[],
   },
 
   industries: {
-    eyebrow: "Industries",
-    title: "Starting with automotive. Built for manufacturing broadly.",
+    eyebrow: "Your processes",
+    title: "Die casting, forging, heat treatment, rubber: where utility cost hits margin",
     description:
-      "Initial focus: auto component and process-intensive manufacturing in the NCR belt. Expanding as validation grows.",
+      "Starting with auto component suppliers in the NCR belt. Same approach applies wherever furnaces, compressors, and shift-start sequencing drive the bill.",
     cta: { label: "View all industries", href: "/industries" } satisfies CtaLink,
+    showMoreLabel: "Show process segments",
+    showLessLabel: "Show fewer segments",
     items: [
       {
         id: "automotive",
         name: "Automotive Components",
-        focus: "OEM cost pressure meets rising tariffs",
-        description: "Tier 1 and Tier 2 suppliers facing OEM cost pressure and rising electricity tariffs.",
+        focus: "OEM price cuts meet rising HT tariffs",
+        description:
+          "Tier 1 and Tier 2 suppliers absorbing tariff hikes while OEMs demand 2–5% annual cost-down.",
         featured: true,
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
@@ -203,32 +215,36 @@ export const landingContent = {
       {
         id: "die-casting",
         name: "Die Casting",
-        focus: "Shift-start demand spikes",
-        description: "Furnace-compressor coordination and demand spikes at every shift start.",
+        focus: "Morning MD spike every shift",
+        description:
+          "Three furnaces and compressors ramp together before the first pour. Predictable, avoidable demand charges.",
         imageSrc: "/industries/die-casting.jpeg",
         imageAlt: "Die casting molten metal process",
       },
       {
         id: "forging",
         name: "Forging",
-        focus: "Heavy loads & MD exposure",
-        description: "Production-linked SEC variability and maximum demand charge exposure.",
+        focus: "Compressors run unloaded between strokes",
+        description:
+          "Screw compressors sized for peak stroke demand. 60% of shift in unload with no production benefit.",
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Industrial forging operation",
       },
       {
         id: "heat-treatment",
         name: "Heat Treatment",
-        focus: "Furnace holding losses",
-        description: "Weekend holding losses and tariff-sensitive operating windows.",
+        focus: "Furnaces hold over empty weekends",
+        description:
+          "Soak temperature maintained with zero batches scheduled. ₹3–6L/month in pure holding waste at typical loads.",
         imageSrc: "/industries/heat-treatment.webp",
         imageAlt: "Heat treatment furnace batch operation",
       },
       {
         id: "rubber-moulding",
         name: "Rubber Moulding",
-        focus: "Curing cycles & air leaks",
-        description: "Curing cycles, compressor leaks, and idle loads between batches.",
+        focus: "No SEC baseline per press",
+        description:
+          "Curing cycles vary by operator. Leak air and idle press heat invisible until the bill arrives.",
         imageSrc: "/industries/rubber-moulding.jpg",
         imageAlt: "Rubber moulding production line",
       },
@@ -237,58 +253,58 @@ export const landingContent = {
 
   whyStamped: {
     eyebrow: "Why Stamped",
-    title: "Built for plant heads, not sustainability committees",
+    title: "Enterprise EMS tools were not built for your plant size",
     items: [
       {
         id: "prescriptive",
-        title: "Prescriptive, not descriptive",
-        description: "Stamped tells you what is wrong, why, who should fix it, and how much it costs in rupees.",
+        title: "Tells your team what to do tomorrow",
+        description:
+          'Not "energy is high." Instead: stagger Furnace 2 by 10 minutes, assign to electrical maintenance, ₹1.2L/month.',
       },
       {
         id: "sme-priced",
-        title: "SME-priced and pilot-led",
-        description: "Accessible for mid-market manufacturers with a low-risk pilot before annual commitment.",
+        title: "Pilot before annual commitment",
+        description:
+          "Low-fee pilot or pay-as-you-save on first verified month. You see ₹ on the bill before you scale spend.",
       },
       {
         id: "software-only",
-        title: "Software-only integration",
-        description: "Connect to existing meters, SCADA, and PLCs without a hardware retrofit program.",
+        title: "Uses infrastructure you already paid for",
+        description:
+          "Incomer meter, SCADA, PLCs, CNCs connected without a hardware retrofit program.",
       },
       {
         id: "whatsapp-native",
-        title: "WhatsApp-native execution",
-        description: "Prescriptions reach the people who act, not a dashboard that only managers open.",
+        title: "Reaches supervisors on WhatsApp",
+        description:
+          "Prescriptions go to people who can act, not a screen only the plant head opens once a month.",
       },
     ] satisfies WhyStampedItem[],
   },
 
   futureMedia: {
-    eyebrow: "In the plant",
-    title: "Built for factory floors, not boardrooms",
+    eyebrow: "On the shop floor",
+    title: "Actions reach supervisors, not another login",
     description:
-      "Stamped connects to meters, SCADA, and bills you already run — prescriptions reach maintenance teams on WhatsApp.",
-    placeholderLabel: "Product demo media coming soon",
+      "Your electrical and maintenance teams get what to fix, why the data shows it, and how many rupees are on the line. Plant head sees what closed and what saved.",
     imageSrc: "/industries/heat-treatment.webp",
     imageAlt: "Industrial heat treatment furnace in operation",
+    imageCaption:
+      "Furnace holding, shift-start overlap, compressor unload: the patterns your bill already hints at",
   },
 
   credibility: {
-    eyebrow: "Credibility",
-    title: "Engineering depth behind every prescription",
+    eyebrow: "Who builds this",
+    title: "Electrical engineering depth. Prescriptions in rupees, not slides.",
     founderNote:
-      "Founded by an IIT Roorkee electrical engineering graduate with research background in energy systems. Built for manufacturers who need verified rupee outcomes, not another monitoring layer.",
-    placeholders: [
-      "Pilot results",
-      "Case studies",
-      "Customer testimonials",
-    ],
+      "Founded by an IIT Roorkee electrical engineering graduate with research in energy systems. Built for plant heads who need verified outcomes on the DISCOM bill, not another monitoring layer.",
   },
 
   finalCta: {
     eyebrow: "Start with a pilot",
-    title: "See what your plant is losing every month",
+    title: "Find out what your plant lost last month",
     description:
-      "Book a discovery call. We will review your infrastructure, estimate addressable waste, and outline a low-risk pilot path.",
+      "30-minute discovery call. We review your meter setup, bill pattern, and processes, and outline a low-risk pilot if the numbers justify it.",
     primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
   },
 

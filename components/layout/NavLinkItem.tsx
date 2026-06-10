@@ -27,7 +27,7 @@ export function NavLinkItem({
   const className = cn(
     "relative text-sm font-medium transition-colors duration-200",
     mobile
-      ? "block py-1 text-on-surface"
+      ? "block border-b border-outline-variant/20 py-3 text-on-surface"
       : cn(
           lightNav
             ? "nav-link text-on-secondary/80 hover:text-on-secondary"

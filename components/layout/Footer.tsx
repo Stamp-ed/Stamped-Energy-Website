@@ -6,8 +6,8 @@ import { footerLinks, siteConfig } from "@/lib/content";
 export function Footer() {
   return (
     <footer className="border-t border-outline-variant/30 bg-secondary text-on-secondary">
-      <Container className="py-16">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <Container className="py-12 md:py-16">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-xl font-bold">{siteConfig.name}</p>
             <p className="mt-3 max-w-md text-sm leading-6 text-on-secondary/75">

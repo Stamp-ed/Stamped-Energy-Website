@@ -37,7 +37,7 @@ export function HiwOpening() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden border-b border-outline-variant/40 bg-surface pb-14 pt-28 md:pb-20 md:pt-32"
+      className="page-hero relative overflow-hidden border-b border-outline-variant/40 bg-surface"
     >
       <div
         aria-hidden="true"
@@ -54,11 +54,11 @@ export function HiwOpening() {
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
             {hero.description}
           </p>
-          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href={hero.primaryCta.href} variant="primary">
+          <div className="mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-7 sm:w-auto sm:flex-row sm:items-center">
+            <Button href={hero.primaryCta.href} variant="primary" className="w-full sm:w-auto">
               {hero.primaryCta.label}
             </Button>
-            <Button href={hero.secondaryCta.href} variant="outline">
+            <Button href={hero.secondaryCta.href} variant="outline" className="w-full sm:w-auto">
               {hero.secondaryCta.label}
             </Button>
           </div>

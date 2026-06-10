@@ -64,33 +64,33 @@ export function PrescriptionExample() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-20 md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden section-y">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,color-mix(in_srgb,var(--brand-primary)_8%,transparent),transparent_55%)]"
       />
 
       <Container className="relative z-10">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        <div className="grid gap-8 md:gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <Reveal from="left">
             <SectionHeading eyebrow={prescription.eyebrow} title={prescription.title} />
             <p className="mt-4 max-w-md text-sm leading-7 text-on-surface-variant">
-              Each field assembles in sequence — the same experience your maintenance team receives on
-              WhatsApp and in the dashboard.
+              Same format your maintenance supervisor receives on WhatsApp, asset, reason, owner, monthly
+              rupee impact.
             </p>
           </Reveal>
 
           <Reveal from="right">
             <article
               ref={cardRef}
-              className="rounded-xl border-2 border-primary/20 bg-surface-lowest p-6 shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] md:p-8"
+              className="rounded-xl border-2 border-primary/20 bg-surface-lowest p-5 shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] sm:p-6 md:p-8"
             >
               <div
                 data-rx-header
                 className="mb-6 flex items-center justify-between border-b border-outline-variant/40 pb-4"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-                  Live prescription example
+                  Sample prescription
                 </p>
                 <span
                   data-rx-badge

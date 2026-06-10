@@ -33,7 +33,7 @@ export function IndustriesHubExplorer() {
   );
 
   return (
-    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface py-20 md:py-28">
+    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading

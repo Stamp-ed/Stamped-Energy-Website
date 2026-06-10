@@ -18,7 +18,7 @@ export function IndustryPageCta({ content }: IndustryPageCtaProps) {
   const cta = content ?? industriesContent.automotive.finalCta;
 
   return (
-    <section className="bg-secondary py-20 text-on-secondary md:py-28">
+    <section className="bg-secondary section-y text-on-secondary">
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">

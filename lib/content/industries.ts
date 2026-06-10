@@ -17,9 +17,9 @@ const INDUSTRY_IMAGES = {
 export const industriesContent = {
   hub: {
     eyebrow: "Industries",
-    title: "Built for plants that run on utilities",
+    title: "Built for plants where furnaces and compressors drive the bill",
     description:
-      "Stamped starts with automotive and its process-intensive supply chain — where furnaces, compressors, and shift-start sequencing directly hit margin.",
+      "Auto component suppliers in die casting, forging, heat treatment, and rubber moulding, NCR belt first. Same approach wherever process utilities hit margin.",
     heroImageSrc: INDUSTRY_IMAGES.forging,
     heroImageAlt: "Automotive forging press line in an energy-intensive manufacturing plant",
     primaryCta: { label: "Explore Automotive", href: "/industries/automotive" } satisfies CtaLink,
@@ -46,25 +46,25 @@ export const industriesContent = {
     ] satisfies StatItem[],
     approach: {
       eyebrow: "How we fit your plant",
-      title: "Industry context, not generic dashboards",
+      title: "Process context, not generic kWh dashboards",
       items: [
         {
           id: "process-baselines",
-          title: "Process-normalized baselines",
+          title: "Baselines by shift and batch",
           description:
-            "SEC and demand tracked against production context — shift patterns, batch cycles, and furnace states, not just kWh totals.",
+            "SEC and MD tracked against pour times, stroke counts, and furnace states, not plant-wide averages that hide the leak.",
         },
         {
           id: "segment-prescriptions",
-          title: "Segment-specific prescriptions",
+          title: "Prescriptions your supervisors recognise",
           description:
-            "Die casting shift-start spikes, forging MD exposure, heat-treatment holding losses — each with assigned roles and rupee impact.",
+            "Shift-start staggering, holding schedule changes, compressor unload timers, assigned roles and monthly ₹ impact.",
         },
         {
           id: "verified-outcomes",
-          title: "Verified on the next bill",
+          title: "Verified on the DISCOM bill",
           description:
-            "Closed-loop M&V ties every action to adjusted baselines so savings are defensible for plant heads and OEM audits.",
+            "Closed-loop M&V so plant head and CFO see realised ₹, defensible for OEM energy audits.",
         },
       ],
     },
@@ -72,20 +72,22 @@ export const industriesContent = {
       eyebrow: "Browse verticals",
       title: "Select a vertical to explore",
       description:
-        "Hover a vertical to preview process segments. Automotive is live today — more verticals follow as validation grows.",
+        "Hover a vertical to preview process segments. Automotive is live today, more verticals follow as validation grows.",
     },
     featured: {
       eyebrow: "Live today",
-      title: "Automotive manufacturing",
+      title: "Automotive component manufacturing",
       description:
-        "Tier 1 and Tier 2 suppliers under OEM cost pressure — four process segments with expandable playbooks on the industry page.",
+        "Tier 1 and Tier 2 suppliers under OEM cost-down pressure, four process segments with plant-floor playbooks.",
       cta: { label: "Open automotive page", href: "/industries/automotive" } satisfies CtaLink,
+      showMoreLabel: "Show process segments",
+      showLessLabel: "Show fewer segments",
     },
     finalCta: {
       eyebrow: "Start with your plant",
-      title: "Not sure which segment fits?",
+      title: "Not sure which process segment fits?",
       description:
-        "Book a discovery call. We will map your meters, processes, and estimated waste — and outline a low-risk pilot path.",
+        "Discovery call: we map your meters, main loads, and bill pattern, and say honestly if a pilot makes sense.",
       primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
     },
     cta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
@@ -96,9 +98,9 @@ export const industriesContent = {
       id: "automotive",
       slug: "automotive",
       name: "Automotive",
-      tagline: "AI-led energy control for automotive manufacturing",
+      tagline: "Energy cost control for auto component suppliers",
       description:
-        "Tier 1 and Tier 2 suppliers under OEM cost pressure — die casting, forging, heat treatment, and rubber moulding plants where utilities drive margin.",
+        "Die casting, forging, heat treatment, and rubber moulding, where OEM price pressure and HT tariffs squeeze margin on every rupee of electricity.",
       href: "/industries/automotive",
       heroImageSrc: INDUSTRY_IMAGES.dieCasting,
       heroImageAlt: "Molten metal pour in an automotive die casting plant",
@@ -209,17 +211,17 @@ export const industriesContent = {
 
   automotive: {
     eyebrow: "Automotive",
-    title: "Prescriptive energy intelligence for automotive suppliers",
+    title: "Where utility cost hits margin on every OEM price-down",
     description:
-      "Die casting, forging, heat treatment, and rubber moulding — unified plant data, production-aware baselines, and floor-ready prescriptions with verified rupee impact.",
+      "Die casting, forging, heat treatment, rubber moulding, prescriptions tied to furnaces, compressors, and shift-start MD, verified on your bill.",
     primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
     secondaryCta: { label: "How it works", href: "/how-it-works" } satisfies CtaLink,
 
     challenges: {
       eyebrow: "Energy challenges",
-      title: "Utilities drive margin where OEM pressure is highest",
+      title: "Utilities are 12–18% of operating cost, and rising every tariff revision",
       description:
-        "Automotive component plants run energy-intensive processes across furnaces, compressors, and heat treatment — often with fragmented visibility and shift-to-shift variability.",
+        "Furnaces, compressors, and heat treatment run whether parts are in the press or not. Visibility stops at the incomer meter; the bill explains nothing asset by asset.",
       stats: [
         {
           id: "cost-share",
@@ -243,10 +245,10 @@ export const industriesContent = {
     },
 
     valueExplorer: {
-      eyebrow: "Where value sits",
-      title: "Actionable energy intelligence across your plant",
+      eyebrow: "Where lakhs leak",
+      title: "Typical savings areas in auto component plants",
       description:
-        "Select a process area to see where Stamped typically finds prescriptive savings in automotive component manufacturing.",
+        "Select a process area. Figures are reference ranges from comparable plants, your pilot replaces them with verified numbers.",
       areas: [
         {
           id: "press-body",
@@ -262,7 +264,7 @@ export const industriesContent = {
           step: "02",
           title: "Die casting cells",
           description:
-            "Furnace holding, core cooling compressors, and shot-cycle SEC — normalized by alloy mix and production rate.",
+            "Furnace holding, core cooling compressors, and shot-cycle SEC, normalized by alloy mix and production rate.",
           potentialLabel: "Est. monthly savings",
           potentialValue: "₹2–5L",
         },
@@ -271,7 +273,7 @@ export const industriesContent = {
           step: "03",
           title: "Heat treatment & carburizing",
           description:
-            "Setback gaps, weekend holding, and batch timing against tariff windows — prescribed per furnace with M&V.",
+            "Setback gaps, weekend holding, and batch timing against tariff windows, prescribed per furnace with M&V.",
           potentialLabel: "Est. monthly savings",
           potentialValue: "₹1.5–4L",
         },
@@ -280,7 +282,7 @@ export const industriesContent = {
           step: "04",
           title: "Compressed air & utilities",
           description:
-            "Leak detection, over-pressure, and overlapping compressors — a recurring theme across auto component plants.",
+            "Leak detection, over-pressure, and overlapping compressors, a recurring theme across auto component plants.",
           potentialLabel: "Est. monthly savings",
           potentialValue: "₹1.2–2.5L",
         },
@@ -298,7 +300,7 @@ export const industriesContent = {
           step: "06",
           title: "Electrical demand & MD management",
           description:
-            "Demand windows, power factor, and shift-overlap spikes — tied to rupee impact on your utility bill.",
+            "Demand windows, power factor, and shift-overlap spikes, tied to rupee impact on your utility bill.",
           potentialLabel: "Est. monthly savings",
           potentialValue: "₹2–6L",
         },
@@ -309,8 +311,8 @@ export const industriesContent = {
       eyebrow: "Product preview",
       title: "Automotive workflow in action",
       description:
-        "Reserved for an interactive walkthrough or GIF — how Stamped connects, prescribes, and verifies savings across automotive process lines.",
-      placeholderTitle: "Interactive preview — coming soon",
+        "Reserved for an interactive walkthrough or GIF, how Stamped connects, prescribes, and verifies savings across automotive process lines.",
+      placeholderTitle: "Interactive preview, coming soon",
       placeholderDescription:
         "GIF or product capture loads here. Full-width white canvas sized for a screen recording or live demo embed.",
       mediaSrc: null as string | null,
@@ -324,12 +326,12 @@ export const industriesContent = {
         {
           id: "connect",
           title: "Connect without retrofit",
-          description: "Meters, SCADA, PLCs, and utility bills into one time-aligned graph — Modbus, OPC-UA, MQTT.",
+          description: "Meters, SCADA, PLCs, and utility bills into one time-aligned graph, Modbus, OPC-UA, MQTT.",
         },
         {
           id: "prescribe",
           title: "Prescriptions, not dashboards",
-          description: "What to change, why, who owns it, and ₹ impact — prioritized for your supervisors.",
+          description: "What to change, why, who owns it, and ₹ impact, prioritized for your supervisors.",
         },
         {
           id: "execute",
@@ -346,38 +348,38 @@ export const industriesContent = {
 
     segments: {
       eyebrow: "Automotive processes",
-      title: "Four process segments. One platform.",
+      title: "Four processes where the bill hurts most",
       description:
-        "Deep playbooks for the energy-intensive processes in your supply chain. Expand each segment for challenges and how Stamped helps — dedicated segment pages coming next.",
+        "Die casting, forging, heat treatment, rubber moulding, expand each for typical leaks and how Stamped addresses them.",
     },
 
     outcomes: {
       eyebrow: "What you gain",
-      title: "Outcomes automotive plant heads care about",
+      title: "Outcomes your plant head and CFO will ask for",
       items: [
         {
           id: "real-time",
-          title: "Real-time energy command",
+          title: "MD spikes explained asset by asset",
           description:
-            "Live operational data converted into prescribed actions across production and auxiliaries — cutting 5–10% utility waste without throughput risk.",
+            "Shift-start overlap, simultaneous furnace ramp, compressor idle, tied to monthly rupee impact, not plant-wide kWh.",
         },
         {
           id: "sec",
-          title: "Stable SECs and KPIs",
+          title: "SEC held within shift bands",
           description:
-            "Production-normalized SEC held within operating bands — reducing performance drift of 8–12% across shifts.",
+            "kWh per unit output tracked by process and shift, so drift shows up before the bill, not after.",
         },
         {
           id: "reliability",
-          title: "Higher asset reliability",
+          title: "Maintenance tickets before breakdown",
           description:
-            "Early intervention on compressor, furnace, and press degradation patterns before unplanned downtime.",
+            "Compressor inlet filter degradation, furnace holding anomalies, flagged when specific power drifts, not when the motor fails.",
         },
         {
           id: "sustained",
-          title: "Sustained efficiency outcomes",
+          title: "Verified ₹ ledger quarter over quarter",
           description:
-            "Closed-loop feedback that prescribes, validates, and refines — locking in verified cost reduction over quarters.",
+            "Potential vs realised savings tracked, defensible for OEM energy audits and internal cost reviews.",
         },
       ],
     },
@@ -387,7 +389,7 @@ export const industriesContent = {
     finalCta: {
       eyebrow: "Next step",
       title: "Map your automotive plant data",
-      description: "Walk through meters, processes, and estimated waste — outline a pilot in weeks.",
+      description: "Walk through meters, processes, and estimated waste, outline a pilot in weeks.",
       primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
     },
   },

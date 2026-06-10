@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ContentFormat {
+  MARKDOWN
+  RICH
+}
+
+model AdminUser {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  posts        BlogPost[]
+  caseStudies  CaseStudy[]
+}
+
+model BlogPost {
+  id            String        @id @default(cuid())
+  title         String
+  slug          String        @unique
+  excerpt       String
+  content       String        @default("")
+  contentFormat ContentFormat @default(RICH)
+  bodyJson      String?
+  coverImage    String?
+  category      String
+  tags          String        @default("[]")
+  status        PostStatus    @default(DRAFT)
+  featured      Boolean       @default(false)
+  readTimeMin   Int           @default(5)
+  authorId      String
+  author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([category])
+  @@index([featured])
+}
+
+model CaseStudy {
+  id            String        @id @default(cuid())
+  title         String
+  slug          String        @unique
+  excerpt       String
+  content       String        @default("")
+  contentFormat ContentFormat @default(RICH)
+  bodyJson      String?
+  coverImage    String?
+  coverImageAlt String        @default("")
+  category      String
+  industry      String
+  clientContext String        @default("")
+  tag           String?
+  metrics       String        @default("[]")
+  outcomes      String        @default("[]")
+  disclaimer    String?
+  status        PostStatus    @default(DRAFT)
+  featured      Boolean       @default(false)
+  readTimeMin   Int           @default(5)
+  authorId      String
+  author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([category])
+  @@index([featured])
+}

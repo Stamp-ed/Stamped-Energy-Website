@@ -40,7 +40,7 @@ export function IndustriesMegaMenu({ lightNav = false }: { lightNav?: boolean })
   return (
     <div
       ref={containerRef}
-      className="relative"
+      className="relative hidden lg:block"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
@@ -55,12 +55,14 @@ export function IndustriesMegaMenu({ lightNav = false }: { lightNav?: boolean })
         )}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        onFocus={() => setIsOpen(true)}
       >
         {industriesLink.label}
         <span
           aria-hidden="true"
-          className="h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-70"
+          className={cn(
+            "h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-70 transition-transform duration-200",
+            isOpen && "scale-125 opacity-100",
+          )}
         />
       </Link>
 
@@ -84,46 +86,70 @@ export function IndustriesMobileNav({
 }: {
   onNavigate: () => void;
 }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const industriesLink = navLinks.find((link) => link.megaMenu === "industries");
   const vertical = industriesContent.verticals[0];
 
-  if (!vertical) {
+  if (!industriesLink || !vertical) {
     return null;
   }
 
   return (
-    <div className="rounded-lg border border-outline-variant/40 bg-surface-low/60 p-3">
-      <Link
-        href="/industries"
-        className="text-sm font-semibold text-on-surface"
-        onClick={onNavigate}
+    <div className="border-b border-outline-variant/20 pb-3">
+      <button
+        type="button"
+        className="flex w-full items-center justify-between py-3 text-left text-sm font-medium text-on-surface"
+        aria-expanded={isExpanded}
+        onClick={() => setIsExpanded((open) => !open)}
       >
-        Industries overview
-      </Link>
-      <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-primary">
-        {vertical.name}
-      </p>
-      <ul className="mt-2 space-y-1.5">
-        <li>
+        <span>{industriesLink.label}</span>
+        <span
+          aria-hidden="true"
+          className={cn(
+            "text-base leading-none text-on-surface-variant transition-transform duration-200",
+            isExpanded && "rotate-45",
+          )}
+        >
+          +
+        </span>
+      </button>
+
+      {isExpanded ? (
+        <div className="mt-2 space-y-2 border-l-2 border-primary/25 pl-3">
           <Link
-            href={vertical.href}
+            href="/industries"
             className="block text-sm text-on-surface-variant hover:text-primary"
             onClick={onNavigate}
           >
-            {vertical.name} overview
+            All industries
           </Link>
-        </li>
-        {vertical.segments.map((segment) => (
-          <li key={segment.id}>
-            <Link
-              href={segment.href}
-              className="block pl-3 text-sm text-on-surface-variant hover:text-primary"
-              onClick={onNavigate}
-            >
-              {segment.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-primary">
+            {vertical.name}
+          </p>
+          <ul className="space-y-1.5">
+            <li>
+              <Link
+                href={vertical.href}
+                className="block text-sm text-on-surface-variant hover:text-primary"
+                onClick={onNavigate}
+              >
+                {vertical.name} overview
+              </Link>
+            </li>
+            {vertical.segments.map((segment) => (
+              <li key={segment.id}>
+                <Link
+                  href={segment.href}
+                  className="block pl-2 text-sm text-on-surface-variant hover:text-primary"
+                  onClick={onNavigate}
+                >
+                  {segment.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 }

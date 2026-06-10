@@ -33,7 +33,7 @@ export function IndustriesHubApproach() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -44,7 +44,7 @@ export function IndustriesHubApproach() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-8 grid md:mt-12 max-w-5xl gap-5 md:grid-cols-3">
           {approach.items.map((item, index) => (
             <article
               key={item.id}

@@ -1,0 +1,273 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useCallback, useRef, useState } from "react";
+
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { BLOG_CATEGORIES } from "@/lib/blog/constants";
+import type { BlogPostListItem } from "@/lib/blog/posts";
+import { formatBlogDate } from "@/lib/blog/utils";
+import { scrollTriggerDefaults } from "@/lib/motion/config";
+import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { cn } from "@/lib/utils";
+
+type BlogCatalogProps = {
+  initialPosts: BlogPostListItem[];
+  initialHasMore: boolean;
+  initialPage: number;
+};
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+  );
+}
+
+export function BlogCatalog({ initialPosts, initialHasMore, initialPage }: BlogCatalogProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [posts, setPosts] = useState(initialPosts);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(initialPage);
+  const [hasMore, setHasMore] = useState(initialHasMore);
+  const [isLoading, setIsLoading] = useState(false);
+  const { isReady, prefersReducedMotion } = useMotion();
+
+  const fetchPosts = useCallback(
+    async (options: { page: number; category: string; search: string; append: boolean }) => {
+      setIsLoading(true);
+      try {
+        const params = new URLSearchParams({
+          page: String(options.page),
+          limit: "6",
+          category: options.category,
+        });
+        if (options.search.trim()) {
+          params.set("search", options.search.trim());
+        }
+
+        const response = await fetch(`/api/blog/posts?${params.toString()}`);
+        const json = (await response.json()) as {
+          success: boolean;
+          data?: {
+            posts: BlogPostListItem[];
+            pagination: { hasMore: boolean; page: number };
+          };
+        };
+
+        if (!json.success || !json.data) {
+          return;
+        }
+
+        setPosts((current) =>
+          options.append ? [...current, ...json.data!.posts] : json.data!.posts,
+        );
+        setHasMore(json.data.pagination.hasMore);
+        setPage(json.data.pagination.page);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [],
+  );
+
+  const handleCategoryChange = async (categoryId: string) => {
+    setActiveCategory(categoryId);
+    await fetchPosts({ page: 1, category: categoryId, search, append: false });
+  };
+
+  const handleSearch = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await fetchPosts({ page: 1, category: activeCategory, search, append: false });
+  };
+
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion) {
+        return;
+      }
+
+      gsap.from("[data-blog-catalog-item]", {
+        autoAlpha: 0,
+        y: 22,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
+      });
+    },
+    { scope: sectionRef, dependencies: [isReady, prefersReducedMotion, posts.length, activeCategory] },
+  );
+
+  const filterButtonClass = (isActive: boolean) =>
+    cn(
+      "shrink-0 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors md:px-4 md:py-2 md:text-sm",
+      isActive
+        ? "border-secondary bg-secondary text-on-secondary"
+        : "border-outline-variant/60 bg-surface-lowest text-on-surface-variant hover:border-outline-variant hover:text-on-surface",
+    );
+
+  return (
+    <section
+      id="blog-catalog"
+      ref={sectionRef}
+      className="scroll-mt-20 bg-surface-low py-10 md:section-y"
+    >
+      <Container>
+        <div data-blog-catalog className="mx-auto max-w-6xl">
+          <div className="border-b border-outline-variant/40 pb-5 md:pb-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+              All articles
+            </p>
+            <h2 className="mt-1 text-lg font-bold text-on-surface md:text-xl">
+              Browse by topic
+            </h2>
+          </div>
+
+          <form
+            onSubmit={handleSearch}
+            className="mt-5 flex gap-2 md:mt-6"
+            role="search"
+          >
+            <label htmlFor="blog-search" className="sr-only">
+              Search articles
+            </label>
+            <input
+              id="blog-search"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Search articles..."
+              className="h-11 min-w-0 flex-1 rounded-xl border border-outline-variant/60 bg-surface-lowest px-4 text-sm text-on-surface outline-none ring-primary/30 placeholder:text-on-surface-variant/70 focus:border-primary focus:ring-2"
+            />
+            <Button
+              type="submit"
+              variant="outline"
+              className="h-11 w-11 shrink-0 px-0 sm:h-12 sm:w-auto sm:px-5"
+              disabled={isLoading}
+              aria-label="Search articles"
+            >
+              <SearchIcon className="h-4 w-4 sm:hidden" />
+              <span className="hidden sm:inline">Search</span>
+            </Button>
+          </form>
+
+          <div className="relative mt-4 md:mt-5">
+            <div
+              className="scroll-row -mx-5 px-5 sm:-mx-6 sm:px-6 md:mx-0 md:flex md:flex-wrap md:justify-center md:overflow-visible md:px-0"
+              role="tablist"
+              aria-label="Filter blog posts"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === "all"}
+                onClick={() => handleCategoryChange("all")}
+                className={filterButtonClass(activeCategory === "all")}
+              >
+                All
+              </button>
+              {BLOG_CATEGORIES.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCategory === category.id}
+                  onClick={() => handleCategoryChange(category.id)}
+                  className={filterButtonClass(activeCategory === category.id)}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-surface-low to-transparent md:hidden"
+              aria-hidden
+            />
+          </div>
+        </div>
+
+        <div className="mx-auto mt-6 grid max-w-6xl gap-4 sm:gap-5 md:mt-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              data-blog-catalog-item
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
+                {post.coverImage ? (
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center bg-secondary/10 px-4 text-center text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
+                    {post.categoryLabel}
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
+                  {post.categoryLabel}
+                </p>
+                <h3 className="mt-1 text-base font-bold leading-snug text-on-surface group-hover:text-primary">
+                  {post.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-6 text-on-surface-variant line-clamp-3">
+                  {post.excerpt}
+                </p>
+                <p className="mt-3 text-xs text-on-surface-variant/80">
+                  {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {posts.length === 0 ? (
+          <p className="mt-8 text-center text-sm text-on-surface-variant md:mt-10">
+            No articles found. Try another filter or search term.
+          </p>
+        ) : null}
+
+        {hasMore ? (
+          <div className="mt-6 flex justify-center md:mt-8">
+            <Button
+              variant="outline"
+              disabled={isLoading}
+              onClick={() =>
+                fetchPosts({
+                  page: page + 1,
+                  category: activeCategory,
+                  search,
+                  append: true,
+                })
+              }
+            >
+              {isLoading ? "Loading..." : "Load more"}
+            </Button>
+          </div>
+        ) : null}
+      </Container>
+    </section>
+  );
+}

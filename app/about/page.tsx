@@ -1,26 +1,18 @@
 import type { Metadata } from "next";
 
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AboutPageView } from "@/components/about/AboutPage";
 import { siteConfig } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About Us",
+  description:
+    "Stamped Energy, software for plant heads who need verified rupee savings on the electricity bill, not another monitoring dashboard.",
+  openGraph: {
+    title: `About Us | ${siteConfig.name}`,
+    description: siteConfig.description,
+  },
 };
 
-export default function AboutPage() {
-  return (
-    <section className="py-28 md:py-36">
-      <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="About us"
-            title={`Built for manufacturers who need proof, not dashboards`}
-            description={`${siteConfig.name} is building prescriptive energy intelligence for Indian SMEs — starting with auto components and expanding across discrete manufacturing.`}
-          />
-        </Reveal>
-      </Container>
-    </section>
-  );
+export default function AboutRoute() {
+  return <AboutPageView />;
 }

@@ -122,7 +122,7 @@ export function HiwIntelligenceStack() {
   );
 
   return (
-    <section ref={sectionRef} className="overflow-hidden bg-secondary py-20 text-on-secondary md:py-28">
+    <section ref={sectionRef} className="overflow-hidden bg-secondary section-y text-on-secondary">
       <Container>
         <SectionHeading
           eyebrow={intelligenceStack.eyebrow}

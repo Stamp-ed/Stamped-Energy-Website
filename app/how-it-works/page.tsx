@@ -13,7 +13,7 @@ import { IndustryResources } from "@/components/industries/shared/IndustryResour
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "A prescriptive intelligence platform built on unified plant data — Connect, Observe, Decide, Execute, and Verify savings for Indian manufacturers.",
+    "Connect incomer meters, SCADA, and bills. Assign fixes in rupees. Verify savings on the next DISCOM bill, for Indian auto component manufacturers.",
 };
 
 export default function HowItWorksPage() {

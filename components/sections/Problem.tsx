@@ -9,11 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-const PROBLEM_ICONS: Record<string, string> = {
-  fragmented: "⧉",
-  reactive: "⚡",
-  unverified: "◎",
-};
+const PROBLEM_MARKERS = ["01", "02", "03"];
 
 export function Problem() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -53,7 +49,7 @@ export function Problem() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-secondary py-20 text-on-secondary md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden bg-secondary section-y text-on-secondary">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_50%)]"
@@ -64,19 +60,19 @@ export function Problem() {
           <SectionHeading eyebrow={problem.eyebrow} title={problem.title} dark align="center" className="mx-auto" />
         </Reveal>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid md:mt-14 gap-5 lg:grid-cols-3">
           {problem.items.map((item, index) => (
             <article
               key={item.id}
               data-problem-card
-              className="group relative h-full overflow-hidden rounded-2xl border border-on-secondary/15 bg-surface-lowest p-7 text-on-surface shadow-lg transition-transform duration-300 hover:-translate-y-1"
+              className="group relative h-full overflow-hidden rounded-2xl border border-on-secondary/15 bg-surface-lowest p-5 text-on-surface shadow-lg transition-transform duration-300 hover:-translate-y-1 sm:p-6 md:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <span
                   aria-hidden="true"
-                  className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-lg text-primary"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 font-display text-sm font-extrabold text-primary"
                 >
-                  {PROBLEM_ICONS[item.id] ?? "•"}
+                  {PROBLEM_MARKERS[index]}
                 </span>
                 <p className="font-display text-sm font-extrabold uppercase tracking-[0.14em] text-primary/80">
                   0{index + 1}

@@ -40,7 +40,7 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
   );
 
   return (
-    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface-low section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -52,7 +52,7 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-8 grid md:mt-12 max-w-6xl gap-5 md:grid-cols-3">
           {resources.items.map((item) => (
             <Link
               key={item.id}

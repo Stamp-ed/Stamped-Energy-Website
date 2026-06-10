@@ -7,7 +7,7 @@ export function ObserveDiagram() {
       eyebrow="Production-normalized baseline"
       footer={
         <DiagramCallout>
-          Anomaly: demand spike at shift start — 18% above baseline
+          Anomaly: demand spike at shift start, 18% above baseline
         </DiagramCallout>
       }
     >

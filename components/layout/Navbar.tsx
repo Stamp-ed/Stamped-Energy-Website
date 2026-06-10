@@ -12,14 +12,23 @@ import { Container } from "@/components/ui/Container";
 import { navLinks, siteConfig } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-const LIGHT_NAV_ROUTES = ["/industries/automotive", "/industries"];
+const LIGHT_NAV_ROUTES = [
+  "/industries/automotive",
+  "/industries",
+  "/case-studies",
+  "/about",
+  "/blog",
+];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isLightNav =
-    !isScrolled && LIGHT_NAV_ROUTES.some((route) => pathname.startsWith(route));
+    !isScrolled &&
+    !isMenuOpen &&
+    LIGHT_NAV_ROUTES.some((route) => pathname.startsWith(route));
+  const showSolidHeader = isScrolled || isMenuOpen;
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,16 +40,23 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        isScrolled
-          ? "border-b border-outline-variant/30 bg-surface-lowest/72 backdrop-blur-md"
+        showSolidHeader
+          ? "border-b border-outline-variant/30 bg-surface-lowest/95 backdrop-blur-md"
           : "bg-transparent",
       )}
     >
-      <Container className="flex h-20 items-center justify-between gap-4">
+      <Container className="flex h-16 items-center justify-between gap-3 sm:gap-4 md:h-20">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 font-display text-lg font-bold tracking-tight text-primary transition-colors hover:text-primary/90"
@@ -92,7 +108,7 @@ export function Navbar() {
       </Container>
 
       {isMenuOpen ? (
-        <div className="border-t border-outline-variant/40 bg-surface-lowest lg:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-outline-variant/30 bg-surface-lowest/95 backdrop-blur-md lg:hidden">
           <Container className="flex flex-col gap-3 py-4">
             {navLinks.map((link) =>
               link.megaMenu === "industries" ? (

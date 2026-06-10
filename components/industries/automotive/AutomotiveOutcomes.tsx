@@ -34,7 +34,7 @@ export function AutomotiveOutcomes() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface-low py-20 md:py-28">
+    <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -45,7 +45,7 @@ export function AutomotiveOutcomes() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2 md:gap-5">
+        <div className="mx-auto mt-8 grid md:mt-12 max-w-5xl gap-4 md:grid-cols-2 md:gap-5">
           {outcomes.items.map((item) => (
             <article
               key={item.id}

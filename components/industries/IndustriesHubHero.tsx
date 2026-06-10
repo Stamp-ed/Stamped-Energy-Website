@@ -34,7 +34,7 @@ export function IndustriesHubHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden border-b border-outline-variant/40 bg-surface pb-16 pt-28 md:pb-24 md:pt-32"
+      className="page-hero relative overflow-hidden border-b border-outline-variant/40 bg-surface"
     >
       <div className="absolute inset-0">
         <Image
@@ -69,14 +69,14 @@ export function IndustriesHubHero() {
           >
             {hub.description}
           </p>
-          <div data-hub-hero className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button href={hub.primaryCta.href} variant="primary">
+          <div data-hub-hero className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <Button href={hub.primaryCta.href} variant="primary" className="w-full sm:w-auto">
               {hub.primaryCta.label}
             </Button>
             <Button
               href={hub.secondaryCta.href}
               variant="outline"
-              className="border-on-secondary/30 bg-on-secondary/5 text-on-secondary hover:bg-on-secondary/10"
+              className="w-full border-on-secondary/30 bg-on-secondary/5 text-on-secondary hover:bg-on-secondary/10 sm:w-auto"
             >
               {hub.secondaryCta.label}
             </Button>

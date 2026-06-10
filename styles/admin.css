@@ -1,0 +1,164 @@
+/*
+ * Blog CMS admin surface tokens.
+ * Scoped under .admin-cms — product UI, restrained palette.
+ */
+.admin-cms {
+  --admin-sidebar: #0f1713;
+  --admin-sidebar-hover: #172019;
+  --admin-sidebar-active: #1c2820;
+  --admin-sidebar-border: #243028;
+  --admin-sidebar-text: #d8e0da;
+  --admin-sidebar-muted: #8f9d94;
+  --admin-canvas: #eef1ed;
+  --admin-panel: #f9faf9;
+  --admin-surface: #ffffff;
+  --admin-border: #dde3dc;
+  --admin-border-subtle: #e8ece8;
+  --admin-text: #141916;
+  --admin-text-secondary: #4f5a53;
+  --admin-text-muted: #7a857d;
+  --admin-accent: #e04a38;
+  --admin-accent-hover: #c93d2d;
+  --admin-focus: #e04a3833;
+
+  --admin-success-bg: #e6f2ea;
+  --admin-success-text: #1f4d32;
+  --admin-success-border: #b8d9c4;
+
+  --admin-warn-bg: #fbf3e6;
+  --admin-warn-text: #6b4e12;
+  --admin-warn-border: #ecd9a8;
+
+  --admin-neutral-bg: #eef1ed;
+  --admin-neutral-text: #4f5a53;
+  --admin-neutral-border: #d5dcd6;
+
+  --admin-danger-bg: #fdf0ef;
+  --admin-danger-text: #9b2c2c;
+  --admin-danger-border: #f0c4c0;
+
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  color: var(--admin-text);
+  background: var(--admin-canvas);
+}
+
+.admin-cms .admin-panel {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(20 25 22 / 4%);
+}
+
+.admin-cms .admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.admin-cms .admin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-cms .admin-btn-primary {
+  background: var(--admin-accent);
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.admin-cms .admin-btn-primary:hover:not(:disabled) {
+  background: var(--admin-accent-hover);
+}
+
+.admin-cms .admin-btn-secondary {
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  border: 1px solid var(--admin-border);
+}
+
+.admin-cms .admin-btn-secondary:hover:not(:disabled) {
+  background: var(--admin-panel);
+  border-color: var(--admin-border-strong, #c9d1cb);
+}
+
+.admin-cms .admin-btn-ghost {
+  background: transparent;
+  color: var(--admin-text-secondary);
+  border: 1px solid transparent;
+}
+
+.admin-cms .admin-btn-ghost:hover:not(:disabled) {
+  background: var(--admin-panel);
+  color: var(--admin-text);
+}
+
+.admin-cms .admin-btn-danger {
+  background: transparent;
+  color: var(--admin-danger-text);
+  border: 1px solid transparent;
+}
+
+.admin-cms .admin-btn-danger:hover:not(:disabled) {
+  background: var(--admin-danger-bg);
+  border-color: var(--admin-danger-border);
+}
+
+.admin-cms .admin-input {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  padding: 0 0.875rem;
+  font-size: 0.875rem;
+  color: var(--admin-text);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.admin-cms .admin-input:focus {
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 3px var(--admin-focus);
+}
+
+.admin-cms .admin-input::placeholder {
+  color: var(--admin-text-muted);
+}
+
+.admin-cms .admin-slug {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--admin-text-secondary);
+}
+
+.admin-cms .admin-table th {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-text-muted);
+  background: var(--admin-panel);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-cms .admin-table td {
+  border-bottom: 1px solid var(--admin-border-subtle);
+  vertical-align: middle;
+}
+
+.admin-cms .admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-cms .admin-table tbody tr:hover {
+  background: var(--admin-panel);
+}

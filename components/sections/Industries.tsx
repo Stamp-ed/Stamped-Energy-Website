@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
@@ -37,10 +37,91 @@ const INDUSTRY_IMAGES: Record<string, { src: string; alt: string }> = {
   "rubber-moulding": { src: "/industries/rubber-moulding.jpg", alt: "Rubber moulding production line" },
 };
 
+type IndustryItem = (typeof landingContent.industries.items)[number];
+
+function IndustryCard({ industry }: { industry: IndustryItem }) {
+  const image = industry.imageSrc
+    ? { src: industry.imageSrc, alt: industry.imageAlt ?? industry.name }
+    : INDUSTRY_IMAGES[industry.id];
+
+  return (
+    <Link
+      href={INDUSTRY_HREFS[industry.id] ?? `/industries/automotive#${industry.id}`}
+      data-industry-card
+      data-featured={industry.featured ? "true" : "false"}
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-xl border outline-none transition-[border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        industry.featured
+          ? "border-primary/35 bg-surface-lowest shadow-[0_18px_40px_-28px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] hover:border-primary/55 hover:shadow-[0_22px_48px_-26px_color-mix(in_srgb,var(--brand-primary)_55%,transparent)] md:col-span-2 xl:col-span-1"
+          : "border-outline-variant/50 bg-surface-lowest hover:border-primary/30 hover:shadow-md",
+      )}
+    >
+      {image ? (
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 via-secondary/10 to-transparent" />
+          {industry.featured ? (
+            <span className="absolute left-4 top-4 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-on-primary">
+              Initial focus
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="flex flex-1 flex-col p-5 md:p-6">
+        <div className="flex items-start gap-3">
+          {!image ? (
+            <div
+              data-industry-icon
+              className={cn(
+                "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border text-xs font-bold tracking-wide transition-colors duration-300",
+                industry.featured
+                  ? "border-primary/35 bg-primary/12 text-primary group-hover:bg-primary/18"
+                  : "border-outline-variant/60 bg-surface-low text-on-surface-variant group-hover:border-primary/25 group-hover:text-primary",
+              )}
+              aria-hidden="true"
+            >
+              {INDUSTRY_CODES[industry.id] ?? "IN"}
+            </div>
+          ) : null}
+
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-bold text-on-surface">{industry.name}</h3>
+            <p className="mt-1 text-sm font-medium text-primary/90">{industry.focus}</p>
+          </div>
+        </div>
+
+        <p className="mt-3 flex-1 text-sm leading-6 text-on-surface-variant">
+          {industry.description}
+        </p>
+
+        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+          Explore sector
+          <span
+            aria-hidden="true"
+            className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+          >
+            →
+          </span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export function Industries() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const { industries } = landingContent;
+  const [showSegments, setShowSegments] = useState(false);
+  const featuredItems = industries.items.filter((item) => item.featured);
+  const segmentItems = industries.items.filter((item) => !item.featured);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -94,7 +175,7 @@ export function Industries() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-20 md:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden section-y">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_50%,color-mix(in_srgb,var(--brand-primary)_7%,transparent),transparent_50%)]"
@@ -109,87 +190,45 @@ export function Industries() {
           />
         </Reveal>
 
-        <div ref={gridRef} className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {industries.items.map((industry) => {
-            const image = industry.imageSrc
-              ? { src: industry.imageSrc, alt: industry.imageAlt ?? industry.name }
-              : INDUSTRY_IMAGES[industry.id];
+        <div ref={gridRef} className="mt-8 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-3">
+          {featuredItems.map((industry) => (
+            <IndustryCard key={industry.id} industry={industry} />
+          ))}
 
-            return (
-            <Link
+          {segmentItems.map((industry) => (
+            <div
               key={industry.id}
-              href={INDUSTRY_HREFS[industry.id] ?? `/industries/automotive#${industry.id}`}
-              data-industry-card
-              data-featured={industry.featured ? "true" : "false"}
-              className={cn(
-                "group relative flex h-full flex-col overflow-hidden rounded-xl border outline-none transition-[border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                industry.featured
-                  ? "border-primary/35 bg-surface-lowest shadow-[0_18px_40px_-28px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] hover:border-primary/55 hover:shadow-[0_22px_48px_-26px_color-mix(in_srgb,var(--brand-primary)_55%,transparent)] md:col-span-2 xl:col-span-1"
-                  : "border-outline-variant/50 bg-surface-lowest hover:border-primary/30 hover:shadow-md",
-              )}
+              className={cn(!showSegments && "hidden md:block")}
             >
-              {image ? (
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 via-secondary/10 to-transparent" />
-                  {industry.featured ? (
-                    <span className="absolute left-4 top-4 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-on-primary">
-                      Initial focus
-                    </span>
-                  ) : null}
-                </div>
-              ) : null}
-
-              <div className="flex flex-1 flex-col p-5 md:p-6">
-                <div className="flex items-start gap-3">
-                  {!image ? (
-                    <div
-                      data-industry-icon
-                      className={cn(
-                        "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border text-xs font-bold tracking-wide transition-colors duration-300",
-                        industry.featured
-                          ? "border-primary/35 bg-primary/12 text-primary group-hover:bg-primary/18"
-                          : "border-outline-variant/60 bg-surface-low text-on-surface-variant group-hover:border-primary/25 group-hover:text-primary",
-                      )}
-                      aria-hidden="true"
-                    >
-                      {INDUSTRY_CODES[industry.id] ?? "IN"}
-                    </div>
-                  ) : null}
-
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-lg font-bold text-on-surface">{industry.name}</h3>
-                    <p className="mt-1 text-sm font-medium text-primary/90">{industry.focus}</p>
-                  </div>
-                </div>
-
-                <p className="mt-3 flex-1 text-sm leading-6 text-on-surface-variant">
-                  {industry.description}
-                </p>
-
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                  Explore sector
-                  <span
-                    aria-hidden="true"
-                    className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </span>
-              </div>
-            </Link>
-            );
-          })}
+              <IndustryCard industry={industry} />
+            </div>
+          ))}
         </div>
 
-        <Reveal className="mt-10">
-          <Button href={industries.cta.href} variant="outline">
+        {segmentItems.length > 0 ? (
+          <div className="mt-5 md:hidden">
+            <button
+              type="button"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-outline-variant/60 bg-surface-lowest px-4 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:border-primary/35 hover:bg-primary/5"
+              aria-expanded={showSegments}
+              onClick={() => setShowSegments((open) => !open)}
+            >
+              {showSegments ? industries.showLessLabel : industries.showMoreLabel}
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "text-primary transition-transform duration-200",
+                  showSegments && "rotate-180",
+                )}
+              >
+                ▾
+              </span>
+            </button>
+          </div>
+        ) : null}
+
+        <Reveal className="mt-8 md:mt-10">
+          <Button href={industries.cta.href} variant="outline" className="w-full sm:w-auto">
             {industries.cta.label}
           </Button>
         </Reveal>

@@ -78,20 +78,17 @@ export function Hero() {
           Process-intensive manufacturing
         </p>
         <p className="mt-1 max-w-md text-sm font-medium text-on-secondary/90">
-          Prescriptions tied to furnaces, compressors, and shift-start demand — verified on your next bill.
+          Prescriptions tied to furnaces, compressors, and shift-start demand, verified on your next bill.
         </p>
       </div>
     </div>
   );
 
   const visualClassName =
-    "mx-auto mt-14 max-w-5xl overflow-hidden rounded-xl border-2 border-primary/20 bg-surface-lowest shadow-[0_24px_60px_-20px_color-mix(in_srgb,var(--brand-primary)_35%,transparent)]";
+    "mx-auto mt-10 max-w-5xl overflow-hidden rounded-xl border-2 border-primary/20 bg-surface-lowest shadow-[0_24px_60px_-20px_color-mix(in_srgb,var(--brand-primary)_35%,transparent)] sm:mt-14";
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden pb-20 pt-32 md:pb-28 md:pt-40"
-    >
+    <section ref={sectionRef} className="landing-hero relative overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_72%)]"
@@ -109,7 +106,7 @@ export function Hero() {
           >
             {hero.eyebrow}
           </p>
-          <h1 className="font-display text-4xl font-extrabold leading-[1.08] tracking-tight md:text-6xl">
+          <h1 className="font-display text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-6xl">
             <span data-hero="line1" className="block text-on-surface">
               {hero.headlineLine1}
             </span>
@@ -125,12 +122,12 @@ export function Hero() {
           </p>
           <div
             data-hero="ctas"
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
           >
-            <Button href={hero.primaryCta.href} variant="primary">
+            <Button href={hero.primaryCta.href} variant="primary" className="w-full sm:w-auto">
               {hero.primaryCta.label}
             </Button>
-            <Button href={hero.secondaryCta.href} variant="outline">
+            <Button href={hero.secondaryCta.href} variant="outline" className="w-full sm:w-auto">
               {hero.secondaryCta.label}
             </Button>
           </div>

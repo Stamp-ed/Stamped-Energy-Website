@@ -69,7 +69,7 @@ const CRED_LINKS = [
   {
     href: "/industries",
     title: "Industries",
-    description: "Automotive process segments — die casting to rubber moulding",
+    description: "Automotive process segments, die casting to rubber moulding",
     icon: FactoryIcon,
   },
 ] as const;
@@ -105,9 +105,9 @@ export function FutureMedia() {
   );
 
   return (
-    <section ref={sectionRef} className="border-t border-outline-variant/30 py-20 md:py-28">
+    <section ref={sectionRef} className="border-t border-outline-variant/30 section-y">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-14">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-2 lg:items-start lg:gap-14">
           <div className="flex flex-col">
             <Reveal from="left">
               <SectionHeading
@@ -129,7 +129,7 @@ export function FutureMedia() {
                   <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] text-inverse-primary">
-                      {futureMedia.placeholderLabel}
+                      {futureMedia.imageCaption}
                     </p>
                   </div>
                 </div>

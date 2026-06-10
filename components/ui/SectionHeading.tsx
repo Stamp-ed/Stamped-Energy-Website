@@ -37,7 +37,7 @@ export function SectionHeading({
       ) : null}
       <h2
         className={cn(
-          "text-3xl font-bold leading-tight md:text-4xl",
+          "text-[1.65rem] font-bold leading-[1.15] sm:text-3xl md:text-4xl",
           dark ? "text-on-secondary" : "text-on-surface",
         )}
       >
@@ -46,7 +46,7 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            "mt-4 text-base leading-7 md:text-lg",
+            "mt-3 text-sm leading-6 sm:mt-4 sm:text-base sm:leading-7 md:text-lg",
             dark ? "text-on-secondary/80" : "text-on-surface-variant",
           )}
         >

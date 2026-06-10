@@ -58,11 +58,21 @@ export function AutomotiveValueExplorer() {
   }
 
   return (
-    <section ref={sectionRef} className="overflow-hidden bg-secondary py-20 text-on-secondary md:py-28">
-      <Container>
+    <section
+      ref={sectionRef}
+      className="section-y relative overflow-hidden bg-secondary text-on-secondary"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,color-mix(in_srgb,var(--brand-on-secondary)_7%,transparent),transparent_50%)]"
+      />
+
+      <Container className="relative z-10">
         <Reveal className="mx-auto">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.14em] text-on-secondary/65">
+            {valueExplorer.eyebrow}
+          </p>
           <SectionHeading
-            eyebrow={valueExplorer.eyebrow}
             title={valueExplorer.title}
             description={valueExplorer.description}
             align="center"
@@ -71,7 +81,7 @@ export function AutomotiveValueExplorer() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-8">
+        <div className="mx-auto mt-8 grid max-w-6xl gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-8">
           <div className="flex flex-col gap-2">
             {valueExplorer.areas.map((area) => {
               const isActive = area.id === active.id;
@@ -81,23 +91,30 @@ export function AutomotiveValueExplorer() {
                   type="button"
                   data-value-tab
                   className={cn(
-                    "rounded-xl border px-4 py-3.5 text-left transition-colors md:px-5 md:py-4",
+                    "rounded-xl border px-4 py-3.5 text-left transition-[border-color,background-color,box-shadow,color] duration-200 md:px-5 md:py-4",
                     isActive
-                      ? "border-primary/45 bg-primary/10 shadow-sm"
-                      : "border-on-secondary/15 bg-inverse-surface/40 hover:border-on-secondary/25",
+                      ? "border-outline-variant/40 bg-surface-lowest text-on-surface shadow-md"
+                      : "border-on-secondary/15 bg-on-secondary/[0.06] text-on-secondary/85 hover:border-on-secondary/28 hover:bg-on-secondary/10",
                   )}
                   onClick={() => setActiveId(area.id)}
                 >
                   <div className="flex items-baseline gap-3">
                     <span
                       className={cn(
-                        "font-display text-lg font-extrabold",
-                        isActive ? "text-inverse-primary" : "text-on-secondary/50",
+                        "font-display text-lg font-extrabold tabular-nums",
+                        isActive ? "text-on-surface-variant" : "text-on-secondary/45",
                       )}
                     >
                       {area.step}
                     </span>
-                    <span className="text-sm font-bold md:text-base">{area.title}</span>
+                    <span
+                      className={cn(
+                        "text-sm font-bold md:text-base",
+                        isActive ? "text-on-surface" : "text-on-secondary/90",
+                      )}
+                    >
+                      {area.title}
+                    </span>
                   </div>
                 </button>
               );
@@ -106,20 +123,22 @@ export function AutomotiveValueExplorer() {
 
           <div
             ref={panelRef}
-            className="flex flex-col justify-center rounded-2xl border border-on-secondary/15 bg-inverse-surface/50 p-6 backdrop-blur-sm md:p-8"
+            className="flex flex-col justify-center rounded-2xl border border-outline-variant/40 bg-surface-lowest p-5 text-on-surface shadow-lg sm:p-6 md:p-8"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-on-surface-variant">
               {active.step} · Selected area
             </p>
-            <h3 className="mt-2 text-2xl font-bold md:text-3xl">{active.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-on-secondary/85 md:text-base">
+            <h3 className="mt-2 text-xl font-bold sm:text-2xl md:text-3xl">{active.title}</h3>
+            <p className="mt-3 text-sm leading-6 text-on-surface-variant sm:leading-7 md:text-base">
               {active.description}
             </p>
-            <div className="mt-6 inline-flex w-fit items-baseline gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2">
-              <span className="text-xs font-semibold uppercase tracking-wide text-inverse-primary">
+            <div className="mt-5 flex w-full flex-col gap-1 rounded-xl border border-outline-variant/45 bg-surface-low px-4 py-3.5 sm:mt-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-on-surface-variant sm:text-xs">
                 {active.potentialLabel}
               </span>
-              <span className="text-xl font-extrabold text-on-secondary">{active.potentialValue}</span>
+              <span className="font-display text-xl font-extrabold tabular-nums text-on-surface sm:text-2xl">
+                {active.potentialValue}
+              </span>
             </div>
           </div>
         </div>
