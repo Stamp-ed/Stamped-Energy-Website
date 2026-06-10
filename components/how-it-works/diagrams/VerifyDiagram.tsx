@@ -13,12 +13,12 @@ export function VerifyDiagram() {
       }
       stageClassName="justify-end"
     >
-      <div className="flex flex-1 items-end justify-center gap-10 md:gap-14">
+      <div className="flex flex-1 items-end justify-center gap-6 sm:gap-10 md:gap-14">
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-28 items-end md:h-32">
+          <div className="flex h-24 items-end sm:h-28 md:h-32">
             <div
               data-animate="item"
-              className="w-14 rounded-t-md border border-outline-variant/40 bg-outline-variant/35 md:w-[4.5rem]"
+              className="w-10 rounded-t-md border border-outline-variant/40 bg-outline-variant/35 sm:w-14 md:w-[4.5rem]"
               style={{ height: "100%" }}
             />
           </div>
@@ -26,10 +26,10 @@ export function VerifyDiagram() {
           <p className="text-sm font-bold text-on-surface md:text-base">₹4L</p>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-28 items-end md:h-32">
+          <div className="flex h-24 items-end sm:h-28 md:h-32">
             <div
               data-animate="accent"
-              className="w-14 rounded-t-md border border-primary/30 bg-primary md:w-[4.5rem]"
+              className="w-10 rounded-t-md border border-primary/30 bg-primary sm:w-14 md:w-[4.5rem]"
               style={{ height: "82%" }}
             />
           </div>

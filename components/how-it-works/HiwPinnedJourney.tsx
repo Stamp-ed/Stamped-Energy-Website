@@ -139,7 +139,7 @@ export function HiwPinnedJourney() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-surface-low">
+    <section ref={sectionRef} className="overflow-x-hidden bg-surface-low">
       <Container className="pt-16 pb-6 md:pt-20 md:pb-8">
         <SectionHeading
           eyebrow={journey.eyebrow}
@@ -225,17 +225,17 @@ export function HiwPinnedJourney() {
         </Container>
       </div>
 
-      <Container className="space-y-8 py-10 sm:space-y-10 sm:py-12 lg:hidden">
+      <Container className="space-y-6 py-8 sm:space-y-8 sm:py-10 lg:hidden">
         {journey.steps.map((step) => (
           <article
             key={step.id}
             data-journey-panel-mobile
-            className="overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
+            className="min-w-0 overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
           >
-            <div className="p-4 pb-0">
+            <div className="min-w-0 p-3 pb-0 sm:p-4">
               <StepDiagram diagram={step.diagram} />
             </div>
-            <div className="p-5 pt-4">
+            <div className="p-4 pt-3 sm:p-5 sm:pt-4">
               <p className="font-display text-2xl font-extrabold text-primary">
                 {String(step.step).padStart(2, "0")}
               </p>

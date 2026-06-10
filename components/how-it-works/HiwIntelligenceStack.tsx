@@ -132,29 +132,29 @@ export function HiwIntelligenceStack() {
           className="mx-auto"
         />
 
-        <div ref={trackRef} className="relative mx-auto mt-14 max-w-6xl">
+        <div ref={trackRef} className="relative mx-auto mt-10 max-w-6xl md:mt-14">
           <div
             data-stack-glow
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-8 top-1/2 hidden h-24 -translate-y-1/2 rounded-full bg-inverse-primary/10 blur-3xl lg:block"
           />
 
-          <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-3">
+          <div className="flex flex-col items-stretch gap-3 sm:gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-3">
             {intelligenceStack.layers.map((layer, index) => (
               <Fragment key={layer.id}>
                 <article
                   data-stack-layer
-                  className="flex flex-1 flex-col rounded-xl border border-on-secondary/15 bg-inverse-surface/50 p-5 backdrop-blur-sm md:p-6"
+                  className="flex min-w-0 flex-1 flex-col rounded-xl border border-on-secondary/15 bg-inverse-surface/50 p-4 backdrop-blur-sm sm:p-5 md:p-6"
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-inverse-primary">
                     {layer.subtitle}
                   </p>
-                  <h3 className="mt-2 text-lg font-bold md:text-xl">{layer.title}</h3>
-                  <div className="mt-4 flex flex-1 flex-col gap-2.5">
+                  <h3 className="mt-2 text-base font-bold sm:text-lg md:text-xl">{layer.title}</h3>
+                  <div className="mt-3 flex flex-1 flex-col gap-2 sm:mt-4 sm:gap-2.5">
                     {layer.items.map((item) => (
                       <span
                         key={item}
-                        className="inline-flex w-full items-center rounded-lg border border-on-secondary/20 bg-inverse-surface/40 px-4 py-2.5 text-xs font-medium leading-snug text-on-secondary/90 md:px-[1.125rem] md:py-3 md:text-[13px] md:leading-5"
+                        className="inline-flex w-full min-w-0 items-center rounded-lg border border-on-secondary/20 bg-inverse-surface/40 px-3 py-2 text-xs font-medium leading-snug text-on-secondary/90 sm:px-4 sm:py-2.5 md:px-[1.125rem] md:py-3 md:text-[13px] md:leading-5"
                       >
                         {item}
                       </span>
@@ -165,27 +165,31 @@ export function HiwIntelligenceStack() {
                 {index < intelligenceStack.layers.length - 1 ? (
                   <>
                     <div
-                      className="flex shrink-0 items-center justify-center self-center py-1 lg:hidden"
+                      className="flex shrink-0 items-center justify-center py-0.5 lg:hidden"
                       aria-hidden="true"
                     >
                       <div
                         data-stack-arrow-draw-mobile
-                        className="flex h-8 origin-top flex-col items-center"
+                        className="flex h-10 w-5 origin-top flex-col items-center"
                       >
-                        <span className="w-[2px] flex-1 rounded-full bg-inverse-primary" />
-                        <span className="-mt-0.5 text-lg leading-none text-inverse-primary">›</span>
+                        <span className="block w-0.5 flex-1 rounded-full bg-inverse-primary" />
+                        <span
+                          className="mt-0.5 block h-0 w-0 border-x-[5px] border-t-[6px] border-x-transparent border-t-inverse-primary"
+                          aria-hidden="true"
+                        />
                       </div>
                     </div>
 
                     <div
-                      className="hidden w-12 shrink-0 items-center self-center px-1 lg:flex"
+                      className="hidden w-10 shrink-0 items-center self-center px-0.5 lg:flex xl:w-12"
                       aria-hidden="true"
                     >
                       <div data-stack-arrow-draw className="flex w-full origin-left items-center">
-                        <span className="h-[2px] flex-1 rounded-full bg-inverse-primary" />
-                        <span className="-ml-0.5 text-xl font-light leading-none text-inverse-primary">
-                          ›
-                        </span>
+                        <span className="h-0.5 flex-1 rounded-full bg-inverse-primary" />
+                        <span
+                          className="-ml-0.5 block h-0 w-0 border-y-[5px] border-l-[7px] border-y-transparent border-l-inverse-primary"
+                          aria-hidden="true"
+                        />
                       </div>
                     </div>
                   </>

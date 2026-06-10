@@ -5,8 +5,8 @@ const statuses = ["Open", "In Progress", "Completed"];
 export function ExecuteDiagram() {
   return (
     <DiagramShell diagram="execute" eyebrow="Action delivery & tracking" stageClassName="justify-center">
-      <div className="grid h-full grid-cols-2 items-center gap-4 md:gap-5">
-        <DiagramCard animate="item" className="h-full">
+      <div className="grid h-full min-w-0 grid-cols-1 items-stretch gap-3 sm:grid-cols-2 sm:gap-4 md:gap-5">
+        <DiagramCard animate="item" className="h-full min-w-0">
           <div className="flex items-center justify-between gap-2">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
               WhatsApp alert
@@ -39,7 +39,7 @@ export function ExecuteDiagram() {
           </p>
         </DiagramCard>
 
-        <div className="space-y-2">
+        <div className="min-w-0 space-y-2">
           <p
             data-animate="accent"
             className="text-[10px] font-semibold uppercase tracking-wider text-primary"

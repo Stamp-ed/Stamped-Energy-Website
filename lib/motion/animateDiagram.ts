@@ -187,11 +187,15 @@ export function animateDiagramPanel(panel: HTMLElement): void {
 
   if (type === "connect") {
     animateItems(diagram, "[data-animate='item']", { x: -TIMING.item.x });
-    requestAnimationFrame(() => {
+    const svg = diagram.querySelector<SVGSVGElement>("[data-connect-svg]");
+    const isDesktopLayout = svg && !svg.classList.contains("hidden");
+    if (isDesktopLayout) {
       requestAnimationFrame(() => {
-        animateConnectLines(diagram);
+        requestAnimationFrame(() => {
+          animateConnectLines(diagram);
+        });
       });
-    });
+    }
     animateAccent(diagram, { scale: 0.92 });
     return;
   }

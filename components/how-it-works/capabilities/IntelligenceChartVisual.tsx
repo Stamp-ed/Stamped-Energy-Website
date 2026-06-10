@@ -226,7 +226,7 @@ export function IntelligenceChartVisual() {
 
       <div
         ref={rxRef}
-        className="absolute right-[4%] top-[6%] z-10 w-[10.5rem] rounded-lg border border-primary/40 bg-surface-lowest p-2.5 shadow-[0_12px_32px_-16px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)] md:w-[11.25rem] md:p-3"
+        className="absolute bottom-[5%] left-1/2 z-10 w-[min(88%,10.5rem)] -translate-x-1/2 rounded-lg border border-primary/40 bg-surface-lowest p-2 shadow-[0_12px_32px_-16px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)] sm:bottom-auto sm:left-auto sm:right-[3%] sm:top-[6%] sm:w-[10.5rem] sm:translate-x-0 md:w-[11.25rem] md:p-3"
       >
         <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-primary md:text-[10px]">
           Prescription
