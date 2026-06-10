@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const ctaButtonBase = cn(
   "inline-flex h-12 items-center justify-center rounded-full px-7 text-sm font-semibold transition-[transform,box-shadow,opacity] duration-200",
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
   "hover:-translate-y-0.5 active:translate-y-0",
 );
 
@@ -22,25 +22,15 @@ export function LandingClosingCta() {
         <Reveal>
           <div
             className={cn(
-              "relative overflow-hidden rounded-3xl px-6 py-10 text-center shadow-[0_24px_64px_-20px_color-mix(in_srgb,var(--brand-primary)_55%,transparent)]",
+              "rounded-3xl border border-on-secondary/10 bg-secondary px-6 py-10 text-center shadow-lg",
               "md:px-14 md:py-14",
-              "bg-[linear-gradient(135deg,var(--brand-primary)_0%,#e03a28_48%,#c42f1f_100%)]",
             )}
           >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -left-16 top-0 h-48 w-48 rounded-full bg-on-primary/10 blur-3xl"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -bottom-12 -right-12 h-56 w-56 rounded-full bg-secondary/20 blur-3xl"
-            />
-
-            <div className="relative z-10 mx-auto max-w-2xl">
-              <h2 className="font-display text-2xl font-extrabold leading-tight text-on-primary md:text-4xl">
+            <div className="mx-auto max-w-2xl">
+              <h2 className="font-display text-2xl font-extrabold leading-tight text-on-secondary md:text-4xl">
                 {closingCta.title}
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-on-primary/90 md:text-base">
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-on-secondary/80 md:text-base">
                 {closingCta.description}
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -48,7 +38,7 @@ export function LandingClosingCta() {
                   href={closingCta.primaryCta.href}
                   className={cn(
                     ctaButtonBase,
-                    "bg-on-primary text-primary shadow-lg hover:shadow-xl",
+                    "bg-primary text-on-primary shadow-md hover:shadow-lg",
                   )}
                 >
                   {closingCta.primaryCta.label}
@@ -57,7 +47,7 @@ export function LandingClosingCta() {
                   href={closingCta.secondaryCta.href}
                   className={cn(
                     ctaButtonBase,
-                    "border border-on-primary/20 bg-secondary text-on-secondary hover:opacity-95",
+                    "border border-on-secondary/25 bg-transparent text-on-secondary hover:bg-on-secondary/5",
                   )}
                 >
                   {closingCta.secondaryCta.label}

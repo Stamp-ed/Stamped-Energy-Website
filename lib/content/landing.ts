@@ -301,9 +301,9 @@ export const landingContent = {
   },
 
   closingCta: {
-    title: "Ready to see the ₹ hiding in your plant data?",
+    title: "Verify energy savings before you commit",
     description:
-      "Start with a pilot at your plant. Zero hardware retrofit. One verified saving on your next bill before annual commitment.",
+      "Begin with a pilot on your existing meters and plant data. We quantify outcomes in rupees and confirm them on your next electricity bill before annual subscription.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
   },

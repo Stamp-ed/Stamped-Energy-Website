@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Prescriptive energy software for Indian auto component manufacturers. Connect existing meters and SCADA, get rupee-denominated fixes for your team, verify savings on the next electricity bill.",
   blogUrl: "/blog",
-  contactEmail: "hello@stampedenergy.com",
+  contactEmail: "contact@stamped.work",
 } as const;
 
 export const navLinks: NavLink[] = [

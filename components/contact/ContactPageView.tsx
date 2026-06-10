@@ -56,7 +56,7 @@ export function ContactPageView() {
           </p>
           <h1
             data-contact-reveal
-            className="mt-3 max-w-3xl font-display text-3xl font-extrabold leading-tight text-on-secondary md:text-4xl lg:text-[2.75rem]"
+            className="mt-3 max-w-3xl font-display text-2xl font-extrabold leading-tight text-on-secondary sm:text-3xl md:text-4xl lg:text-[2.75rem]"
           >
             {hero.title}
           </h1>
@@ -66,7 +66,7 @@ export function ContactPageView() {
 
           <dl
             data-contact-reveal
-            className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3 md:mt-10"
+            className="mt-6 grid max-w-3xl grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 md:mt-10"
           >
             {stats.map((stat) => (
               <div
@@ -76,7 +76,7 @@ export function ContactPageView() {
                 <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-on-secondary/70">
                   {stat.label}
                 </dt>
-                <dd className="mt-1 font-display text-base font-bold text-inverse-primary md:text-lg">
+                <dd className="mt-1 font-display text-sm font-bold text-inverse-primary sm:text-base md:text-lg">
                   {stat.value}
                 </dd>
               </div>
@@ -85,44 +85,22 @@ export function ContactPageView() {
         </Container>
       </section>
 
-      <section ref={formRef} id="contact-form" className="scroll-mt-24 bg-surface section-y md:scroll-mt-28">
+      <section
+        ref={formRef}
+        id="contact-form"
+        className="scroll-mt-20 bg-surface py-10 md:scroll-mt-28 md:section-y"
+      >
         <Container>
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
-            <div>
-              <Reveal>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-                  {formSection.eyebrow}
-                </p>
-                <h2 className="mt-2 font-display text-2xl font-extrabold text-on-surface md:text-3xl">
-                  {formSection.title}
-                </h2>
-                <p className="mt-3 max-w-xl text-sm leading-7 text-on-surface-variant md:text-base">
-                  {formSection.description}
-                </p>
-              </Reveal>
-
-              <Reveal from="left" className="mt-8">
-                <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 shadow-sm sm:p-6 md:p-8">
-                  <h3 className="text-lg font-bold text-on-surface">{contactContent.contactForm.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-on-surface-variant">
-                    {contactContent.contactForm.description}
-                  </p>
-                  <div className="mt-6">
-                    <ContactForm />
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:gap-14">
+            <aside className="order-1 space-y-4 lg:order-2 lg:sticky lg:top-28 lg:self-start lg:space-y-5">
               <Reveal from="right">
-                <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-5">
+                <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-4 sm:p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">
                     {quickContact.eyebrow}
                   </p>
                   <a
                     href={`mailto:${quickContact.email}`}
-                    className="mt-3 block text-base font-bold text-primary transition-colors hover:text-primary/80"
+                    className="mt-3 block break-all text-sm font-bold text-primary transition-colors hover:text-primary/80 sm:text-base"
                   >
                     {quickContact.email}
                   </a>
@@ -130,12 +108,15 @@ export function ContactPageView() {
               </Reveal>
 
               <Reveal from="right">
-                <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5">
+                <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-4 sm:p-5">
                   <p className="text-sm font-bold text-on-surface">{quickContact.responseTitle}</p>
                   <p className="mt-1 text-xs text-on-surface-variant">We get back fast.</p>
                   <ul className="mt-4 space-y-3">
                     {quickContact.responseItems.map((item) => (
-                      <li key={item.label} className="flex items-baseline justify-between gap-3 text-sm">
+                      <li
+                        key={item.label}
+                        className="flex flex-col gap-0.5 text-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-3"
+                      >
                         <span className="text-on-surface-variant">{item.label}</span>
                         <span className="font-semibold text-on-surface">{item.value}</span>
                       </li>
@@ -144,8 +125,8 @@ export function ContactPageView() {
                 </div>
               </Reveal>
 
-              <Reveal from="right">
-                <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-5">
+              <Reveal from="right" className="hidden sm:block">
+                <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-4 sm:p-5">
                   <p className="text-sm font-bold text-on-surface">{onSite.title}</p>
                   <p className="mt-2 text-sm leading-6 text-on-surface-variant">{onSite.description}</p>
                   <Link
@@ -157,18 +138,59 @@ export function ContactPageView() {
                 </div>
               </Reveal>
             </aside>
+
+            <div className="order-2 min-w-0 lg:order-1">
+              <Reveal>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                  {formSection.eyebrow}
+                </p>
+                <h2 className="mt-2 font-display text-xl font-extrabold text-on-surface sm:text-2xl md:text-3xl">
+                  {formSection.title}
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-on-surface-variant md:text-base">
+                  {formSection.description}
+                </p>
+              </Reveal>
+
+              <Reveal from="left" className="mt-6 sm:mt-8">
+                <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-4 shadow-sm sm:p-6 md:p-8">
+                  <h3 className="text-base font-bold text-on-surface sm:text-lg">
+                    {contactContent.contactForm.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-on-surface-variant">
+                    {contactContent.contactForm.description}
+                  </p>
+                  <div className="mt-5 sm:mt-6">
+                    <ContactForm />
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal from="left" className="mt-4 sm:hidden">
+                <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-4">
+                  <p className="text-sm font-bold text-on-surface">{onSite.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-on-surface-variant">{onSite.description}</p>
+                  <Link
+                    href={`mailto:${siteConfig.contactEmail}`}
+                    className="mt-4 inline-flex text-sm font-semibold text-primary hover:text-primary/80"
+                  >
+                    Email us to coordinate →
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </Container>
       </section>
 
       <section className="border-t border-outline-variant/40 bg-surface-low py-10 md:section-y">
         <Container>
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-14">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:items-start lg:gap-14">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                 {pilotSection.eyebrow}
               </p>
-              <h2 className="mt-2 font-display text-2xl font-extrabold text-on-surface md:text-3xl">
+              <h2 className="mt-2 font-display text-xl font-extrabold text-on-surface sm:text-2xl md:text-3xl">
                 {pilotSection.title}
               </h2>
               <p className="mt-3 max-w-xl text-sm leading-7 text-on-surface-variant md:text-base">
@@ -177,11 +199,11 @@ export function ContactPageView() {
             </Reveal>
 
             <Reveal from="right">
-              <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 md:p-6">
+              <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-4 sm:p-5 md:p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">
                   {office.eyebrow}
                 </p>
-                <h3 className="mt-2 text-lg font-bold text-on-surface">{office.title}</h3>
+                <h3 className="mt-2 text-base font-bold text-on-surface sm:text-lg">{office.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-on-surface-variant">{office.description}</p>
                 <p className="mt-4 text-sm font-semibold text-primary">{office.locationLabel}</p>
               </div>

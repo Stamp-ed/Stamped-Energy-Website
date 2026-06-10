@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+import { sendContactNotification } from "@/lib/contact/notify";
+import { createContactSubmission } from "@/lib/contact/submissions";
+
 type ContactPayload = {
   name?: string;
   company?: string;
@@ -44,11 +47,22 @@ export async function POST(request: Request) {
     location: payload.location!.trim(),
     billSize: payload.billSize!.trim(),
     whatsapp: payload.whatsapp!.trim(),
-    receivedAt: new Date().toISOString(),
   };
 
-  // TODO: Forward to email/CRM service once credentials are configured.
-  console.info("[contact] discovery call request", submission);
+  try {
+    await createContactSubmission(submission);
+  } catch (error) {
+    console.error("[contact] database error:", error);
+    return NextResponse.json(
+      { error: "Could not save your request. Please try again or email us directly." },
+      { status: 500 },
+    );
+  }
+
+  const emailResult = await sendContactNotification(submission);
+  if (!emailResult.sent) {
+    console.warn("[contact] notification email not sent:", emailResult.error);
+  }
 
   return NextResponse.json({ success: true });
 }

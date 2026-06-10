@@ -87,3 +87,15 @@ model CaseStudy {
   @@index([category])
   @@index([featured])
 }
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  company   String
+  location  String
+  billSize  String
+  whatsapp  String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
