@@ -7,8 +7,8 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
-const STAGE_CENTER = { x: 400, y: 280 };
 const SOURCE_COUNT = 6;
+const LINE_GAP = 2;
 
 const INGESTION_SOURCES = [
   { id: "scada", label: "SCADA / DCS" },
@@ -45,45 +45,88 @@ function getOrbitOffset(index: number, radius: number) {
   };
 }
 
-function getLineEndpoints(
-  index: number,
-  orbitRadius: number,
-  hubRadius: number,
-  cardHalfW: number,
-  cardHalfH: number,
-  cardReach: number,
-) {
-  const angle = (index / SOURCE_COUNT) * Math.PI * 2 - Math.PI / 2;
-  const ux = Math.cos(angle);
-  const uy = Math.sin(angle);
-  const cardExtent = Math.abs(ux) * cardHalfW + Math.abs(uy) * cardHalfH;
+function clientToSvg(svg: SVGSVGElement, clientX: number, clientY: number) {
+  const point = svg.createSVGPoint();
+  point.x = clientX;
+  point.y = clientY;
+  const matrix = svg.getScreenCTM();
+  if (!matrix) {
+    return { x: 0, y: 0 };
+  }
+  const svgPoint = point.matrixTransform(matrix.inverse());
+  return { x: svgPoint.x, y: svgPoint.y };
+}
 
-  return {
-    x1: STAGE_CENTER.x + ux * hubRadius,
-    y1: STAGE_CENTER.y + uy * hubRadius,
-    x2: STAGE_CENTER.x + ux * (orbitRadius + cardExtent + cardReach),
-    y2: STAGE_CENTER.y + uy * (orbitRadius + cardExtent + cardReach),
+function measureConnector(
+  svg: SVGSVGElement,
+  hubEl: HTMLElement,
+  cardEl: HTMLElement,
+) {
+  const hubRect = hubEl.getBoundingClientRect();
+  const cardRect = cardEl.getBoundingClientRect();
+
+  const hubCenterClient = {
+    x: hubRect.left + hubRect.width / 2,
+    y: hubRect.top + hubRect.height / 2,
   };
+  const cardCenterClient = {
+    x: cardRect.left + cardRect.width / 2,
+    y: cardRect.top + cardRect.height / 2,
+  };
+
+  const dx = cardCenterClient.x - hubCenterClient.x;
+  const dy = cardCenterClient.y - hubCenterClient.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  const ux = dx / dist;
+  const uy = dy / dist;
+
+  const hubRadius = Math.min(hubRect.width, hubRect.height) / 2;
+  const cardExtent =
+    Math.abs(ux) * (cardRect.width / 2) + Math.abs(uy) * (cardRect.height / 2);
+
+  const hubEdgeClient = {
+    x: hubCenterClient.x + ux * (hubRadius + 1),
+    y: hubCenterClient.y + uy * (hubRadius + 1),
+  };
+  const cardEdgeClient = {
+    x: cardCenterClient.x - ux * (cardExtent + LINE_GAP),
+    y: cardCenterClient.y - uy * (cardExtent + LINE_GAP),
+  };
+
+  const start = clientToSvg(svg, hubEdgeClient.x, hubEdgeClient.y);
+  const end = clientToSvg(svg, cardEdgeClient.x, cardEdgeClient.y);
+
+  return { x1: start.x, y1: start.y, x2: end.x, y2: end.y };
+}
+
+function applyLineEndpoints(line: SVGLineElement, x1: number, y1: number, x2: number, y2: number) {
+  const length = Math.hypot(x2 - x1, y2 - y1);
+  line.setAttribute("x1", String(x1));
+  line.setAttribute("y1", String(y1));
+  line.setAttribute("x2", String(x2));
+  line.setAttribute("y2", String(y2));
+  line.setAttribute("stroke-dasharray", String(length));
+  return length;
 }
 
 export function IngestionOrbitVisual() {
   const stageRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const hubRef = useRef<HTMLDivElement>(null);
   const compact = useCompactVisual();
   const { isReady, prefersReducedMotion } = useMotion();
 
   const orbitRadius = compact ? 108 : 156;
   const gridScale = compact ? 0.68 : 1;
-  const hubRadius = compact ? 26 : 34;
-  const cardHalfW = compact ? 28 : 36;
-  const cardHalfH = compact ? 20 : 26;
 
   useGSAP(
     () => {
-      if (!isReady || prefersReducedMotion || !stageRef.current) {
+      if (!isReady || !stageRef.current || !svgRef.current || !hubRef.current) {
         return;
       }
 
+      const svg = svgRef.current;
+      const hub = hubRef.current;
       const cards = gsap.utils.toArray<HTMLElement>(
         "[data-ingest-orbit-card]",
         stageRef.current,
@@ -93,42 +136,45 @@ export function IngestionOrbitVisual() {
         stageRef.current,
       );
 
-      lines.forEach((line, index) => {
-        const { x1, y1, x2, y2 } = getLineEndpoints(
-          index,
-          orbitRadius,
-          hubRadius,
-          cardHalfW,
-          cardHalfH,
-          2,
-        );
-        const length = Math.hypot(x2 - x1, y2 - y1);
-        line.setAttribute("x1", String(x1));
-        line.setAttribute("y1", String(y1));
-        line.setAttribute("x2", String(x2));
-        line.setAttribute("y2", String(y2));
-        line.setAttribute("stroke-dasharray", String(length));
-        gsap.set(line, { strokeDashoffset: length, autoAlpha: 0 });
-      });
+      const syncLines = () => {
+        lines.forEach((line, index) => {
+          const card = cards[index];
+          if (!card) {
+            return;
+          }
+          const { x1, y1, x2, y2 } = measureConnector(svg, hub, card);
+          const length = applyLineEndpoints(line, x1, y1, x2, y2);
+          gsap.set(line, { strokeDashoffset: length });
+        });
+      };
 
-      gsap.set(hubRef.current, { autoAlpha: 0, y: compact ? 72 : 96, xPercent: -50, yPercent: -50 });
+      gsap.set(hub, { autoAlpha: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : compact ? 72 : 96, xPercent: -50, yPercent: -50 });
 
       cards.forEach((card, index) => {
+        const orbit = getOrbitOffset(index, orbitRadius);
         const grid = GRID_OFFSETS[index];
         gsap.set(card, {
           xPercent: -50,
           yPercent: -50,
-          x: grid.x * gridScale,
-          y: grid.y * gridScale,
+          x: prefersReducedMotion ? orbit.x : grid.x * gridScale,
+          y: prefersReducedMotion ? orbit.y : grid.y * gridScale,
           autoAlpha: 1,
         });
       });
+
+      if (prefersReducedMotion) {
+        syncLines();
+        gsap.set(lines, { strokeDashoffset: 0, autoAlpha: 1 });
+        return;
+      }
+
+      gsap.set(lines, { autoAlpha: 0 });
 
       const timeline = gsap.timeline({
         scrollTrigger: { trigger: stageRef.current, start: "top 88%", once: true },
       });
 
-      timeline.to(hubRef.current, {
+      timeline.to(hub, {
         autoAlpha: 1,
         y: 0,
         duration: TIMING.hubRise,
@@ -143,6 +189,8 @@ export function IngestionOrbitVisual() {
           TIMING.cardsAt,
         );
       });
+
+      timeline.add(syncLines, TIMING.linesAt - 0.02);
 
       timeline.to(
         lines,
@@ -163,7 +211,7 @@ export function IngestionOrbitVisual() {
     },
     {
       scope: stageRef,
-      dependencies: [isReady, prefersReducedMotion, compact, orbitRadius, gridScale, hubRadius],
+      dependencies: [isReady, prefersReducedMotion, compact, orbitRadius, gridScale],
     },
   );
 
@@ -176,37 +224,26 @@ export function IngestionOrbitVisual() {
         )}
       >
         <svg
+          ref={svgRef}
           className="pointer-events-none absolute inset-0 h-full w-full"
           viewBox="0 0 800 560"
           preserveAspectRatio="xMidYMid meet"
           aria-hidden="true"
         >
-          {INGESTION_SOURCES.map((source, index) => {
-            const { x1, y1, x2, y2 } = getLineEndpoints(
-              index,
-              orbitRadius,
-              hubRadius,
-              cardHalfW,
-              cardHalfH,
-              2,
-            );
-            const length = Math.hypot(x2 - x1, y2 - y1);
-            return (
-              <line
-                key={source.id}
-                data-ingest-orbit-line
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="var(--brand-primary)"
-                strokeWidth="1.75"
-                strokeOpacity="0.5"
-                strokeDasharray={length}
-                strokeDashoffset={length}
-              />
-            );
-          })}
+          {INGESTION_SOURCES.map((source) => (
+            <line
+              key={source.id}
+              data-ingest-orbit-line
+              x1={400}
+              y1={280}
+              x2={400}
+              y2={280}
+              stroke="var(--brand-primary)"
+              strokeWidth="1.75"
+              strokeOpacity="0.5"
+              strokeLinecap="round"
+            />
+          ))}
         </svg>
 
         <div

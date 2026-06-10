@@ -28,23 +28,23 @@ type GovLayout = {
 function buildLayout(compact: boolean): GovLayout {
   if (!compact) {
     const square = { left: 188, right: 612, top: 72, bottom: 352, cx: 400, cy: 212 };
-    const ledgerCardTop = square.bottom + 88;
+    const ledgerCardTop = square.bottom + 124;
     return {
       square,
       verifyBoxEdge: square.bottom + 34,
       ledgerCardTop,
-      ledgerCardCenter: square.bottom + 118,
+      ledgerCardCenter: square.bottom + 160,
       arrowEnd: ledgerCardTop - 8,
     };
   }
 
   const square = { left: 252, right: 548, top: 88, bottom: 262, cx: 400, cy: 175 };
-  const ledgerCardTop = square.bottom + 72;
+  const ledgerCardTop = square.bottom + 116;
   return {
     square,
     verifyBoxEdge: square.bottom + 28,
     ledgerCardTop,
-    ledgerCardCenter: square.bottom + 98,
+    ledgerCardCenter: square.bottom + 154,
     arrowEnd: ledgerCardTop - 8,
   };
 }
@@ -286,8 +286,8 @@ export function GovernanceLoopVisual() {
               key={step.id}
               data-gov-step
               className={cn(
-                "absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-lg border border-outline-variant/50 bg-surface-lowest px-2 py-2 text-center shadow-sm",
-                compact ? "w-[4.75rem]" : "w-[6.25rem] md:w-[7rem] md:px-3 md:py-3",
+                "absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-lg border border-outline-variant/50 bg-surface-lowest text-center shadow-sm",
+                compact ? "w-[4rem] px-1.5 py-1.5" : "w-[5.25rem] px-2 py-1.5 md:w-[5.75rem] md:py-2",
               )}
               style={{ left: pos.left, top: pos.top }}
             >
@@ -296,10 +296,10 @@ export function GovernanceLoopVisual() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 rounded-lg bg-primary/8"
               />
-              <span className={cn("relative font-bold text-on-surface", compact ? "text-[10px]" : "text-[11px] md:text-xs")}>
+              <span className={cn("relative font-bold text-on-surface", compact ? "text-[9px]" : "text-[10px] md:text-[11px]")}>
                 {step.label}
               </span>
-              <span className={cn("relative mt-0.5 text-on-surface-variant", compact ? "text-[8px]" : "text-[9px] md:text-[10px]")}>
+              <span className={cn("relative mt-0.5 text-on-surface-variant", compact ? "text-[7px]" : "text-[8px] md:text-[9px]")}>
                 {step.sub}
               </span>
             </article>
@@ -310,7 +310,7 @@ export function GovernanceLoopVisual() {
           ref={ledgerRef}
           className={cn(
             "absolute z-20 -translate-x-1/2 -translate-y-1/2 rounded-xl border border-primary/40 bg-surface-lowest px-3 py-2.5 shadow-[0_14px_40px_-18px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)] sm:px-4 sm:py-3.5",
-            compact ? "w-[min(88%,11.5rem)]" : "w-[min(78%,17rem)] md:py-4",
+            compact ? "w-[min(84%,10.5rem)]" : "w-[min(72%,15rem)] md:py-3.5",
           )}
           style={{ left: ledgerPos.left, top: ledgerPos.top }}
         >

@@ -85,17 +85,24 @@ export function Hero() {
   );
 
   const visualClassName =
-    "mx-auto mt-10 max-w-5xl overflow-hidden rounded-xl border-2 border-primary/20 bg-surface-lowest shadow-[0_24px_60px_-20px_color-mix(in_srgb,var(--brand-primary)_35%,transparent)] sm:mt-14";
+    "mx-auto mt-10 max-w-5xl overflow-hidden rounded-xl border-2 border-outline-variant/50 bg-surface-lowest shadow-[0_20px_48px_-24px_color-mix(in_srgb,var(--brand-secondary)_18%,transparent)] sm:mt-14 md:border-primary/20 md:shadow-[0_24px_60px_-20px_color-mix(in_srgb,var(--brand-primary)_35%,transparent)]";
 
   return (
-    <section ref={sectionRef} className="landing-hero relative overflow-hidden">
+    <section ref={sectionRef} className="landing-hero relative overflow-hidden bg-surface">
+      {/* Subtle orange glow — desktop only */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_72%)]"
+        className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_72%)] md:block"
       />
+      {/* Mobile: neutral grid, slightly stronger lines */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.4] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px)] [background-size:48px_48px] motion-safe:animate-[grid-drift_28s_linear_infinite]"
+        className="pointer-events-none absolute inset-0 opacity-[0.52] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-outline-variant)_34%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-outline-variant)_34%,transparent)_1px,transparent_1px)] [background-size:48px_48px] motion-safe:animate-[grid-drift_28s_linear_infinite] md:hidden"
+      />
+      {/* Desktop: subtle primary grid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden opacity-[0.4] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px)] [background-size:48px_48px] motion-safe:animate-[grid-drift_28s_linear_infinite] md:block"
       />
 
       <Container className="relative z-10">

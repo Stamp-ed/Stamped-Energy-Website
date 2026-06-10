@@ -99,40 +99,40 @@ export const howItWorksContent = {
   },
 
   capabilities: {
-    eyebrow: "What the platform does",
-    title: "From your plant signals to verified ₹ on the bill",
+    eyebrow: "Core capabilities",
+    title: "Signals → verified savings",
     description:
-      "Four layers, sized for mid-market auto component plants, not enterprise procurement cycles.",
+      "Four platform layers — from universal ingestion through closed-loop governance — sized for SME manufacturers.",
     items: [
       {
         id: "ingestion",
-        title: "Read what you already run",
+        title: "Universal ingestion",
         description:
-          "Incomer and feeder meters, SCADA historians, PLC tags, utility bills, into one continuous pipeline. No control-system changes.",
+          "Captures signals from meters, SCADA, PLCs, and utility bills into a continuous, real-time pipeline — without hardware retrofits or changes to your control systems.",
         mediaSrc: null,
         mediaAlt: "Data streams from plant systems flowing into Stamped",
       },
       {
         id: "repository",
-        title: "One timeline for the whole plant",
+        title: "Unified energy graph",
         description:
-          "Consumption, production rate, and tariff cost aligned by time, so a Monday 07:15 spike links to specific assets, not guesswork.",
+          "Organises disparate streams into a time-aligned graph that connects consumption, production, and cost for accurate analytics across your plant.",
         mediaSrc: null,
         mediaAlt: "Unified energy graph connecting sources and loads",
       },
       {
         id: "intelligence",
-        title: "Every deviation becomes an assigned action",
+        title: "Contextual intelligence",
         description:
-          "Anomalies quantified in monthly rupees. Prescriptions name asset, root cause, owner, and effort, not another passive chart.",
+          "Domain-specific models detect anomalies, quantify impact in rupees, and generate prescriptions your plant team can act on — not another passive dashboard.",
         mediaSrc: null,
         mediaAlt: "Anomaly detection and prescription generation",
       },
       {
         id: "governance",
-        title: "Track completion. Verify on the bill.",
+        title: "Closed-loop governance",
         description:
-          "WhatsApp to supervisors, status on dashboard, M&V against adjusted baseline, running ledger of verified ₹ saved.",
+          "Assigns actions, tracks execution via WhatsApp and dashboard, and verifies potential vs. realized savings so every opportunity converts into measurable value.",
         mediaSrc: null,
         mediaAlt: "Closed-loop action tracking and savings verification",
       },

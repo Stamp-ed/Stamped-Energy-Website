@@ -13,20 +13,20 @@ const VIEW_H = 560;
 const HUB = { id: "hub", label: "Energy graph", x: 400, y: 96 };
 
 const GRAPH_NODES_DESKTOP = [
-  { id: "kwh", label: "kWh streams", x: 188, y: 248 },
-  { id: "prod", label: "Production", x: 308, y: 272 },
-  { id: "cost", label: "Cost / ₹", x: 492, y: 272 },
-  { id: "shift", label: "Shifts", x: 612, y: 248 },
-  { id: "align", label: "Time-aligned", x: 400, y: 372 },
+  { id: "kwh", label: "kWh streams", x: 152, y: 252 },
+  { id: "prod", label: "Production", x: 278, y: 288 },
+  { id: "cost", label: "Cost / ₹", x: 522, y: 288 },
+  { id: "shift", label: "Shifts", x: 648, y: 252 },
+  { id: "align", label: "Time-aligned", x: 400, y: 398 },
 ] as const;
 
-/** Tighter star layout — same topology, nodes pulled inward on compact viewports. */
+/** Wider star layout — same topology, nodes spread on compact viewports. */
 const GRAPH_NODES_COMPACT = [
-  { id: "kwh", label: "kWh streams", x: 228, y: 238 },
-  { id: "prod", label: "Production", x: 318, y: 258 },
-  { id: "cost", label: "Cost / ₹", x: 482, y: 258 },
-  { id: "shift", label: "Shifts", x: 572, y: 238 },
-  { id: "align", label: "Time-aligned", x: 400, y: 348 },
+  { id: "kwh", label: "kWh streams", x: 168, y: 244 },
+  { id: "prod", label: "Production", x: 288, y: 276 },
+  { id: "cost", label: "Cost / ₹", x: 512, y: 276 },
+  { id: "shift", label: "Shifts", x: 632, y: 244 },
+  { id: "align", label: "Time-aligned", x: 400, y: 388 },
 ] as const;
 
 const TIMING = {
