@@ -2,10 +2,27 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
+import {
+  ADMIN_APP_ORIGIN,
+  isAdminAppHost,
+  isMarketingHost,
+  marketingPath,
+} from "@/lib/config/admin-host";
 import { SESSION_COOKIE } from "@/lib/blog/constants";
 
 function getSessionSecret(): Uint8Array {
-  const secret = process.env.SESSION_SECRET ?? "stamped-energy-dev-session-secret-change-in-prod-32chars";
+  const secret = process.env.SESSION_SECRET;
+
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("SESSION_SECRET must be set in production.");
+    }
+
+    return new TextEncoder().encode(
+      "stamped-energy-dev-session-secret-change-in-prod-32chars",
+    );
+  }
+
   return new TextEncoder().encode(secret);
 }
 
@@ -25,9 +42,34 @@ async function isAuthenticated(request: NextRequest): Promise<boolean> {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
+  const host = request.headers.get("host") ?? "";
   const isAdminRoute = pathname.startsWith("/blog/admin");
   const isLoginRoute = pathname === "/blog/admin/login";
+  const isAdminApiRoute = pathname.startsWith("/api/blog/admin") || pathname.startsWith("/api/blog/auth");
+
+  // Marketing host: send admin UI/API to the admin origin
+  if (ADMIN_APP_ORIGIN && isMarketingHost(host) && (isAdminRoute || isAdminApiRoute)) {
+    const redirectUrl = new URL(pathname, ADMIN_APP_ORIGIN);
+    redirectUrl.search = request.nextUrl.search;
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // Admin host: keep admin + auth API; send everything else to marketing site
+  if (ADMIN_APP_ORIGIN && isAdminAppHost(host)) {
+    if (pathname === "/") {
+      return NextResponse.redirect(new URL("/blog/admin", request.url));
+    }
+
+    if (
+      !isAdminRoute &&
+      !isAdminApiRoute &&
+      !pathname.startsWith("/_next") &&
+      pathname !== "/favicon.ico" &&
+      !pathname.match(/\.(png|jpg|jpeg|webp|svg|ico|css|js)$/)
+    ) {
+      return NextResponse.redirect(new URL(marketingPath(pathname)));
+    }
+  }
 
   if (!isAdminRoute || isLoginRoute) {
     return NextResponse.next();
@@ -45,5 +87,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/blog/admin/:path*"],
+  matcher: [
+    "/blog/admin/:path*",
+    "/api/blog/admin/:path*",
+    "/api/blog/auth/:path*",
+    "/((?!_next/static|_next/image).*)",
+  ],
 };

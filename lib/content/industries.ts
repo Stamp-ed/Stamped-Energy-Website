@@ -23,7 +23,7 @@ export const industriesContent = {
     heroImageSrc: INDUSTRY_IMAGES.forging,
     heroImageAlt: "Automotive forging press line in an energy-intensive manufacturing plant",
     primaryCta: { label: "Explore Automotive", href: "/industries/automotive" } satisfies CtaLink,
-    secondaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    secondaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     stats: [
       {
         id: "hub-sec",
@@ -88,9 +88,9 @@ export const industriesContent = {
       title: "Not sure which process segment fits?",
       description:
         "Discovery call: we map your meters, main loads, and bill pattern, and say honestly if a pilot makes sense.",
-      primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+      primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     },
-    cta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    cta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
   },
 
   verticals: [
@@ -214,7 +214,7 @@ export const industriesContent = {
     title: "Where utility cost hits margin on every OEM price-down",
     description:
       "Die casting, forging, heat treatment, rubber moulding, prescriptions tied to furnaces, compressors, and shift-start MD, verified on your bill.",
-    primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "How it works", href: "/how-it-works" } satisfies CtaLink,
 
     challenges: {
@@ -390,7 +390,7 @@ export const industriesContent = {
       eyebrow: "Next step",
       title: "Map your automotive plant data",
       description: "Walk through meters, processes, and estimated waste, outline a pilot in weeks.",
-      primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+      primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     },
   },
 } as const;

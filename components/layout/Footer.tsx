@@ -13,6 +13,12 @@ export function Footer() {
             <p className="mt-3 max-w-md text-sm leading-6 text-on-secondary/75">
               {siteConfig.tagline}
             </p>
+            <a
+              href={`mailto:${siteConfig.contactEmail}`}
+              className="mt-4 inline-block text-sm text-inverse-primary transition-colors hover:text-on-secondary"
+            >
+              {siteConfig.contactEmail}
+            </a>
           </div>
 
           <div>

@@ -83,7 +83,7 @@ export function AboutTeam() {
                     </svg>
                   </Link>
                 </div>
-                <p className="mt-2 text-sm leading-6 text-on-surface-variant line-clamp-4 sm:mt-3 sm:line-clamp-none">
+                <p className="mt-2 text-sm leading-6 text-on-surface-variant sm:mt-3 sm:line-clamp-none">
                   {member.bio}
                 </p>
               </div>

@@ -15,7 +15,7 @@ export const howItWorksContent = {
     title: "One view of consumption, production, and cost, prescriptions in rupees",
     description:
       "Connect incomer meters, bills, SCADA, and PLCs you already run. Assign fixes to your team. Verify savings when the DISCOM bill lands.",
-    primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "Back to home", href: "/" } satisfies CtaLink,
   },
 
@@ -294,6 +294,6 @@ export const howItWorksContent = {
     eyebrow: "Next step",
     title: "Walk through your meter setup and last three bills",
     description: "We estimate addressable waste and outline a pilot, only if the numbers justify it.",
-    primaryCta: { label: "Book a Discovery Call", href: "/#contact" } satisfies CtaLink,
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
   },
 } as const;

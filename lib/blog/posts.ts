@@ -3,6 +3,11 @@ import type { BlogPost, ContentFormat, PostStatus, Prisma } from "@prisma/client
 import { getCategoryLabel } from "@/lib/blog/constants";
 import { prisma } from "@/lib/blog/db";
 import {
+  getAuthorProfile,
+  type AuthorProfile,
+  type AuthorProfileId,
+} from "@/lib/content/author-profiles";
+import {
   estimateReadTimeFromDoc,
   parseRichDoc,
   richDocToPlainText,
@@ -25,6 +30,8 @@ export type BlogPostDTO = {
   featured: boolean;
   readTimeMin: number;
   authorName: string;
+  authorProfile: AuthorProfileId;
+  author: AuthorProfile;
   publishedAt: string | null;
   createdAt: string;
   updatedAt: string;
@@ -46,6 +53,7 @@ export type CreatePostInput = {
   featured?: boolean;
   readTimeMin?: number;
   authorId: string;
+  authorProfile?: AuthorProfileId;
   publishedAt?: Date | null;
 };
 
@@ -66,6 +74,7 @@ function resolveReadTime(
 }
 
 function mapPost(post: BlogPost & { author: { name: string } }): BlogPostDTO {
+  const author = getAuthorProfile(post.authorProfile);
   return {
     id: post.id,
     title: post.title,
@@ -81,7 +90,9 @@ function mapPost(post: BlogPost & { author: { name: string } }): BlogPostDTO {
     status: post.status,
     featured: post.featured,
     readTimeMin: post.readTimeMin,
-    authorName: post.author.name,
+    authorName: author.name,
+    authorProfile: author.id,
+    author,
     publishedAt: post.publishedAt?.toISOString() ?? null,
     createdAt: post.createdAt.toISOString(),
     updatedAt: post.updatedAt.toISOString(),
@@ -266,6 +277,7 @@ export async function createPost(input: CreatePostInput): Promise<BlogPostDTO> {
       featured: input.featured ?? false,
       readTimeMin,
       authorId: input.authorId,
+      authorProfile: input.authorProfile ?? "vinayak",
       publishedAt: resolvePublishedAt(status, input.publishedAt),
     },
     include: { author: { select: { name: true } } },
@@ -310,6 +322,7 @@ export async function updatePost(id: string, input: UpdatePostInput): Promise<Bl
       ...(input.tags !== undefined ? { tags: serializeTags(input.tags) } : {}),
       status,
       ...(input.featured !== undefined ? { featured: input.featured } : {}),
+      ...(input.authorProfile !== undefined ? { authorProfile: input.authorProfile } : {}),
       readTimeMin,
       publishedAt:
         input.publishedAt !== undefined

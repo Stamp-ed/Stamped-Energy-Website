@@ -3,7 +3,9 @@ import type { PostStatus } from "@prisma/client";
 import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { BLOG_CATEGORY_IDS } from "@/lib/blog/constants";
-import { deletePost, getAdminPostById, updatePost } from "@/lib/blog/posts";
+import { deletePost, getAdminPostById, updatePost, type UpdatePostInput } from "@/lib/blog/posts";
+import { revalidateBlogPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -22,6 +24,7 @@ type UpdateBody = {
   status?: PostStatus;
   featured?: boolean;
   readTimeMin?: number;
+  authorProfile?: string;
 };
 
 export async function GET(_request: Request, context: RouteContext) {
@@ -70,8 +73,17 @@ async function updatePostHandler(request: Request, context: RouteContext) {
     return jsonError("Invalid category.", 400);
   }
 
+  if (body.authorProfile && !isAuthorProfileId(body.authorProfile)) {
+    return jsonError("Invalid author profile.", 400);
+  }
+
   try {
-    const post = await updatePost(id, body);
+    const post = await updatePost(id, {
+      ...body,
+      authorProfile: body.authorProfile as UpdatePostInput["authorProfile"],
+    });
+    revalidateBlogPages(post.slug);
+    revalidateContentSitemap();
     return jsonOk({ post });
   } catch (error) {
     if (error instanceof Error && error.message === "NOT_FOUND") {
@@ -92,6 +104,8 @@ export async function DELETE(_request: Request, context: RouteContext) {
 
   try {
     await deletePost(id);
+    revalidateBlogPages();
+    revalidateContentSitemap();
     return jsonOk({ deleted: true });
   } catch {
     return jsonError("Post not found.", 404);

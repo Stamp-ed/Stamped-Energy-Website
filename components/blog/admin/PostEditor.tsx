@@ -9,6 +9,11 @@ import { RichArticleEditor } from "@/components/rich-content/RichArticleEditor";
 import type { AiBlogImport } from "@/lib/blog/ai-workflow";
 import { BLOG_CATEGORIES } from "@/lib/blog/constants";
 import type { BlogPostDTO } from "@/lib/blog/posts";
+import {
+  AUTHOR_PROFILES,
+  DEFAULT_AUTHOR_PROFILE_ID,
+  type AuthorProfileId,
+} from "@/lib/content/author-profiles";
 import { markdownToRichDoc, serializeRichDoc } from "@/lib/rich-content/document";
 import { slugify } from "@/lib/blog/utils";
 
@@ -27,6 +32,7 @@ type FormState = {
   tags: string;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   featured: boolean;
+  authorProfile: AuthorProfileId;
 };
 
 const labelClass = "mb-1.5 block text-xs font-medium text-[var(--admin-text-secondary)]";
@@ -56,6 +62,7 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
     tags: initial?.tags.join(", ") ?? "",
     status: initial?.status ?? "DRAFT",
     featured: initial?.featured ?? false,
+    authorProfile: initial?.authorProfile ?? DEFAULT_AUTHOR_PROFILE_ID,
   });
   const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -77,6 +84,7 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
       tags: data.tags?.length ? data.tags.join(", ") : current.tags,
       status: data.status ?? current.status,
       featured: data.featured ?? current.featured,
+      authorProfile: current.authorProfile,
     }));
     setError("");
   }, []);
@@ -100,6 +108,7 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
         .filter(Boolean),
       status: form.status,
       featured: form.featured,
+      authorProfile: form.authorProfile,
     };
 
     try {
@@ -197,6 +206,25 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
                 <option value="ARCHIVED">Archived</option>
               </select>
             </div>
+          </div>
+          <div>
+            <label className={labelClass}>Written by</label>
+            <select
+              value={form.authorProfile}
+              onChange={(event) =>
+                update("authorProfile", event.target.value as AuthorProfileId)
+              }
+              className={fieldClass}
+            >
+              {Object.values(AUTHOR_PROFILES).map((profile) => (
+                <option key={profile.id} value={profile.id}>
+                  {profile.name}
+                </option>
+              ))}
+            </select>
+            <p className="mt-1.5 text-[11px] leading-5 text-[var(--admin-text-muted)]">
+              {AUTHOR_PROFILES[form.authorProfile].shortBio}
+            </p>
           </div>
           <div>
             <label className={labelClass}>Cover image URL</label>

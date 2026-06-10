@@ -45,11 +45,12 @@ export function AboutJourney() {
           />
         </Reveal>
 
-        <ol className="relative mx-auto mt-6 max-w-3xl md:mt-10">
+        <div className="relative mx-auto mt-6 max-w-3xl md:mt-10">
           <div
             className="absolute bottom-0 left-[1.0625rem] top-0 w-px bg-outline-variant/50 md:left-1/2 md:-translate-x-px"
             aria-hidden
           />
+          <ol className="relative">
           {journey.milestones.map((milestone, index) => (
             <li
               key={milestone.id}
@@ -79,7 +80,8 @@ export function AboutJourney() {
               </article>
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
       </Container>
     </section>
   );

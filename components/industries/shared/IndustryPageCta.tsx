@@ -24,7 +24,7 @@ export function IndustryPageCta({ content }: IndustryPageCtaProps) {
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">
             {cta.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold md:text-4xl">{cta.title}</h2>
+          <h2 className="mt-3 font-display text-2xl font-extrabold md:text-3xl">{cta.title}</h2>
           <p className="mt-3 text-sm leading-6 text-on-secondary/80 md:text-base">
             {cta.description}
           </p>

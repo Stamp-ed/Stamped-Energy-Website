@@ -87,6 +87,23 @@ export function RichArticleEditor({ value, onChange, placeholder }: RichArticleE
     editor.chain().focus().extendMarkRange("link").setLink({ href: href.trim() }).run();
   }, [editor]);
 
+  const insertMermaid = useCallback(() => {
+    const source = window.prompt(
+      "Mermaid diagram source",
+      "flowchart TD\n  A[Plant data] --> B[Stamped prescriptions]",
+    );
+    if (!source?.trim() || !editor) return;
+    editor
+      .chain()
+      .focus()
+      .insertContent({
+        type: "codeBlock",
+        attrs: { language: "mermaid" },
+        content: [{ type: "text", text: source.trim() }],
+      })
+      .run();
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
@@ -126,6 +143,7 @@ export function RichArticleEditor({ value, onChange, placeholder }: RichArticleE
         />
         <ToolbarButton label="Image" onClick={insertImage} />
         <ToolbarButton label="Video" onClick={insertVideo} />
+        <ToolbarButton label="Diagram" onClick={insertMermaid} />
         <ToolbarButton label="Link" onClick={insertLink} />
         <ToolbarButton
           label="Divider"

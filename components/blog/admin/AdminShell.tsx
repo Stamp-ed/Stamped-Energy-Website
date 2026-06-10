@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { marketingPath } from "@/lib/config/admin-host";
 
 type AdminShellProps = {
   children: React.ReactNode;
@@ -81,14 +82,14 @@ export function AdminShell({ children, userName, userEmail }: AdminShellProps) {
         ) : null}
         <div className="space-y-1">
           <Link
-            href="/blog"
+            href={marketingPath("/blog")}
             target="_blank"
             className="flex w-full items-center justify-center rounded-lg border border-[var(--admin-sidebar-border)] px-3 py-2 text-xs font-medium text-[var(--admin-sidebar-muted)] transition-colors hover:bg-[var(--admin-sidebar-hover)] hover:text-[var(--admin-sidebar-text)]"
           >
             View public blog
           </Link>
           <Link
-            href="/case-studies"
+            href={marketingPath("/case-studies")}
             target="_blank"
             className="flex w-full items-center justify-center rounded-lg border border-[var(--admin-sidebar-border)] px-3 py-2 text-xs font-medium text-[var(--admin-sidebar-muted)] transition-colors hover:bg-[var(--admin-sidebar-hover)] hover:text-[var(--admin-sidebar-text)]"
           >

@@ -16,7 +16,7 @@ export const landingContent = {
     headlineLine2: "Turn Data Into Verified Savings",
     subheadline:
       "Connect existing plant data. Get rupee-denominated prescriptions. Verify savings on your next bill.",
-    primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     visualImageSrc: "/industries/die-casting.jpeg",
     visualImageAlt: "Molten metal pour in a die casting plant, energy-intensive automotive manufacturing",
@@ -300,26 +300,11 @@ export const landingContent = {
       "Founded by an IIT Roorkee electrical engineering graduate with research in energy systems. Built for plant heads who need verified outcomes on the DISCOM bill, not another monitoring layer.",
   },
 
-  finalCta: {
-    eyebrow: "Start with a pilot",
-    title: "Find out what your plant lost last month",
+  closingCta: {
+    title: "Ready to see the ₹ hiding in your plant data?",
     description:
-      "30-minute discovery call. We review your meter setup, bill pattern, and processes, and outline a low-risk pilot if the numbers justify it.",
-    primaryCta: { label: "Book a Discovery Call", href: "#contact" } satisfies CtaLink,
-  },
-
-  contactForm: {
-    title: "Book a discovery call",
-    description: "Tell us about your plant. We will follow up to schedule a conversation.",
-    fields: {
-      name: "Full name",
-      company: "Company name",
-      location: "Plant location",
-      billSize: "Monthly electricity bill (approx.)",
-      whatsapp: "WhatsApp number",
-    },
-    submitLabel: "Submit request",
-    successMessage: "Request received. We will contact you shortly.",
-    errorMessage: "Something went wrong. Please try again.",
+      "Start with a pilot at your plant. Zero hardware retrofit. One verified saving on your next bill before annual commitment.",
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
+    secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
   },
 } as const;

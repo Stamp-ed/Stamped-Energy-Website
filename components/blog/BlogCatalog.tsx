@@ -46,11 +46,13 @@ export function BlogCatalog({ initialPosts, initialHasMore, initialPage }: BlogC
   const [page, setPage] = useState(initialPage);
   const [hasMore, setHasMore] = useState(initialHasMore);
   const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const { isReady, prefersReducedMotion } = useMotion();
 
   const fetchPosts = useCallback(
     async (options: { page: number; category: string; search: string; append: boolean }) => {
       setIsLoading(true);
+      setFetchError(null);
       try {
         const params = new URLSearchParams({
           page: String(options.page),
@@ -70,7 +72,8 @@ export function BlogCatalog({ initialPosts, initialHasMore, initialPage }: BlogC
           };
         };
 
-        if (!json.success || !json.data) {
+        if (!response.ok || !json.success || !json.data) {
+          setFetchError("Could not load articles. Please try again.");
           return;
         }
 
@@ -243,7 +246,13 @@ export function BlogCatalog({ initialPosts, initialHasMore, initialPage }: BlogC
           ))}
         </div>
 
-        {posts.length === 0 ? (
+        {fetchError ? (
+          <p className="mt-8 text-center text-sm text-error md:mt-10" role="alert">
+            {fetchError}
+          </p>
+        ) : null}
+
+        {!fetchError && posts.length === 0 ? (
           <p className="mt-8 text-center text-sm text-on-surface-variant md:mt-10">
             No articles found. Try another filter or search term.
           </p>

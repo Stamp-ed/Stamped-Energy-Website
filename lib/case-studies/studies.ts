@@ -10,6 +10,11 @@ import {
 } from "@/lib/case-studies/constants";
 import { prisma } from "@/lib/blog/db";
 import {
+  getAuthorProfile,
+  type AuthorProfile,
+  type AuthorProfileId,
+} from "@/lib/content/author-profiles";
+import {
   estimateReadTimeFromDoc,
   markdownToRichDoc,
   parseRichDoc,
@@ -41,6 +46,8 @@ export type CaseStudyDTO = {
   featured: boolean;
   readTimeMin: number;
   authorName: string;
+  authorProfile: AuthorProfileId;
+  author: AuthorProfile;
   publishedAt: string | null;
   createdAt: string;
   updatedAt: string;
@@ -74,12 +81,14 @@ export type CreateCaseStudyInput = {
   featured?: boolean;
   readTimeMin?: number;
   authorId: string;
+  authorProfile?: AuthorProfileId;
   publishedAt?: Date | null;
 };
 
 export type UpdateCaseStudyInput = Partial<CreateCaseStudyInput>;
 
 function mapStudy(study: CaseStudy & { author: { name: string } }): CaseStudyDTO {
+  const author = getAuthorProfile(study.authorProfile);
   return {
     id: study.id,
     title: study.title,
@@ -101,7 +110,9 @@ function mapStudy(study: CaseStudy & { author: { name: string } }): CaseStudyDTO
     status: study.status,
     featured: study.featured,
     readTimeMin: study.readTimeMin,
-    authorName: study.author.name,
+    authorName: author.name,
+    authorProfile: author.id,
+    author,
     publishedAt: study.publishedAt?.toISOString() ?? null,
     createdAt: study.createdAt.toISOString(),
     updatedAt: study.updatedAt.toISOString(),
@@ -285,6 +296,7 @@ export async function createCaseStudy(input: CreateCaseStudyInput): Promise<Case
       featured: input.featured ?? false,
       readTimeMin: input.readTimeMin ?? resolveReadTime(bodyJson, content),
       authorId: input.authorId,
+      authorProfile: input.authorProfile ?? "vinayak",
       publishedAt: resolvePublishedAt(status, input.publishedAt),
     },
     include: { author: { select: { name: true } } },
@@ -334,6 +346,7 @@ export async function updateCaseStudy(id: string, input: UpdateCaseStudyInput): 
       ...(input.disclaimer !== undefined ? { disclaimer: input.disclaimer?.trim() || null } : {}),
       status,
       ...(input.featured !== undefined ? { featured: input.featured } : {}),
+      ...(input.authorProfile !== undefined ? { authorProfile: input.authorProfile } : {}),
       readTimeMin: input.readTimeMin ?? resolveReadTime(bodyJson, content),
       publishedAt:
         input.publishedAt !== undefined

@@ -14,6 +14,12 @@ export type ContentFormat = "MARKDOWN" | "RICH";
 export const RICH_EXTENSIONS = [
   StarterKit.configure({
     heading: { levels: [2, 3] },
+    codeBlock: {
+      languageClassPrefix: "language-",
+      HTMLAttributes: {
+        class: "rich-code-block",
+      },
+    },
   }),
   Underline,
   Link.configure({
@@ -74,7 +80,108 @@ export function estimateReadTimeFromDoc(doc: JSONContent): number {
 }
 
 export function richDocToHtml(doc: JSONContent): string {
-  return generateHTML(doc, RICH_EXTENSIONS);
+  return generateHTML(enrichRichDoc(doc), RICH_EXTENSIONS);
+}
+
+/** Parse **bold**, *italic*, and `code` inline markdown into TipTap text nodes. */
+export function parseInlineMarkdown(text: string): JSONContent[] {
+  if (!text) {
+    return [];
+  }
+
+  if (!text.includes("**") && !text.includes("*") && !text.includes("`")) {
+    return [{ type: "text", text }];
+  }
+
+  const nodes: JSONContent[] = [];
+  let remaining = text;
+
+  while (remaining.length > 0) {
+    const boldMatch = remaining.match(/^\*\*(.+?)\*\*/);
+    if (boldMatch) {
+      nodes.push({ type: "text", text: boldMatch[1], marks: [{ type: "bold" }] });
+      remaining = remaining.slice(boldMatch[0].length);
+      continue;
+    }
+
+    const italicMatch = remaining.match(/^\*(.+?)\*/);
+    if (italicMatch) {
+      nodes.push({ type: "text", text: italicMatch[1], marks: [{ type: "italic" }] });
+      remaining = remaining.slice(italicMatch[0].length);
+      continue;
+    }
+
+    const codeMatch = remaining.match(/^`(.+?)`/);
+    if (codeMatch) {
+      nodes.push({ type: "text", text: codeMatch[1], marks: [{ type: "code" }] });
+      remaining = remaining.slice(codeMatch[0].length);
+      continue;
+    }
+
+    const nextSpecial = remaining.search(/\*\*|\*|`/);
+    if (nextSpecial === -1) {
+      nodes.push({ type: "text", text: remaining });
+      break;
+    }
+
+    if (nextSpecial > 0) {
+      nodes.push({ type: "text", text: remaining.slice(0, nextSpecial) });
+      remaining = remaining.slice(nextSpecial);
+      continue;
+    }
+
+    nodes.push({ type: "text", text: remaining[0] });
+    remaining = remaining.slice(1);
+  }
+
+  return nodes;
+}
+
+function paragraphFromMarkdown(text: string): JSONContent {
+  const trimmed = text.trim();
+  return {
+    type: "paragraph",
+    content: trimmed ? parseInlineMarkdown(trimmed) : undefined,
+  };
+}
+
+/** Upgrade plain-text nodes that still contain markdown markers (legacy AI imports). */
+export function enrichRichDoc(doc: JSONContent): JSONContent {
+  const enrichTextNode = (node: JSONContent): JSONContent => {
+    if (
+      node.type === "text" &&
+      node.text &&
+      !node.marks?.length &&
+      (node.text.includes("**") || node.text.includes("*") || node.text.includes("`"))
+    ) {
+      return { type: "paragraph", content: parseInlineMarkdown(node.text) };
+    }
+
+    if (node.content?.length) {
+      const enrichedChildren = node.content.flatMap((child) => {
+        if (
+          (node.type === "paragraph" || node.type === "heading") &&
+          child.type === "text" &&
+          child.text &&
+          !child.marks?.length &&
+          (child.text.includes("**") || child.text.includes("*") || child.text.includes("`"))
+        ) {
+          return parseInlineMarkdown(child.text);
+        }
+        return [enrichTextNode(child)];
+      });
+
+      return { ...node, content: enrichedChildren };
+    }
+
+    return node;
+  };
+
+  if (doc.type === "doc" && doc.content) {
+    return { ...doc, content: doc.content.map(enrichTextNode) };
+  }
+
+  return enrichTextNode(doc);
 }
 
 /** Basic markdown → TipTap for AI import and legacy posts */
@@ -83,13 +190,11 @@ export function markdownToRichDoc(markdown: string): JSONContent {
   const content: JSONContent[] = [];
   let paragraphBuffer: string[] = [];
   let listBuffer: { type: "bullet" | "ordered"; items: string[] } | null = null;
+  let codeBlock: { language: string; lines: string[] } | null = null;
 
   const flushParagraph = () => {
     if (paragraphBuffer.length) {
-      content.push({
-        type: "paragraph",
-        content: [{ type: "text", text: paragraphBuffer.join(" ").trim() }],
-      });
+      content.push(paragraphFromMarkdown(paragraphBuffer.join(" ")));
       paragraphBuffer = [];
     }
   };
@@ -103,14 +208,46 @@ export function markdownToRichDoc(markdown: string): JSONContent {
       type: listBuffer.type === "ordered" ? "orderedList" : "bulletList",
       content: listBuffer.items.map((item) => ({
         type: "listItem",
-        content: [{ type: "paragraph", content: [{ type: "text", text: item }] }],
+        content: [paragraphFromMarkdown(item)],
       })),
     });
     listBuffer = null;
   };
 
+  const flushCodeBlock = () => {
+    if (!codeBlock) {
+      return;
+    }
+    const codeText = codeBlock.lines.join("\n");
+    content.push({
+      type: "codeBlock",
+      attrs: { language: codeBlock.language || null },
+      content: codeText ? [{ type: "text", text: codeText }] : undefined,
+    });
+    codeBlock = null;
+  };
+
   for (const line of lines) {
     const trimmed = line.trim();
+
+    if (codeBlock) {
+      if (trimmed === "```") {
+        flushCodeBlock();
+      } else {
+        codeBlock.lines.push(line);
+      }
+      continue;
+    }
+
+    if (trimmed.startsWith("```")) {
+      flushParagraph();
+      flushList();
+      codeBlock = {
+        language: trimmed.slice(3).trim().toLowerCase(),
+        lines: [],
+      };
+      continue;
+    }
 
     if (!trimmed) {
       flushParagraph();
@@ -126,7 +263,7 @@ export function markdownToRichDoc(markdown: string): JSONContent {
       content.push({
         type: "heading",
         attrs: { level },
-        content: [{ type: "text", text: heading[1] }],
+        content: parseInlineMarkdown(heading[1]),
       });
       continue;
     }
@@ -170,6 +307,7 @@ export function markdownToRichDoc(markdown: string): JSONContent {
 
   flushParagraph();
   flushList();
+  flushCodeBlock();
 
   return content.length ? { type: "doc", content } : EMPTY_RICH_DOC;
 }
@@ -182,10 +320,10 @@ export function getRenderableBody(input: {
   if (input.contentFormat === "RICH" && input.bodyJson) {
     return {
       format: "RICH",
-      doc: parseRichDoc(input.bodyJson),
+      doc: enrichRichDoc(parseRichDoc(input.bodyJson)),
       markdown: input.content,
     };
   }
-  const doc = markdownToRichDoc(input.content);
+  const doc = enrichRichDoc(markdownToRichDoc(input.content));
   return { format: "MARKDOWN", doc, markdown: input.content };
 }

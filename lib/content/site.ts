@@ -15,6 +15,7 @@ export const navLinks: NavLink[] = [
   { label: "Blog", href: siteConfig.blogUrl },
   { label: "Case Studies", href: "/case-studies" },
   { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks = {
@@ -26,6 +27,6 @@ export const footerLinks = {
   company: [
     { label: "Case Studies", href: "/case-studies" },
     { label: "About Us", href: "/about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact" },
   ],
 } as const;

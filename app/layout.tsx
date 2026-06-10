@@ -4,6 +4,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { siteConfig } from "@/lib/content";
+import { siteMetadataBase } from "@/lib/seo/metadata";
 
 import "./globals.css";
 
@@ -20,6 +21,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  ...siteMetadataBase,
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,

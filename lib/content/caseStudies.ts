@@ -41,7 +41,7 @@ export const caseStudiesContent = {
     title: "₹ outcomes from real plants, not marketing ranges",
     description:
       "Field pilots and reference benchmarks from die casting, forging, and heat treatment suppliers. Every figure tied to M&V methodology or labelled as benchmark until pilot data is publishable.",
-    primaryCta: { label: "Book a Discovery Call", href: "#contact" },
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" },
     secondaryCta: { label: "See How It Works", href: "/how-it-works" },
     heroImageSrc: CASE_IMAGES.forging,
     heroImageAlt: "Automotive component forging plant floor",
@@ -65,7 +65,7 @@ export const caseStudiesContent = {
     title: "Start with a pilot, verify on the next bill",
     description:
       "We connect to existing meters and plant data. One verified saving before you commit to annual subscription.",
-    primaryCta: { label: "Book a Discovery Call", href: "#contact" },
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" },
   },
 
   studies: [

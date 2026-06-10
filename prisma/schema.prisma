@@ -45,6 +45,7 @@ model BlogPost {
   featured      Boolean       @default(false)
   readTimeMin   Int           @default(5)
   authorId      String
+  authorProfile String        @default("vinayak")
   author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   publishedAt   DateTime?
   createdAt     DateTime      @default(now())
@@ -76,6 +77,7 @@ model CaseStudy {
   featured      Boolean       @default(false)
   readTimeMin   Int           @default(5)
   authorId      String
+  authorProfile String        @default("vinayak")
   author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   publishedAt   DateTime?
   createdAt     DateTime      @default(now())

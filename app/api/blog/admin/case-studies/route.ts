@@ -3,7 +3,9 @@ import type { PostStatus } from "@prisma/client";
 import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { CASE_STUDY_CATEGORY_IDS } from "@/lib/case-studies/constants";
-import { createCaseStudy, listAdminCaseStudies } from "@/lib/case-studies/studies";
+import { createCaseStudy, listAdminCaseStudies, type CreateCaseStudyInput } from "@/lib/case-studies/studies";
+import { revalidateCaseStudyPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type CreateBody = {
   title?: string;
@@ -24,6 +26,7 @@ type CreateBody = {
   status?: PostStatus;
   featured?: boolean;
   readTimeMin?: number;
+  authorProfile?: string;
 };
 
 export async function GET(request: Request) {
@@ -63,6 +66,10 @@ export async function POST(request: Request) {
     return jsonError("Invalid category.", 400);
   }
 
+  if (body.authorProfile && !isAuthorProfileId(body.authorProfile)) {
+    return jsonError("Invalid author profile.", 400);
+  }
+
   const study = await createCaseStudy({
     title: body.title,
     slug: body.slug,
@@ -83,7 +90,13 @@ export async function POST(request: Request) {
     featured: body.featured,
     readTimeMin: body.readTimeMin,
     authorId: session.userId,
+    authorProfile: body.authorProfile as CreateCaseStudyInput["authorProfile"],
   });
+
+  if (study.status === "PUBLISHED") {
+    revalidateCaseStudyPages(study.slug);
+    revalidateContentSitemap();
+  }
 
   return jsonOk({ study }, { status: 201 });
 }

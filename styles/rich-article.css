@@ -119,6 +119,43 @@
   border: 0;
 }
 
+.rich-article pre {
+  margin: 1.75em 0;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid var(--brand-outline-variant, #d8ded9);
+  background: var(--brand-surface-low, #f3f5f3);
+  padding: 1rem 1.125rem;
+}
+
+.rich-article pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--rich-heading);
+  white-space: pre-wrap;
+}
+
+.rich-article pre.mermaid-error {
+  border-color: #e04a3844;
+}
+
+.rich-article .mermaid-diagram {
+  margin: 2em 0;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid var(--brand-outline-variant, #d8ded9);
+  background: var(--brand-surface-lowest, #fff);
+  padding: 1rem;
+}
+
+.rich-article .mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
 /* Public reading column — centered Medium-style */
 .rich-article-reading {
   margin-inline: auto;

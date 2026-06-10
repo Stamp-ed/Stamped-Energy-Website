@@ -7,7 +7,10 @@ import {
   deleteCaseStudy,
   getAdminCaseStudyById,
   updateCaseStudy,
+  type UpdateCaseStudyInput,
 } from "@/lib/case-studies/studies";
+import { revalidateCaseStudyPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -32,6 +35,7 @@ type UpdateBody = {
   status?: PostStatus;
   featured?: boolean;
   readTimeMin?: number;
+  authorProfile?: string;
 };
 
 export async function GET(_request: Request, context: RouteContext) {
@@ -80,8 +84,17 @@ async function updateHandler(request: Request, context: RouteContext) {
     return jsonError("Invalid category.", 400);
   }
 
+  if (body.authorProfile && !isAuthorProfileId(body.authorProfile)) {
+    return jsonError("Invalid author profile.", 400);
+  }
+
   try {
-    const study = await updateCaseStudy(id, body);
+    const study = await updateCaseStudy(id, {
+      ...body,
+      authorProfile: body.authorProfile as UpdateCaseStudyInput["authorProfile"],
+    });
+    revalidateCaseStudyPages(study.slug);
+    revalidateContentSitemap();
     return jsonOk({ study });
   } catch (error) {
     if (error instanceof Error && error.message === "NOT_FOUND") {
@@ -102,6 +115,8 @@ export async function DELETE(_request: Request, context: RouteContext) {
 
   try {
     await deleteCaseStudy(id);
+    revalidateCaseStudyPages();
+    revalidateContentSitemap();
     return jsonOk({ deleted: true });
   } catch {
     return jsonError("Case study not found.", 404);

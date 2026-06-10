@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlogArticleView } from "@/components/blog/BlogArticleView";
-import { siteConfig } from "@/lib/content";
 import { getPublishedPostBySlug, getRelatedPosts } from "@/lib/blog/posts";
 import { prisma } from "@/lib/blog/db";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const posts = await prisma.blogPost.findMany({
@@ -26,15 +28,13 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
     return { title: "Article" };
   }
 
-  return {
+  return buildPageMetadata({
     title: post.title,
     description: post.excerpt,
-    openGraph: {
-      title: `${post.title} | ${siteConfig.name}`,
-      description: post.excerpt,
-      ...(post.coverImage ? { images: [{ url: post.coverImage }] } : {}),
-    },
-  };
+    path: `/blog/${post.slug}`,
+    image: post.coverImage,
+    type: "article",
+  });
 }
 
 export default async function BlogArticlePage({ params }: BlogArticlePageProps) {

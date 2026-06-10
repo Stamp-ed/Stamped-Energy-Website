@@ -12,6 +12,11 @@ import {
   type CaseStudyMetric,
 } from "@/lib/case-studies/constants";
 import type { CaseStudyDTO } from "@/lib/case-studies/studies";
+import {
+  AUTHOR_PROFILES,
+  DEFAULT_AUTHOR_PROFILE_ID,
+  type AuthorProfileId,
+} from "@/lib/content/author-profiles";
 import { markdownToRichDoc, serializeRichDoc } from "@/lib/rich-content/document";
 import { slugify } from "@/lib/blog/utils";
 
@@ -36,6 +41,7 @@ type FormState = {
   disclaimer: string;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   featured: boolean;
+  authorProfile: AuthorProfileId;
 };
 
 const labelClass = "mb-1.5 block text-xs font-medium text-[var(--admin-text-secondary)]";
@@ -75,6 +81,7 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
     disclaimer: initial?.disclaimer ?? "",
     status: initial?.status ?? "DRAFT",
     featured: initial?.featured ?? false,
+    authorProfile: initial?.authorProfile ?? DEFAULT_AUTHOR_PROFILE_ID,
   });
   const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -108,6 +115,7 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
       disclaimer: data.disclaimer ?? current.disclaimer,
       status: data.status ?? current.status,
       featured: data.featured ?? current.featured,
+      authorProfile: current.authorProfile,
     }));
     setError("");
   }, []);
@@ -146,6 +154,7 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
       disclaimer: form.disclaimer.trim() || null,
       status: form.status,
       featured: form.featured,
+      authorProfile: form.authorProfile,
     };
 
     try {
@@ -254,6 +263,25 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
               className={fieldClass}
             />
           </div>
+        </div>
+        <div>
+          <label className={labelClass}>Written by</label>
+          <select
+            value={form.authorProfile}
+            onChange={(event) =>
+              update("authorProfile", event.target.value as AuthorProfileId)
+            }
+            className={fieldClass}
+          >
+            {Object.values(AUTHOR_PROFILES).map((profile) => (
+              <option key={profile.id} value={profile.id}>
+                {profile.name}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1.5 text-[11px] leading-5 text-[var(--admin-text-muted)]">
+            {AUTHOR_PROFILES[form.authorProfile].shortBio}
+          </p>
         </div>
         <div>
           <label className={labelClass}>Client context (card / hero summary)</label>

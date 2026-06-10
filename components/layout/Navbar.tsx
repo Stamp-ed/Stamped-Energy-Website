@@ -10,24 +10,15 @@ import { NavLinkItem } from "@/components/layout/NavLinkItem";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { navLinks, siteConfig } from "@/lib/content";
+import { usesLightNavText } from "@/lib/layout/nav-theme";
 import { cn } from "@/lib/utils";
-
-const LIGHT_NAV_ROUTES = [
-  "/industries/automotive",
-  "/industries",
-  "/case-studies",
-  "/about",
-  "/blog",
-];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isLightNav =
-    !isScrolled &&
-    !isMenuOpen &&
-    LIGHT_NAV_ROUTES.some((route) => pathname.startsWith(route));
+    !isScrolled && !isMenuOpen && usesLightNavText(pathname);
   const showSolidHeader = isScrolled || isMenuOpen;
 
   useEffect(() => {
@@ -86,7 +77,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden shrink-0 lg:block">
-          <Button href="#contact" variant="primary">
+          <Button href="/contact" variant="primary">
             Book a Discovery Call
           </Button>
         </div>
@@ -125,7 +116,7 @@ export function Navbar() {
                 />
               ),
             )}
-            <Button href="#contact" variant="primary" className="mt-2 w-full">
+            <Button href="/contact" variant="primary" className="mt-2 w-full">
               Book a Discovery Call
             </Button>
           </Container>

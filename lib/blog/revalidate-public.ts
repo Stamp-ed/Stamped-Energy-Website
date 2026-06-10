@@ -1,0 +1,19 @@
+import { revalidatePath } from "next/cache";
+
+export function revalidateBlogPages(slug?: string) {
+  revalidatePath("/blog");
+  if (slug) {
+    revalidatePath(`/blog/${slug}`);
+  }
+}
+
+export function revalidateCaseStudyPages(slug?: string) {
+  revalidatePath("/case-studies");
+  if (slug) {
+    revalidatePath(`/case-studies/${slug}`);
+  }
+}
+
+export function revalidateContentSitemap() {
+  revalidatePath("/sitemap.xml");
+}

@@ -3,7 +3,9 @@ import type { PostStatus } from "@prisma/client";
 import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { BLOG_CATEGORY_IDS } from "@/lib/blog/constants";
-import { createPost, listAdminPosts } from "@/lib/blog/posts";
+import { createPost, listAdminPosts, type CreatePostInput } from "@/lib/blog/posts";
+import { revalidateBlogPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type CreateBody = {
   title?: string;
@@ -18,6 +20,7 @@ type CreateBody = {
   status?: PostStatus;
   featured?: boolean;
   readTimeMin?: number;
+  authorProfile?: string;
 };
 
 export async function GET(request: Request) {
@@ -57,6 +60,10 @@ export async function POST(request: Request) {
     return jsonError("Invalid category.", 400);
   }
 
+  if (body.authorProfile && !isAuthorProfileId(body.authorProfile)) {
+    return jsonError("Invalid author profile.", 400);
+  }
+
   const post = await createPost({
     title: body.title,
     slug: body.slug,
@@ -71,7 +78,13 @@ export async function POST(request: Request) {
     featured: body.featured,
     readTimeMin: body.readTimeMin,
     authorId: session.userId,
+    authorProfile: body.authorProfile as CreatePostInput["authorProfile"],
   });
+
+  if (post.status === "PUBLISHED") {
+    revalidateBlogPages(post.slug);
+    revalidateContentSitemap();
+  }
 
   return jsonOk({ post }, { status: 201 });
 }

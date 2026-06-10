@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
+import { ArticleAuthorCard } from "@/components/blog/ArticleAuthorCard";
 import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
@@ -23,7 +24,7 @@ const BLOG_CTA = {
   title: "Turn insights into verified savings",
   description:
     "Book a discovery call. We connect to existing plant data and verify savings on your next electricity bill.",
-  primaryCta: { label: "Book a Discovery Call", href: "#contact" },
+  primaryCta: { label: "Book a Discovery Call", href: "/contact" },
 };
 
 export function BlogArticleView({ post, related }: BlogArticleViewProps) {
@@ -64,7 +65,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
                 {post.categoryLabel}
               </span>
               <span>
-                {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.authorName}
+                {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
               </span>
             </div>
             <h1 className="mt-5 font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-on-surface">
@@ -120,15 +121,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
             </article>
 
             <aside data-blog-article className="space-y-6 lg:sticky lg:top-28 lg:self-start">
-              <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">
-                  Written by
-                </p>
-                <p className="mt-1 font-bold text-on-surface">{post.authorName}</p>
-                <p className="mt-2 text-sm leading-6 text-on-surface-variant">
-                  Stamped Energy, prescriptive intelligence for Indian manufacturers.
-                </p>
-              </div>
+              <ArticleAuthorCard author={post.author} />
 
               {related.length > 0 ? (
                 <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 shadow-sm">

@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 
 import { CaseStudyDetailView } from "@/components/case-studies/CaseStudyDetail";
 import { getPublishedCaseStudyBySlug } from "@/lib/case-studies/studies";
-import { siteConfig } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -19,14 +19,13 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     return { title: "Case Study" };
   }
 
-  return {
+  return buildPageMetadata({
     title: study.title,
     description: study.excerpt,
-    openGraph: {
-      title: `${study.title} | ${siteConfig.name}`,
-      description: study.excerpt,
-    },
-  };
+    path: `/case-studies/${study.slug}`,
+    image: study.coverImage,
+    type: "article",
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps) {

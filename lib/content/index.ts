@@ -1,4 +1,5 @@
 export { aboutContent } from "./about";
+export { contactContent } from "./contact";
 export {
   caseStudiesContent,
   getCaseStudyBySlug,

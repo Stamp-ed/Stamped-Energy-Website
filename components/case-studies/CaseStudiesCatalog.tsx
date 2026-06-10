@@ -100,23 +100,31 @@ export function CaseStudiesCatalog({ studies }: CaseStudiesCatalogProps) {
         </div>
 
         <div className="mx-auto mt-8 grid max-w-6xl gap-5 md:mt-10 md:grid-cols-2">
-          {visibleStudies.map((study) => (
+          {filtered.length === 0 ? (
+            <p
+              data-cs-catalog
+              className="col-span-full rounded-2xl border border-outline-variant/50 bg-surface-lowest px-6 py-10 text-center text-sm text-on-surface-variant"
+            >
+              No case studies in this category yet. Try another filter or check back soon.
+            </p>
+          ) : (
+            visibleStudies.map((study) => (
             <Link
               key={study.id}
               href={`/case-studies/${study.slug}`}
               data-cs-catalog
               className="group flex overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow hover:shadow-md"
             >
-              <div className="relative hidden w-2/5 shrink-0 sm:block">
+              <div className="relative min-h-[6.5rem] w-24 shrink-0 self-stretch sm:min-h-0 sm:w-2/5">
                 <Image
                   src={study.imageSrc}
                   alt={study.imageAlt}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="240px"
+                  sizes="(max-width: 640px) 96px, 240px"
                 />
               </div>
-              <div className="flex flex-1 flex-col p-5">
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
                     {study.categoryLabel}
@@ -136,10 +144,11 @@ export function CaseStudiesCatalog({ studies }: CaseStudiesCatalogProps) {
                 <span className="mt-3 text-sm font-semibold text-primary">Read more →</span>
               </div>
             </Link>
-          ))}
+            ))
+          )}
         </div>
 
-        {hasMore ? (
+        {hasMore && filtered.length > 0 ? (
           <div data-cs-catalog className="mt-8 flex justify-center md:mt-10">
             <Button
               variant="outline"

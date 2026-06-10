@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { landingContent } from "@/lib/content";
+import { contactContent } from "@/lib/content/contact";
 import { cn } from "@/lib/utils";
 
 type ContactFormState = {
@@ -29,12 +29,14 @@ type FieldConfig = {
   required?: boolean;
 };
 
+const { contactForm } = contactContent;
+
 const fields: FieldConfig[] = [
-  { id: "name", label: landingContent.contactForm.fields.name, required: true },
-  { id: "company", label: landingContent.contactForm.fields.company, required: true },
-  { id: "location", label: landingContent.contactForm.fields.location, required: true },
-  { id: "billSize", label: landingContent.contactForm.fields.billSize, required: true },
-  { id: "whatsapp", label: landingContent.contactForm.fields.whatsapp, required: true },
+  { id: "name", label: contactForm.fields.name, required: true },
+  { id: "company", label: contactForm.fields.company, required: true },
+  { id: "location", label: contactForm.fields.location, required: true },
+  { id: "billSize", label: contactForm.fields.billSize, required: true },
+  { id: "whatsapp", label: contactForm.fields.whatsapp, required: true },
 ];
 
 export function ContactForm() {
@@ -56,7 +58,7 @@ export function ContactForm() {
 
       if (!response.ok) {
         const payload = (await response.json()) as { error?: string };
-        throw new Error(payload.error ?? landingContent.contactForm.errorMessage);
+        throw new Error(payload.error ?? contactForm.errorMessage);
       }
 
       setStatus("success");
@@ -64,7 +66,7 @@ export function ContactForm() {
     } catch (error) {
       setStatus("error");
       setErrorMessage(
-        error instanceof Error ? error.message : landingContent.contactForm.errorMessage,
+        error instanceof Error ? error.message : contactForm.errorMessage,
       );
     }
   };
@@ -100,11 +102,11 @@ export function ContactForm() {
       ))}
 
       <Button type="submit" variant="primary" className="w-full" disabled={status === "loading"}>
-        {status === "loading" ? "Submitting..." : landingContent.contactForm.submitLabel}
+        {status === "loading" ? "Submitting..." : contactForm.submitLabel}
       </Button>
 
       {status === "success" ? (
-        <p className="text-sm font-medium text-primary">{landingContent.contactForm.successMessage}</p>
+        <p className="text-sm font-medium text-primary">{contactForm.successMessage}</p>
       ) : null}
 
       {status === "error" ? (

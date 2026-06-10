@@ -43,7 +43,7 @@ export const aboutContent = {
     vision: {
       title: "Vision",
       description:
-        "Indian manufacturing competes on unit economics, energy waste should be as visible and controllable as scrap rate or OEE.",
+        "Indian manufacturing competes on unit economics; energy waste should be as visible and controllable as scrap rate or OEE.",
     },
     mission: {
       title: "Mission",
@@ -101,10 +101,10 @@ export const aboutContent = {
       },
       {
         id: "utso",
-        name: "Utso S.",
+        name: "Utsavsar Karan",
         role: "Co-Founder",
         imageSrc: "/team/utso.jpg",
-        imageAlt: "Utso S., Co-Founder of Stamped Energy",
+        imageAlt: "Utsavsar Karan, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/utso/",
         bio: "Leads core engineering and systems architecture. Mathematics & Computing at IIT Roorkee. Background building production software, from mobile platforms to data pipelines, with a focus on reliable systems that run in real plant environments.",
       },
@@ -134,7 +134,7 @@ export const aboutContent = {
         period: "2026",
         title: "Prescriptive intelligence",
         description:
-          "Launched Stamped Energy with pilot-led deployments. Prescriptions ranked by monthly rupee impact, verified on the next utility bill before annual commitment.",
+          "Building Stamped Energy with pilot-led deployments. Prescriptions ranked by monthly rupee impact, verified on the next utility bill before annual commitment.",
       },
     ],
   },
@@ -144,6 +144,6 @@ export const aboutContent = {
     title: "Tell us about your plant",
     description:
       "Share your incomer setup and production profile. We'll follow up to schedule a discovery conversation, no hardware retrofit required.",
-    primaryCta: { label: "Book a Discovery Call", href: "#contact" },
+    primaryCta: { label: "Book a Discovery Call", href: "/contact" },
   },
 } as const;

@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 
 import { AboutPageView } from "@/components/about/AboutPage";
-import { siteConfig } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+const ABOUT_DESCRIPTION =
+  "Stamped Energy, software for plant heads who need verified rupee savings on the electricity bill, not another monitoring dashboard.";
+
+export const metadata: Metadata = buildPageMetadata({
   title: "About Us",
-  description:
-    "Stamped Energy, software for plant heads who need verified rupee savings on the electricity bill, not another monitoring dashboard.",
-  openGraph: {
-    title: `About Us | ${siteConfig.name}`,
-    description: siteConfig.description,
-  },
-};
+  description: ABOUT_DESCRIPTION,
+  path: "/about",
+});
 
 export default function AboutRoute() {
   return <AboutPageView />;

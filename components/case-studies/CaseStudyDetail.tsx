@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
+import { ArticleAuthorCard } from "@/components/blog/ArticleAuthorCard";
 import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
@@ -11,6 +12,7 @@ import { Container } from "@/components/ui/Container";
 import { IndustryPageCta } from "@/components/industries/shared/IndustryPageCta";
 import { caseStudiesContent } from "@/lib/content/caseStudies";
 import type { CaseStudyDTO } from "@/lib/case-studies/studies";
+import { formatBlogDate } from "@/lib/blog/utils";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
@@ -120,7 +122,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
                 />
               </article>
 
-              {study.outcomes.length > 0 ? (
+              {study.outcomes.length > 0 && study.contentFormat !== "RICH" ? (
                 <article data-cs-detail>
                   <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                     Key outcomes
@@ -155,9 +157,11 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
                 </p>
                 <p className="mt-1 font-bold text-on-surface">{study.industry}</p>
                 <p className="mt-3 text-xs text-on-surface-variant">
-                  {study.readTimeMin} min read · {study.authorName}
+                  {study.publishedAt ? `${formatBlogDate(study.publishedAt)} · ` : ""}
+                  {study.readTimeMin} min read · {study.author.name}
                 </p>
               </div>
+              <ArticleAuthorCard author={study.author} />
               <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 shadow-sm">
                 <p className="text-sm font-bold text-on-surface">
                   Want similar outcomes on your plant?
@@ -165,7 +169,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
                 <p className="mt-2 text-sm leading-6 text-on-surface-variant">
                   Start with a pilot. Verify savings on your next bill before annual commitment.
                 </p>
-                <Button href="#contact" variant="primary" className="mt-4 w-full">
+                <Button href="/contact" variant="primary" className="mt-4 w-full">
                   Book a Discovery Call
                 </Button>
               </div>

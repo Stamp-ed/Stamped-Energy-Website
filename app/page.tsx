@@ -1,4 +1,4 @@
-import { FinalCta } from "@/components/sections/FinalCta";
+import { LandingClosingCta } from "@/components/sections/LandingClosingCta";
 import { FutureMedia } from "@/components/sections/FutureMedia";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -25,7 +25,7 @@ export default function HomePage() {
       <WhyStamped />
       <FutureMedia />
       <IndustryResources />
-      <FinalCta />
+      <LandingClosingCta />
     </>
   );
 }
