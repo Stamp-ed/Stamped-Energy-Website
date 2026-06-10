@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { contactContent } from "@/lib/content/contact";
+import { validateContactSubmission } from "@/lib/contact/validate";
 import { cn } from "@/lib/utils";
 
 type ContactFormState = {
@@ -12,7 +13,10 @@ type ContactFormState = {
   location: string;
   billSize: string;
   whatsapp: string;
+  email: string;
 };
+
+type ContactFieldKey = keyof ContactFormState;
 
 const initialState: ContactFormState = {
   name: "",
@@ -20,34 +24,72 @@ const initialState: ContactFormState = {
   location: "",
   billSize: "",
   whatsapp: "",
-};
-
-type FieldConfig = {
-  id: keyof ContactFormState;
-  label: string;
-  type?: string;
-  required?: boolean;
+  email: "",
 };
 
 const { contactForm } = contactContent;
 
-const fields: FieldConfig[] = [
-  { id: "name", label: contactForm.fields.name, required: true },
-  { id: "company", label: contactForm.fields.company, required: true },
-  { id: "location", label: contactForm.fields.location, required: true },
-  { id: "billSize", label: contactForm.fields.billSize, required: true },
-  { id: "whatsapp", label: contactForm.fields.whatsapp, required: true },
-];
+function FieldLabel({
+  htmlFor,
+  label,
+  optional,
+}: {
+  htmlFor: string;
+  label: string;
+  optional?: boolean;
+}) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant"
+    >
+      <span>{label}</span>
+      {optional ? (
+        <span className="rounded-md bg-surface-container px-1.5 py-0.5 text-[10px] font-medium normal-case tracking-normal text-on-surface-variant">
+          {contactForm.optionalLabel}
+        </span>
+      ) : null}
+    </label>
+  );
+}
+
+const inputClassName = cn(
+  "h-12 w-full rounded-md border border-outline-variant bg-surface-lowest px-4 text-sm text-on-surface",
+  "outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/25",
+);
 
 export function ContactForm() {
   const [formState, setFormState] = useState<ContactFormState>(initialState);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<ContactFieldKey, string>>>({});
+
+  const updateField = (field: ContactFieldKey, value: string) => {
+    setFormState((current) => ({ ...current, [field]: value }));
+    setFieldErrors((current) => {
+      if (!current[field]) {
+        return current;
+      }
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
+  };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus("loading");
     setErrorMessage("");
+
+    const validation = validateContactSubmission(formState);
+    if (!validation.ok) {
+      setStatus("error");
+      setErrorMessage(validation.error);
+      if (validation.field) {
+        setFieldErrors({ [validation.field]: validation.error });
+      }
+      return;
+    }
 
     try {
       const response = await fetch("/api/contact", {
@@ -56,13 +98,15 @@ export function ContactForm() {
         body: JSON.stringify(formState),
       });
 
+      const payload = (await response.json()) as { error?: string };
+
       if (!response.ok) {
-        const payload = (await response.json()) as { error?: string };
         throw new Error(payload.error ?? contactForm.errorMessage);
       }
 
       setStatus("success");
       setFormState(initialState);
+      setFieldErrors({});
     } catch (error) {
       setStatus("error");
       setErrorMessage(
@@ -71,35 +115,116 @@ export function ContactForm() {
     }
   };
 
+  const renderError = (field: ContactFieldKey) =>
+    fieldErrors[field] ? (
+      <p className="mt-1.5 text-xs font-medium text-error">{fieldErrors[field]}</p>
+    ) : null;
+
   return (
     <form onSubmit={onSubmit} className="space-y-5" suppressHydrationWarning>
-      {fields.map((field) => (
-        <div key={field.id}>
-          <label
-            htmlFor={field.id}
-            className="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant"
-          >
-            {field.label}
-          </label>
-          <input
-            id={field.id}
-            name={field.id}
-            type={field.type ?? "text"}
-            required={field.required}
-            value={formState[field.id]}
-            onChange={(event) =>
-              setFormState((current) => ({
-                ...current,
-                [field.id]: event.target.value,
-              }))
-            }
-            className={cn(
-              "h-12 w-full rounded-md border border-outline-variant bg-surface-lowest px-4 text-sm text-on-surface",
-              "outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/25",
-            )}
-          />
+      <div>
+        <FieldLabel htmlFor="name" label={contactForm.fields.name} />
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          autoComplete="name"
+          value={formState.name}
+          onChange={(event) => updateField("name", event.target.value)}
+          className={cn(inputClassName, fieldErrors.name && "border-error focus:border-error focus:ring-error/25")}
+        />
+        {renderError("name")}
+      </div>
+
+      <div>
+        <FieldLabel htmlFor="company" label={contactForm.fields.company} />
+        <input
+          id="company"
+          name="company"
+          type="text"
+          required
+          autoComplete="organization"
+          value={formState.company}
+          onChange={(event) => updateField("company", event.target.value)}
+          className={cn(
+            inputClassName,
+            fieldErrors.company && "border-error focus:border-error focus:ring-error/25",
+          )}
+        />
+        {renderError("company")}
+      </div>
+
+      <div>
+        <FieldLabel htmlFor="location" label={contactForm.fields.location} optional />
+        <input
+          id="location"
+          name="location"
+          type="text"
+          autoComplete="address-level2"
+          value={formState.location}
+          onChange={(event) => updateField("location", event.target.value)}
+          className={inputClassName}
+        />
+      </div>
+
+      <div>
+        <FieldLabel htmlFor="billSize" label={contactForm.fields.billSize} optional />
+        <input
+          id="billSize"
+          name="billSize"
+          type="text"
+          value={formState.billSize}
+          onChange={(event) => updateField("billSize", event.target.value)}
+          className={inputClassName}
+        />
+      </div>
+
+      <div className="rounded-lg border border-outline-variant/60 bg-surface-container-low/40 p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">
+          How should we reach you?
+        </p>
+        <p className="mt-1 text-sm text-on-surface-variant">{contactForm.contactMethodHint}</p>
+
+        <div className="mt-4 space-y-4">
+          <div>
+            <FieldLabel htmlFor="whatsapp" label={contactForm.fields.whatsapp} />
+            <input
+              id="whatsapp"
+              name="whatsapp"
+              type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+              placeholder="e.g. 9876543210"
+              value={formState.whatsapp}
+              onChange={(event) => updateField("whatsapp", event.target.value)}
+              className={cn(
+                inputClassName,
+                fieldErrors.whatsapp && "border-error focus:border-error focus:ring-error/25",
+              )}
+            />
+            {renderError("whatsapp")}
+          </div>
+
+          <div>
+            <FieldLabel htmlFor="email" label={contactForm.fields.email} />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="you@company.com"
+              value={formState.email}
+              onChange={(event) => updateField("email", event.target.value)}
+              className={cn(
+                inputClassName,
+                fieldErrors.email && "border-error focus:border-error focus:ring-error/25",
+              )}
+            />
+            {renderError("email")}
+          </div>
         </div>
-      ))}
+      </div>
 
       <Button type="submit" variant="primary" className="w-full" disabled={status === "loading"}>
         {status === "loading" ? "Submitting..." : contactForm.submitLabel}
@@ -109,7 +234,7 @@ export function ContactForm() {
         <p className="text-sm font-medium text-primary">{contactForm.successMessage}</p>
       ) : null}
 
-      {status === "error" ? (
+      {status === "error" && !Object.keys(fieldErrors).length ? (
         <p className="text-sm font-medium text-error">{errorMessage}</p>
       ) : null}
     </form>

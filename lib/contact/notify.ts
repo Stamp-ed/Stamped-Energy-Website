@@ -20,13 +20,18 @@ function getFromAddress(): string {
   return process.env.CONTACT_FROM_EMAIL?.trim() || "Stamped Energy <contact@stamped.work>";
 }
 
+function displayValue(value: string | null | undefined): string {
+  return value?.trim() ? value : "—";
+}
+
 function buildEmailHtml(submission: ContactSubmissionInput, receivedAt: string): string {
   const rows = [
     ["Name", submission.name],
     ["Company", submission.company],
-    ["Plant location", submission.location],
-    ["Monthly bill (approx.)", submission.billSize],
-    ["WhatsApp", submission.whatsapp],
+    ["Plant location", displayValue(submission.location)],
+    ["Monthly bill (approx.)", displayValue(submission.billSize)],
+    ["WhatsApp", displayValue(submission.whatsapp)],
+    ["Email", displayValue(submission.email)],
     ["Received at", receivedAt],
   ];
 

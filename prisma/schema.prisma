@@ -92,9 +92,10 @@ model ContactSubmission {
   id        String   @id @default(cuid())
   name      String
   company   String
-  location  String
-  billSize  String
-  whatsapp  String
+  location  String?
+  billSize  String?
+  whatsapp  String?
+  email     String?
   createdAt DateTime @default(now())
 
   @@index([createdAt])

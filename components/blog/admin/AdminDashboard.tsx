@@ -1,16 +1,28 @@
 import Link from "next/link";
 
 import { AdminDashboardTable } from "@/components/blog/admin/AdminDashboardTable";
+import { ContactInquiryDashboardTable } from "@/components/blog/admin/ContactInquiryDashboardTable";
 import { AdminPageHeader } from "@/components/blog/admin/ui/AdminPageHeader";
 import { AdminStatCard } from "@/components/blog/admin/ui/AdminStatCard";
 import type { getAdminStats, listAdminPosts } from "@/lib/blog/posts";
+import type {
+  ContactSubmissionRecord,
+  getContactSubmissionStats,
+} from "@/lib/contact/submissions";
 
 type AdminDashboardProps = {
   stats: Awaited<ReturnType<typeof getAdminStats>>;
   posts: Awaited<ReturnType<typeof listAdminPosts>>;
+  inquiryStats: Awaited<ReturnType<typeof getContactSubmissionStats>>;
+  recentInquiries: ContactSubmissionRecord[];
 };
 
-export function AdminDashboard({ stats, posts }: AdminDashboardProps) {
+export function AdminDashboard({
+  stats,
+  posts,
+  inquiryStats,
+  recentInquiries,
+}: AdminDashboardProps) {
   const recent = posts.slice(0, 8);
 
   return (
@@ -66,6 +78,46 @@ export function AdminDashboard({ stats, posts }: AdminDashboardProps) {
           hint="Homepage picks"
         />
       </div>
+
+      <section>
+        <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-[var(--admin-text)]">Contact inquiries</h2>
+            <p className="mt-0.5 text-sm text-[var(--admin-text-secondary)]">
+              Discovery form submissions from the public site.
+            </p>
+          </div>
+          <Link
+            href="/blog/admin/inquiries"
+            className="text-sm font-medium text-[var(--admin-accent)] hover:underline"
+          >
+            View all inquiries
+          </Link>
+        </div>
+
+        <div className="mb-4 grid gap-3 sm:grid-cols-3">
+          <AdminStatCard
+            label="Total inquiries"
+            value={inquiryStats.total}
+            href="/blog/admin/inquiries"
+            hint="All time"
+          />
+          <AdminStatCard
+            label="Last 7 days"
+            value={inquiryStats.last7Days}
+            href="/blog/admin/inquiries"
+            hint="Recent leads"
+          />
+          <AdminStatCard
+            label="Last 30 days"
+            value={inquiryStats.last30Days}
+            href="/blog/admin/inquiries"
+            hint="This month"
+          />
+        </div>
+
+        <ContactInquiryDashboardTable inquiries={recentInquiries} />
+      </section>
 
       <section>
         <div className="mb-3 flex flex-wrap items-end justify-between gap-3">

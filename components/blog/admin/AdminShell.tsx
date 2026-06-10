@@ -18,6 +18,7 @@ const NAV = [
   { href: "/blog/admin", label: "Dashboard", exact: true },
   { href: "/blog/admin/posts", label: "Blog posts" },
   { href: "/blog/admin/case-studies", label: "Case studies" },
+  { href: "/blog/admin/inquiries", label: "Contact inquiries" },
 ];
 
 function isActive(pathname: string, href: string, exact?: boolean) {
@@ -45,7 +46,7 @@ export function AdminShell({ children, userName, userEmail }: AdminShellProps) {
           <Image src="/LogoOrange.png" alt="Stamped Energy" width={28} height={28} className="h-7 w-7" />
           <div>
             <p className="text-sm font-semibold text-[var(--admin-sidebar-text)]">Stamped Energy</p>
-            <p className="text-xs text-[var(--admin-sidebar-muted)]">Content CMS</p>
+            <p className="text-xs text-[var(--admin-sidebar-muted)]">Admin</p>
           </div>
         </Link>
       </div>
@@ -94,6 +95,13 @@ export function AdminShell({ children, userName, userEmail }: AdminShellProps) {
             className="flex w-full items-center justify-center rounded-lg border border-[var(--admin-sidebar-border)] px-3 py-2 text-xs font-medium text-[var(--admin-sidebar-muted)] transition-colors hover:bg-[var(--admin-sidebar-hover)] hover:text-[var(--admin-sidebar-text)]"
           >
             View case studies
+          </Link>
+          <Link
+            href={marketingPath("/contact")}
+            target="_blank"
+            className="flex w-full items-center justify-center rounded-lg border border-[var(--admin-sidebar-border)] px-3 py-2 text-xs font-medium text-[var(--admin-sidebar-muted)] transition-colors hover:bg-[var(--admin-sidebar-hover)] hover:text-[var(--admin-sidebar-text)]"
+          >
+            View contact page
           </Link>
           <button
             type="button"
