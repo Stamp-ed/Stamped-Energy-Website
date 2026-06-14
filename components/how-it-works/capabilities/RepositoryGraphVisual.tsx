@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import { useCompactVisual } from "@/components/how-it-works/capabilities/useCompactVisual";
 import { useMotion } from "@/components/motion/MotionProvider";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
@@ -114,7 +115,11 @@ export function RepositoryGraphVisual() {
       gsap.set(nodes, { autoAlpha: 0, scale: 0.55, left: hubPos.left, top: hubPos.top });
 
       const timeline = gsap.timeline({
-        scrollTrigger: { trigger: stageRef.current, start: "top 88%", once: true },
+        scrollTrigger: {
+          trigger: stageRef.current,
+          start: getHiwScrollStart("capabilityDiagram", compact),
+          once: true,
+        },
       });
 
       timeline.to(hubRef.current, {

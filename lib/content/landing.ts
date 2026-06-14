@@ -18,6 +18,12 @@ export const landingContent = {
       "Connect existing plant data. Get rupee-denominated prescriptions. Verify savings on your next bill.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
+    video: {
+      webm: "/video/how-it-works-cinematic.webm",
+      poster: "/video/how-it-works-poster.png",
+      label:
+        "How Stamped Energy works: connect plant data, get rupee-denominated AI prescriptions, verify savings on your next bill.",
+    },
     visualImageSrc: "/industries/die-casting.jpeg",
     visualImageAlt: "Molten metal pour in a die casting plant, energy-intensive automotive manufacturing",
   },

@@ -6,6 +6,7 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwBeforeAfter() {
@@ -19,31 +20,41 @@ export function HiwBeforeAfter() {
         return;
       }
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 72%",
-          once: true,
-        },
-      });
+      const mm = gsap.matchMedia();
+      const buildTimeline = (mobile: boolean) => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: getHiwScrollStart("sectionReveal", mobile),
+            once: true,
+          },
+        });
 
-      timeline
-        .from("[data-before-card]", {
-          autoAlpha: 0,
-          x: -24,
-          duration: 0.6,
-          ease: "power2.out",
-        })
-        .from(
-          "[data-after-card]",
-          { autoAlpha: 0, x: 24, duration: 0.6, ease: "power2.out" },
-          "-=0.45",
-        )
-        .from(
-          "[data-before-item], [data-after-item]",
-          { autoAlpha: 0, y: 10, duration: 0.35, stagger: 0.06, ease: "power2.out" },
-          "-=0.35",
-        );
+        timeline
+          .from("[data-before-card]", {
+            autoAlpha: 0,
+            x: -24,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+          .from(
+            "[data-after-card]",
+            { autoAlpha: 0, x: 24, duration: 0.6, ease: "power2.out" },
+            "-=0.45",
+          )
+          .from(
+            "[data-before-item], [data-after-item]",
+            { autoAlpha: 0, y: 10, duration: 0.35, stagger: 0.06, ease: "power2.out" },
+            "-=0.35",
+          );
+
+        return timeline;
+      };
+
+      mm.add("(min-width: 768px)", () => buildTimeline(false));
+      mm.add("(max-width: 767px)", () => buildTimeline(true));
+
+      return () => mm.revert();
     },
     {
       scope: sectionRef,

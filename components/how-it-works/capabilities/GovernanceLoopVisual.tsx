@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 
 import { useCompactVisual } from "@/components/how-it-works/capabilities/useCompactVisual";
 import { useMotion } from "@/components/motion/MotionProvider";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
@@ -137,7 +138,11 @@ export function GovernanceLoopVisual() {
       gsap.set(barRef.current, { scaleX: 0, transformOrigin: "left center" });
 
       const timeline = gsap.timeline({
-        scrollTrigger: { trigger: scope, start: "top 76%", once: true },
+        scrollTrigger: {
+          trigger: scope,
+          start: getHiwScrollStart("capabilityDiagram", compact),
+          once: true,
+        },
       });
 
       segments.forEach((segment, index) => {

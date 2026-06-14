@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import type { HiwSldNode } from "@/lib/content/types";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
@@ -67,27 +68,61 @@ export function PlantSldDiagram({ nodes, hint, className }: PlantSldDiagramProps
       });
       gsap.set(nodeEls, { autoAlpha: 0, scale: 0.92 });
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: rootRef.current,
-          start: "top 82%",
-          once: true,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: getHiwScrollStart("diagram", false),
+            once: true,
+          },
+        });
+
+        timeline.to(lines, {
+          strokeDashoffset: 0,
+          autoAlpha: 1,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: "power2.inOut",
+        });
+
+        timeline.to(
+          nodeEls,
+          { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.05, ease: "back.out(1.4)" },
+          "-=0.45",
+        );
+
+        return () => timeline.kill();
       });
 
-      timeline.to(lines, {
-        strokeDashoffset: 0,
-        autoAlpha: 1,
-        duration: 0.7,
-        stagger: 0.06,
-        ease: "power2.inOut",
+      mm.add("(max-width: 767px)", () => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: getHiwScrollStart("diagram", true),
+            once: true,
+          },
+        });
+
+        timeline.to(lines, {
+          strokeDashoffset: 0,
+          autoAlpha: 1,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: "power2.inOut",
+        });
+
+        timeline.to(
+          nodeEls,
+          { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.05, ease: "back.out(1.4)" },
+          "-=0.45",
+        );
+
+        return () => timeline.kill();
       });
 
-      timeline.to(
-        nodeEls,
-        { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.05, ease: "back.out(1.4)" },
-        "-=0.45",
-      );
+      return () => mm.revert();
     },
     {
       scope: rootRef,

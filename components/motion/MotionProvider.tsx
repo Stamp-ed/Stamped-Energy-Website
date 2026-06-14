@@ -110,7 +110,6 @@ export function MotionProvider({ children }: MotionProviderProps) {
       lenis.destroy();
       document.documentElement.classList.remove("lenis");
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      setIsReady(false);
     };
   }, []);
 

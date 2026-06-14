@@ -88,9 +88,8 @@ export function IndustriesMobileNav({
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const industriesLink = navLinks.find((link) => link.megaMenu === "industries");
-  const vertical = industriesContent.verticals[0];
 
-  if (!industriesLink || !vertical) {
+  if (!industriesLink) {
     return null;
   }
 
@@ -123,27 +122,15 @@ export function IndustriesMobileNav({
           >
             All industries
           </Link>
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-primary">
-            {vertical.name}
-          </p>
           <ul className="space-y-1.5">
-            <li>
-              <Link
-                href={vertical.href}
-                className="block text-sm text-on-surface-variant hover:text-primary"
-                onClick={onNavigate}
-              >
-                {vertical.name} overview
-              </Link>
-            </li>
-            {vertical.segments.map((segment) => (
-              <li key={segment.id}>
+            {industriesContent.verticals.map((item) => (
+              <li key={item.id}>
                 <Link
-                  href={segment.href}
-                  className="block pl-2 text-sm text-on-surface-variant hover:text-primary"
+                  href={item.href}
+                  className="block text-sm text-on-surface-variant hover:text-primary"
                   onClick={onNavigate}
                 >
-                  {segment.name}
+                  {item.name}
                 </Link>
               </li>
             ))}

@@ -6,6 +6,7 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwPageCta() {
@@ -19,17 +20,37 @@ export function HiwPageCta() {
         return;
       }
 
-      gsap.from("[data-hiw-cta]", {
-        autoAlpha: 0,
-        y: 32,
-        duration: 0.75,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.from("[data-hiw-cta]", {
+          autoAlpha: 0,
+          y: 32,
+          duration: 0.75,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: getHiwScrollStart("sectionReveal", false),
+            once: true,
+          },
+        });
       });
+
+      mm.add("(max-width: 767px)", () => {
+        gsap.from("[data-hiw-cta]", {
+          autoAlpha: 0,
+          y: 32,
+          duration: 0.75,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: getHiwScrollStart("sectionReveal", true),
+            once: true,
+          },
+        });
+      });
+
+      return () => mm.revert();
     },
     {
       scope: sectionRef,

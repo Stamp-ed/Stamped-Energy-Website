@@ -6,6 +6,7 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
 
 const CARD_DURATION = 0.72;
@@ -105,12 +106,12 @@ export function HiwIntelligenceStack() {
 
       mm.add("(min-width: 1024px)", () => {
         const arrows = gsap.utils.toArray<HTMLElement>("[data-stack-arrow-draw]");
-        return playOnce(arrows, "x", "top 78%");
+        return playOnce(arrows, "x", getHiwScrollStart("intelligenceStack", false));
       });
 
       mm.add("(max-width: 1023px)", () => {
         const mobileArrows = gsap.utils.toArray<HTMLElement>("[data-stack-arrow-draw-mobile]");
-        return playOnce(mobileArrows, "y", "top 82%");
+        return playOnce(mobileArrows, "y", getHiwScrollStart("intelligenceStack", true));
       });
 
       return () => mm.revert();

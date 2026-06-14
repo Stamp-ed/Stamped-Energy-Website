@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
 import { animateDiagramPanel } from "@/lib/motion/animateDiagram";
+import { hiwScrollStarts } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
 import { getPinScrollStart } from "@/lib/motion/pinLayout";
 import { cn } from "@/lib/utils";
@@ -109,6 +110,8 @@ export function HiwPinnedJourney() {
         const panels = gsap.utils.toArray<HTMLElement>("[data-journey-panel-mobile]");
 
         panels.forEach((panel) => {
+          const diagram = panel.querySelector<HTMLElement>("[data-step-diagram]");
+
           gsap.from(panel, {
             autoAlpha: 0,
             y: 36,
@@ -116,14 +119,14 @@ export function HiwPinnedJourney() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: panel,
-              start: "top 85%",
+              start: hiwScrollStarts.journeyMobileFade.mobile,
               once: true,
             },
           });
 
           ScrollTrigger.create({
-            trigger: panel,
-            start: "top 70%",
+            trigger: diagram ?? panel,
+            start: hiwScrollStarts.journeyMobileDiagram.mobile,
             once: true,
             onEnter: () => animateDiagramPanel(panel),
           });
@@ -232,7 +235,7 @@ export function HiwPinnedJourney() {
             data-journey-panel-mobile
             className="min-w-0 overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
           >
-            <div className="min-w-0 p-3 pb-0 sm:p-4">
+            <div data-step-diagram className="min-w-0 p-3 pb-0 sm:p-4">
               <StepDiagram diagram={step.diagram} />
             </div>
             <div className="p-4 pt-3 sm:p-5 sm:pt-4">

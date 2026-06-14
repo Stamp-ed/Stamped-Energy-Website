@@ -1,25 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 import { landingContent } from "@/lib/content";
 import { easeOut, heroDelay, heroDuration, heroStagger } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const introPlayedRef = useRef(false);
   const { hero } = landingContent;
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
     () => {
-      if (!isReady || prefersReducedMotion) {
+      if (!isReady || prefersReducedMotion || introPlayedRef.current) {
         return;
       }
+
+      introPlayedRef.current = true;
 
       const section = sectionRef.current;
       if (!section) {
@@ -42,19 +45,7 @@ export function Hero() {
           "-=0.55",
         )
         .to("[data-hero='subheadline']", { autoAlpha: 1, y: 0 }, "-=0.5")
-        .to("[data-hero='ctas']", { autoAlpha: 1, y: 0 }, "-=0.5")
-        .to("[data-hero='visual']", { autoAlpha: 1, y: 0, duration: 0.85 }, "-=0.35");
-
-      gsap.to("[data-hero='visual-inner']", {
-        y: -28,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+        .to("[data-hero='ctas']", { autoAlpha: 1, y: 0 }, "-=0.5");
     },
     {
       scope: sectionRef,
@@ -63,24 +54,12 @@ export function Hero() {
   );
 
   const visualCard = (
-    <div className="relative aspect-[16/9] overflow-hidden">
-      <Image
-        src={hero.visualImageSrc}
-        alt={hero.visualImageAlt}
-        fill
-        className="object-cover object-[center_35%]"
-        sizes="(max-width: 1024px) 100vw, 896px"
-        priority
+    <div className="relative aspect-[16/9] overflow-hidden bg-surface-lowest">
+      <HeroVideo
+        webm={hero.video.webm}
+        poster={hero.video.poster}
+        label={hero.video.label}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-secondary/75 via-secondary/15 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-inverse-primary">
-          Process-intensive manufacturing
-        </p>
-        <p className="mt-1 max-w-md text-sm font-medium text-on-secondary/90">
-          Prescriptions tied to furnaces, compressors, and shift-start demand, verified on your next bill.
-        </p>
-      </div>
     </div>
   );
 
@@ -140,9 +119,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero="visual" className={visualClassName}>
-          <div data-hero="visual-inner">{visualCard}</div>
-        </div>
+        <div className={visualClassName}>{visualCard}</div>
       </Container>
     </section>
   );

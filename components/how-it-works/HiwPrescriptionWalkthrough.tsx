@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent, howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
 
 /** Prescription card used on How It Works when no live embed is configured */
@@ -25,18 +26,27 @@ function PrescriptionCard() {
 
       gsap.set(fields, { autoAlpha: 0.2, y: 8 });
 
-      ScrollTrigger.create({
-        trigger: cardRef.current,
-        start: "top 80%",
-        once: true,
-        animation: gsap.to(fields, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.4,
-          stagger: 0.08,
-          ease: "power2.out",
-        }),
-      });
+      const mm = gsap.matchMedia();
+
+      const bindReveal = (mobile: boolean) => {
+        ScrollTrigger.create({
+          trigger: cardRef.current,
+          start: getHiwScrollStart("diagram", mobile),
+          once: true,
+          animation: gsap.to(fields, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: "power2.out",
+          }),
+        });
+      };
+
+      mm.add("(min-width: 768px)", () => bindReveal(false));
+      mm.add("(max-width: 767px)", () => bindReveal(true));
+
+      return () => mm.revert();
     },
     { scope: cardRef, dependencies: [isReady, prefersReducedMotion] },
   );

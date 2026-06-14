@@ -6,6 +6,7 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwDeployment() {
@@ -20,48 +21,69 @@ export function HiwDeployment() {
         return;
       }
 
-      gsap.from("[data-deploy-phase]", {
-        autoAlpha: 0,
-        y: 24,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: trackRef.current,
-          start: "top 78%",
-          once: true,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.from("[data-deploy-phase]", {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: trackRef.current,
+            start: getHiwScrollStart("deploymentReveal", false),
+            once: true,
+          },
+        });
+
+        gsap.fromTo(
+          "[data-deploy-progress]",
+          { scaleX: 0, transformOrigin: "left center" },
+          {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: trackRef.current,
+              start: getHiwScrollStart("deploymentScrub", false),
+              end: "bottom 50%",
+              scrub: 0.6,
+            },
+          },
+        );
       });
 
-      gsap.fromTo(
-        "[data-deploy-progress]",
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          ease: "none",
+      mm.add("(max-width: 767px)", () => {
+        gsap.from("[data-deploy-phase]", {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: trackRef.current,
-            start: "top 70%",
-            end: "bottom 50%",
-            scrub: 0.6,
+            start: getHiwScrollStart("deploymentReveal", true),
+            once: true,
           },
-        },
-      );
+        });
 
-      gsap.fromTo(
-        "[data-deploy-progress-mobile]",
-        { scaleY: 0, transformOrigin: "top center" },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: trackRef.current,
-            start: "top 75%",
-            end: "bottom 40%",
-            scrub: 0.6,
+        gsap.fromTo(
+          "[data-deploy-progress-mobile]",
+          { scaleY: 0, transformOrigin: "top center" },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: trackRef.current,
+              start: getHiwScrollStart("deploymentScrub", true),
+              end: "bottom 40%",
+              scrub: 0.6,
+            },
           },
-        },
-      );
+        );
+      });
+
+      return () => mm.revert();
     },
     {
       scope: sectionRef,

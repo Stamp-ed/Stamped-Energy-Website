@@ -7,6 +7,7 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howItWorksContent } from "@/lib/content";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwCapabilities() {
@@ -21,20 +22,41 @@ export function HiwCapabilities() {
       }
 
       const cards = gsap.utils.toArray<HTMLElement>("[data-capability-card]");
+      const mm = gsap.matchMedia();
 
-      gsap.set(cards, { autoAlpha: 0, y: 28 });
-      gsap.to(cards, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.65,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 78%",
-          once: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        gsap.set(cards, { autoAlpha: 0, y: 28 });
+        gsap.to(cards, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: getHiwScrollStart("sectionReveal", false),
+            once: true,
+          },
+        });
       });
+
+      mm.add("(max-width: 767px)", () => {
+        gsap.set(cards, { autoAlpha: 0, y: 28 });
+        gsap.to(cards, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: getHiwScrollStart("sectionReveal", true),
+            once: true,
+          },
+        });
+      });
+
+      return () => mm.revert();
     },
     {
       scope: sectionRef,

@@ -65,7 +65,7 @@ export async function middleware(request: NextRequest) {
       !isAdminApiRoute &&
       !pathname.startsWith("/_next") &&
       pathname !== "/favicon.ico" &&
-      !pathname.match(/\.(png|jpg|jpeg|webp|svg|ico|css|js)$/)
+      !pathname.match(/\.(png|jpg|jpeg|webp|svg|ico|css|js|webm|mp4|mov)$/)
     ) {
       return NextResponse.redirect(new URL(marketingPath(pathname)));
     }

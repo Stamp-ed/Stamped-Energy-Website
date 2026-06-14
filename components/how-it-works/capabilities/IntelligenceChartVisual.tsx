@@ -2,7 +2,9 @@
 
 import { useRef } from "react";
 
+import { useCompactVisual } from "@/components/how-it-works/capabilities/useCompactVisual";
 import { useMotion } from "@/components/motion/MotionProvider";
+import { getHiwScrollStart } from "@/lib/motion/hiwScrollTrigger";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 const VIEW_W = 800;
@@ -39,6 +41,7 @@ const TIMING = {
 export function IntelligenceChartVisual() {
   const stageRef = useRef<HTMLDivElement>(null);
   const rxRef = useRef<HTMLDivElement>(null);
+  const compact = useCompactVisual();
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -63,7 +66,11 @@ export function IntelligenceChartVisual() {
       gsap.set("[data-intel-impact]", { autoAlpha: 0, scale: 0.85 });
 
       const timeline = gsap.timeline({
-        scrollTrigger: { trigger: scope, start: "top 76%", once: true },
+        scrollTrigger: {
+          trigger: scope,
+          start: getHiwScrollStart("capabilityDiagram", compact),
+          once: true,
+        },
       });
 
       timeline.to("[data-intel-grid]", {
@@ -121,7 +128,7 @@ export function IntelligenceChartVisual() {
         timeline.kill();
       };
     },
-    { scope: stageRef, dependencies: [isReady, prefersReducedMotion] },
+    { scope: stageRef, dependencies: [isReady, prefersReducedMotion, compact] },
   );
 
   return (
