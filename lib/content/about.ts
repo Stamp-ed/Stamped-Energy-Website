@@ -94,7 +94,7 @@ export const aboutContent = {
         id: "vinayak",
         name: "Vinayak Raizada",
         role: "Co-Founder",
-        imageSrc: "/team/vinayak.jpg",
+        imageSrc: "/team/vinayak.png",
         imageAlt: "Vinayak Raizada, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/vinayak-rz/",
         bio: "Leads core technical work, electrical engineering depth, strategy, and marketing. Electrical Engineering, IIT Roorkee. Focuses on prescriptive energy intelligence-turning meter, SCADA, and bill data into rupee-denominated actions plant teams can verify on the next DISCOM bill.",
