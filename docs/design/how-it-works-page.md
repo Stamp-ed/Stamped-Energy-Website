@@ -1,12 +1,12 @@
-# How It Works — Page Design Dock
+# How It Works - Page Design Dock
 
 **Route:** `/how-it-works`  
 **Last synced:** June 2026 (implementation on `main`)  
-**Parent system:** Forge Industrial v2.0 — see `docs/design/brand-tokens.md` and `styles/theme.css`  
+**Parent system:** Forge Industrial v2.0 - see `docs/design/brand-tokens.md` and `styles/theme.css`  
 **Content source:** `lib/content/howItWorks.ts`  
 **Component root:** `components/how-it-works/`
 
-This document captures the **full visual, structural, and motion essence** of the How It Works page as built — colors, typography, spacing, section rhythm, diagram language, and animation contracts. Use it when extending the page, swapping media, or briefing designers and engineers.
+This document captures the **full visual, structural, and motion essence** of the How It Works page as built - colors, typography, spacing, section rhythm, diagram language, and animation contracts. Use it when extending the page, swapping media, or briefing designers and engineers.
 
 ---
 
@@ -16,19 +16,19 @@ This document captures the **full visual, structural, and motion essence** of th
 A **prescriptive intelligence story** for Indian SME manufacturers: unified plant data → contextual analysis → prescriptions → floor execution → verified ₹ savings. It is diagram-first, scroll-driven, and intentionally **not** a wall of marketing copy.
 
 ### Narrative arc (top → bottom)
-1. **Hook** — What Stamped is, in one sentence + interactive plant SLD.
-2. **Workflow loop** — Five steps (Connect → Verify) as a pinned scroll journey.
-3. **Intelligence layer** — Four-step horizontal/vertical stack (Monitor → Track).
-4. **Product preview** — Prescription dashboard embed slot.
-5. **Core capabilities** — Four animated platform cards on a dark anchor band.
-6. **Before vs With Stamped** — Emotional contrast, 1×4 vertical lists.
-7. **Deployment path** — Timeline to live savings.
-8. **Final CTA** — Discovery call on dark band.
+1. **Hook** - What Stamped is, in one sentence + interactive plant SLD.
+2. **Workflow loop** - Five steps (Connect → Verify) as a pinned scroll journey.
+3. **Intelligence layer** - Four-step horizontal/vertical stack (Monitor → Track).
+4. **Product preview** - Prescription dashboard embed slot.
+5. **Core capabilities** - Four animated platform cards on a dark anchor band.
+6. **Before vs With Stamped** - Emotional contrast, 1×4 vertical lists.
+7. **Deployment path** - Timeline to live savings.
+8. **Final CTA** - Discovery call on dark band.
 
 ### Tone
-- **Industrial minimalism** — crisp borders, warm greys, coral accents; no soft consumer fluff.
-- **Operational credibility** — Modbus, SCADA, M&V, ₹, shift-aware language.
-- **Prescriptive, not passive** — “Prescriptions, not charts”; actions reach the floor.
+- **Industrial minimalism** - crisp borders, warm greys, coral accents; no soft consumer fluff.
+- **Operational credibility** - Modbus, SCADA, M&V, ₹, shift-aware language.
+- **Prescriptive, not passive** - “Prescriptions, not charts”; actions reach the floor.
 
 ---
 
@@ -69,7 +69,7 @@ All colors resolve to CSS variables in `styles/theme.css`. Tailwind utilities ma
 | **Primary / opacity** | `primary/5` – `primary/45` | Active nav cards, chips, callouts, gradients |
 | **Secondary** | `#051F13` | Dark section backgrounds (capabilities, intelligence, CTA) |
 | **On-secondary** | `#ffffff` | Headlines on dark bands |
-| **On-secondary / 80–90** | — | Body copy on dark bands |
+| **On-secondary / 80–90** | - | Body copy on dark bands |
 | **Inverse-surface** | `#2d312e` | Capability & stack card fills (`inverse-surface/50`) |
 | **Surface** | `#f7faf5` | Opening hero background |
 | **Surface-low** | `#f1f4f0` | Default light section fill |
@@ -100,7 +100,7 @@ radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand-primary) 12%, t
 - Hover shadow: `0_20px_48px_-28px color-mix(primary 45%, transparent)`
 
 **Capability visual panels**
-- Always `bg-surface-lowest` (white) inside dark cards — deliberate **light inset** for diagram readability
+- Always `bg-surface-lowest` (white) inside dark cards - deliberate **light inset** for diagram readability
 
 **Before card**
 - Header: `bg-surface-dim/60`, subtitle “Reactive · fragmented”
@@ -151,14 +151,14 @@ radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand-primary) 12%, t
 - **₹** always for Indian currency impact
 - **En-dash** in ranges: `Week 1–2`, `Open → Done`
 - **Middle dot** for lists: `Modbus · OPC-UA · MQTT`
-- **Before vs With Stamped** — capital W, no period after “vs”
+- **Before vs With Stamped** - capital W, no period after “vs”
 
 ---
 
 ## 5. Layout & grid
 
 ### Container
-Shared `Container` — max-width aligned with site grid (12-col, 1440px cap).
+Shared `Container` - max-width aligned with site grid (12-col, 1440px cap).
 
 ### Pinned workflow (desktop ≥1024px)
 - **12-column grid:** step nav `col-span-3`, diagram panel `col-span-9`
@@ -270,11 +270,11 @@ Shared stroke language: `var(--brand-primary)`, dashed connectors, rounded node 
 
 ### Workflow diagram animation (`animateDiagram.ts`)
 Unified sequence per step:
-1. **Label** — fade down, 0.38s  
-2. **Items** — stagger 0.09, slide ±14px, 0.44s  
-3. **Accent** — scale pop, delay 0.42s  
-4. **Footer** — fade up, delay 0.62s (where present)  
-5. **Connect** — measured SVG line draw, stagger 0.08  
+1. **Label** - fade down, 0.38s  
+2. **Items** - stagger 0.09, slide ±14px, 0.44s  
+3. **Accent** - scale pop, delay 0.42s  
+4. **Footer** - fade up, delay 0.62s (where present)  
+5. **Connect** - measured SVG line draw, stagger 0.08  
 
 ### Pin scroll (desktop journey)
 - `scrub: 0.35`
@@ -302,11 +302,11 @@ capabilities, beforeAfter, deployment, gifSlots, finalCta
 | 5 Verify | `verify` | `VerifyDiagram` |
 
 ### Capabilities (media-ready)
-Each capability has `mediaSrc: null` — swap for GIF/WebM without layout changes.
+Each capability has `mediaSrc: null` - swap for GIF/WebM without layout changes.
 
 ### Placeholder slots
 - Prescription embed: iframe/video/placeholder via `DashboardEmbed`
-- `gifSlots` — optional future captures
+- `gifSlots` - optional future captures
 
 ---
 
@@ -314,7 +314,7 @@ Each capability has `mediaSrc: null` — swap for GIF/WebM without layout change
 
 | Element | Radius |
 |---------|--------|
-| Buttons | `md` (8px) — site `Button` |
+| Buttons | `md` (8px) - site `Button` |
 | Diagram cards / nodes | `rounded-lg` (8px) |
 | Section cards | `rounded-xl` (12px) |
 | Capability cards | `rounded-2xl` (16px) |
@@ -338,21 +338,21 @@ Each capability has `mediaSrc: null` — swap for GIF/WebM without layout change
 ## 11. File map (implementation)
 
 ```
-app/how-it-works/page.tsx          — section order & metadata
-lib/content/howItWorks.ts          — all copy & structured content
-lib/motion/animateDiagram.ts       — workflow diagram animations
-lib/motion/pinLayout.ts            — pin start offset
+app/how-it-works/page.tsx          - section order & metadata
+lib/content/howItWorks.ts          - all copy & structured content
+lib/motion/animateDiagram.ts       - workflow diagram animations
+lib/motion/pinLayout.ts            - pin start offset
 
 components/how-it-works/
-  HiwOpening.tsx                   — hero + SLD
-  PlantSldDiagram.tsx              — interactive opening diagram
-  HiwPinnedJourney.tsx             — pinned 5-step journey
-  diagrams/                        — DiagramShell + 5 step diagrams
-  HiwIntelligenceStack.tsx         — 4-layer stack
-  HiwPrescriptionWalkthrough.tsx   — dashboard embed
+  HiwOpening.tsx                   - hero + SLD
+  PlantSldDiagram.tsx              - interactive opening diagram
+  HiwPinnedJourney.tsx             - pinned 5-step journey
+  diagrams/                        - DiagramShell + 5 step diagrams
+  HiwIntelligenceStack.tsx         - 4-layer stack
+  HiwPrescriptionWalkthrough.tsx   - dashboard embed
   DashboardEmbed.tsx
-  HiwCapabilities.tsx              — 4 capability cards
-  capabilities/                    — GSAP visuals (ingestion, repo, intel, gov)
+  HiwCapabilities.tsx              - 4 capability cards
+  capabilities/                    - GSAP visuals (ingestion, repo, intel, gov)
   HiwBeforeAfter.tsx
   HiwDeployment.tsx
   HiwPageCta.tsx
@@ -365,14 +365,14 @@ components/how-it-works/
 ### Do
 - Keep diagram canvases **white** inside dark capability cards
 - Use **primary coral** for data flow lines and active workflow steps
-- Maintain **diagram-first** density — chips over bullet walls
+- Maintain **diagram-first** density - chips over bullet walls
 - Alternate light/dark sections for scroll rhythm
 - Measure connector lines dynamically (Connect diagram) when DOM layout is used
 
 ### Don’t
-- Introduce off-brand colors (e.g. WhatsApp green) — use primary-tinted surfaces
-- Mix diagram styles across the five workflow steps — use `DiagramShell` primitives
-- Add long prose blocks to journey steps — tagline + chips only
+- Introduce off-brand colors (e.g. WhatsApp green) - use primary-tinted surfaces
+- Mix diagram styles across the five workflow steps - use `DiagramShell` primitives
+- Add long prose blocks to journey steps - tagline + chips only
 - Place capabilities above the workflow loop (current order is intentional: journey → stack → product → capabilities)
 
 ---
@@ -385,7 +385,7 @@ components/how-it-works/
 | `styles/theme.css` | Single source of truth for hex values |
 | `DECISIONS.md` | ADR: Option C opening (SLD + capabilities) |
 | `IMPLEMENTATION_PLAN.md` | Phase history for HIW build |
-| `lib/content/howItWorks.ts` | Live content — sync copy changes here first |
+| `lib/content/howItWorks.ts` | Live content - sync copy changes here first |
 
 ---
 

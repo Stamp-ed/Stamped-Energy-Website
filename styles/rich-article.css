@@ -1,4 +1,4 @@
-/* Medium-inspired article typography — editor + public reading view */
+/* Medium-inspired article typography - editor + public reading view */
 
 .rich-article {
   --rich-measure: 42rem;
@@ -156,7 +156,7 @@
   margin-inline: auto;
 }
 
-/* Public reading column — centered Medium-style */
+/* Public reading column - centered Medium-style */
 .rich-article-reading {
   margin-inline: auto;
 }

@@ -65,7 +65,7 @@ export function GifPlaceholder({
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            WebM / GIF loop — placeholder
+            WebM / GIF loop - placeholder
           </p>
           <h3 className="mt-3 max-w-lg text-lg font-bold text-on-surface md:text-xl">{title}</h3>
           <p className="mt-2 max-w-md text-sm leading-6 text-on-surface-variant">{description}</p>
@@ -86,7 +86,7 @@ export function GifPlaceholder({
       )}
     >
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-        WebM / GIF — placeholder
+        WebM / GIF - placeholder
       </p>
       <h3 className="mt-2 text-lg font-bold text-on-surface">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-on-surface-variant">{description}</p>

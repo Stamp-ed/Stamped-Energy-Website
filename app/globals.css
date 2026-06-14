@@ -140,7 +140,7 @@
     }
   }
 
-  /* Horizontal chip/filter rows on mobile — edge-to-edge scroll inside container */
+  /* Horizontal chip/filter rows on mobile - edge-to-edge scroll inside container */
   .scroll-row {
     display: flex;
     gap: 0.5rem;

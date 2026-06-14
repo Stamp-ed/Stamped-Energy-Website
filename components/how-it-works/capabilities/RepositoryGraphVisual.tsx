@@ -21,7 +21,7 @@ const GRAPH_NODES_DESKTOP = [
   { id: "align", label: "Time-aligned", x: 400, y: 398 },
 ] as const;
 
-/** Wider star layout — same topology, nodes spread on compact viewports. */
+/** Wider star layout - same topology, nodes spread on compact viewports. */
 const GRAPH_NODES_COMPACT = [
   { id: "kwh", label: "kWh streams", x: 168, y: 244 },
   { id: "prod", label: "Production", x: 288, y: 276 },

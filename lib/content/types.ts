@@ -166,7 +166,7 @@ export type HiwCapability = {
   id: string;
   title: string;
   description: string;
-  /** Optional WebM/GIF/PNG — falls back to built-in SVG animation */
+  /** Optional WebM/GIF/PNG - falls back to built-in SVG animation */
   mediaSrc?: string | null;
   mediaAlt?: string;
 };

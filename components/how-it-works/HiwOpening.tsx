@@ -71,7 +71,7 @@ export function HiwOpening() {
             displayUrl="Stamped Energy Intelligence Dashboard"
           />
           <p className="mt-3 text-center text-xs font-medium text-on-surface-variant/80">
-            Live interactive demo — click to explore the dashboard above.
+            Live interactive demo - click to explore the dashboard above.
           </p>
         </div>
 

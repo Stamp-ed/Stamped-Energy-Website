@@ -45,5 +45,5 @@ export function whatsappHref(raw: string | null | undefined): string | null {
 }
 
 export function emptyDisplay(value: string | null | undefined): string {
-  return value?.trim() ? value : "—";
+  return value?.trim() ? value : "-";
 }

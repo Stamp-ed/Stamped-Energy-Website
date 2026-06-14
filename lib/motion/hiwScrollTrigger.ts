@@ -3,7 +3,7 @@
  * Lower viewport % = later trigger (element more visible before animation runs).
  */
 export const hiwScrollStarts = {
-  /** ~5s capability diagram timelines — center-based on mobile so the visual is in view */
+  /** ~5s capability diagram timelines - center-based on mobile so the visual is in view */
   capabilityDiagram: {
     desktop: "top 58%",
     mobile: "center 72%",

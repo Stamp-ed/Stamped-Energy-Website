@@ -2,14 +2,14 @@
 
 ## Purpose
 
-Main marketing website for Stamped Energy — prescriptive energy intelligence for Indian manufacturers. The site communicates verified rupee outcomes, the Connect-to-Verify workflow, industry verticals, case studies, and a discovery-call contact funnel.
+Main marketing website for Stamped Energy - prescriptive energy intelligence for Indian manufacturers. The site communicates verified rupee outcomes, the Connect-to-Verify workflow, industry verticals, case studies, and a discovery-call contact funnel.
 
 ## System Overview
 
-- **Public site** — Next.js App Router marketing pages (landing, How It Works, Industries, About, Contact, Blog, Case Studies)
-- **Blog CMS** — Authenticated admin at `/blog/admin` for posts, case studies, and contact inquiry review
-- **Contact pipeline** — Form submissions stored in PostgreSQL; optional email notifications via Resend
-- **Analytics** — Vercel Analytics on all public routes
+- **Public site** - Next.js App Router marketing pages (landing, How It Works, Industries, About, Contact, Blog, Case Studies)
+- **Blog CMS** - Authenticated admin at `/blog/admin` for posts, case studies, and contact inquiry review
+- **Contact pipeline** - Form submissions stored in PostgreSQL; optional email notifications via Resend
+- **Analytics** - Vercel Analytics on all public routes
 
 Production: [stamped.work](https://stamped.work) (marketing) with optional admin split via `ADMIN_APP_ORIGIN`.
 

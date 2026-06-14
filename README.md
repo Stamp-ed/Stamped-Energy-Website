@@ -1,6 +1,6 @@
-# Stamped Energy — Marketing Website
+# Stamped Energy - Marketing Website
 
-Prescriptive energy intelligence for Indian manufacturers. This repository powers the public marketing site at **[stamped.work](https://stamped.work)** — landing page, product narrative, industries, blog, case studies, contact funnel, and an internal CMS for content and lead review.
+Prescriptive energy intelligence for Indian manufacturers. This repository powers the public marketing site at **[stamped.work](https://stamped.work)** - landing page, product narrative, industries, blog, case studies, contact funnel, and an internal CMS for content and lead review.
 
 ## Tech stack
 
@@ -28,7 +28,7 @@ Prescriptive energy intelligence for Indian manufacturers. This repository power
 git clone https://github.com/Stamp-ed/Stamped-Energy-Website.git
 cd Stamped-Energy-Website
 npm install
-cp .env.example .env   # fill in values — see below
+cp .env.example .env   # fill in values - see below
 npm run db:setup         # push schema + seed admin user
 npm run dev
 ```
@@ -67,7 +67,7 @@ Copy `.env.example` to `.env`. Required for full functionality:
 ```
 app/                 Routes & API handlers
 components/          React UI (sections, layout, blog admin, how-it-works)
-lib/content/         Marketing copy & nav config — edit text here
+lib/content/         Marketing copy & nav config - edit text here
 lib/motion/          Animation setup & scroll triggers
 public/              Logos, industry images, hero video
 prisma/              Database schema & seed
@@ -90,11 +90,11 @@ styles/theme.css     Brand colors (single source of truth)
 
 ## Editing content
 
-- **Marketing copy** — `lib/content/*.ts` (typed, imported by page components)
-- **Colors / theme** — `styles/theme.css` only
-- **Brand reference** — `docs/design/brand-tokens.md`
-- **How It Works design spec** — `docs/design/how-it-works-page.md`
-- **Blog & case studies** — CMS at `/blog/admin` or `prisma/seed.ts` for dev data
+- **Marketing copy** - `lib/content/*.ts` (typed, imported by page components)
+- **Colors / theme** - `styles/theme.css` only
+- **Brand reference** - `docs/design/brand-tokens.md`
+- **How It Works design spec** - `docs/design/how-it-works-page.md`
+- **Blog & case studies** - CMS at `/blog/admin` or `prisma/seed.ts` for dev data
 
 ## Hero video
 
@@ -108,7 +108,7 @@ The landing hero uses a looping WebM walkthrough:
 
 | File | Purpose |
 |------|---------|
-| `README.md` | This file — setup & orientation |
+| `README.md` | This file - setup & orientation |
 | `PROJECT_OVERVIEW.md` | Architecture & constraints |
 | `AGENTS.md` | AI/agent workflow rules |
 | `DECISIONS.md` | Architecture decision log |
@@ -121,4 +121,4 @@ Connected to Vercel from the `main` branch. Push to `main` triggers a production
 
 ## License
 
-Private — Stamped Energy. All rights reserved.
+Private - Stamped Energy. All rights reserved.

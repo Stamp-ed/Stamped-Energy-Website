@@ -1,4 +1,4 @@
-# Stamped Energy — Agent Instructions
+# Stamped Energy - Agent Instructions
 
 ## Project
 
@@ -8,17 +8,17 @@ Main website for Stamped Energy. Design tokens and brand direction live in `docs
 
 Before any task:
 
-1. Follow `planning.mdc` — analyze requirements, create a plan, get approval.
-2. Follow `communication.mdc` — surface uncertainty, risks, and tradeoffs explicitly.
-3. Follow `documentation.mdc` — keep project docs at the repo root in sync.
+1. Follow `planning.mdc` - analyze requirements, create a plan, get approval.
+2. Follow `communication.mdc` - surface uncertainty, risks, and tradeoffs explicitly.
+3. Follow `documentation.mdc` - keep project docs at the repo root in sync.
 
 During implementation:
 
-4. Apply `execution.mdc` — phase-based work only; preserve architecture.
+4. Apply `execution.mdc` - phase-based work only; preserve architecture.
 
 Before completion:
 
-5. Apply `quality-gates.mdc` — validate, report, update progress.
+5. Apply `quality-gates.mdc` - validate, report, update progress.
 
 ## Documentation (repo root)
 
@@ -33,7 +33,7 @@ Before completion:
 
 | Rule | When |
 |------|------|
-| rule-awareness | Always — load all rules before acting |
+| rule-awareness | Always - load all rules before acting |
 | planning, communication, documentation | Always |
 | execution | Implementation phases |
 | quality-gates | Validation and completion |

@@ -97,7 +97,7 @@ export const aboutContent = {
         imageSrc: "/team/vinayak.jpg",
         imageAlt: "Vinayak Raizada, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/vinayak-rz/",
-        bio: "Leads core technical work, electrical engineering depth, strategy, and marketing. Electrical Engineering, IIT Roorkee. Focuses on prescriptive energy intelligence—turning meter, SCADA, and bill data into rupee-denominated actions plant teams can verify on the next DISCOM bill.",
+        bio: "Leads core technical work, electrical engineering depth, strategy, and marketing. Electrical Engineering, IIT Roorkee. Focuses on prescriptive energy intelligence-turning meter, SCADA, and bill data into rupee-denominated actions plant teams can verify on the next DISCOM bill.",
       },
       {
         id: "utso",
@@ -106,7 +106,7 @@ export const aboutContent = {
         imageSrc: "/team/utso.jpg",
         imageAlt: "Utso Sarkar, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/utso/",
-        bio: "Leads sales, outreach, and software engineering. IIT Roorkee. Builds the product platform and works directly with manufacturers through discovery, pilots, and deployment—connecting what we ship to what plant teams execute on the floor.",
+        bio: "Leads sales, outreach, and software engineering. IIT Roorkee. Builds the product platform and works directly with manufacturers through discovery, pilots, and deployment-connecting what we ship to what plant teams execute on the floor.",
       },
     ],
   },
@@ -120,7 +120,7 @@ export const aboutContent = {
         period: "2025",
         title: "Research at IIT Roorkee",
         description:
-          "Started in the Electrical Engineering department at IIT Roorkee—studying where plant data, utility bills, and shift operations break down, and whether prescriptive intelligence could close the loop in rupees.",
+          "Started in the Electrical Engineering department at IIT Roorkee-studying where plant data, utility bills, and shift operations break down, and whether prescriptive intelligence could close the loop in rupees.",
       },
       {
         id: "2026-product",
@@ -131,10 +131,10 @@ export const aboutContent = {
       },
       {
         id: "2026-pilots",
-        period: "2026 — today",
+        period: "2026 - today",
         title: "Pilots and first clients",
         description:
-          "Reaching out to manufacturers across process-intensive segments, running discovery conversations, and onboarding early pilots—with the first clients now live on the platform.",
+          "Reaching out to manufacturers across process-intensive segments, running discovery conversations, and onboarding early pilots-with the first clients now live on the platform.",
       },
     ],
   },

@@ -2,7 +2,7 @@
  * Shared discovery instructions pasted into blog and case study writer prompts.
  * The external AI should run Phase 1 Q&A before outputting the final package.
  */
-export const AI_DISCOVERY_PHASE = `## Phase 1 — Discovery (do this FIRST, before writing)
+export const AI_DISCOVERY_PHASE = `## Phase 1 - Discovery (do this FIRST, before writing)
 
 Do **not** write the article or case study yet. Start a discovery conversation with me.
 
@@ -12,11 +12,11 @@ Do **not** write the article or case study yet. Start a discovery conversation w
 - When I say I am **done**, **satisfied**, or **ready to write**, move to Phase 2 only then.
 
 **Questions you must cover (all of them)**
-1. **Desired outcome** — What should the reader do, decide, or believe after reading this?
-2. **Core takeaway** — What is the main thing they must understand or know?
-3. **Audience** — Who is this for? (role, industry, plant type, region, seniority)
-4. **Technical depth** — High-level for plant heads, or detailed engineering with methodology and numbers?
-5. **Visuals** — Should we include diagrams or GIFs? If yes, what should each show and where in the piece?
+1. **Desired outcome** - What should the reader do, decide, or believe after reading this?
+2. **Core takeaway** - What is the main thing they must understand or know?
+3. **Audience** - Who is this for? (role, industry, plant type, region, seniority)
+4. **Technical depth** - High-level for plant heads, or detailed engineering with methodology and numbers?
+5. **Visuals** - Should we include diagrams or GIFs? If yes, what should each show and where in the piece?
 
 **Optional follow-ups when relevant**
 - Any rupee outcomes, metrics, or client context to include or avoid?
@@ -25,7 +25,7 @@ Do **not** write the article or case study yet. Start a discovery conversation w
 
 When discovery is complete and I confirm, proceed to Phase 2.
 
-## Phase 2 — Write the final package
+## Phase 2 - Write the final package
 
 Only after Phase 1 is complete, output the full content using the required format below. No preamble like "here is your article".`;
 

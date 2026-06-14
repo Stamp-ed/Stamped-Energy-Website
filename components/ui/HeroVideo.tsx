@@ -8,7 +8,7 @@ interface HeroVideoProps {
   label: string;
 }
 
-/** Autoplaying hero loop — WebM only. Poster stays as a permanent base layer. */
+/** Autoplaying hero loop - WebM only. Poster stays as a permanent base layer. */
 export function HeroVideo({ webm, poster, label }: HeroVideoProps) {
   const { prefersReducedMotion } = useMotion();
 

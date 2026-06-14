@@ -21,7 +21,7 @@ function getFromAddress(): string {
 }
 
 function displayValue(value: string | null | undefined): string {
-  return value?.trim() ? value : "—";
+  return value?.trim() ? value : "-";
 }
 
 function buildEmailHtml(submission: ContactSubmissionInput, receivedAt: string): string {
@@ -57,7 +57,7 @@ export async function sendContactNotification(
 ): Promise<{ sent: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.warn("[contact] RESEND_API_KEY not set — submission saved but email not sent.");
+    console.warn("[contact] RESEND_API_KEY not set - submission saved but email not sent.");
     return { sent: false, error: "RESEND_API_KEY not configured" };
   }
 
@@ -68,7 +68,7 @@ export async function sendContactNotification(
   const { error } = await resend.emails.send({
     from: getFromAddress(),
     to: recipients,
-    subject: `Discovery call request — ${submission.company}`,
+    subject: `Discovery call request - ${submission.company}`,
     html: buildEmailHtml(submission, receivedAt),
   });
 

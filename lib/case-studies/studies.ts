@@ -365,7 +365,7 @@ export async function deleteCaseStudy(id: string): Promise<void> {
   await prisma.caseStudy.delete({ where: { id } });
 }
 
-/** Build rich doc from legacy static case study sections (excludes clientContext — shown in hero card) */
+/** Build rich doc from legacy static case study sections (excludes clientContext - shown in hero card) */
 export function staticSectionsToRichDoc(input: {
   challenge: string;
   approach: string[];

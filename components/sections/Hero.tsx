@@ -68,7 +68,7 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} className="landing-hero relative overflow-hidden bg-surface">
-      {/* Subtle orange glow — desktop only */}
+      {/* Subtle orange glow - desktop only */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_72%)] md:block"

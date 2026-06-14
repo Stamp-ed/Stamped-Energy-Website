@@ -102,13 +102,13 @@ export const howItWorksContent = {
     eyebrow: "Core capabilities",
     title: "Signals → verified savings",
     description:
-      "Four platform layers — from universal ingestion through closed-loop governance — sized for SME manufacturers.",
+      "Four platform layers - from universal ingestion through closed-loop governance - sized for SME manufacturers.",
     items: [
       {
         id: "ingestion",
         title: "Universal ingestion",
         description:
-          "Captures signals from meters, SCADA, PLCs, and utility bills into a continuous, real-time pipeline — without hardware retrofits or changes to your control systems.",
+          "Captures signals from meters, SCADA, PLCs, and utility bills into a continuous, real-time pipeline - without hardware retrofits or changes to your control systems.",
         mediaSrc: null,
         mediaAlt: "Data streams from plant systems flowing into Stamped",
       },
@@ -124,7 +124,7 @@ export const howItWorksContent = {
         id: "intelligence",
         title: "Contextual intelligence",
         description:
-          "Domain-specific models detect anomalies, quantify impact in rupees, and generate prescriptions your plant team can act on — not another passive dashboard.",
+          "Domain-specific models detect anomalies, quantify impact in rupees, and generate prescriptions your plant team can act on - not another passive dashboard.",
         mediaSrc: null,
         mediaAlt: "Anomaly detection and prescription generation",
       },
