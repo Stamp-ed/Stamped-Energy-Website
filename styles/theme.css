@@ -4,8 +4,7 @@
  * Every color in the site resolves to one of the CSS variables below.
  * To re-theme the entire website, change values HERE only.
  *
- * Palette source: code.html (Forge Energy reference)
- * Design doc: Deisgn_Stamped_Energy_original.md
+ * Design doc: docs/design/brand-tokens.md
  */
 
 :root {

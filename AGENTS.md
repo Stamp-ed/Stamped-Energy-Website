@@ -2,7 +2,7 @@
 
 ## Project
 
-Main website for Stamped Energy. Design tokens and brand direction live in `Deisgn_Stamped_Energy_original.md`.
+Main website for Stamped Energy. Design tokens and brand direction live in `docs/design/brand-tokens.md`.
 
 ## Workflow Orchestration
 

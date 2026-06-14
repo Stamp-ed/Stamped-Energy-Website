@@ -2,38 +2,48 @@
 
 ## Purpose
 
-Main marketing website for Stamped Energy, a prescriptive energy intelligence platform for Indian manufacturers.
+Main marketing website for Stamped Energy — prescriptive energy intelligence for Indian manufacturers. The site communicates verified rupee outcomes, the Connect-to-Verify workflow, industry verticals, case studies, and a discovery-call contact funnel.
 
 ## System Overview
 
-- Public marketing site built with Next.js App Router
-- Landing page communicates prescriptive positioning, verified rupee outcomes, and the Connect-to-Verify workflow
-- Separate routes scaffolded for How It Works and Industries
-- Blog planned as a separate application with its own admin portal
+- **Public site** — Next.js App Router marketing pages (landing, How It Works, Industries, About, Contact, Blog, Case Studies)
+- **Blog CMS** — Authenticated admin at `/blog/admin` for posts, case studies, and contact inquiry review
+- **Contact pipeline** — Form submissions stored in PostgreSQL; optional email notifications via Resend
+- **Analytics** — Vercel Analytics on all public routes
+
+Production: [stamped.work](https://stamped.work) (marketing) with optional admin split via `ADMIN_APP_ORIGIN`.
 
 ## High-Level Architecture
 
 ```
 app/
-  layout.tsx          # Root layout, fonts, nav, footer, Lenis
-  page.tsx            # Landing page composition
-  how-it-works/       # Scaffold page
-  industries/         # Scaffold page
-  api/contact/        # Discovery call form handler (stub)
+  layout.tsx              # Root layout, fonts, Analytics, MotionProvider
+  page.tsx                # Landing page
+  how-it-works/           # Workflow & capability walkthrough
+  industries/               # Hub + automotive vertical
+  blog/                     # Public blog + admin CMS
+  case-studies/             # Case study catalog & detail
+  about/ contact/           # Company & lead capture
+  api/                      # Contact, blog, auth routes
 components/
-  layout/             # Navbar, Footer
-  sections/           # Landing page sections (one file per section)
-  ui/                 # Shared primitives (Button, Reveal, ContactForm, etc.)
+  layout/ sections/         # Site chrome & page sections
+  how-it-works/ industries/ # Route-specific UI
+  blog/                     # Public + admin CMS components
+  ui/                       # Shared primitives
 lib/
-  content/            # Typed copy and configuration (single edit point for text)
-  motion/             # GSAP + Lenis setup
+  content/                  # Typed copy & config (edit text here)
+  motion/                   # GSAP, Lenis, scroll triggers
+  blog/ contact/ seo/       # Domain helpers
+prisma/                     # Schema & seed
+public/                     # Static assets (images, video, logos)
 styles/
-  theme.css           # SINGLE SOURCE OF TRUTH for all brand colors
+  theme.css                 # Brand color tokens (single source of truth)
+docs/
+  design/                   # Brand tokens & page design specs
 ```
 
 ## Constraints
 
-- Brand and color system: `Deisgn_Stamped_Energy_original.md` (Forge Industrial v2.0)
-- All colors must be changed only in `styles/theme.css`
-- All copy should be changed in `lib/content/` without touching layout components
-- Workflow: see `AGENTS.md` and `.cursor/rules/`
+- Brand colors: change only in `styles/theme.css` (see `docs/design/brand-tokens.md`)
+- Marketing copy: prefer `lib/content/` over hardcoding in components
+- Agent workflow: see `AGENTS.md` and `.cursor/rules/`

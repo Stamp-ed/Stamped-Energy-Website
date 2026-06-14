@@ -2,7 +2,7 @@
 
 **Route:** `/how-it-works`  
 **Last synced:** June 2026 (implementation on `main`)  
-**Parent system:** Forge Industrial v2.0 — see `Deisgn_Stamped_Energy_original.md` and `styles/theme.css`  
+**Parent system:** Forge Industrial v2.0 — see `docs/design/brand-tokens.md` and `styles/theme.css`  
 **Content source:** `lib/content/howItWorks.ts`  
 **Component root:** `components/how-it-works/`
 
@@ -381,7 +381,7 @@ components/how-it-works/
 
 | File | Relationship |
 |------|--------------|
-| `Deisgn_Stamped_Energy_original.md` | Global brand tokens & philosophy |
+| `docs/design/brand-tokens.md` | Global brand tokens & philosophy |
 | `styles/theme.css` | Single source of truth for hex values |
 | `DECISIONS.md` | ADR: Option C opening (SLD + capabilities) |
 | `IMPLEMENTATION_PLAN.md` | Phase history for HIW build |
