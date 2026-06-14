@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { MotionProvider } from "@/components/motion/MotionProvider";
@@ -47,6 +48,7 @@ export default function RootLayout({
         <MotionProvider>
           <SiteChrome>{children}</SiteChrome>
         </MotionProvider>
+        <Analytics />
       </body>
     </html>
   );
