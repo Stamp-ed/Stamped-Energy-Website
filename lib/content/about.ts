@@ -97,16 +97,16 @@ export const aboutContent = {
         imageSrc: "/team/vinayak.jpg",
         imageAlt: "Vinayak Raizada, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/vinayak-rz/",
-        bio: "Leads product and platform engineering. Electrical Engineering at IIT Roorkee. Builds the prescriptive intelligence layer, plant data integrations, and the systems that turn raw meter and PLC signals into actionable prescriptions.",
+        bio: "Leads core technical work, electrical engineering depth, strategy, and marketing. Electrical Engineering, IIT Roorkee. Focuses on prescriptive energy intelligence—turning meter, SCADA, and bill data into rupee-denominated actions plant teams can verify on the next DISCOM bill.",
       },
       {
         id: "utso",
-        name: "Utsavsar Karan",
+        name: "Utso Sarkar",
         role: "Co-Founder",
         imageSrc: "/team/utso.jpg",
-        imageAlt: "Utsavsar Karan, Co-Founder of Stamped Energy",
+        imageAlt: "Utso Sarkar, Co-Founder of Stamped Energy",
         linkedIn: "https://www.linkedin.com/in/utso/",
-        bio: "Leads core engineering and systems architecture. Mathematics & Computing at IIT Roorkee. Background building production software, from mobile platforms to data pipelines, with a focus on reliable systems that run in real plant environments.",
+        bio: "Leads sales, outreach, and software engineering. IIT Roorkee. Builds the product platform and works directly with manufacturers through discovery, pilots, and deployment—connecting what we ship to what plant teams execute on the floor.",
       },
     ],
   },
@@ -116,25 +116,25 @@ export const aboutContent = {
     title: "From problem to platform",
     milestones: [
       {
-        id: "2024",
-        period: "2024",
-        title: "The constraint",
-        description:
-          "Field visits to auto component and process plants revealed the same gap: abundant data, zero rupee-denominated prescriptions. Bills arrived after waste was already locked in.",
-      },
-      {
         id: "2025",
         period: "2025",
-        title: "Pilot foundations",
+        title: "Research at IIT Roorkee",
         description:
-          "Built software-only connectivity to incomer meters, compressors, and furnaces. Validated SEC baselining and shift-start MD analysis across automotive-adjacent segments.",
+          "Started in the Electrical Engineering department at IIT Roorkee—studying where plant data, utility bills, and shift operations break down, and whether prescriptive intelligence could close the loop in rupees.",
       },
       {
-        id: "2026",
+        id: "2026-product",
         period: "2026",
-        title: "Prescriptive intelligence",
+        title: "Building the product",
         description:
-          "Building Stamped Energy with pilot-led deployments. Prescriptions ranked by monthly rupee impact, verified on the next utility bill before annual commitment.",
+          "Moved from research to the actual software product: connecting incomer meters, SCADA, and bills into prescriptions supervisors can act on, with verification on the next electricity bill.",
+      },
+      {
+        id: "2026-pilots",
+        period: "2026 — today",
+        title: "Pilots and first clients",
+        description:
+          "Reaching out to manufacturers across process-intensive segments, running discovery conversations, and onboarding early pilots—with the first clients now live on the platform.",
       },
     ],
   },

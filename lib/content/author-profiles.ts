@@ -16,15 +16,15 @@ export const AUTHOR_PROFILES: Record<AuthorProfileId, AuthorProfile> = {
     name: "Vinayak Raizada",
     role: "Co-Founder",
     shortBio:
-      "Electrical Engineering, IIT Roorkee. Builds prescriptive intelligence, plant data integrations, and the systems that turn meter signals into rupee-denominated prescriptions.",
+      "Electrical Engineering, IIT Roorkee. Leads domain technical work, strategy, and marketing—prescriptive energy intelligence from plant data to verified savings on the bill.",
     linkedIn: "https://www.linkedin.com/in/vinayak-rz/",
   },
   utsavsar: {
     id: "utsavsar",
-    name: "Utsavsar Karan",
+    name: "Utso Sarkar",
     role: "Co-Founder",
     shortBio:
-      "Mathematics & Computing, IIT Roorkee. Leads core engineering and systems architecture for reliable software that runs in real plant environments.",
+      "IIT Roorkee. Leads sales, outreach, and software engineering—building the platform and running pilots with manufacturing teams.",
     linkedIn: "https://www.linkedin.com/in/utso/",
   },
 };
