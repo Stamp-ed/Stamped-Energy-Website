@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { PlantSldDiagram } from "@/components/how-it-works/PlantSldDiagram";
+import { LiveDemoFrame } from "@/components/how-it-works/LiveDemoFrame";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -11,7 +11,7 @@ import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 export function HiwOpening() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { hero, plantSld } = howItWorksContent;
+  const { hero } = howItWorksContent;
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -64,8 +64,15 @@ export function HiwOpening() {
           </div>
         </div>
 
-        <div data-hiw-opening className="mx-auto mt-8 max-w-5xl">
-          <PlantSldDiagram nodes={plantSld.nodes} hint={plantSld.hint} />
+        <div data-hiw-opening className="mx-auto mt-8 w-full max-w-6xl">
+          <LiveDemoFrame
+            src="https://stamped-energy.vercel.app/"
+            title="Stamped Energy live intelligence dashboard demo"
+            displayUrl="Stamped Energy Intelligence Dashboard"
+          />
+          <p className="mt-3 text-center text-xs font-medium text-on-surface-variant/80">
+            Live interactive demo — click to explore the dashboard above.
+          </p>
         </div>
 
         <p
