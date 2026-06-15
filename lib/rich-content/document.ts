@@ -1,6 +1,10 @@
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import { Table } from "@tiptap/extension-table";
+import { TableCell } from "@tiptap/extension-table-cell";
+import { TableHeader } from "@tiptap/extension-table-header";
+import { TableRow } from "@tiptap/extension-table-row";
 import Underline from "@tiptap/extension-underline";
 import Youtube from "@tiptap/extension-youtube";
 import StarterKit from "@tiptap/starter-kit";
@@ -24,7 +28,12 @@ export const RICH_EXTENSIONS = [
   Underline,
   Link.configure({
     openOnClick: false,
-    HTMLAttributes: { class: "rich-link" },
+    autolink: true,
+    linkOnPaste: true,
+    HTMLAttributes: {
+      class: "rich-link",
+      rel: "noopener noreferrer",
+    },
   }),
   Image.configure({
     HTMLAttributes: { class: "rich-image" },
@@ -32,6 +41,13 @@ export const RICH_EXTENSIONS = [
   Youtube.configure({
     HTMLAttributes: { class: "rich-video" },
   }),
+  Table.configure({
+    resizable: true,
+    HTMLAttributes: { class: "rich-table" },
+  }),
+  TableRow,
+  TableHeader,
+  TableCell,
   Placeholder.configure({
     placeholder: "Tell your story…",
   }),
@@ -83,13 +99,67 @@ export function richDocToHtml(doc: JSONContent): string {
   return generateHTML(enrichRichDoc(doc), RICH_EXTENSIONS);
 }
 
-/** Parse **bold**, *italic*, and `code` inline markdown into TipTap text nodes. */
+function isTableRow(line: string): boolean {
+  const trimmed = line.trim();
+  return trimmed.startsWith("|") && trimmed.endsWith("|") && trimmed.includes("|");
+}
+
+function isTableSeparator(line: string): boolean {
+  return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line.trim());
+}
+
+function parseTableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function tableFromMarkdownRows(rows: string[]): JSONContent | null {
+  if (rows.length < 2 || !isTableSeparator(rows[1])) {
+    return null;
+  }
+
+  const headerCells = parseTableCells(rows[0]);
+  const bodyRows = rows.slice(2).map(parseTableCells).filter((cells) => cells.some(Boolean));
+
+  const cellNode = (text: string, header: boolean): JSONContent => ({
+    type: header ? "tableHeader" : "tableCell",
+    content: text ? [{ type: "paragraph", content: parseInlineMarkdown(text) }] : [{ type: "paragraph" }],
+  });
+
+  return {
+    type: "table",
+    content: [
+      {
+        type: "tableRow",
+        content: headerCells.map((cell) => cellNode(cell, true)),
+      },
+      ...bodyRows.map((cells) => ({
+        type: "tableRow",
+        content: cells.map((cell) => cellNode(cell, false)),
+      })),
+    ],
+  };
+}
+
+const YOUTUBE_LINE =
+  /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]+/i;
+
+/** Parse **bold**, *italic*, `code`, and [links](url) into TipTap text nodes. */
 export function parseInlineMarkdown(text: string): JSONContent[] {
   if (!text) {
     return [];
   }
 
-  if (!text.includes("**") && !text.includes("*") && !text.includes("`")) {
+  if (
+    !text.includes("**") &&
+    !text.includes("*") &&
+    !text.includes("`") &&
+    !text.includes("[")
+  ) {
     return [{ type: "text", text }];
   }
 
@@ -97,6 +167,17 @@ export function parseInlineMarkdown(text: string): JSONContent[] {
   let remaining = text;
 
   while (remaining.length > 0) {
+    const linkMatch = remaining.match(/^\[([^\]]+)\]\(([^)]+)\)/);
+    if (linkMatch) {
+      nodes.push({
+        type: "text",
+        text: linkMatch[1],
+        marks: [{ type: "link", attrs: { href: linkMatch[2].trim() } }],
+      });
+      remaining = remaining.slice(linkMatch[0].length);
+      continue;
+    }
+
     const boldMatch = remaining.match(/^\*\*(.+?)\*\*/);
     if (boldMatch) {
       nodes.push({ type: "text", text: boldMatch[1], marks: [{ type: "bold" }] });
@@ -118,7 +199,7 @@ export function parseInlineMarkdown(text: string): JSONContent[] {
       continue;
     }
 
-    const nextSpecial = remaining.search(/\*\*|\*|`/);
+    const nextSpecial = remaining.search(/\*\*|\*|`|\[/);
     if (nextSpecial === -1) {
       nodes.push({ type: "text", text: remaining });
       break;
@@ -191,6 +272,7 @@ export function markdownToRichDoc(markdown: string): JSONContent {
   let paragraphBuffer: string[] = [];
   let listBuffer: { type: "bullet" | "ordered"; items: string[] } | null = null;
   let codeBlock: { language: string; lines: string[] } | null = null;
+  let tableBuffer: string[] = [];
 
   const flushParagraph = () => {
     if (paragraphBuffer.length) {
@@ -227,6 +309,19 @@ export function markdownToRichDoc(markdown: string): JSONContent {
     codeBlock = null;
   };
 
+  const flushTable = () => {
+    if (!tableBuffer.length) {
+      return;
+    }
+    const table = tableFromMarkdownRows(tableBuffer);
+    if (table) {
+      content.push(table);
+    } else {
+      paragraphBuffer.push(...tableBuffer);
+    }
+    tableBuffer = [];
+  };
+
   for (const line of lines) {
     const trimmed = line.trim();
 
@@ -242,6 +337,7 @@ export function markdownToRichDoc(markdown: string): JSONContent {
     if (trimmed.startsWith("```")) {
       flushParagraph();
       flushList();
+      flushTable();
       codeBlock = {
         language: trimmed.slice(3).trim().toLowerCase(),
         lines: [],
@@ -249,9 +345,30 @@ export function markdownToRichDoc(markdown: string): JSONContent {
       continue;
     }
 
+    if (isTableRow(trimmed)) {
+      flushParagraph();
+      flushList();
+      tableBuffer.push(trimmed);
+      continue;
+    }
+
+    if (tableBuffer.length) {
+      flushTable();
+    }
+
     if (!trimmed) {
       flushParagraph();
       flushList();
+      continue;
+    }
+
+    if (YOUTUBE_LINE.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      content.push({
+        type: "youtube",
+        attrs: { src: trimmed },
+      });
       continue;
     }
 
@@ -307,6 +424,7 @@ export function markdownToRichDoc(markdown: string): JSONContent {
 
   flushParagraph();
   flushList();
+  flushTable();
   flushCodeBlock();
 
   return content.length ? { type: "doc", content } : EMPTY_RICH_DOC;

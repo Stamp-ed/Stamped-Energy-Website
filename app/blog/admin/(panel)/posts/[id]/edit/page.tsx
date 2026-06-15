@@ -27,7 +27,7 @@ export default async function EditBlogPostPage({ params }: EditPostPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6">
+    <div className="mx-auto max-w-none space-y-6">
       <AdminPageHeader
         title="Edit post"
         description={`/blog/${post.slug}`}

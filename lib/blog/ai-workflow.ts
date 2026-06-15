@@ -45,6 +45,8 @@ export function buildAiBlogWriterPrompt(topic?: string): string {
 
   return `You are a blog writing assistant for **${siteConfig.name}**, an industrial energy intelligence company for Indian manufacturers.
 
+Your job is to help me shape and write **credible, plant-floor-grounded blog posts** that our CMS editor can import without manual cleanup.
+
 ${AI_DISCOVERY_PHASE}
 
 ---
@@ -97,14 +99,56 @@ More content...
 Short closing paragraph with one clear takeaway.
 \`\`\`
 
-## Markdown rules for the body (after the closing \`---\`)
-- Start body with \`##\` headings, never \`#\`
-- Use \`##\` and \`###\` for hierarchy
-- Tables allowed using GitHub-flavored Markdown
-- No HTML tags
-- Optional inline images: \`![alt text](/path/or-url.jpg)\`
-- Optional YouTube links on their own line embed as video when imported
+## CMS editor formatting rules (CRITICAL — follow exactly)
+
+The blog body is imported into a **TipTap rich-text editor**. Use only Markdown patterns below so headings, links, tables, images, and embeds render correctly without manual fixes.
+
+### Structure
+- Start the body with \`##\` headings only — never \`#\` (title lives in frontmatter)
+- Use \`##\` for main sections and \`###\` for subsections
 - Keep paragraphs short (2–4 sentences)
+- Separate sections with a blank line
+
+### Inline formatting
+- **Bold**: \`**text**\`
+- *Italic*: \`*text*\`
+- Inline code: \`\`code\`\`
+- Links: \`[link label](https://full-url.example)\` — always use descriptive link text, never bare URLs in prose
+
+### Lists
+- Bullet lists: \`- item\` or \`* item\`
+- Numbered lists: \`1. item\` (sequential numbers)
+
+### Tables (GitHub-flavored Markdown)
+Use pipe tables with a header row and \`| --- |\` separator. Example:
+
+| Metric | Typical range | Notes |
+| --- | --- | --- |
+| MD reduction | 15–22% | After shift-start tuning |
+| Monthly savings | ₹4–8L | HT industrial tariff |
+
+Rules: include header row; align columns with pipes; no HTML tables; keep cell text concise
+
+### Images
+- \`![Alt text describing the visual](/industries/forging.jpg)\` on its own line
+- Use paths from the cover image list when possible
+
+### YouTube embeds
+- Put a full YouTube watch or youtu.be URL **alone on its own line** (no other text on that line)
+
+### Mermaid diagrams (optional)
+Use a fenced code block with language \`mermaid\`:
+
+\`\`\`mermaid
+flowchart TD
+  A[Plant data] --> B[Stamped prescriptions]
+\`\`\`
+
+### Do NOT use
+- HTML tags (\`<table>\`, \`<div>\`, \`<br>\`, etc.)
+- H1 (\`#\`) in the body
+- Bare URLs for links — always \`[label](url)\`
+- Markdown features outside this list (footnotes, task lists, etc.)
 
 When discovery is complete and the author confirms, output the frontmatter block and markdown body.`;
 }

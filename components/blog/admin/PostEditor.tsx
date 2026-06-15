@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
 import { AiWriterAssistant } from "@/components/blog/admin/AiWriterAssistant";
-import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { RichArticleEditor } from "@/components/rich-content/RichArticleEditor";
 import type { AiBlogImport } from "@/lib/blog/ai-workflow";
 import { BLOG_CATEGORIES } from "@/lib/blog/constants";
@@ -52,6 +51,7 @@ function initialBodyJson(initial?: BlogPostDTO): string {
 
 export function PostEditor({ mode, initial }: PostEditorProps) {
   const router = useRouter();
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [form, setForm] = useState<FormState>({
     title: initial?.title ?? "",
     slug: initial?.slug ?? "",
@@ -78,7 +78,9 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
       title: data.title ?? current.title,
       slug: data.slug ?? current.slug,
       excerpt: data.excerpt ?? current.excerpt,
-      bodyJson: data.bodyJson ?? (data.content ? serializeRichDoc(markdownToRichDoc(data.content)) : current.bodyJson),
+      bodyJson:
+        data.bodyJson ??
+        (data.content ? serializeRichDoc(markdownToRichDoc(data.content)) : current.bodyJson),
       coverImage: data.coverImage ?? current.coverImage,
       category: data.category ?? current.category,
       tags: data.tags?.length ? data.tags.join(", ") : current.tags,
@@ -142,159 +144,146 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <AiWriterAssistant variant="blog" onImport={handleAiImport} />
 
-      <form onSubmit={handleSubmit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
-        <div className="admin-panel space-y-4 p-5">
-          <div>
-            <label className={labelClass}>Title</label>
+      <form onSubmit={handleSubmit} className="space-y-0">
+        <div className="sticky top-0 z-20 -mx-1 mb-4 flex flex-col gap-3 rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)]/95 px-4 py-3 shadow-sm backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0 flex-1">
             <input
               required
               value={form.title}
               onChange={(event) => update("title", event.target.value)}
-              className={`${fieldClass} text-lg font-semibold`}
-              placeholder="One clear headline, like Medium"
+              className="w-full border-0 bg-transparent text-xl font-semibold text-[var(--admin-text)] outline-none placeholder:text-[var(--admin-text-muted)]"
+              placeholder="Post title"
             />
+            <p className="mt-0.5 truncate text-[11px] text-[var(--admin-text-muted)]">
+              /blog/{form.slug.trim() || autoSlug || "your-slug"}
+            </p>
           </div>
-          <div>
-            <label className={labelClass}>Slug</label>
-            <input
-              value={form.slug}
-              onChange={(event) => update("slug", event.target.value)}
-              placeholder={autoSlug}
-              className={fieldClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>Subtitle / excerpt</label>
-            <textarea
-              required
-              rows={2}
-              value={form.excerpt}
-              onChange={(event) => update("excerpt", event.target.value)}
-              className={textareaClass}
-              placeholder="Short summary shown under the title"
-            />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className={labelClass}>Category</label>
-              <select
-                value={form.category}
-                onChange={(event) => update("category", event.target.value)}
-                className={fieldClass}
-              >
-                {BLOG_CATEGORIES.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className={labelClass}>Status</label>
-              <select
-                value={form.status}
-                onChange={(event) =>
-                  update("status", event.target.value as FormState["status"])
-                }
-                className={fieldClass}
-              >
-                <option value="DRAFT">Draft</option>
-                <option value="PUBLISHED">Published</option>
-                <option value="ARCHIVED">Archived</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label className={labelClass}>Written by</label>
+          <div className="flex flex-wrap items-center gap-2">
             <select
-              value={form.authorProfile}
-              onChange={(event) =>
-                update("authorProfile", event.target.value as AuthorProfileId)
-              }
-              className={fieldClass}
+              value={form.status}
+              onChange={(event) => update("status", event.target.value as FormState["status"])}
+              className="admin-input h-9 py-1 text-xs"
             >
-              {Object.values(AUTHOR_PROFILES).map((profile) => (
-                <option key={profile.id} value={profile.id}>
-                  {profile.name}
-                </option>
-              ))}
+              <option value="DRAFT">Draft</option>
+              <option value="PUBLISHED">Published</option>
+              <option value="ARCHIVED">Archived</option>
             </select>
-            <p className="mt-1.5 text-[11px] leading-5 text-[var(--admin-text-muted)]">
-              {AUTHOR_PROFILES[form.authorProfile].shortBio}
-            </p>
-          </div>
-          <div>
-            <label className={labelClass}>Cover image URL</label>
-            <input
-              value={form.coverImage}
-              onChange={(event) => update("coverImage", event.target.value)}
-              placeholder="/industries/forging.jpg"
-              className={fieldClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>Tags (comma separated)</label>
-            <input
-              value={form.tags}
-              onChange={(event) => update("tags", event.target.value)}
-              className={fieldClass}
-            />
-          </div>
-          <label className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)]">
-            <input
-              type="checkbox"
-              checked={form.featured}
-              onChange={(event) => update("featured", event.target.checked)}
-              className="h-4 w-4 rounded border-[var(--admin-border)]"
-            />
-            Feature on blog homepage
-          </label>
-          <div>
-            <label className={labelClass}>Story</label>
-            <p className="mb-2 text-[11px] text-[var(--admin-text-muted)]">
-              Write like Medium, headings, paragraphs, then drop images, GIFs, or YouTube videos
-              anywhere in the flow.
-            </p>
-            <RichArticleEditor
-              value={form.bodyJson}
-              onChange={(json) => update("bodyJson", json)}
-              placeholder="Use Image for GIFs/photos; Video for YouTube embeds."
-            />
-          </div>
-          {error ? (
-            <p className="rounded-lg border border-[var(--admin-danger-border)] bg-[var(--admin-danger-bg)] px-3 py-2 text-sm text-[var(--admin-danger-text)]">
-              {error}
-            </p>
-          ) : null}
-          <div className="flex flex-wrap gap-2 pt-2">
-            <button type="submit" className="admin-btn admin-btn-primary" disabled={isSaving}>
-              {isSaving ? "Saving..." : mode === "create" ? "Create post" : "Save changes"}
-            </button>
             <button type="button" className="admin-btn admin-btn-secondary" onClick={() => router.back()}>
               Cancel
+            </button>
+            <button type="submit" className="admin-btn admin-btn-primary" disabled={isSaving}>
+              {isSaving ? "Saving…" : mode === "create" ? "Create post" : "Save"}
             </button>
           </div>
         </div>
 
-        <div className="hidden xl:block">
-          <div className="admin-panel sticky top-20 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-[var(--admin-text-muted)]">
-              Reading preview
-            </p>
-            <h2 className="mt-3 font-display text-2xl font-extrabold leading-tight text-[var(--admin-text)]">
-              {form.title || "Post title"}
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-[var(--admin-text-secondary)]">
-              {form.excerpt || "Excerpt preview"}
-            </p>
-            <div className="mt-5 max-h-[65vh] overflow-y-auto border-t border-[var(--admin-border-subtle)] pt-5">
-              <RichArticleBody bodyJson={form.bodyJson} contentFormat="RICH" reading={false} />
+        <div className="mb-4 overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)]">
+          <button
+            type="button"
+            onClick={() => setSettingsOpen((open) => !open)}
+            className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[var(--admin-text)] transition-colors hover:bg-[var(--admin-panel)]"
+          >
+            <span>Post settings</span>
+            <span className="text-xs text-[var(--admin-text-muted)]">
+              {settingsOpen ? "Hide" : "Slug, excerpt, category, cover…"}
+            </span>
+          </button>
+          {settingsOpen ? (
+            <div className="grid gap-4 border-t border-[var(--admin-border-subtle)] px-4 py-4 sm:grid-cols-2">
+              <div>
+                <label className={labelClass}>Slug</label>
+                <input
+                  value={form.slug}
+                  onChange={(event) => update("slug", event.target.value)}
+                  placeholder={autoSlug}
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Category</label>
+                <select
+                  value={form.category}
+                  onChange={(event) => update("category", event.target.value)}
+                  className={fieldClass}
+                >
+                  {BLOG_CATEGORIES.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Subtitle / excerpt</label>
+                <textarea
+                  required
+                  rows={2}
+                  value={form.excerpt}
+                  onChange={(event) => update("excerpt", event.target.value)}
+                  className={textareaClass}
+                  placeholder="Short summary shown under the title on the blog"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Written by</label>
+                <select
+                  value={form.authorProfile}
+                  onChange={(event) =>
+                    update("authorProfile", event.target.value as AuthorProfileId)
+                  }
+                  className={fieldClass}
+                >
+                  {Object.values(AUTHOR_PROFILES).map((profile) => (
+                    <option key={profile.id} value={profile.id}>
+                      {profile.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>Cover image URL</label>
+                <input
+                  value={form.coverImage}
+                  onChange={(event) => update("coverImage", event.target.value)}
+                  placeholder="/industries/forging.jpg"
+                  className={fieldClass}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Tags (comma separated)</label>
+                <input
+                  value={form.tags}
+                  onChange={(event) => update("tags", event.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <label className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)] sm:col-span-2">
+                <input
+                  type="checkbox"
+                  checked={form.featured}
+                  onChange={(event) => update("featured", event.target.checked)}
+                  className="h-4 w-4 rounded border-[var(--admin-border)]"
+                />
+                Feature on blog homepage
+              </label>
             </div>
-          </div>
+          ) : null}
         </div>
+
+        {error ? (
+          <p className="mb-4 rounded-lg border border-[var(--admin-danger-border)] bg-[var(--admin-danger-bg)] px-3 py-2 text-sm text-[var(--admin-danger-text)]">
+            {error}
+          </p>
+        ) : null}
+
+        <RichArticleEditor
+          value={form.bodyJson}
+          onChange={(json) => update("bodyJson", json)}
+          placeholder="Use the toolbar for headings, links, tables, images, and embeds. Paste from the AI writer imports cleanly."
+        />
       </form>
     </div>
   );

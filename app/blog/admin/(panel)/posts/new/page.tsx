@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function NewBlogPostPage() {
   return (
-    <div className="mx-auto max-w-6xl space-y-6">
+    <div className="mx-auto max-w-none space-y-6">
       <AdminPageHeader
         title="New post"
-        description="Write in Markdown. Preview before publishing."
+        description="Write and format your story in the editor below. Use Post settings for slug, excerpt, and metadata."
         secondaryAction={{ label: "Back to posts", href: "/blog/admin/posts" }}
       />
       <PostEditor mode="create" />
