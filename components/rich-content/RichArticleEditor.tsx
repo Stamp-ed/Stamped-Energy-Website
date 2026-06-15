@@ -79,6 +79,7 @@ export function RichArticleEditor({
   const [dialogKind, setDialogKind] = useState<EditorDialogKind | null>(null);
   const [dialogInitial, setDialogInitial] = useState<Record<string, string>>({});
   const [canRemoveLink, setCanRemoveLink] = useState(false);
+  const [scrollLocked, setScrollLocked] = useState(false);
   const savedSelection = useRef<SavedSelection | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -108,6 +109,15 @@ export function RichArticleEditor({
   }, [editor, value]);
 
   useEffect(() => {
+    if (!scrollLocked) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [scrollLocked]);
+
+  useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
@@ -117,6 +127,14 @@ export function RichArticleEditor({
       const canScrollUp = scrollTop > 0;
       const canScrollDown = scrollTop + clientHeight < scrollHeight - 1;
 
+      if (scrollLocked) {
+        event.preventDefault();
+        if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
+          container.scrollTop += delta;
+        }
+        return;
+      }
+
       if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
         event.preventDefault();
         container.scrollTop += delta;
@@ -125,7 +143,20 @@ export function RichArticleEditor({
 
     container.addEventListener("wheel", handleWheel, { passive: false });
     return () => container.removeEventListener("wheel", handleWheel);
-  }, [editor]);
+  }, [editor, scrollLocked]);
+
+  useEffect(() => {
+    if (!scrollLocked) return;
+
+    const blockOutsideWheel = (event: WheelEvent) => {
+      if (!scrollContainerRef.current?.contains(event.target as Node)) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", blockOutsideWheel, { passive: false });
+    return () => document.removeEventListener("wheel", blockOutsideWheel);
+  }, [scrollLocked]);
 
   const captureSelection = useCallback(() => {
     if (!editor) return;
@@ -285,10 +316,15 @@ export function RichArticleEditor({
   return (
     <>
       <div
-        className={`flex max-h-[min(72vh,calc(100vh-11rem))] flex-col overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)] shadow-sm ${className}`}
+        className={`flex max-h-[min(72vh,calc(100vh-11rem))] flex-col overflow-hidden rounded-xl border bg-[var(--admin-surface)] shadow-sm ${
+          scrollLocked
+            ? "border-[var(--admin-accent)] ring-2 ring-[var(--admin-focus)]"
+            : "border-[var(--admin-border)]"
+        } ${className}`}
       >
         <div className="z-10 shrink-0 border-b border-[var(--admin-border-subtle)] bg-[var(--admin-panel)]">
           <div className="flex flex-wrap items-center gap-0.5 px-2 py-2">
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-0.5">
             <ToolbarButton
               label="Undo"
               title="Undo (Ctrl+Z)"
@@ -415,6 +451,19 @@ export function RichArticleEditor({
                 />
               </>
             ) : null}
+            </div>
+
+            <ToolbarDivider />
+            <ToolbarButton
+              label={scrollLocked ? "Unlock" : "Lock"}
+              title={
+                scrollLocked
+                  ? "Unlock — page scroll works again"
+                  : "Lock — only the editor area scrolls, not the page"
+              }
+              active={scrollLocked}
+              onClick={() => setScrollLocked((locked) => !locked)}
+            />
           </div>
         </div>
 
