@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
+import { createPortal } from "react-dom";
 
 export type EditorDialogKind = "link" | "image" | "video" | "mermaid";
 
@@ -111,6 +112,7 @@ export function EditorInsertDialog({
   onRemoveLink,
 }: EditorInsertDialogProps) {
   const titleId = useId();
+  const formRef = useRef<HTMLFormElement>(null);
   const firstFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -128,25 +130,34 @@ export function EditorInsertDialog({
     };
   }, [kind, onClose]);
 
-  if (!kind) {
+  if (!kind || typeof document === "undefined") {
     return null;
   }
 
   const config = CONFIG[kind];
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const collectValues = (): Record<string, string> | null => {
+    if (!formRef.current) return null;
+    const formData = new FormData(formRef.current);
     const values: Record<string, string> = {};
     for (const field of config.fields) {
       values[field.key] = String(formData.get(field.key) ?? "").trim();
     }
-    onSubmit(values);
+    return values;
   };
 
-  return (
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const values = collectValues();
+    if (values) {
+      onSubmit(values);
+    }
+  };
+
+  const dialog = (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center p-4 sm:items-center"
+      className="fixed inset-0 z-[200] flex items-end justify-center p-4 sm:items-center"
       role="presentation"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
@@ -159,8 +170,10 @@ export function EditorInsertDialog({
         aria-modal="true"
         aria-labelledby={titleId}
         className="w-full max-w-lg overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)] shadow-[0_24px_80px_-12px_rgba(15,23,19,0.35)]"
+        onMouseDown={(event) => event.stopPropagation()}
       >
-        <form onSubmit={handleSubmit}>
+        {/* Portal keeps this form outside PostEditor's <form> — nested forms caused page reload on submit */}
+        <form ref={formRef} onSubmit={handleSubmit}>
           <div className="border-b border-[var(--admin-border-subtle)] px-5 py-4">
             <h2 id={titleId} className="text-base font-semibold text-[var(--admin-text)]">
               {config.title}
@@ -212,7 +225,11 @@ export function EditorInsertDialog({
               {kind === "link" && canRemoveLink && onRemoveLink ? (
                 <button
                   type="button"
-                  onClick={onRemoveLink}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    onRemoveLink();
+                  }}
                   className="text-sm font-medium text-[var(--admin-danger-text,#c0392b)] hover:underline"
                 >
                   Remove link
@@ -220,7 +237,15 @@ export function EditorInsertDialog({
               ) : null}
             </div>
             <div className="flex gap-2">
-              <button type="button" className="admin-btn admin-btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="admin-btn admin-btn-secondary"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  onClose();
+                }}
+              >
                 Cancel
               </button>
               <button type="submit" className="admin-btn admin-btn-primary">
@@ -232,4 +257,6 @@ export function EditorInsertDialog({
       </div>
     </div>
   );
+
+  return createPortal(dialog, document.body);
 }

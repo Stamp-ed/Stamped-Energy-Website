@@ -80,6 +80,7 @@ export function RichArticleEditor({
   const [dialogInitial, setDialogInitial] = useState<Record<string, string>>({});
   const [canRemoveLink, setCanRemoveLink] = useState(false);
   const savedSelection = useRef<SavedSelection | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const editor = useEditor({
     extensions: RICH_EXTENSIONS,
@@ -105,6 +106,26 @@ export function RichArticleEditor({
       editor.commands.setContent(parsed, { emitUpdate: false });
     }
   }, [editor, value]);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const delta = event.deltaY;
+      const canScrollUp = scrollTop > 0;
+      const canScrollDown = scrollTop + clientHeight < scrollHeight - 1;
+
+      if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
+        event.preventDefault();
+        container.scrollTop += delta;
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, [editor]);
 
   const captureSelection = useCallback(() => {
     if (!editor) return;
@@ -397,7 +418,10 @@ export function RichArticleEditor({
           </div>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+        <div
+          ref={scrollContainerRef}
+          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain"
+        >
           <EditorContent editor={editor} />
         </div>
       </div>
