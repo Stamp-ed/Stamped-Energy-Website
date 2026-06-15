@@ -32,7 +32,7 @@ const CONFIG: Record<
 > = {
   link: {
     title: "Insert link",
-    description: "Linked text is inserted at your cursor. Prefill display text by selecting words first.",
+    description: "Linked text is inserted at your cursor. Select words first to prefill display text.",
     fields: [
       {
         key: "text",
@@ -51,7 +51,7 @@ const CONFIG: Record<
   },
   image: {
     title: "Insert image",
-    description: "The image is placed at your cursor. Add an optional caption shown below it.",
+    description: "The image is placed at your cursor. Add an optional caption below it.",
     fields: [
       {
         key: "src",
@@ -103,6 +103,20 @@ const CONFIG: Record<
   },
 };
 
+const inputClass =
+  "h-10 w-full rounded-lg border border-[#dde3dc] bg-white px-3.5 text-sm text-[#141916] shadow-sm outline-none transition-[border-color,box-shadow] placeholder:text-[#7a857d] focus:border-[#e04a38] focus:shadow-[0_0_0_3px_#e04a3833]";
+
+const textareaClass =
+  "w-full resize-y rounded-lg border border-[#dde3dc] bg-white px-3.5 py-2.5 font-mono text-sm leading-relaxed text-[#141916] shadow-sm outline-none transition-[border-color,box-shadow] placeholder:text-[#7a857d] focus:border-[#e04a38] focus:shadow-[0_0_0_3px_#e04a3833]";
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  );
+}
+
 export function EditorInsertDialog({
   kind,
   onClose,
@@ -112,19 +126,26 @@ export function EditorInsertDialog({
   onRemoveLink,
 }: EditorInsertDialogProps) {
   const titleId = useId();
+  const descId = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const firstFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (!kind) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
       }
     };
     document.addEventListener("keydown", handleKey);
-    const timer = window.setTimeout(() => firstFieldRef.current?.focus(), 0);
+    const timer = window.setTimeout(() => firstFieldRef.current?.focus(), 50);
+
     return () => {
+      document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKey);
       window.clearTimeout(timer);
     };
@@ -136,91 +157,105 @@ export function EditorInsertDialog({
 
   const config = CONFIG[kind];
 
-  const collectValues = (): Record<string, string> | null => {
-    if (!formRef.current) return null;
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!formRef.current) return;
+
     const formData = new FormData(formRef.current);
     const values: Record<string, string> = {};
     for (const field of config.fields) {
       values[field.key] = String(formData.get(field.key) ?? "").trim();
     }
-    return values;
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const values = collectValues();
-    if (values) {
-      onSubmit(values);
-    }
+    onSubmit(values);
   };
 
   const dialog = (
     <div
-      className="fixed inset-0 z-[200] flex items-end justify-center p-4 sm:items-center"
+      className="editor-insert-dialog-root fixed inset-0 z-[9999] flex items-end justify-center p-4 sm:items-center sm:p-6"
       role="presentation"
+      style={{ fontFamily: "var(--font-inter, ui-sans-serif, system-ui, sans-serif)" }}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           onClose();
         }
       }}
     >
+      {/* Opaque backdrop — portaled dialogs sit outside .admin-cms so we cannot rely on admin CSS vars alone */}
+      <div className="pointer-events-none absolute inset-0 bg-[#0f1713]/60 backdrop-blur-[2px]" aria-hidden />
+
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-lg overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)] shadow-[0_24px_80px_-12px_rgba(15,23,19,0.35)]"
+        aria-describedby={descId}
+        className="relative z-10 flex max-h-[min(92vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-[#dde3dc] bg-white shadow-[0_28px_80px_-16px_rgba(15,23,19,0.55)]"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        {/* Portal keeps this form outside PostEditor's <form> — nested forms caused page reload on submit */}
-        <form ref={formRef} onSubmit={handleSubmit}>
-          <div className="border-b border-[var(--admin-border-subtle)] px-5 py-4">
-            <h2 id={titleId} className="text-base font-semibold text-[var(--admin-text)]">
-              {config.title}
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-[var(--admin-text-secondary)]">
-              {config.description}
-            </p>
+        <form ref={formRef} onSubmit={handleSubmit} className="flex min-h-0 flex-1 flex-col">
+          <div className="shrink-0 border-b border-[#e8ece8] bg-[#f9faf9] px-5 py-4 sm:px-6 sm:py-5">
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <h2 id={titleId} className="text-base font-semibold tracking-tight text-[#141916] sm:text-lg">
+                  {config.title}
+                </h2>
+                <p id={descId} className="mt-1.5 text-sm leading-6 text-[#4f5a53]">
+                  {config.description}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Close dialog"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  onClose();
+                }}
+                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#dde3dc] bg-white text-[#4f5a53] transition-colors hover:bg-[#f3f5f3] hover:text-[#141916]"
+              >
+                <CloseIcon />
+              </button>
+            </div>
           </div>
 
-          <div className="space-y-4 px-5 py-4">
+          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-5 py-5 sm:px-6">
             {config.fields.map((field, index) => (
               <div key={field.key}>
                 <label
-                  htmlFor={`editor-dialog-${field.key}`}
-                  className="mb-1.5 block text-xs font-medium text-[var(--admin-text-secondary)]"
+                  htmlFor={`editor-dialog-${kind}-${field.key}`}
+                  className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-[#4f5a53]"
                 >
                   {field.label}
-                  {field.required ? " *" : ""}
+                  {field.required ? <span className="text-[#e04a38]"> *</span> : null}
                 </label>
                 {field.multiline ? (
                   <textarea
                     ref={index === 0 ? (firstFieldRef as React.RefObject<HTMLTextAreaElement>) : undefined}
-                    id={`editor-dialog-${field.key}`}
+                    id={`editor-dialog-${kind}-${field.key}`}
                     name={field.key}
                     rows={field.rows ?? 4}
                     required={field.required}
                     defaultValue={initialValues[field.key] ?? ""}
                     placeholder={field.placeholder}
-                    className="w-full resize-y rounded-lg border border-[var(--admin-border)] bg-[var(--admin-panel)] px-3 py-2.5 font-mono text-sm text-[var(--admin-text)] outline-none transition-[border-color,box-shadow] focus:border-[var(--admin-accent)] focus:shadow-[0_0_0_3px_var(--admin-focus)]"
+                    className={textareaClass}
                   />
                 ) : (
                   <input
                     ref={index === 0 ? (firstFieldRef as React.RefObject<HTMLInputElement>) : undefined}
-                    id={`editor-dialog-${field.key}`}
+                    id={`editor-dialog-${kind}-${field.key}`}
                     name={field.key}
                     type="text"
                     required={field.required}
                     defaultValue={initialValues[field.key] ?? ""}
                     placeholder={field.placeholder}
-                    className="admin-input w-full"
+                    className={inputClass}
                   />
                 )}
               </div>
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--admin-border-subtle)] bg-[var(--admin-panel)] px-5 py-3">
+          <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-[#e8ece8] bg-[#f9faf9] px-5 py-4 sm:px-6">
             <div>
               {kind === "link" && canRemoveLink && onRemoveLink ? (
                 <button
@@ -230,25 +265,28 @@ export function EditorInsertDialog({
                     event.stopPropagation();
                     onRemoveLink();
                   }}
-                  className="text-sm font-medium text-[var(--admin-danger-text,#c0392b)] hover:underline"
+                  className="text-sm font-medium text-[#9b2c2c] hover:underline"
                 >
                   Remove link
                 </button>
               ) : null}
             </div>
-            <div className="flex gap-2">
+            <div className="ml-auto flex gap-2.5">
               <button
                 type="button"
-                className="admin-btn admin-btn-secondary"
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
                   onClose();
                 }}
+                className="inline-flex h-9 items-center justify-center rounded-lg border border-[#dde3dc] bg-white px-4 text-sm font-semibold text-[#141916] transition-colors hover:bg-[#f3f5f3]"
               >
                 Cancel
               </button>
-              <button type="submit" className="admin-btn admin-btn-primary">
+              <button
+                type="submit"
+                className="inline-flex h-9 items-center justify-center rounded-lg bg-[#e04a38] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#c93d2d]"
+              >
                 {config.submitLabel}
               </button>
             </div>
