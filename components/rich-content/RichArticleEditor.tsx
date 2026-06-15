@@ -18,6 +18,7 @@ import {
   EditorInsertDialog,
   type EditorDialogKind,
 } from "@/components/rich-content/EditorInsertDialog";
+import { useMotion } from "@/components/motion/MotionProvider";
 
 type SavedSelection = { from: number; to: number };
 
@@ -82,6 +83,7 @@ export function RichArticleEditor({
   const [scrollLocked, setScrollLocked] = useState(false);
   const savedSelection = useRef<SavedSelection | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { lockPageScroll, unlockPageScroll } = useMotion();
 
   const editor = useEditor({
     extensions: RICH_EXTENSIONS,
@@ -110,33 +112,37 @@ export function RichArticleEditor({
 
   useEffect(() => {
     if (!scrollLocked) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [scrollLocked]);
+    lockPageScroll();
+    return () => unlockPageScroll();
+  }, [scrollLocked, lockPageScroll, unlockPageScroll]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
     const handleWheel = (event: WheelEvent) => {
-      const { scrollTop, scrollHeight, clientHeight } = container;
-      const delta = event.deltaY;
-      const canScrollUp = scrollTop > 0;
-      const canScrollDown = scrollTop + clientHeight < scrollHeight - 1;
+      if (!scrollLocked) {
+        const { scrollTop, scrollHeight, clientHeight } = container;
+        const delta = event.deltaY;
+        const canScrollUp = scrollTop > 0;
+        const canScrollDown = scrollTop + clientHeight < scrollHeight - 1;
 
-      if (scrollLocked) {
-        event.preventDefault();
         if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
+          event.preventDefault();
           container.scrollTop += delta;
         }
         return;
       }
 
+      event.preventDefault();
+      event.stopPropagation();
+
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const delta = event.deltaY;
+      const canScrollUp = scrollTop > 0;
+      const canScrollDown = scrollTop + clientHeight < scrollHeight - 1;
+
       if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
-        event.preventDefault();
         container.scrollTop += delta;
       }
     };
@@ -148,14 +154,20 @@ export function RichArticleEditor({
   useEffect(() => {
     if (!scrollLocked) return;
 
-    const blockOutsideWheel = (event: WheelEvent) => {
+    const blockOutsideScroll = (event: Event) => {
       if (!scrollContainerRef.current?.contains(event.target as Node)) {
         event.preventDefault();
+        event.stopPropagation();
       }
     };
 
-    document.addEventListener("wheel", blockOutsideWheel, { passive: false });
-    return () => document.removeEventListener("wheel", blockOutsideWheel);
+    document.addEventListener("wheel", blockOutsideScroll, { passive: false, capture: true });
+    document.addEventListener("touchmove", blockOutsideScroll, { passive: false, capture: true });
+
+    return () => {
+      document.removeEventListener("wheel", blockOutsideScroll, { capture: true });
+      document.removeEventListener("touchmove", blockOutsideScroll, { capture: true });
+    };
   }, [scrollLocked]);
 
   const captureSelection = useCallback(() => {

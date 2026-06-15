@@ -21,12 +21,16 @@ type MotionContextValue = {
   isReady: boolean;
   prefersReducedMotion: boolean;
   resetRouteMotion: () => void;
+  lockPageScroll: () => void;
+  unlockPageScroll: () => void;
 };
 
 const MotionContext = createContext<MotionContextValue>({
   isReady: false,
   prefersReducedMotion: false,
   resetRouteMotion: () => undefined,
+  lockPageScroll: () => undefined,
+  unlockPageScroll: () => undefined,
 });
 
 export function useMotion(): MotionContextValue {
@@ -41,9 +45,38 @@ export function MotionProvider({ children }: MotionProviderProps) {
   const [isReady, setIsReady] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
+  const pageScrollLockDepth = useRef(0);
 
   const resetRouteMotion = useCallback(() => {
     applyRouteMotionReset(lenisRef.current);
+  }, []);
+
+  const lockPageScroll = useCallback(() => {
+    pageScrollLockDepth.current += 1;
+    if (pageScrollLockDepth.current !== 1) {
+      return;
+    }
+
+    document.documentElement.dataset.pageScrollLocked = "true";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    lenisRef.current?.stop();
+  }, []);
+
+  const unlockPageScroll = useCallback(() => {
+    if (pageScrollLockDepth.current === 0) {
+      return;
+    }
+
+    pageScrollLockDepth.current -= 1;
+    if (pageScrollLockDepth.current !== 0) {
+      return;
+    }
+
+    delete document.documentElement.dataset.pageScrollLocked;
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    lenisRef.current?.start();
   }, []);
 
   useEffect(() => {
@@ -137,8 +170,14 @@ export function MotionProvider({ children }: MotionProviderProps) {
   }, []);
 
   const value = useMemo(
-    () => ({ isReady, prefersReducedMotion, resetRouteMotion }),
-    [isReady, prefersReducedMotion, resetRouteMotion],
+    () => ({
+      isReady,
+      prefersReducedMotion,
+      resetRouteMotion,
+      lockPageScroll,
+      unlockPageScroll,
+    }),
+    [isReady, prefersReducedMotion, resetRouteMotion, lockPageScroll, unlockPageScroll],
   );
 
   return <MotionContext.Provider value={value}>{children}</MotionContext.Provider>;
