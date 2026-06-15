@@ -56,7 +56,7 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
           />
         </Reveal>
 
-        <div className="mx-auto mt-6 grid max-w-6xl gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.id}
@@ -71,7 +71,7 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
                     alt={post.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center bg-secondary/10 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">

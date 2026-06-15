@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
 import { AiWriterAssistant } from "@/components/blog/admin/AiWriterAssistant";
-import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { RichArticleEditor } from "@/components/rich-content/RichArticleEditor";
 import type { AiCaseStudyImport } from "@/lib/case-studies/ai-workflow";
 import {
@@ -65,6 +64,7 @@ function metricsToJson(metrics: CaseStudyMetric[]): string {
 
 export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
   const router = useRouter();
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [form, setForm] = useState<FormState>({
     title: initial?.title ?? "",
     slug: initial?.slug ?? "",
@@ -190,210 +190,199 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <AiWriterAssistant variant="case-study" onImport={handleAiImport} />
 
-      <form onSubmit={handleSubmit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
-      <div className="admin-panel space-y-4 p-5">
-        <div>
-          <label className={labelClass}>Title</label>
-          <input
-            required
-            value={form.title}
-            onChange={(event) => update("title", event.target.value)}
-            className={`${fieldClass} text-lg font-semibold`}
-          />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelClass}>Slug</label>
+      <form onSubmit={handleSubmit} className="space-y-0">
+        <div className="sticky top-0 z-20 -mx-1 mb-4 flex flex-col gap-3 rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)]/95 px-4 py-3 shadow-sm backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0 flex-1">
             <input
-              value={form.slug}
-              onChange={(event) => update("slug", event.target.value)}
-              placeholder={autoSlug}
-              className={fieldClass}
+              required
+              value={form.title}
+              onChange={(event) => update("title", event.target.value)}
+              className="w-full border-0 bg-transparent text-xl font-semibold text-[var(--admin-text)] outline-none placeholder:text-[var(--admin-text-muted)]"
+              placeholder="Case study title"
             />
+            <p className="mt-0.5 truncate text-[11px] text-[var(--admin-text-muted)]">
+              /case-studies/{form.slug.trim() || autoSlug || "your-slug"}
+            </p>
           </div>
-          <div>
-            <label className={labelClass}>Status</label>
+          <div className="flex flex-wrap items-center gap-2">
             <select
               value={form.status}
-              onChange={(event) =>
-                update("status", event.target.value as FormState["status"])
-              }
-              className={fieldClass}
+              onChange={(event) => update("status", event.target.value as FormState["status"])}
+              className="admin-input h-9 py-1 text-xs"
             >
               <option value="DRAFT">Draft</option>
               <option value="PUBLISHED">Published</option>
               <option value="ARCHIVED">Archived</option>
             </select>
+            <button type="button" className="admin-btn admin-btn-secondary" onClick={() => router.back()}>
+              Cancel
+            </button>
+            <button type="submit" className="admin-btn admin-btn-primary" disabled={isSaving}>
+              {isSaving ? "Saving…" : mode === "create" ? "Create case study" : "Save"}
+            </button>
           </div>
         </div>
-        <div>
-          <label className={labelClass}>Excerpt</label>
-          <textarea
-            required
-            rows={2}
-            value={form.excerpt}
-            onChange={(event) => update("excerpt", event.target.value)}
-            className={textareaClass}
-          />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelClass}>Category</label>
-            <select
-              value={form.category}
-              onChange={(event) => update("category", event.target.value)}
-              className={fieldClass}
-            >
-              {CASE_STUDY_CATEGORIES.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className={labelClass}>Industry</label>
-            <input
-              required
-              value={form.industry}
-              onChange={(event) => update("industry", event.target.value)}
-              className={fieldClass}
-            />
-          </div>
-        </div>
-        <div>
-          <label className={labelClass}>Written by</label>
-          <select
-            value={form.authorProfile}
-            onChange={(event) =>
-              update("authorProfile", event.target.value as AuthorProfileId)
-            }
-            className={fieldClass}
+
+        <div className="mb-4 overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)]">
+          <button
+            type="button"
+            onClick={() => setSettingsOpen((open) => !open)}
+            className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[var(--admin-text)] transition-colors hover:bg-[var(--admin-panel)]"
           >
-            {Object.values(AUTHOR_PROFILES).map((profile) => (
-              <option key={profile.id} value={profile.id}>
-                {profile.name}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1.5 text-[11px] leading-5 text-[var(--admin-text-muted)]">
-            {AUTHOR_PROFILES[form.authorProfile].shortBio}
-          </p>
+            <span>Case study settings</span>
+            <span className="text-xs text-[var(--admin-text-muted)]">
+              {settingsOpen ? "Hide" : "Slug, metrics, cover, client context…"}
+            </span>
+          </button>
+          {settingsOpen ? (
+            <div className="grid gap-4 border-t border-[var(--admin-border-subtle)] px-4 py-4 sm:grid-cols-2">
+              <div>
+                <label className={labelClass}>Slug</label>
+                <input
+                  value={form.slug}
+                  onChange={(event) => update("slug", event.target.value)}
+                  placeholder={autoSlug}
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Category</label>
+                <select
+                  value={form.category}
+                  onChange={(event) => update("category", event.target.value)}
+                  className={fieldClass}
+                >
+                  {CASE_STUDY_CATEGORIES.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Excerpt</label>
+                <textarea
+                  required
+                  rows={2}
+                  value={form.excerpt}
+                  onChange={(event) => update("excerpt", event.target.value)}
+                  className={textareaClass}
+                  placeholder="Short summary for cards and hero"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Industry</label>
+                <input
+                  required
+                  value={form.industry}
+                  onChange={(event) => update("industry", event.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Tag (optional badge)</label>
+                <input
+                  value={form.tag}
+                  onChange={(event) => update("tag", event.target.value)}
+                  placeholder="Field pilot"
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Written by</label>
+                <select
+                  value={form.authorProfile}
+                  onChange={(event) =>
+                    update("authorProfile", event.target.value as AuthorProfileId)
+                  }
+                  className={fieldClass}
+                >
+                  {Object.values(AUTHOR_PROFILES).map((profile) => (
+                    <option key={profile.id} value={profile.id}>
+                      {profile.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>Cover image URL</label>
+                <input
+                  value={form.coverImage}
+                  onChange={(event) => update("coverImage", event.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Cover alt text</label>
+                <input
+                  value={form.coverImageAlt}
+                  onChange={(event) => update("coverImageAlt", event.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Client context (card / hero summary)</label>
+                <textarea
+                  rows={2}
+                  value={form.clientContext}
+                  onChange={(event) => update("clientContext", event.target.value)}
+                  className={textareaClass}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Hero metrics (JSON array)</label>
+                <textarea
+                  rows={4}
+                  value={form.metricsJson}
+                  onChange={(event) => update("metricsJson", event.target.value)}
+                  className={`${textareaClass} font-mono text-xs`}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Outcome bullets (JSON array)</label>
+                <textarea
+                  rows={4}
+                  value={form.outcomesJson}
+                  onChange={(event) => update("outcomesJson", event.target.value)}
+                  className={`${textareaClass} font-mono text-xs`}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={labelClass}>Disclaimer</label>
+                <textarea
+                  rows={2}
+                  value={form.disclaimer}
+                  onChange={(event) => update("disclaimer", event.target.value)}
+                  className={textareaClass}
+                />
+              </div>
+              <label className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)] sm:col-span-2">
+                <input
+                  type="checkbox"
+                  checked={form.featured}
+                  onChange={(event) => update("featured", event.target.checked)}
+                  className="h-4 w-4 rounded border-[var(--admin-border)]"
+                />
+                Feature on case studies page
+              </label>
+            </div>
+          ) : null}
         </div>
-        <div>
-          <label className={labelClass}>Client context (card / hero summary)</label>
-          <textarea
-            rows={2}
-            value={form.clientContext}
-            onChange={(event) => update("clientContext", event.target.value)}
-            className={textareaClass}
-          />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelClass}>Cover image URL</label>
-            <input
-              value={form.coverImage}
-              onChange={(event) => update("coverImage", event.target.value)}
-              className={fieldClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>Cover alt text</label>
-            <input
-              value={form.coverImageAlt}
-              onChange={(event) => update("coverImageAlt", event.target.value)}
-              className={fieldClass}
-            />
-          </div>
-        </div>
-        <div>
-          <label className={labelClass}>Tag (optional badge)</label>
-          <input
-            value={form.tag}
-            onChange={(event) => update("tag", event.target.value)}
-            placeholder="Field pilot"
-            className={fieldClass}
-          />
-        </div>
-        <div>
-          <label className={labelClass}>Hero metrics (JSON array)</label>
-          <textarea
-            rows={4}
-            value={form.metricsJson}
-            onChange={(event) => update("metricsJson", event.target.value)}
-            className={`${textareaClass} font-mono text-xs`}
-          />
-        </div>
-        <div>
-          <label className={labelClass}>Outcome bullets (JSON array, shown in hero cards)</label>
-          <textarea
-            rows={4}
-            value={form.outcomesJson}
-            onChange={(event) => update("outcomesJson", event.target.value)}
-            className={`${textareaClass} font-mono text-xs`}
-          />
-        </div>
-        <div>
-          <label className={labelClass}>Disclaimer</label>
-          <textarea
-            rows={2}
-            value={form.disclaimer}
-            onChange={(event) => update("disclaimer", event.target.value)}
-            className={textareaClass}
-          />
-        </div>
-        <label className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)]">
-          <input
-            type="checkbox"
-            checked={form.featured}
-            onChange={(event) => update("featured", event.target.checked)}
-            className="h-4 w-4 rounded border-[var(--admin-border)]"
-          />
-          Feature on case studies page
-        </label>
-        <div>
-          <label className={labelClass}>Full story</label>
-          <p className="mb-2 text-[11px] text-[var(--admin-text-muted)]">
-            Problem → approach → proof. Add diagrams, GIFs, and walkthrough videos inline.
-          </p>
-          <RichArticleEditor
-            value={form.bodyJson}
-            onChange={(json) => update("bodyJson", json)}
-          />
-        </div>
+
         {error ? (
-          <p className="rounded-lg border border-[var(--admin-danger-border)] bg-[var(--admin-danger-bg)] px-3 py-2 text-sm text-[var(--admin-danger-text)]">
+          <p className="mb-4 rounded-lg border border-[var(--admin-danger-border)] bg-[var(--admin-danger-bg)] px-3 py-2 text-sm text-[var(--admin-danger-text)]">
             {error}
           </p>
         ) : null}
-        <div className="flex flex-wrap gap-2 pt-2">
-          <button type="submit" className="admin-btn admin-btn-primary" disabled={isSaving}>
-            {isSaving ? "Saving..." : mode === "create" ? "Create case study" : "Save changes"}
-          </button>
-          <button type="button" className="admin-btn admin-btn-secondary" onClick={() => router.back()}>
-            Cancel
-          </button>
-        </div>
-      </div>
 
-      <div className="hidden xl:block">
-        <div className="admin-panel sticky top-20 p-5">
-          <p className="text-xs font-medium uppercase tracking-wide text-[var(--admin-text-muted)]">
-            Preview
-          </p>
-          <h2 className="mt-3 font-display text-xl font-extrabold leading-tight text-[var(--admin-text)]">
-            {form.title || "Case study title"}
-          </h2>
-          <p className="mt-2 text-sm text-[var(--admin-text-secondary)]">{form.excerpt}</p>
-          <div className="mt-5 max-h-[65vh] overflow-y-auto border-t border-[var(--admin-border-subtle)] pt-5">
-            <RichArticleBody bodyJson={form.bodyJson} contentFormat="RICH" reading={false} />
-          </div>
-        </div>
-      </div>
+        <RichArticleEditor
+          value={form.bodyJson}
+          onChange={(json) => update("bodyJson", json)}
+          placeholder="Problem → approach → proof. Place your cursor, then use Link, Image, or Video to insert at that spot."
+        />
       </form>
     </div>
   );

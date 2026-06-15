@@ -212,12 +212,21 @@
   margin-inline: auto;
 }
 
-/* Public reading column - centered Medium-style */
+/* Public reading column — fill available column; blog uses .blog-article-prose for full width */
 .rich-article-reading {
   margin-inline: auto;
 }
 
 .rich-article-reading .rich-article {
+  max-width: var(--rich-measure);
+}
+
+.blog-article-prose.rich-article-reading {
+  margin-inline: 0;
+}
+
+.blog-article-prose.rich-article-reading .rich-article {
+  max-width: none;
   font-size: clamp(1.05rem, 1.8vw, 1.2rem);
 }
 

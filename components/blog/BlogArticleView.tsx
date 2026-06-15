@@ -27,6 +27,10 @@ const BLOG_CTA = {
   primaryCta: { label: "Book a Discovery Call", href: "/contact" },
 };
 
+/** Main column + sidebar — matches site container width without extra centering gutters. */
+const ARTICLE_LAYOUT =
+  "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(17.5rem,20rem)] lg:items-start lg:gap-12 xl:gap-14";
+
 export function BlogArticleView({ post, related }: BlogArticleViewProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { isReady, prefersReducedMotion } = useMotion();
@@ -53,39 +57,41 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
     <>
       <section className="border-b border-outline-variant/40 bg-surface pt-28 pb-10 md:pt-32 md:pb-14">
         <Container>
-          <div className="mx-auto max-w-[42rem]" data-blog-article>
-            <Link
-              href="/blog"
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary"
-            >
-              ← All blogs
-            </Link>
-            <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-on-surface-variant">
-              <span className="rounded-full bg-secondary-container px-2.5 py-1 font-semibold uppercase tracking-wide text-on-secondary-container">
-                {post.categoryLabel}
-              </span>
-              <span>
-                {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
-              </span>
-            </div>
-            <h1 className="mt-5 font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-on-surface">
-              {post.title}
-            </h1>
-            <p className="mt-5 text-lg leading-8 text-on-surface-variant md:text-xl md:leading-9">
-              {post.excerpt}
-            </p>
-            {post.tags.length > 0 ? (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-outline-variant/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-on-surface-variant"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          <div className={ARTICLE_LAYOUT}>
+            <div data-blog-article className="min-w-0">
+              <Link
+                href="/blog"
+                className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary"
+              >
+                ← All blogs
+              </Link>
+              <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-on-surface-variant">
+                <span className="rounded-full bg-secondary-container px-2.5 py-1 font-semibold uppercase tracking-wide text-on-secondary-container">
+                  {post.categoryLabel}
+                </span>
+                <span>
+                  {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
+                </span>
               </div>
-            ) : null}
+              <h1 className="mt-5 max-w-4xl font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-on-surface">
+                {post.title}
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-on-surface-variant md:text-xl md:leading-9">
+                {post.excerpt}
+              </p>
+              {post.tags.length > 0 ? (
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-outline-variant/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-on-surface-variant"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           </div>
         </Container>
       </section>
@@ -93,16 +99,18 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
       {post.coverImage ? (
         <section className="bg-surface pb-8">
           <Container>
-            <div className="mx-auto max-w-[52rem]" data-blog-article>
-              <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 832px"
-                />
+            <div className={ARTICLE_LAYOUT}>
+              <div data-blog-article className="min-w-0">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, calc(100vw - 22rem)"
+                  />
+                </div>
               </div>
             </div>
           </Container>
@@ -111,12 +119,13 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
 
       <section ref={sectionRef} className="section-y bg-surface pb-20">
         <Container>
-          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,42rem)_240px] lg:justify-center lg:gap-16">
+          <div className={ARTICLE_LAYOUT}>
             <article data-blog-article className="min-w-0">
               <RichArticleBody
                 contentFormat={post.contentFormat}
                 bodyJson={post.bodyJson}
                 content={post.content}
+                className="blog-article-prose"
               />
             </article>
 

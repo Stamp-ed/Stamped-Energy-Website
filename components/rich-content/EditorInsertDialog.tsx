@@ -31,20 +31,26 @@ const CONFIG: Record<
 > = {
   link: {
     title: "Insert link",
-    description: "Add a hyperlink to selected text, or enter display text to insert a new linked phrase.",
+    description: "Linked text is inserted at your cursor. Prefill display text by selecting words first.",
     fields: [
-      { key: "url", label: "URL", placeholder: "https://stamped.work/blog/…", required: true },
       {
         key: "text",
         label: "Display text",
-        placeholder: "Optional — uses selection or URL if empty",
+        placeholder: "e.g. Read the full case study",
+        required: true,
+      },
+      {
+        key: "url",
+        label: "Link URL",
+        placeholder: "https://stamped.work/blog/…",
+        required: true,
       },
     ],
-    submitLabel: "Apply link",
+    submitLabel: "Insert link",
   },
   image: {
     title: "Insert image",
-    description: "Paste a path from your site or a full HTTPS URL. GIFs work too.",
+    description: "The image is placed at your cursor. Add an optional caption shown below it.",
     fields: [
       {
         key: "src",
@@ -52,13 +58,23 @@ const CONFIG: Record<
         placeholder: "/industries/forging.jpg or https://…",
         required: true,
       },
-      { key: "alt", label: "Alt text", placeholder: "Describe the image for accessibility" },
+      {
+        key: "alt",
+        label: "Alt text",
+        placeholder: "Describe the image for accessibility",
+        required: true,
+      },
+      {
+        key: "caption",
+        label: "Caption (optional)",
+        placeholder: "Short caption shown under the image",
+      },
     ],
     submitLabel: "Insert image",
   },
   video: {
     title: "Embed YouTube video",
-    description: "Paste a YouTube watch or youtu.be link. It will embed in the article.",
+    description: "The video embed is inserted at your cursor position.",
     fields: [
       {
         key: "url",

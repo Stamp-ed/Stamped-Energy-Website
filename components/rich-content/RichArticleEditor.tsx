@@ -2,8 +2,8 @@
 
 import "@/styles/rich-article.css";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import { useCallback, useEffect, useState } from "react";
+import { useEditor, EditorContent, type Editor } from "@tiptap/react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { JSONContent } from "@tiptap/react";
 
@@ -18,6 +18,8 @@ import {
   EditorInsertDialog,
   type EditorDialogKind,
 } from "@/components/rich-content/EditorInsertDialog";
+
+type SavedSelection = { from: number; to: number };
 
 type RichArticleEditorProps = {
   value: string | null;
@@ -44,6 +46,7 @@ function ToolbarButton({ onClick, active, disabled, label, title }: ToolbarButto
       type="button"
       title={title ?? label}
       disabled={disabled}
+      onMouseDown={(event) => event.preventDefault()}
       onClick={onClick}
       className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
         active
@@ -56,6 +59,17 @@ function ToolbarButton({ onClick, active, disabled, label, title }: ToolbarButto
   );
 }
 
+function insertAtSelection(editor: Editor, selection: SavedSelection | null, content: JSONContent | JSONContent[]) {
+  const { from, to } = selection ?? editor.state.selection;
+  const chain = editor.chain().focus().setTextSelection({ from, to });
+
+  if (from !== to) {
+    chain.deleteSelection();
+  }
+
+  chain.insertContent(content).run();
+}
+
 export function RichArticleEditor({
   value,
   onChange,
@@ -65,14 +79,14 @@ export function RichArticleEditor({
   const [dialogKind, setDialogKind] = useState<EditorDialogKind | null>(null);
   const [dialogInitial, setDialogInitial] = useState<Record<string, string>>({});
   const [canRemoveLink, setCanRemoveLink] = useState(false);
+  const savedSelection = useRef<SavedSelection | null>(null);
 
   const editor = useEditor({
     extensions: RICH_EXTENSIONS,
     content: parseRichDoc(value),
     editorProps: {
       attributes: {
-        class:
-          "rich-article rich-article-editor min-h-[calc(100vh-18rem)] px-6 py-6 focus:outline-none",
+        class: "rich-article rich-article-editor min-h-[320px] px-6 py-6 focus:outline-none",
         "data-placeholder": placeholder ?? "Tell your story…",
       },
     },
@@ -92,84 +106,89 @@ export function RichArticleEditor({
     }
   }, [editor, value]);
 
-  const openLinkDialog = useCallback(() => {
+  const captureSelection = useCallback(() => {
     if (!editor) return;
-    const previousUrl = editor.getAttributes("link").href as string | undefined;
-    const { empty } = editor.state.selection;
-    setCanRemoveLink(Boolean(previousUrl));
-    setDialogInitial({
-      url: previousUrl ?? "https://",
-      text: empty ? "" : editor.state.doc.textBetween(editor.state.selection.from, editor.state.selection.to),
-    });
-    setDialogKind("link");
+    const { from, to } = editor.state.selection;
+    savedSelection.current = { from, to };
   }, [editor]);
 
+  const openLinkDialog = useCallback(() => {
+    if (!editor) return;
+    captureSelection();
+    const previousUrl = editor.getAttributes("link").href as string | undefined;
+    const selectedText = editor.state.doc.textBetween(
+      editor.state.selection.from,
+      editor.state.selection.to,
+    );
+    setCanRemoveLink(Boolean(previousUrl));
+    setDialogInitial({
+      text: selectedText,
+      url: previousUrl ?? "https://",
+    });
+    setDialogKind("link");
+  }, [captureSelection, editor]);
+
   const openImageDialog = useCallback(() => {
+    captureSelection();
     setDialogInitial({});
     setCanRemoveLink(false);
     setDialogKind("image");
-  }, []);
+  }, [captureSelection]);
 
   const openVideoDialog = useCallback(() => {
+    captureSelection();
     setDialogInitial({});
     setCanRemoveLink(false);
     setDialogKind("video");
-  }, []);
+  }, [captureSelection]);
 
   const openMermaidDialog = useCallback(() => {
+    captureSelection();
     setDialogInitial({
       source: "flowchart TD\n  A[Plant data] --> B[Stamped prescriptions]",
     });
     setCanRemoveLink(false);
     setDialogKind("mermaid");
-  }, []);
+  }, [captureSelection]);
 
   const handleLinkSubmit = useCallback(
     (values: Record<string, string>) => {
       if (!editor) return;
       const href = values.url.trim();
+      const displayText = values.text.trim();
+
       if (!href) {
         setDialogKind(null);
         return;
       }
 
-      const { empty } = editor.state.selection;
-      const displayText = values.text.trim();
-
-      if (editor.isActive("link")) {
+      if (editor.isActive("link") && canRemoveLink) {
         editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
-      } else if (!empty) {
-        editor.chain().focus().setLink({ href }).run();
-      } else if (displayText) {
-        editor
-          .chain()
-          .focus()
-          .insertContent({
-            type: "text",
-            text: displayText,
-            marks: [{ type: "link", attrs: { href } }],
-          })
-          .run();
-      } else {
-        editor
-          .chain()
-          .focus()
-          .insertContent({
-            type: "text",
-            text: href,
-            marks: [{ type: "link", attrs: { href } }],
-          })
-          .run();
+        setDialogKind(null);
+        savedSelection.current = null;
+        return;
       }
 
+      if (!displayText) {
+        return;
+      }
+
+      insertAtSelection(editor, savedSelection.current, {
+        type: "text",
+        text: displayText,
+        marks: [{ type: "link", attrs: { href } }],
+      });
+
+      savedSelection.current = null;
       setDialogKind(null);
     },
-    [editor],
+    [canRemoveLink, editor],
   );
 
   const handleRemoveLink = useCallback(() => {
     if (!editor) return;
     editor.chain().focus().extendMarkRange("link").unsetLink().run();
+    savedSelection.current = null;
     setDialogKind(null);
   }, [editor]);
 
@@ -184,33 +203,47 @@ export function RichArticleEditor({
 
       if (dialogKind === "image") {
         const src = values.src.trim();
+        const alt = values.alt.trim();
+        const caption = values.caption.trim();
         if (src) {
-          editor.chain().focus().setImage({ src, alt: values.alt.trim() }).run();
+          const nodes: JSONContent[] = [
+            {
+              type: "image",
+              attrs: { src, alt: alt || caption || "Image" },
+            },
+          ];
+          if (caption) {
+            nodes.push({
+              type: "paragraph",
+              content: [{ type: "text", text: caption, marks: [{ type: "italic" }] }],
+            });
+          }
+          insertAtSelection(editor, savedSelection.current, nodes);
         }
       }
 
       if (dialogKind === "video") {
         const url = values.url.trim();
         if (url) {
-          editor.chain().focus().setYoutubeVideo({ src: url }).run();
+          insertAtSelection(editor, savedSelection.current, {
+            type: "youtube",
+            attrs: { src: url },
+          });
         }
       }
 
       if (dialogKind === "mermaid") {
         const source = values.source.trim();
         if (source) {
-          editor
-            .chain()
-            .focus()
-            .insertContent({
-              type: "codeBlock",
-              attrs: { language: "mermaid" },
-              content: [{ type: "text", text: source }],
-            })
-            .run();
+          insertAtSelection(editor, savedSelection.current, {
+            type: "codeBlock",
+            attrs: { language: "mermaid" },
+            content: [{ type: "text", text: source }],
+          });
         }
       }
 
+      savedSelection.current = null;
       setDialogKind(null);
     },
     [dialogKind, editor, handleLinkSubmit],
@@ -231,9 +264,9 @@ export function RichArticleEditor({
   return (
     <>
       <div
-        className={`overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)] shadow-sm ${className}`}
+        className={`flex max-h-[min(72vh,calc(100vh-11rem))] flex-col overflow-hidden rounded-xl border border-[var(--admin-border)] bg-[var(--admin-surface)] shadow-sm ${className}`}
       >
-        <div className="sticky top-0 z-10 border-b border-[var(--admin-border-subtle)] bg-[var(--admin-panel)]/95 backdrop-blur-sm">
+        <div className="z-10 shrink-0 border-b border-[var(--admin-border-subtle)] bg-[var(--admin-panel)]">
           <div className="flex flex-wrap items-center gap-0.5 px-2 py-2">
             <ToolbarButton
               label="Undo"
@@ -317,12 +350,12 @@ export function RichArticleEditor({
 
             <ToolbarButton
               label="Link"
-              title="Insert or edit link"
+              title="Insert linked text at cursor"
               active={editor.isActive("link")}
               onClick={openLinkDialog}
             />
-            <ToolbarButton label="Image" title="Insert image or GIF" onClick={openImageDialog} />
-            <ToolbarButton label="Video" title="Embed YouTube" onClick={openVideoDialog} />
+            <ToolbarButton label="Image" title="Insert image at cursor" onClick={openImageDialog} />
+            <ToolbarButton label="Video" title="Embed YouTube at cursor" onClick={openVideoDialog} />
             <ToolbarButton label="Diagram" title="Insert Mermaid diagram" onClick={openMermaidDialog} />
             <ToolbarButton
               label="Table"
@@ -364,18 +397,17 @@ export function RichArticleEditor({
           </div>
         </div>
 
-        <EditorContent editor={editor} />
-
-        {placeholder ? (
-          <p className="border-t border-[var(--admin-border-subtle)] px-4 py-2 text-[11px] text-[var(--admin-text-muted)]">
-            {placeholder}
-          </p>
-        ) : null}
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <EditorContent editor={editor} />
+        </div>
       </div>
 
       <EditorInsertDialog
         kind={dialogKind}
-        onClose={() => setDialogKind(null)}
+        onClose={() => {
+          savedSelection.current = null;
+          setDialogKind(null);
+        }}
         onSubmit={handleDialogSubmit}
         initialValues={dialogInitial}
         canRemoveLink={canRemoveLink}
