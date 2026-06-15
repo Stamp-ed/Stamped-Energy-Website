@@ -22,6 +22,10 @@ export function Navbar() {
   const showSolidHeader = isScrolled || isMenuOpen;
 
   useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 24);
     };

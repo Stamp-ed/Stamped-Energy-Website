@@ -3,25 +3,30 @@
 import Lenis from "lenis";
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
 
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/motion/gsap";
+import { resetRouteMotion as applyRouteMotionReset, shouldUseLenis } from "@/lib/motion/routeMotion";
 
 import "lenis/dist/lenis.css";
 
 type MotionContextValue = {
   isReady: boolean;
   prefersReducedMotion: boolean;
+  resetRouteMotion: () => void;
 };
 
 const MotionContext = createContext<MotionContextValue>({
   isReady: false,
   prefersReducedMotion: false,
+  resetRouteMotion: () => undefined,
 });
 
 export function useMotion(): MotionContextValue {
@@ -35,17 +40,32 @@ type MotionProviderProps = {
 export function MotionProvider({ children }: MotionProviderProps) {
   const [isReady, setIsReady] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  const resetRouteMotion = useCallback(() => {
+    applyRouteMotionReset(lenisRef.current);
+  }, []);
 
   useEffect(() => {
     registerGsap();
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const isReducedMotion = reducedMotionQuery.matches;
     setPrefersReducedMotion(isReducedMotion);
 
-    if (isReducedMotion) {
-      setIsReady(true);
-      return;
+    const enableLenis = !isReducedMotion && shouldUseLenis();
+
+    if (!enableLenis) {
+      ScrollTrigger.defaults({ scroller: window });
+      const readyFrame = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        setIsReady(true);
+      });
+
+      return () => {
+        cancelAnimationFrame(readyFrame);
+      };
     }
 
     const lenis = new Lenis({
@@ -54,6 +74,7 @@ export function MotionProvider({ children }: MotionProviderProps) {
       syncTouch: false,
     });
 
+    lenisRef.current = lenis;
     document.documentElement.classList.add("lenis");
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -108,14 +129,16 @@ export function MotionProvider({ children }: MotionProviderProps) {
       ScrollTrigger.removeEventListener("refresh", onRefresh);
       gsap.ticker.remove(onTicker);
       lenis.destroy();
+      lenisRef.current = null;
       document.documentElement.classList.remove("lenis");
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.defaults({ scroller: window });
+      ScrollTrigger.clearScrollMemory();
     };
   }, []);
 
   const value = useMemo(
-    () => ({ isReady, prefersReducedMotion }),
-    [isReady, prefersReducedMotion],
+    () => ({ isReady, prefersReducedMotion, resetRouteMotion }),
+    [isReady, prefersReducedMotion, resetRouteMotion],
   );
 
   return <MotionContext.Provider value={value}>{children}</MotionContext.Provider>;

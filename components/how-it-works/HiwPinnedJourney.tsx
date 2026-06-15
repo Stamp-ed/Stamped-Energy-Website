@@ -103,6 +103,8 @@ export function HiwPinnedJourney() {
 
         return () => {
           scrollTrigger.kill();
+          gsap.set(panels, { clearProps: "visibility,opacity,transform" });
+          gsap.set(stepNav, { clearProps: "opacity,transform" });
         };
       });
 
