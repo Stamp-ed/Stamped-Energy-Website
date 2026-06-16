@@ -36,3 +36,5 @@ Not a passive EMS dashboard or SCADA replacement. It is a prescription and accou
 ## Crawling
 
 All public pages are open to search and AI crawlers. Admin CMS (`/blog/admin`), API routes (`/api/`), and build assets (`/_next/`) are disallowed in robots.txt.
+
+Extended CMS index (auto-updated): https://stamped.work/llms-full.txt

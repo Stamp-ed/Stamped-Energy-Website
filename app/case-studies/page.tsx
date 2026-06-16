@@ -6,6 +6,7 @@ import { listPublishedCaseStudies } from "@/lib/case-studies/studies";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
+import { buildCollectionPageSchema } from "@/lib/seo/schemas";
 
 export const revalidate = 60;
 
@@ -16,12 +17,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Case Studies", url: PAGE_SEO.caseStudies.path },
 ]);
 
+const collectionSchema = buildCollectionPageSchema({
+  name: PAGE_SEO.caseStudies.absoluteTitle,
+  description: PAGE_SEO.caseStudies.description,
+  path: PAGE_SEO.caseStudies.path,
+});
+
 export default async function CaseStudiesRoute() {
   const { studies } = await listPublishedCaseStudies({ limit: 24 });
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={[collectionSchema, breadcrumbSchema]} />
       <CaseStudiesPage studies={studies} />
     </>
   );

@@ -18,3 +18,15 @@ export const GEO_METADATA = {
   "geo.placename": "India",
   "content-language": "en-IN",
 } as const;
+
+/** Primary and secondary target keywords for metadata `keywords` field. */
+export const SEO_KEYWORDS = [
+  "stamped energy",
+  "prescriptive energy intelligence India",
+  "energy management software for manufacturers India",
+  "reduce electricity bill manufacturing India",
+  "maximum demand reduction India",
+  "energy cost reduction auto component manufacturers",
+  "DISCOM bill savings India",
+  "SEC reduction manufacturing India",
+] as const;

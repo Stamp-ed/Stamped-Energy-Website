@@ -6,10 +6,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getPublishedPostBySlug, getRelatedPosts } from "@/lib/blog/posts";
 import { prisma } from "@/lib/blog/db";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
+import { extractFaqFromContent } from "@/lib/seo/extract-faq";
 import { absoluteUrl, buildPageMetadata } from "@/lib/seo/metadata";
 import {
   buildArticleSchema,
   buildBlogSpeakableSchema,
+  buildFaqSchema,
 } from "@/lib/seo/schemas";
 
 type BlogArticlePageProps = {
@@ -47,6 +49,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
     modifiedTime: post.updatedAt,
     authors: [post.author.name],
     tags: post.tags,
+    keywords: post.tags,
   });
 }
 
@@ -81,10 +84,21 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   ]);
 
   const speakableSchema = buildBlogSpeakableSchema(post.slug, post.title);
+  const faqSchema = buildFaqSchema(
+    extractFaqFromContent({
+      contentFormat: post.contentFormat,
+      bodyJson: post.bodyJson,
+      content: post.content,
+    }),
+  );
+
+  const jsonLd = [articleSchema, breadcrumbSchema, speakableSchema, faqSchema].filter(
+    (item): item is NonNullable<typeof item> => item !== null,
+  );
 
   return (
     <>
-      <JsonLd data={[articleSchema, breadcrumbSchema, speakableSchema]} />
+      <JsonLd data={jsonLd} />
       <BlogArticleView post={post} related={related} />
     </>
   );

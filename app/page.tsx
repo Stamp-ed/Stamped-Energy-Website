@@ -16,6 +16,7 @@ import { PAGE_SEO } from "@/lib/seo/pages";
 import {
   homepageFaqSchema,
   homepageSpeakableSchema,
+  softwareApplicationSchema,
   websiteSchema,
 } from "@/lib/seo/schemas";
 
@@ -25,7 +26,12 @@ export default function HomePage() {
   return (
     <>
       <JsonLd
-        data={[websiteSchema, homepageFaqSchema, homepageSpeakableSchema]}
+        data={[
+          websiteSchema,
+          softwareApplicationSchema,
+          homepageFaqSchema,
+          homepageSpeakableSchema,
+        ]}
       />
       <Hero />
       <Outcomes />

@@ -13,39 +13,9 @@ import { industriesContent } from "@/lib/content";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
+import { automotiveFaqSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = buildPageMetadataFromConfig(PAGE_SEO.industriesAutomotive);
-
-const automotiveFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much can auto component manufacturers reduce their electricity bill?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Auto component suppliers using prescriptive energy intelligence typically see 12–20% monthly bill reduction. Die casting and forging plants often recover 15–25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is maximum demand and how does it affect my electricity bill?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Maximum demand (MD) is the highest average kVA your plant draws in a billing window. Indian DISCOMs charge a fixed rate per kVA of recorded MD each month. Overlapping furnace pre-heat, compressor startup, and press cycles at shift start are the most common MD drivers in auto component plants.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How does Stamped Energy work for die casting plants?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Stamped connects to your incomer meter and SCADA, builds production-normalized SEC baselines per cell and shift, then sends ranked prescriptions — stagger furnace pre-heat, stage compressors, reduce holding loads — with rupee impact assigned to shift supervisors via WhatsApp.",
-      },
-    },
-  ],
-};
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   breadcrumbHome(),

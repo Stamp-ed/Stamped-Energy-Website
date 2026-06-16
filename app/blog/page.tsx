@@ -9,6 +9,7 @@ import { listPublishedPosts } from "@/lib/blog/posts";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
+import { buildCollectionPageSchema } from "@/lib/seo/schemas";
 
 export const revalidate = 60;
 
@@ -18,6 +19,12 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   breadcrumbHome(),
   { name: "Blog", url: PAGE_SEO.blog.path },
 ]);
+
+const collectionSchema = buildCollectionPageSchema({
+  name: PAGE_SEO.blog.absoluteTitle,
+  description: PAGE_SEO.blog.description,
+  path: PAGE_SEO.blog.path,
+});
 
 const BLOG_CTA = {
   eyebrow: "From reading to action",
@@ -35,7 +42,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={[collectionSchema, breadcrumbSchema]} />
       <BlogHero
         eyebrow="Blog"
         title="Notes from the plant floor on electricity cost"

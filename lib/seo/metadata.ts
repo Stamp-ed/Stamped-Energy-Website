@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
+import { SITE_ORIGIN } from "@/lib/config/admin-host";
 import { siteConfig } from "@/lib/content";
 import {
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_IMAGE_ALT,
   DEFAULT_OG_IMAGE_PATH,
   GEO_METADATA,
+  SEO_KEYWORDS,
 } from "@/lib/seo/constants";
 import type { PageSeoConfig } from "@/lib/seo/pages";
-
-import { SITE_ORIGIN } from "@/lib/config/admin-host";
 
 export function absoluteUrl(path: string): string {
   const base = SITE_ORIGIN.replace(/\/$/, "");
@@ -28,6 +28,7 @@ type BuildPageMetadataOptions = {
   modifiedTime?: string;
   authors?: string[];
   tags?: string[];
+  keywords?: string[];
 };
 
 function resolveOgImage(image?: string | null): string {
@@ -60,6 +61,7 @@ export function buildPageMetadata({
   modifiedTime,
   authors,
   tags,
+  keywords,
 }: BuildPageMetadataOptions): Metadata {
   const url = absoluteUrl(path);
   const displayTitle = absoluteTitle ?? `${title} | ${siteConfig.name}`;
@@ -70,6 +72,7 @@ export function buildPageMetadata({
     description,
     alternates: { canonical: url },
     other: { ...GEO_METADATA },
+    ...(keywords?.length ? { keywords } : {}),
     openGraph: {
       title: displayTitle,
       description,
@@ -102,12 +105,42 @@ export function buildPageMetadataFromConfig(config: PageSeoConfig): Metadata {
     absoluteTitle: config.absoluteTitle,
     description: config.description,
     path: config.path,
+    keywords: [...SEO_KEYWORDS],
   });
 }
 
 export const siteMetadataBase: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   other: { ...GEO_METADATA },
+  keywords: [...SEO_KEYWORDS],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: DEFAULT_OG_IMAGE_ALT,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 export const defaultOgImageMetadata = {
