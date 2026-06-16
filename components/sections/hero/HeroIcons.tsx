@@ -66,7 +66,9 @@ export function LoopConnectIcon({ className = "h-6 w-6" }: IconProps) {
 export function LoopObserveIcon({ className = "h-6 w-6" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className={className} aria-hidden>
-      <path d="M4 19V5M8 19V9M12 19V12M16 19V7M20 19V3" strokeLinecap="round" />
+      <circle cx="10" cy="10" r="5.5" />
+      <path d="M14.5 14.5 19 19" strokeLinecap="round" />
+      <path d="M8 11v3M10 9v5M12 11v3" strokeLinecap="round" />
     </svg>
   );
 }
@@ -85,7 +87,10 @@ export function LoopExecuteIcon({ className = "h-6 w-6" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className={className} aria-hidden>
       <circle cx="12" cy="12" r="3" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" strokeLinecap="round" />
+      <path
+        d="M12 2v2.2M12 19.8V22M4.22 4.22l1.56 1.56M18.22 18.22l1.56 1.56M2 12h2.2M19.8 12H22M4.22 19.78l1.56-1.56M18.22 5.78l1.56-1.56"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
