@@ -28,6 +28,7 @@ Before completion:
 | `IMPLEMENTATION_PLAN.md` | Approved plan and phases |
 | `DECISIONS.md` | Architecture decision log |
 | `PROGRESS.md` | Current status and blockers |
+| `SEO_GEO_AEO.md` | SEO, GEO, and AEO implementation log and remaining checklist |
 
 ## Rule Activation
 

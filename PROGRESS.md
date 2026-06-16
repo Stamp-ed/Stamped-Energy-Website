@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-SEO / AEO / GEO full implementation — metadata, JSON-LD, sitemap, content optimizations
+SEO / AEO / GEO — maintenance and content expansion (see `SEO_GEO_AEO.md` for full log)
 
 ## Completed Phases
 
@@ -27,12 +27,16 @@ SEO / AEO / GEO full implementation — metadata, JSON-LD, sitemap, content opti
 - [x] SEO/AEO — dynamic sitemap priorities, robots.ts (AI + search crawlers welcome), `og-default.png`, internal linking, heading/AEO pass
 - [x] SEO/AEO — `llms.txt` for AI answer-engine discovery (not linked in UI)
 - [x] SEO validation (Section 15): Rich Results Test, Schema.org validator, HTTP 200s, sitemap + robots.txt live on production
-- [x] Entity establishment (Section 12): Google Search Console verified, sitemap submitted, Google Business Profile, LinkedIn Company Page, Wikidata entry
+- [x] Entity establishment (Section 12): Google Search Console verified, sitemap submitted
+- [x] `SEO_GEO_AEO.md` — living SEO/GEO/AEO documentation and remaining checklist
 
 ## Remaining Phases
 
-- [ ] OG image check in Twitter Card Validator and LinkedIn Post Inspector after deploy
-- [ ] Monitor Google Search Console for crawl errors post-sitemap submission
+See **`SEO_GEO_AEO.md` → Remaining & ongoing maintenance** for the full list. Highlights:
+
+- [ ] **Google Business Profile** (Section 12 #3)
+- [ ] **LinkedIn Company Page** (Section 12 #4) — then update Organization schema `sameAs`
+- [ ] **Wikidata entry** for Stamped Energy (Section 12 #5)
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
 - [ ] Dashboard walkthrough video / live embed for prescription section
 - [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)
