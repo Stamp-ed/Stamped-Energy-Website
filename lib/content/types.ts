@@ -5,6 +5,17 @@ export type NavLink = {
   megaMenu?: "industries";
 };
 
+export type HeroFeatureItem = {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: "shield" | "factory" | "prescription" | "rupee";
+};
+
+export type LoopStepItem = WorkflowStep & {
+  icon: "connect" | "observe" | "decide" | "execute" | "verify";
+};
+
 export type CtaLink = {
   label: string;
   href: string;
