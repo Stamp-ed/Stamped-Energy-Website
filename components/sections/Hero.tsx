@@ -1,14 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 
+import { HeroEnergyLoop } from "@/components/sections/hero/HeroEnergyLoop";
+import { HeroFeatureBar } from "@/components/sections/hero/HeroFeatureBar";
+import { ArrowRightIcon, PlayCircleIcon } from "@/components/sections/hero/HeroIcons";
+import { HeroIsometricVisual } from "@/components/sections/hero/HeroIsometricVisual";
 import { useMotion } from "@/components/motion/MotionProvider";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { HeroVideo } from "@/components/ui/HeroVideo";
 import { landingContent } from "@/lib/content";
 import { easeOut, heroDelay, heroDuration, heroStagger } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,8 +33,9 @@ export function Hero() {
         return;
       }
 
-      const targets = section.querySelectorAll<HTMLElement>("[data-hero]");
+      const targets = section.querySelectorAll<HTMLElement>("[data-hero-animate]");
       gsap.set(targets, { autoAlpha: 0, y: 20 });
+      gsap.set("[data-hero-animate='visual']", { scale: 0.96 });
 
       const timeline = gsap.timeline({
         defaults: { ease: easeOut, duration: heroDuration },
@@ -38,14 +43,16 @@ export function Hero() {
       });
 
       timeline
-        .to("[data-hero='eyebrow']", { autoAlpha: 1, y: 0 })
+        .to("[data-hero-animate='eyebrow']", { autoAlpha: 1, y: 0 })
         .to(
-          "[data-hero='line1'], [data-hero='line2']",
+          "[data-hero-animate='line1'], [data-hero-animate='line2']",
           { autoAlpha: 1, y: 0, stagger: heroStagger },
           "-=0.55",
         )
-        .to("[data-hero='subheadline']", { autoAlpha: 1, y: 0 }, "-=0.5")
-        .to("[data-hero='ctas']", { autoAlpha: 1, y: 0 }, "-=0.5");
+        .to("[data-hero-animate='subheadline']", { autoAlpha: 1, y: 0 }, "-=0.5")
+        .to("[data-hero-animate='supporting']", { autoAlpha: 1, y: 0 }, "-=0.45")
+        .to("[data-hero-animate='ctas']", { autoAlpha: 1, y: 0 }, "-=0.45")
+        .to("[data-hero-animate='visual']", { autoAlpha: 1, y: 0, scale: 1 }, "-=0.65");
     },
     {
       scope: sectionRef,
@@ -53,74 +60,75 @@ export function Hero() {
     },
   );
 
-  const visualCard = (
-    <div className="relative aspect-[16/9] overflow-hidden bg-surface-lowest">
-      <HeroVideo
-        webm={hero.video.webm}
-        poster={hero.video.poster}
-        label={hero.video.label}
-      />
-    </div>
+  const ctaPrimaryClass = cn(
+    "inline-flex h-11 items-center justify-center gap-2 rounded-md border border-primary bg-primary px-5 text-sm font-semibold text-on-primary",
+    "shadow-[0_2px_10px_-4px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)] transition-[transform,box-shadow,filter] duration-200",
+    "hover:-translate-y-0.5 hover:brightness-[1.04] sm:h-12 sm:px-6",
   );
 
-  const visualClassName =
-    "mx-auto mt-10 max-w-5xl overflow-hidden rounded-xl border-2 border-outline-variant/50 bg-surface-lowest shadow-[0_20px_48px_-24px_color-mix(in_srgb,var(--brand-secondary)_18%,transparent)] sm:mt-14 md:border-primary/20 md:shadow-[0_24px_60px_-20px_color-mix(in_srgb,var(--brand-primary)_35%,transparent)]";
+  const ctaSecondaryClass = cn(
+    "inline-flex h-11 items-center justify-center gap-2 rounded-md border-2 border-primary bg-transparent px-5 text-sm font-semibold text-primary",
+    "transition-colors duration-200 hover:bg-primary/8 sm:h-12 sm:px-6",
+  );
 
   return (
-    <section ref={sectionRef} className="landing-hero relative overflow-hidden bg-surface">
-      {/* Subtle orange glow - desktop only */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_70%_30%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_72%)] md:block"
-      />
-      {/* Mobile: neutral grid, slightly stronger lines */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.52] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-outline-variant)_34%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-outline-variant)_34%,transparent)_1px,transparent_1px)] [background-size:48px_48px] motion-safe:animate-[grid-drift_28s_linear_infinite] md:hidden"
-      />
-      {/* Desktop: subtle primary grid */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden opacity-[0.4] [background-image:linear-gradient(to_right,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-primary)_10%,transparent)_1px,transparent_1px)] [background-size:48px_48px] motion-safe:animate-[grid-drift_28s_linear_infinite] md:block"
-      />
-
+    <section ref={sectionRef} className="landing-hero relative overflow-hidden bg-surface pb-0">
       <Container className="relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <p
-            data-hero="eyebrow"
-            className="mb-5 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
-          >
-            {hero.eyebrow}
-          </p>
-          <h1 className="font-display text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-6xl">
-            <span data-hero="line1" className="block text-on-surface">
-              {hero.headlineLine1}
-            </span>
-            <span data-hero="line2" className="mt-2 block text-primary">
-              {hero.headlineLine2}
-            </span>
-          </h1>
-          <p
-            data-hero="subheadline"
-            className="mx-auto mt-6 max-w-2xl text-base leading-7 text-on-surface-variant md:text-lg"
-          >
-            {hero.subheadline}
-          </p>
-          <div
-            data-hero="ctas"
-            className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
-          >
-            <Button href={hero.primaryCta.href} variant="primary" className="w-full sm:w-auto">
-              {hero.primaryCta.label}
-            </Button>
-            <Button href={hero.secondaryCta.href} variant="outline" className="w-full sm:w-auto">
-              {hero.secondaryCta.label}
-            </Button>
-          </div>
-        </div>
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
+          <div className="max-w-xl">
+            <p
+              data-hero-animate="eyebrow"
+              className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+            >
+              {hero.eyebrow}
+            </p>
 
-        <div className={visualClassName}>{visualCard}</div>
+            <h1 className="mt-4 font-display text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-on-surface sm:text-5xl lg:text-[3.25rem]">
+              <span data-hero-animate="line1" className="block">
+                {hero.headlineLine1}
+              </span>
+              <span data-hero-animate="line2" className="mt-1 block text-on-surface">
+                {hero.headlineLine2}
+              </span>
+            </h1>
+
+            <p
+              data-hero-animate="subheadline"
+              className="mt-4 text-lg font-medium text-on-surface sm:text-xl"
+            >
+              {hero.subheadline}
+            </p>
+
+            <p
+              data-hero-animate="supporting"
+              className="mt-3 max-w-md text-sm leading-7 text-on-surface-variant sm:text-base"
+            >
+              {hero.supportingLine}
+            </p>
+
+            <div
+              data-hero-animate="ctas"
+              className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+            >
+              <Link href={hero.primaryCta.href} className={ctaPrimaryClass}>
+                {hero.primaryCta.label}
+                <ArrowRightIcon />
+              </Link>
+              <Link href={hero.secondaryCta.href} className={ctaSecondaryClass}>
+                <PlayCircleIcon />
+                {hero.secondaryCta.label}
+              </Link>
+            </div>
+          </div>
+
+          <HeroIsometricVisual />
+        </div>
       </Container>
+
+      <div className="relative z-10 mt-10 md:mt-12">
+        <HeroFeatureBar />
+        <HeroEnergyLoop />
+      </div>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import type {
   CtaLink,
+  HeroFeatureItem,
   HowItWorksStep,
   IndustryItem,
   PrescriptionField,
@@ -11,13 +12,46 @@ import type {
 
 export const landingContent = {
   hero: {
-    eyebrow: "Prescriptive energy intelligence for manufacturers",
-    headlineLine1: "AI Energy Intelligence",
-    headlineLine2: "Turn Data Into Verified Savings",
-    subheadline:
+    eyebrow: "Prescriptive energy intelligence",
+    headlineLine1: "Energy decisions.",
+    headlineLine2: "Verified savings.",
+    subheadline: "Built for manufacturers.",
+    supportingLine:
       "Connect existing plant data. Get rupee-denominated prescriptions. Verify savings on your next bill.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
+    features: [
+      {
+        id: "read-only",
+        title: "Read-only integration",
+        subtitle: "No control writes",
+        icon: "shield",
+      },
+      {
+        id: "systems",
+        title: "Works with your systems",
+        subtitle: "SCADA, PLC, EMS, Meters",
+        icon: "factory",
+      },
+      {
+        id: "prescriptions",
+        title: "Prescriptions, not charts",
+        subtitle: "Assigned. Tracked. Verified.",
+        icon: "prescription",
+      },
+      {
+        id: "verified",
+        title: "Savings verified on",
+        subtitle: "DISCOM bills",
+        icon: "rupee",
+      },
+    ] satisfies HeroFeatureItem[],
+    callouts: [
+      { id: "incomer", label: "INCOMER", value: "1,240 kVA", x: "8%", y: "18%" },
+      { id: "compressor", label: "COMPRESSOR HOUSE", value: "385 kW", x: "62%", y: "8%" },
+      { id: "solar", label: "SOLAR PLANT", value: "350 kW", x: "72%", y: "52%" },
+      { id: "furnace", label: "FURNACE LINE", value: "620 kW", x: "12%", y: "58%" },
+    ],
     video: {
       webm: "/video/how-it-works-cinematic.webm",
       poster: "/video/how-it-works-poster.png",
@@ -96,10 +130,9 @@ export const landingContent = {
   },
 
   workflow: {
-    eyebrow: "The closed loop",
-    title: "Connect → find the leak → assign the fix → check the bill",
-    description:
-      "Same cycle every month: your existing infrastructure in, rupee prescriptions out, savings verified when the DISCOM bill lands.",
+    eyebrow: "The Stamped Energy Loop",
+    title: "From fragmented data to verified savings in five operational steps.",
+    description: "",
     media: {
       title: "Five-step closed loop walkthrough",
       description:
@@ -111,32 +144,27 @@ export const landingContent = {
       {
         id: "connect",
         title: "Connect",
-        description:
-          "Incomer meter, utility bills, then SCADA and PLCs you already run. No retrofit program.",
+        description: "Integrate with your systems and meters.",
       },
       {
         id: "observe",
         title: "Observe",
-        description:
-          "Baselines by shift, batch, and tariff window, so a spike on Monday 07:15 is tied to production, not guesswork.",
+        description: "Normalize and analyze patterns.",
       },
       {
         id: "decide",
         title: "Decide",
-        description:
-          "Specific actions: what to change, why the data shows it, who owns it, monthly ₹ if done.",
+        description: "Get ranked prescriptions with ₹ impact.",
       },
       {
         id: "execute",
         title: "Execute",
-        description:
-          "Work items on WhatsApp to supervisors. Open → done. Nothing buried in a report.",
+        description: "Assign actions to your team and track.",
       },
       {
         id: "verify",
         title: "Verify",
-        description:
-          "Post-action consumption vs baseline. Running ledger: verified ₹ saved since go-live.",
+        description: "Savings verified on your electricity bill.",
       },
     ] satisfies WorkflowStep[],
   },
