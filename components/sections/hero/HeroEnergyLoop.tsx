@@ -30,7 +30,7 @@ export function HeroEnergyLoop() {
   const steps = workflow.steps;
 
   return (
-    <div data-hero="loop" className="border-b border-outline-variant/30 bg-surface pb-10 pt-10 md:pb-14 md:pt-12">
+    <div data-hero="loop" className="hidden border-b border-outline-variant/30 bg-surface pb-10 pt-10 md:pb-14 md:pt-12 lg:block">
       <Container>
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] xl:gap-12">
           <div className="max-w-xs lg:max-w-none">
