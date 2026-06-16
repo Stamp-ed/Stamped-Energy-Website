@@ -72,10 +72,10 @@ export function Hero() {
   );
 
   return (
-    <section ref={sectionRef} className="landing-hero relative overflow-hidden bg-surface pb-0">
+    <section ref={sectionRef} className="landing-hero relative overflow-x-clip bg-surface pb-0">
       <Container className="relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
-          <div className="max-w-xl">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-8 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:gap-10">
+          <div className="max-w-xl lg:max-w-md xl:max-w-lg">
             <p
               data-hero-animate="eyebrow"
               className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
