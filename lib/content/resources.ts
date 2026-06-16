@@ -21,7 +21,8 @@ export const resourcesContent = {
       href: "/case-studies/automotive-pump-sec-reduction",
       tag: "Field pilot",
       imageSrc: RESOURCE_IMAGES.forging,
-      imageAlt: "Automotive component manufacturing facility",
+      imageAlt: "Forging press line energy cost reduction — maximum demand control",
+      readMoreLabel: "Read case study: 18% SEC reduction in auto component plant →",
     },
     {
       id: "die-cast-blog",
@@ -32,7 +33,8 @@ export const resourcesContent = {
       href: "/blog/why-shift-start-kills-die-casting-margins",
       tag: "Blog",
       imageSrc: RESOURCE_IMAGES.dieCasting,
-      imageAlt: "Die casting molten metal process",
+      imageAlt: "Die casting plant energy management — shift-start MD spike reduction",
+      readMoreLabel: "Read: How shift-start kills die casting margins →",
     },
     {
       id: "ht-blog",
@@ -43,7 +45,8 @@ export const resourcesContent = {
       href: "/blog/weekend-furnace-holding-silent-cost",
       tag: "Blog",
       imageSrc: RESOURCE_IMAGES.heatTreatment,
-      imageAlt: "Industrial heat treatment furnace",
+      imageAlt: "Heat treatment furnace energy optimization — weekend holding waste reduction",
+      readMoreLabel: "Read: Weekend furnace holding — the silent cost →",
     },
   ] satisfies ResourceCard[],
 } as const;

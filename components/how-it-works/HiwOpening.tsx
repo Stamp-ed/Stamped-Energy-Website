@@ -51,6 +51,12 @@ export function HiwOpening() {
           <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight text-on-surface md:text-4xl lg:text-[2.5rem]">
             {hero.title}
           </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-on-surface-variant md:text-base">
+            Prescriptive energy intelligence is a software layer that connects your incomer meters,
+            SCADA, and DISCOM bills into a single view, then generates ranked actions — called
+            prescriptions — with rupee impact assigned to named owners on your plant floor. Savings
+            are verified on the next electricity bill.
+          </p>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
             {hero.description}
           </p>

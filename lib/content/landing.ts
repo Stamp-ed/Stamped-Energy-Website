@@ -191,7 +191,7 @@ export const landingContent = {
 
   howItWorks: {
     eyebrow: "How it works",
-    title: "Five steps from your existing meters to verified ₹ on the bill",
+    title: "The Stamped Energy Loop",
     cta: { label: "Full workflow walkthrough", href: "/how-it-works" } satisfies CtaLink,
     steps: [
       {

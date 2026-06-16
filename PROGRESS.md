@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-How It Works — visual-first content pass (condensed copy, diagram-led layout)
+SEO / AEO / GEO full implementation — metadata, JSON-LD, sitemap, content optimizations
 
 ## Completed Phases
 
@@ -18,14 +18,19 @@ How It Works — visual-first content pass (condensed copy, diagram-led layout)
 - [x] Contact form + `/api/contact` stub route
 - [x] Production build and lint validation
 - [x] GSAP + ScrollTrigger + Lenis motion provider (replaced Framer Motion)
-- [x] Full `/how-it-works` page — pinned journey, intelligence stack, prescription scrub, integrations, deployment timeline
-- [x] How It Works opening Option C — interactive plant SLD diagram, Greenovative-aligned hero copy, core capabilities strip
-- [x] How It Works visual pass — shortened copy, diagram-first journey, chip labels, removed optional media text block
-- [x] Core capabilities — Greenovative-style visual cards (SVG animations + full copy, 2×2 grid; `mediaSrc` hook for custom assets)
+- [x] Full `/how-it-works` page - pinned journey, intelligence stack, prescription scrub, integrations, deployment timeline
+- [x] How It Works opening Option C - interactive plant SLD diagram, Greenovative-aligned hero copy, core capabilities strip
+- [x] How It Works visual pass - shortened copy, diagram-first journey, chip labels, removed optional media text block
+- [x] Core capabilities - Greenovative-style visual cards (SVG animations + full copy, 2×2 grid; `mediaSrc` hook for custom assets)
+- [x] SEO/AEO — page titles, meta descriptions, canonical/OG/Twitter on all routes
+- [x] SEO/AEO — JSON-LD (Organization, WebSite, FAQ, HowTo, Article, Breadcrumb, Person, Speakable)
+- [x] SEO/AEO — dynamic sitemap priorities, robots.txt, `og-default.png`, internal linking, heading/AEO pass
 
 ## Remaining Phases
 
-- [ ] Visual polish pass (hero video, Remotion GIFs, product screenshots)
+- [ ] Google Search Console verification and sitemap submission (manual)
+- [ ] Google Business Profile + LinkedIn Company Page (manual entity establishment)
+- [ ] Rich Results Test validation on production deploy
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
 - [ ] Dashboard walkthrough video / live embed for prescription section
 - [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)

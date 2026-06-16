@@ -154,6 +154,12 @@ export function HiwPinnedJourney() {
         />
       </Container>
 
+      <Container className="sr-only">
+        <h2>How does Stamped Energy connect to my existing plant systems?</h2>
+        <h2>How are prescriptions delivered to the plant floor team?</h2>
+        <h2>How are energy savings verified on the DISCOM bill?</h2>
+      </Container>
+
       <div ref={pinRef} className="hidden lg:block">
         <Container className="w-full pb-12">
           <div className="grid grid-cols-12 items-center gap-10 xl:gap-14">
@@ -190,6 +196,7 @@ export function HiwPinnedJourney() {
               {journey.steps.map((step, index) => (
                 <article
                   key={step.id}
+                  id={step.id}
                   data-journey-panel
                   className="absolute inset-0 grid grid-cols-1 items-center gap-8 xl:grid-cols-12 xl:gap-10"
                   style={{
@@ -234,6 +241,7 @@ export function HiwPinnedJourney() {
         {journey.steps.map((step) => (
           <article
             key={step.id}
+            id={step.id}
             data-journey-panel-mobile
             className="min-w-0 overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-lowest"
           >

@@ -4,8 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/content";
 import { siteMetadataBase } from "@/lib/seo/metadata";
+import { organizationSchema } from "@/lib/seo/schemas";
 
 import "./globals.css";
 
@@ -37,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${inter.variable} ${plusJakartaSans.variable}`}
       suppressHydrationWarning
     >
@@ -45,6 +47,7 @@ export default function RootLayout({
         className="min-h-screen bg-surface text-on-surface antialiased"
         suppressHydrationWarning
       >
+        <JsonLd data={organizationSchema} />
         <MotionProvider>
           <SiteChrome>{children}</SiteChrome>
         </MotionProvider>

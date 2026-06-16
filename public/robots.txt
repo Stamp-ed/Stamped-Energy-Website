@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /_next/
+Disallow: /blog/admin
+
+Sitemap: https://stamped.work/sitemap.xml

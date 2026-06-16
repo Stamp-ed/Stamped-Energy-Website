@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
 
 import { ContactPageView } from "@/components/contact/ContactPageView";
-import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
+import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
+import { PAGE_SEO } from "@/lib/seo/pages";
 
-const CONTACT_DESCRIPTION =
-  "Book a discovery call with Stamped Energy. 30 minutes, no slideware - we'll review your plant data and outline a low-risk energy pilot.";
+export const metadata: Metadata = buildPageMetadataFromConfig(PAGE_SEO.contact);
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Contact",
-  description: CONTACT_DESCRIPTION,
-  path: "/contact",
-});
+const breadcrumbSchema = generateBreadcrumbSchema([
+  breadcrumbHome(),
+  { name: "Contact", url: PAGE_SEO.contact.path },
+]);
 
 export default function ContactPage() {
-  return <ContactPageView />;
+  return (
+    <>
+      <JsonLd data={breadcrumbSchema} />
+      <ContactPageView />
+    </>
+  );
 }

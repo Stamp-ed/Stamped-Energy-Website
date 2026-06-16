@@ -88,7 +88,7 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
                   {item.description}
                 </p>
                 <span className="mt-4 text-sm font-semibold text-primary">
-                  Read more →
+                  {item.readMoreLabel ?? "Read more →"}
                 </span>
               </div>
             </Link>

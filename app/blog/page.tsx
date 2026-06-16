@@ -4,19 +4,20 @@ import { BlogCatalog } from "@/components/blog/BlogCatalog";
 import { BlogFeatured } from "@/components/blog/BlogFeatured";
 import { BlogHero } from "@/components/blog/BlogHero";
 import { IndustryPageCta } from "@/components/industries/shared/IndustryPageCta";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { listPublishedPosts } from "@/lib/blog/posts";
-import { buildPageMetadata } from "@/lib/seo/metadata";
+import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
+import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
+import { PAGE_SEO } from "@/lib/seo/pages";
 
 export const revalidate = 60;
 
-const BLOG_DESCRIPTION =
-  "Plant-floor notes on electricity cost, maximum demand, and verified savings for Indian auto component manufacturers.";
+export const metadata: Metadata = buildPageMetadataFromConfig(PAGE_SEO.blog);
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Blog",
-  description: BLOG_DESCRIPTION,
-  path: "/blog",
-});
+const breadcrumbSchema = generateBreadcrumbSchema([
+  breadcrumbHome(),
+  { name: "Blog", url: PAGE_SEO.blog.path },
+]);
 
 const BLOG_CTA = {
   eyebrow: "From reading to action",
@@ -34,6 +35,7 @@ export default async function BlogPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <BlogHero
         eyebrow="Blog"
         title="Notes from the plant floor on electricity cost"

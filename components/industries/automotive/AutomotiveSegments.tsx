@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
@@ -133,6 +134,17 @@ export function AutomotiveSegments() {
                       <p className="max-w-3xl text-sm leading-7 text-on-surface-variant md:text-[15px]">
                         {segment.description}
                       </p>
+
+                      {segment.relatedArticle ? (
+                        <p className="text-sm leading-7">
+                          <Link
+                            href={segment.relatedArticle.href}
+                            className="font-semibold text-primary hover:underline"
+                          >
+                            {segment.relatedArticle.label}
+                          </Link>
+                        </p>
+                      ) : null}
 
                       <div className="grid gap-5 md:grid-cols-2 md:gap-6">
                         <div className="rounded-xl bg-surface-low/70 p-5 md:p-6">

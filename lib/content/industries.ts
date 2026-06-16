@@ -114,7 +114,11 @@ export const industriesContent = {
             "High-pressure die casting cells where melting, holding, and auxiliary loads create simultaneous demand at shift start and leak rupees through idle holding.",
           href: "/industries/automotive#die-casting",
           imageSrc: INDUSTRY_IMAGES.dieCasting,
-          imageAlt: "Molten metal die casting operation in an automotive supplier plant",
+          imageAlt: "Die casting plant energy management — shift-start MD spike reduction",
+          relatedArticle: {
+            href: "/blog/why-shift-start-kills-die-casting-margins",
+            label: "How shift-start overlap drives maximum demand charges in die casting plants",
+          },
           challenges: [
             "Melting and holding furnaces ramp together at shift start",
             "Compressors run for core cooling while cells idle between shots",
@@ -139,7 +143,7 @@ export const industriesContent = {
             "Forging hammers and press lines with extreme demand spikes, power-factor penalties, and production-linked SEC that passive monitoring never explains.",
           href: "/industries/automotive#forging",
           imageSrc: INDUSTRY_IMAGES.forging,
-          imageAlt: "Industrial forging press in a metal components factory",
+          imageAlt: "Forging press line energy cost reduction — maximum demand control",
           challenges: [
             "Hammer and press startups overlap with utility baseload",
             "Maximum demand charges from short, high-kVA cycles",
@@ -164,7 +168,11 @@ export const industriesContent = {
             "Carburizing, induction, and batch furnaces where setback gaps, weekend holding, and tariff windows determine whether heat energy converts to shipped parts.",
           href: "/industries/automotive#heat-treatment",
           imageSrc: INDUSTRY_IMAGES.heatTreatment,
-          imageAlt: "Heat treatment furnace bay in an automotive components plant",
+          imageAlt: "Heat treatment furnace energy optimization — weekend holding waste reduction",
+          relatedArticle: {
+            href: "/blog/weekend-furnace-holding-silent-cost",
+            label: "Weekend furnace holding — the silent cost in heat treatment plants",
+          },
           challenges: [
             "Furnaces held at temperature through breaks and low-load windows",
             "Weekend holding losses with no production scheduled",
@@ -189,7 +197,7 @@ export const industriesContent = {
             "Injection and compression moulding lines where curing cycles, steam or hot-oil systems, and compressed air leaks inflate SEC between batches.",
           href: "/industries/automotive#rubber-moulding",
           imageSrc: INDUSTRY_IMAGES.rubberMoulding,
-          imageAlt: "Rubber moulding and automotive polymer components production",
+          imageAlt: "Rubber moulding plant energy intelligence — curing cycle SEC baseline",
           challenges: [
             "Curing timers and press heat run through planned downtime",
             "Compressed air leaks masked by overall plant load",

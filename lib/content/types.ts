@@ -37,6 +37,7 @@ export type ResourceCard = {
   tag?: string;
   imageSrc: string;
   imageAlt: string;
+  readMoreLabel?: string;
 };
 
 export type IndustrySegment = {
@@ -52,6 +53,10 @@ export type IndustrySegment = {
   challenges: string[];
   stampProvides: string[];
   metrics: StatItem[];
+  relatedArticle?: {
+    href: string;
+    label: string;
+  };
 };
 
 export type IndustryVertical = {

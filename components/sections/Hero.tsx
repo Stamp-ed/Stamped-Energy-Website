@@ -84,25 +84,27 @@ export function Hero() {
               {hero.eyebrow}
             </p>
 
-            <h1 className="mt-4 font-display text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-on-surface sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="hero-headline mt-4 font-display text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-on-surface sm:text-5xl lg:text-[3.25rem]">
               <span data-hero-animate="line1" className="block">
                 {hero.headlineLine1}
               </span>
               <span data-hero-animate="line2" className="mt-1 block text-on-surface">
                 {hero.headlineLine2}
               </span>
+              <span
+                data-hero-animate="subheadline"
+                className="mt-1 block text-lg font-medium text-on-surface sm:text-xl lg:text-[3.25rem] lg:font-extrabold lg:leading-[1.08] lg:tracking-tight"
+              >
+                {hero.subheadline}
+              </span>
             </h1>
-
-            <p
-              data-hero-animate="subheadline"
-              className="mt-4 text-lg font-medium text-on-surface sm:text-xl"
-            >
-              {hero.subheadline}
-            </p>
+            <span className="sr-only">
+              Prescriptive energy intelligence software for Indian auto component manufacturers.
+            </span>
 
             <p
               data-hero-animate="supporting"
-              className="mt-3 max-w-md text-sm leading-7 text-on-surface-variant sm:text-base"
+              className="value-proposition mt-4 max-w-md text-sm leading-7 text-on-surface-variant sm:text-base"
             >
               {hero.supportingLine}
             </p>
