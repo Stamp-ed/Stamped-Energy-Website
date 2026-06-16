@@ -24,13 +24,15 @@ SEO / AEO / GEO full implementation — metadata, JSON-LD, sitemap, content opti
 - [x] Core capabilities - Greenovative-style visual cards (SVG animations + full copy, 2×2 grid; `mediaSrc` hook for custom assets)
 - [x] SEO/AEO — page titles, meta descriptions, canonical/OG/Twitter on all routes
 - [x] SEO/AEO — JSON-LD (Organization, WebSite, FAQ, HowTo, Article, Breadcrumb, Person, Speakable)
-- [x] SEO/AEO — dynamic sitemap priorities, robots.txt, `og-default.png`, internal linking, heading/AEO pass
+- [x] SEO/AEO — dynamic sitemap priorities, robots.ts (AI + search crawlers welcome), `og-default.png`, internal linking, heading/AEO pass
+- [x] SEO/AEO — `llms.txt` for AI answer-engine discovery (not linked in UI)
+- [x] SEO validation (Section 15): Rich Results Test, Schema.org validator, HTTP 200s, sitemap + robots.txt live on production
+- [x] Entity establishment (Section 12): Google Search Console verified, sitemap submitted, Google Business Profile, LinkedIn Company Page, Wikidata entry
 
 ## Remaining Phases
 
-- [ ] Google Search Console verification and sitemap submission (manual)
-- [ ] Google Business Profile + LinkedIn Company Page (manual entity establishment)
-- [ ] Rich Results Test validation on production deploy
+- [ ] OG image check in Twitter Card Validator and LinkedIn Post Inspector after deploy
+- [ ] Monitor Google Search Console for crawl errors post-sitemap submission
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
 - [ ] Dashboard walkthrough video / live embed for prescription section
 - [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)
