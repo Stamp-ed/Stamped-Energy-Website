@@ -11,10 +11,10 @@ export function HeroIsometricVisual() {
         <Image
           src="/images/hero/energy-facility-isometric.png"
           alt=""
-          width={1024}
-          height={576}
+          width={2048}
+          height={1152}
           priority
-          sizes="(max-width: 1024px) 100vw, 65vw"
+          sizes="(max-width: 1024px) 100vw, 70vw"
           className="h-auto w-full object-contain"
         />
       </div>
