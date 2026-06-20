@@ -6,13 +6,17 @@ import { useRef } from "react";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { industriesContent } from "@/lib/content";
+import { getIndustryVertical, getVerticalPage, type VerticalSlug } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-export function AutomotiveHero() {
+type IndustryHeroProps = {
+  slug: VerticalSlug;
+};
+
+export function IndustryHero({ slug }: IndustryHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const { automotive } = industriesContent;
-  const vertical = industriesContent.verticals[0];
+  const page = getVerticalPage(slug);
+  const vertical = getIndustryVertical(slug);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -21,7 +25,7 @@ export function AutomotiveHero() {
         return;
       }
 
-      gsap.from("[data-auto-hero]", {
+      gsap.from("[data-industry-hero]", {
         autoAlpha: 0,
         y: 28,
         duration: 0.85,
@@ -32,7 +36,7 @@ export function AutomotiveHero() {
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },
   );
 
-  if (!vertical) {
+  if (!page || !vertical) {
     return null;
   }
 
@@ -57,30 +61,30 @@ export function AutomotiveHero() {
       <Container className="relative z-10">
         <div className="max-w-2xl">
           <p
-            data-auto-hero
+            data-industry-hero
             className="text-xs font-semibold uppercase tracking-[0.16em] text-inverse-primary"
           >
-            {automotive.eyebrow}
+            {page.hero.eyebrow}
           </p>
           <h1
-            data-auto-hero
+            data-industry-hero
             className="mt-3 font-display text-3xl font-extrabold leading-tight text-on-secondary md:text-4xl lg:text-[2.65rem]"
           >
-            {automotive.title}
+            {page.hero.title}
           </h1>
-          <p data-auto-hero className="mt-4 max-w-xl text-sm leading-7 text-on-secondary/85 md:text-base">
-            {automotive.description}
+          <p data-industry-hero className="mt-4 max-w-xl text-sm leading-7 text-on-secondary/85 md:text-base">
+            {page.hero.description}
           </p>
-          <div data-auto-hero className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
-            <Button href={automotive.primaryCta.href} variant="primary" className="w-full sm:w-auto">
-              {automotive.primaryCta.label}
+          <div data-industry-hero className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <Button href={page.hero.primaryCta.href} variant="primary" className="w-full sm:w-auto">
+              {page.hero.primaryCta.label}
             </Button>
             <Button
-              href={automotive.secondaryCta.href}
+              href={page.hero.secondaryCta.href}
               variant="outline"
               className="w-full border-on-secondary/30 bg-on-secondary/5 text-on-secondary hover:bg-on-secondary/10 sm:w-auto"
             >
-              {automotive.secondaryCta.label}
+              {page.hero.secondaryCta.label}
             </Button>
           </div>
         </div>

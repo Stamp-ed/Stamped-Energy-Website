@@ -91,15 +91,18 @@ export function Hero() {
               <span data-hero-animate="line2" className="mt-1 block text-on-surface">
                 {hero.headlineLine2}
               </span>
-              <span
-                data-hero-animate="subheadline"
-                className="mt-1 block text-lg font-medium text-on-surface sm:text-xl lg:text-[3.25rem] lg:font-extrabold lg:leading-[1.08] lg:tracking-tight"
-              >
-                {hero.subheadline}
-              </span>
+              {hero.subheadline ? (
+                <span
+                  data-hero-animate="subheadline"
+                  className="mt-1 block text-lg font-medium text-on-surface sm:text-xl lg:text-[3.25rem] lg:font-extrabold lg:leading-[1.08] lg:tracking-tight"
+                >
+                  {hero.subheadline}
+                </span>
+              ) : null}
             </h1>
             <span className="sr-only">
-              Prescriptive energy intelligence software for Indian auto component manufacturers.
+              Prescriptive energy intelligence for cement, steel, pharma, chemical, and automotive
+              plants across India.
             </span>
 
             <p

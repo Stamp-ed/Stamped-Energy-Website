@@ -13,12 +13,20 @@ const STATIC_PATHS = [
   "/contact",
   "/industries",
   "/industries/automotive",
+  "/industries/cement",
+  "/industries/steel",
+  "/industries/pharma",
+  "/industries/chemical",
 ] as const;
 
 const STATIC_PRIORITIES: Record<string, number> = {
   "/": 1.0,
   "/how-it-works": 0.9,
   "/industries/automotive": 0.9,
+  "/industries/cement": 0.9,
+  "/industries/steel": 0.85,
+  "/industries/pharma": 0.85,
+  "/industries/chemical": 0.85,
   "/case-studies": 0.85,
   "/about": 0.8,
   "/blog": 0.8,

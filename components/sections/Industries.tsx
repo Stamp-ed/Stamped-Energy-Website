@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
@@ -13,40 +13,25 @@ import { landingContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
-const INDUSTRY_HREFS: Record<string, string> = {
-  automotive: "/industries/automotive",
-  "die-casting": "/industries/automotive#die-casting",
-  forging: "/industries/automotive#forging",
-  "heat-treatment": "/industries/automotive#heat-treatment",
-  "rubber-moulding": "/industries/automotive#rubber-moulding",
-};
-
 const INDUSTRY_CODES: Record<string, string> = {
   automotive: "AC",
-  "die-casting": "DC",
-  forging: "FG",
-  "heat-treatment": "HT",
-  "rubber-moulding": "RM",
-};
-
-const INDUSTRY_IMAGES: Record<string, { src: string; alt: string }> = {
-  automotive: { src: "/industries/forging.jpg", alt: "Automotive forging press line" },
-  "die-casting": { src: "/industries/die-casting.jpeg", alt: "Die casting molten metal process" },
-  forging: { src: "/industries/forging.jpg", alt: "Industrial forging operation" },
-  "heat-treatment": { src: "/industries/heat-treatment.webp", alt: "Heat treatment furnace" },
-  "rubber-moulding": { src: "/industries/rubber-moulding.jpg", alt: "Rubber moulding production line" },
+  cement: "CM",
+  steel: "ST",
+  pharma: "PH",
+  chemical: "CH",
 };
 
 type IndustryItem = (typeof landingContent.industries.items)[number];
 
 function IndustryCard({ industry }: { industry: IndustryItem }) {
+  const href = `/industries/${industry.id}`;
   const image = industry.imageSrc
     ? { src: industry.imageSrc, alt: industry.imageAlt ?? industry.name }
-    : INDUSTRY_IMAGES[industry.id];
+    : null;
 
   return (
     <Link
-      href={INDUSTRY_HREFS[industry.id] ?? `/industries/automotive#${industry.id}`}
+      href={href}
       data-industry-card
       data-featured={industry.featured ? "true" : "false"}
       className={cn(
@@ -68,7 +53,7 @@ function IndustryCard({ industry }: { industry: IndustryItem }) {
           <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 via-secondary/10 to-transparent" />
           {industry.featured ? (
             <span className="absolute left-4 top-4 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-on-primary">
-              Initial focus
+              Featured
             </span>
           ) : null}
         </div>
@@ -102,7 +87,7 @@ function IndustryCard({ industry }: { industry: IndustryItem }) {
         </p>
 
         <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-          Explore sector
+          Explore vertical
           <span
             aria-hidden="true"
             className="inline-block transition-transform duration-300 group-hover:translate-x-1"
@@ -119,9 +104,6 @@ export function Industries() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const { industries } = landingContent;
-  const [showSegments, setShowSegments] = useState(false);
-  const featuredItems = industries.items.filter((item) => item.featured);
-  const segmentItems = industries.items.filter((item) => !item.featured);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -191,41 +173,10 @@ export function Industries() {
         </Reveal>
 
         <div ref={gridRef} className="mt-8 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-3">
-          {featuredItems.map((industry) => (
+          {industries.items.map((industry) => (
             <IndustryCard key={industry.id} industry={industry} />
           ))}
-
-          {segmentItems.map((industry) => (
-            <div
-              key={industry.id}
-              className={cn(!showSegments && "hidden md:block")}
-            >
-              <IndustryCard industry={industry} />
-            </div>
-          ))}
         </div>
-
-        {segmentItems.length > 0 ? (
-          <div className="mt-5 md:hidden">
-            <button
-              type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-outline-variant/60 bg-surface-lowest px-4 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:border-primary/35 hover:bg-primary/5"
-              aria-expanded={showSegments}
-              onClick={() => setShowSegments((open) => !open)}
-            >
-              {showSegments ? industries.showLessLabel : industries.showMoreLabel}
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "text-primary transition-transform duration-200",
-                  showSegments && "rotate-180",
-                )}
-              >
-                ▾
-              </span>
-            </button>
-          </div>
-        ) : null}
 
         <Reveal className="mt-8 md:mt-10">
           <Button href={industries.cta.href} variant="outline" className="w-full sm:w-auto">

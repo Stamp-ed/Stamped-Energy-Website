@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Stamped Energy",
   tagline: "Precision energy intelligence. Verified savings. Built for manufacturers.",
   description:
-    "Prescriptive energy software for Indian auto component manufacturers. Connect existing meters and SCADA, get rupee-denominated fixes for your team, verify savings on the next electricity bill.",
+    "Prescriptive energy intelligence for Indian manufacturers. Connect existing meters, SCADA, and bills — get rupee-denominated prescriptions verified on your next DISCOM bill.",
   blogUrl: "/blog",
   contactEmail: "contact@stamped.work",
 } as const;

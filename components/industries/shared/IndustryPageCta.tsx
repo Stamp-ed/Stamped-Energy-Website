@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { industriesContent } from "@/lib/content";
+import { getVerticalPage, industriesContent } from "@/lib/content";
 
 type IndustryPageCtaProps = {
   content?: {
@@ -15,7 +15,7 @@ type IndustryPageCtaProps = {
 };
 
 export function IndustryPageCta({ content }: IndustryPageCtaProps) {
-  const cta = content ?? industriesContent.automotive.finalCta;
+  const cta = content ?? getVerticalPage("automotive")?.finalCta ?? industriesContent.hub.finalCta;
 
   return (
     <section className="bg-secondary section-y text-on-secondary">

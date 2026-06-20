@@ -13,7 +13,7 @@ Living record of search, generative-engine, and answer-engine optimizations for 
 | **AEO** | Be cited as the authoritative answer in AI assistants (ChatGPT, Perplexity, Google AI Overviews) |
 | **GEO** | Establish **Stamped Energy** as a recognizable entity across the web (schema, profiles, Wikidata) |
 
-**Primary audience:** Plant heads, electrical HODs, CFOs at Indian manufacturing SMEs (₹10Cr–₹1000Cr), especially auto component suppliers.
+**Primary audience:** Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20–30 lakh+ monthly electricity bills). Verticals: cement, steel, pharmaceutical, chemical, automotive.
 
 **Priority keywords (in order):**
 
@@ -22,9 +22,12 @@ Living record of search, generative-engine, and answer-engine optimizations for 
 3. `energy management software for manufacturers India`
 4. `reduce electricity bill manufacturing India`
 5. `maximum demand reduction India`
-6. `energy cost reduction auto component manufacturers`
-7. `DISCOM bill savings India`
-8. `SEC reduction manufacturing India`
+6. `cement plant energy management India`
+7. `steel plant energy efficiency India`
+8. `pharmaceutical plant HVAC energy savings`
+9. `batch process energy optimization India`
+10. `DISCOM bill savings India`
+11. `SEC reduction manufacturing India`
 
 ---
 

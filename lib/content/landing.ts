@@ -3,21 +3,21 @@ import type {
   HeroFeatureItem,
   HowItWorksStep,
   IndustryItem,
-  PrescriptionField,
   ProblemItem,
   StatItem,
   WhyStampedItem,
   WorkflowStep,
 } from "./types";
+import { icp, icpBillLine } from "./icp";
+import { getHeroCallouts, getHeroVisual, getScenarioPrescription } from "./scenarios";
 
 export const landingContent = {
   hero: {
     eyebrow: "Prescriptive energy intelligence",
-    headlineLine1: "Energy decisions.",
-    headlineLine2: "Verified savings.",
-    subheadline: "Built for manufacturers.",
-    supportingLine:
-      "Connect existing plant data. Get rupee-denominated prescriptions. Verify savings on your next bill.",
+    headlineLine1: "Your plant has the data.",
+    headlineLine2: "It lacks the decision layer.",
+    subheadline: "",
+    supportingLine: `${icpBillLine()} — specific prescriptions, rupee impact, verified on your next DISCOM bill.`,
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [
@@ -46,24 +46,19 @@ export const landingContent = {
         icon: "rupee",
       },
     ] satisfies HeroFeatureItem[],
-    callouts: [
-      { id: "incomer", label: "INCOMER", value: "1,240 kVA", x: "8%", y: "18%" },
-      { id: "compressor", label: "COMPRESSOR HOUSE", value: "385 kW", x: "62%", y: "8%" },
-      { id: "solar", label: "SOLAR PLANT", value: "350 kW", x: "72%", y: "52%" },
-      { id: "furnace", label: "FURNACE LINE", value: "620 kW", x: "12%", y: "58%" },
-    ],
+    callouts: getHeroCallouts(),
     video: {
       webm: "/video/how-it-works-cinematic.webm",
       poster: "/video/how-it-works-poster.png",
       label:
         "How Stamped Energy works: connect plant data, get rupee-denominated AI prescriptions, verify savings on your next bill.",
     },
-    visualImageSrc: "/industries/die-casting.jpeg",
-    visualImageAlt: "Molten metal pour in a die casting plant, energy-intensive automotive manufacturing",
+    visualImageSrc: getHeroVisual().src,
+    visualImageAlt: getHeroVisual().alt,
   },
 
   trust: {
-    label: "For plant heads, owners, and electrical HODs",
+    label: `For ${icp.buyerTitlesShort} at ${icp.revenueFloor} plants`,
     items: [
       "Connects to incomer meters and existing SCADA. No hardware retrofit.",
       "Actions on WhatsApp to supervisors who can execute tomorrow morning",
@@ -81,7 +76,7 @@ export const landingContent = {
         id: "bill-reduction",
         value: "12–20%",
         label: "Off your monthly electricity bill",
-        detail: "Process-intensive die casting, forging, heat treatment",
+        detail: "Cement, steel, pharma, chemical, automotive [~]",
       },
       {
         id: "md-reduction",
@@ -93,7 +88,7 @@ export const landingContent = {
         id: "waste-elimination",
         value: "10–20%",
         label: "Non-production energy flagged",
-        detail: "Idle loads, holding furnaces, leak air within 90 days",
+        detail: "Idle loads, holding, HVAC staging, batch gaps within 90 days",
       },
       {
         id: "payback",
@@ -171,22 +166,8 @@ export const landingContent = {
 
   prescription: {
     eyebrow: "Not a dashboard",
-    title: "This is what your maintenance team gets, not a kWh chart",
-    fields: [
-      {
-        label: "What",
-        value: "Stagger Compressor 1 and Press Line 3 startup by 10 minutes each shift",
-      },
-      {
-        label: "Why",
-        value:
-          "Incomer demand hit 1,240 kVA at 07:15 Monday. Both assets ramped together with zero production load.",
-      },
-      { label: "Who", value: "Electrical maintenance / shift supervisor" },
-      { label: "Effort", value: "Scheduling change only. No capital spend." },
-      { label: "Impact", value: "₹38,000/month at current tariff and shift pattern" },
-      { label: "When", value: "Before next billing cycle. MD resets monthly." },
-    ] satisfies PrescriptionField[],
+    title: "This is what your plant team gets — not a kWh chart",
+    fields: getScenarioPrescription("homepagePrescription"),
   },
 
   howItWorks: {
@@ -228,66 +209,64 @@ export const landingContent = {
   },
 
   industries: {
-    eyebrow: "Your processes",
-    title: "Die casting, forging, heat treatment, rubber: where utility cost hits margin",
-    description:
-      "Starting with auto component suppliers in the NCR belt. Same approach applies wherever furnaces, compressors, and shift-start sequencing drive the bill.",
+    eyebrow: "Industries",
+    title: "Five verticals. One decision layer. Verified on your bill.",
+    description: `Cement, steel, pharma, chemical, and automotive — for plants spending ${icp.monthlyBillFloor}+ on electricity every month.`,
     cta: { label: "View all industries", href: "/industries" } satisfies CtaLink,
-    showMoreLabel: "Show process segments",
-    showLessLabel: "Show fewer segments",
     items: [
       {
         id: "automotive",
-        name: "Automotive Components",
-        focus: "OEM price cuts meet rising HT tariffs",
+        name: "Automotive",
+        focus: "OEM margin + shift-start MD",
         description:
-          "Tier 1 and Tier 2 suppliers absorbing tariff hikes while OEMs demand 2–5% annual cost-down.",
+          "Die casting, forging, heat treatment, rubber moulding — furnaces and compressors under OEM cost-down pressure.",
         featured: true,
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
       },
       {
-        id: "die-casting",
-        name: "Die Casting",
-        focus: "Morning MD spike every shift",
+        id: "cement",
+        name: "Cement",
+        focus: "kWh/ton + dispatch governance",
         description:
-          "Three furnaces and compressors ramp together before the first pour. Predictable, avoidable demand charges.",
-        imageSrc: "/industries/die-casting.jpeg",
-        imageAlt: "Die casting molten metal process",
+          "Raw mill, kiln, finish mill — govern WHR/grid mix and SEC drift with daily prescriptions.",
+        featured: true,
+        imageSrc: "/industries/cement.png",
+        imageAlt: "Cement manufacturing plant with silos and towers at dusk",
       },
       {
-        id: "forging",
-        name: "Forging",
-        focus: "Compressors run unloaded between strokes",
+        id: "steel",
+        name: "Steel & metals",
+        focus: "Furnace holding + rolling MD",
         description:
-          "Screw compressors sized for peak stroke demand. 60% of shift in unload with no production benefit.",
-        imageSrc: "/industries/forging.jpg",
-        imageAlt: "Industrial forging operation",
+          "Induction furnaces, rolling mills, forging — PAT-aligned SEC improvement verified monthly.",
+        imageSrc: "/industries/steel.png",
+        imageAlt: "Steel rolling mill with glowing hot metal billets",
       },
       {
-        id: "heat-treatment",
-        name: "Heat Treatment",
-        focus: "Furnaces hold over empty weekends",
+        id: "pharma",
+        name: "Pharmaceutical",
+        focus: "HVAC is ~85% of your bill",
         description:
-          "Soak temperature maintained with zero batches scheduled. ₹3–6L/month in pure holding waste at typical loads.",
-        imageSrc: "/industries/heat-treatment.webp",
-        imageAlt: "Heat treatment furnace batch operation",
+          "Chiller staging, AHU schedules, MD control — GMP-safe utility levers for formulation and API plants.",
+        imageSrc: "/industries/pharma.png",
+        imageAlt: "Pharmaceutical vial filling line in a sterile manufacturing plant",
       },
       {
-        id: "rubber-moulding",
-        name: "Rubber Moulding",
-        focus: "No SEC baseline per press",
+        id: "chemical",
+        name: "Chemical & paint",
+        focus: "Batch idle hold + kWh/batch",
         description:
-          "Curing cycles vary by operator. Leak air and idle press heat invisible until the bill arrives.",
-        imageSrc: "/industries/rubber-moulding.jpg",
-        imageAlt: "Rubber moulding production line",
+          "Reactor stagger, soak setback, off-peak utilities — waste between batches made visible in rupees.",
+        imageSrc: "/industries/chemical.png",
+        imageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",
       },
     ] satisfies IndustryItem[],
   },
 
   whyStamped: {
     eyebrow: "Why Stamped",
-    title: "Enterprise EMS tools were not built for your plant size",
+    title: "Enterprise EMS tools were not built for your plant's decision layer",
     items: [
       {
         id: "prescriptive",

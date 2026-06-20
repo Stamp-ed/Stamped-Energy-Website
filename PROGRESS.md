@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-SEO / AEO / GEO — maintenance and content expansion (see `SEO_GEO_AEO.md` for full log)
+Multi-vertical industries expansion — complete (2026-06-08)
 
 ## Completed Phases
 
@@ -29,6 +29,12 @@ SEO / AEO / GEO — maintenance and content expansion (see `SEO_GEO_AEO.md` for 
 - [x] SEO validation (Section 15): Rich Results Test, Schema.org validator, HTTP 200s, sitemap + robots.txt live on production
 - [x] Entity establishment (Section 12): Google Search Console verified, sitemap submitted
 - [x] `SEO_GEO_AEO.md` — living SEO/GEO/AEO documentation and remaining checklist
+- [x] **Multi-vertical industries** — `VerticalPageContent` model, `icp.ts`, five vertical pages (automotive, cement, steel, pharma, chemical)
+- [x] **Generic vertical components** — `components/industries/vertical/*`, `IndustryVerticalPage` shell
+- [x] **Dynamic route** — `app/industries/[slug]/page.tsx` with static params, per-vertical SEO + FAQ schema
+- [x] **ICP copy refresh** — homepage hero, hub, landing industries tiles, `site.ts` description
+- [x] **Scenario shuffle** — `scenarios.ts` (cement prescription, pharma before/after, neutral hero callouts)
+- [x] **SEO/docs** — sitemap, `PAGE_SEO`, `llms.txt`, placeholder industry images, ADR-006
 
 ## Remaining Phases
 
@@ -37,10 +43,12 @@ See **`SEO_GEO_AEO.md` → Remaining & ongoing maintenance** for the full list. 
 - [ ] **Google Business Profile** (Section 12 #3)
 - [ ] **LinkedIn Company Page** (Section 12 #4) — then update Organization schema `sameAs`
 - [ ] **Wikidata entry** for Stamped Energy (Section 12 #5)
+- [ ] Replace placeholder industry hero images (cement, steel, pharma, chemical photo shoot)
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
 - [ ] Dashboard walkthrough video / live embed for prescription section
 - [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)
-- [ ] Full Industries page content
+- [ ] Per-vertical blog posts (content roadmap P2)
+- [ ] Real case studies for cement/steel/pharma/chemical (Phase 3 in strategy doc)
 - [ ] Blog app (separate deployment + admin portal)
 - [ ] Contact form email/CRM forwarding
 - [ ] Customer logos, case studies, testimonials

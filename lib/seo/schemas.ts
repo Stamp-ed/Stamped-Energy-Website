@@ -1,3 +1,5 @@
+import { getVerticalPage, type VerticalSlug } from "@/lib/content/vertical-pages";
+import type { IndustryFaqItem } from "@/lib/content/types";
 import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from "@/lib/seo/constants";
 import type { FaqItem } from "@/lib/seo/extract-faq";
 
@@ -108,7 +110,7 @@ export const homepageFaqSchema = {
       name: "Which industries does Stamped Energy serve?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stamped Energy currently focuses on auto component manufacturers including die casting, forging, heat treatment, and rubber moulding plants. The platform applies to any Indian manufacturer where furnaces, compressors, and shift-start sequencing drive the electricity bill.",
+        text: "Stamped Energy serves cement, steel, pharmaceutical, chemical, and automotive manufacturing plants across India. Each vertical has tailored prescription playbooks — kWh/ton for cement, HVAC staging for pharma, batch SEC for chemical, furnace MD for steel and automotive — verified on your DISCOM bill.",
       },
     },
     {
@@ -448,3 +450,27 @@ export const automotiveFaqSchema = {
     },
   ],
 };
+
+function faqItemsToSchema(items: IndustryFaqItem[]) {
+  return items.map((item) => ({
+    "@type": "Question" as const,
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer" as const,
+      text: item.answer,
+    },
+  }));
+}
+
+export function verticalFaqSchema(slug: VerticalSlug) {
+  const page = getVerticalPage(slug);
+  if (!page) {
+    return automotiveFaqSchema;
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItemsToSchema(page.faq),
+  };
+}

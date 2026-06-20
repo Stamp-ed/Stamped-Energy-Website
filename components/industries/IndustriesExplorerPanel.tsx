@@ -121,6 +121,7 @@ export function IndustriesExplorerPanel({
             </Link>
           </div>
 
+          {active.segments.length > 0 ? (
           <div className={cn("grid sm:grid-cols-2", compact ? "gap-3.5" : "gap-2")}>
             {active.segments.map((segment) => (
               <Link
@@ -165,6 +166,16 @@ export function IndustriesExplorerPanel({
               </Link>
             ))}
           </div>
+          ) : (
+            <p
+              className={cn(
+                "text-on-surface-variant",
+                compact ? "text-sm leading-6" : "text-xs leading-5 md:text-sm",
+              )}
+            >
+              {active.description}
+            </p>
+          )}
         </div>
       </div>
     </div>

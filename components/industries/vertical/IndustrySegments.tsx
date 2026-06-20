@@ -8,23 +8,27 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { industriesContent } from "@/lib/content";
+import { getVerticalPage, getVerticalSegments, type VerticalSlug } from "@/lib/content";
 import { getSegmentImageFocus } from "@/lib/industries/imageFocus";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
-export function AutomotiveSegments() {
+type IndustrySegmentsProps = {
+  slug: VerticalSlug;
+};
+
+export function IndustrySegments({ slug }: IndustrySegmentsProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const { segments: segmentsCopy } = industriesContent.automotive;
-  const segments = industriesContent.verticals[0]?.segments ?? [];
+  const page = getVerticalPage(slug);
+  const segments = getVerticalSegments(slug);
+  const segmentsCopy = page?.segments;
   const [openId, setOpenId] = useState<string | null>(segments[0]?.id ?? null);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
-    const segmentList = industriesContent.verticals[0]?.segments ?? [];
-    if (!hash || !segmentList.some((segment) => segment.id === hash)) {
+    if (!hash || !segments.some((segment) => segment.id === hash)) {
       return;
     }
 
@@ -32,7 +36,7 @@ export function AutomotiveSegments() {
     window.requestAnimationFrame(() => {
       document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-  }, []);
+  }, [segments]);
 
   useGSAP(
     () => {
@@ -52,6 +56,10 @@ export function AutomotiveSegments() {
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },
   );
 
+  if (!segmentsCopy || segments.length === 0) {
+    return null;
+  }
+
   return (
     <section ref={sectionRef} className="bg-surface section-y" id="process-segments">
       <Container>
@@ -65,7 +73,7 @@ export function AutomotiveSegments() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-8 flex md:mt-14 max-w-5xl flex-col gap-5 md:gap-6">
+        <div className="mx-auto mt-8 flex max-w-5xl flex-col gap-5 md:mt-14 md:gap-6">
           {segments.map((segment) => {
             const isOpen = openId === segment.id;
             return (

@@ -59,6 +59,8 @@ export type IndustrySegment = {
   };
 };
 
+export type VerticalStatus = "live" | "coming-soon";
+
 export type IndustryVertical = {
   id: string;
   slug: string;
@@ -69,6 +71,95 @@ export type IndustryVertical = {
   heroImageSrc: string;
   heroImageAlt: string;
   segments: IndustrySegment[];
+  featured?: boolean;
+  priority?: number;
+  status: VerticalStatus;
+};
+
+export type IndustryIntegrationItem = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type IndustryPrescriptionExample = {
+  id: string;
+  title: string;
+  description: string;
+  impactRange: string;
+  assignee?: string;
+};
+
+export type IndustryFaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+export type VerticalPageHero = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryCta: CtaLink;
+  secondaryCta: CtaLink;
+  seoHeadings?: string[];
+};
+
+export type VerticalPageContent = {
+  slug: string;
+  hero: VerticalPageHero;
+  economics: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    stats: StatItem[];
+  };
+  wasteTable: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    areas: IndustryValueArea[];
+  };
+  prescriptionExamples: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    footnote: string;
+    items: IndustryPrescriptionExample[];
+    attribution?: { text: string; source: string };
+  };
+  integration: {
+    eyebrow: string;
+    title: string;
+    items: IndustryIntegrationItem[];
+  };
+  outcomes: {
+    eyebrow: string;
+    title: string;
+    disclaimer?: string;
+    items: { id: string; title: string; description: string }[];
+  };
+  segments?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+  };
+  faq: IndustryFaqItem[];
+  mediaSlot?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    placeholderTitle: string;
+    placeholderDescription: string;
+    mediaSrc: string | null;
+    mediaAlt: string;
+  };
+  finalCta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryCta: CtaLink;
+  };
 };
 
 export type IndustryValueArea = {

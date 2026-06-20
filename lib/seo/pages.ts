@@ -45,9 +45,9 @@ export const PAGE_SEO = {
     path: "/contact",
   },
   industries: {
-    absoluteTitle: "Industries | Stamped Energy — Auto, Forging, Heat Treatment",
+    absoluteTitle: "Industries | Stamped Energy — Cement, Steel, Pharma, Auto",
     description:
-      "Prescriptive energy intelligence for auto component suppliers, forging, heat treatment, and rubber moulding plants across India.",
+      "Prescriptive energy intelligence for cement, steel, pharmaceutical, chemical, and automotive plants across India. ₹20 lakh+ monthly bills — verified on your DISCOM bill.",
     path: "/industries",
   },
   industriesAutomotive: {
@@ -56,4 +56,40 @@ export const PAGE_SEO = {
       "Prescriptive energy intelligence for auto component suppliers. Die casting, forging, heat treatment, rubber moulding — savings tied to furnaces, compressors, and shift-start MD.",
     path: "/industries/automotive",
   },
+  industriesCement: {
+    absoluteTitle: "Cement Plant Energy Management India | Stamped Energy",
+    description:
+      "Cut cement plant electricity cost with prescriptions on kWh/ton, MD, and WHR/grid dispatch — verified on your DISCOM bill. For mid-market plants spending ₹20 lakh+ monthly.",
+    path: "/industries/cement",
+  },
+  industriesSteel: {
+    absoluteTitle: "Steel Plant Energy Efficiency India | Stamped Energy",
+    description:
+      "Prescriptive energy intelligence for steel and metals — induction furnaces, rolling mills, MD control, and PAT-aligned SEC improvement verified on your bill.",
+    path: "/industries/steel",
+  },
+  industriesPharma: {
+    absoluteTitle: "Pharmaceutical Plant HVAC Energy Savings | Stamped Energy",
+    description:
+      "HVAC is ~85% of your pharma plant bill. Chiller staging, AHU schedules, and MD prescriptions — GMP-safe operational levers, verified on your DISCOM bill.",
+    path: "/industries/pharma",
+  },
+  industriesChemical: {
+    absoluteTitle: "Chemical Plant Batch Energy Optimization | Stamped Energy",
+    description:
+      "Batch energy waste between reactors — stagger, soak setback, and off-peak utility prescriptions for specialty chemical and paint plants. Verified monthly on your bill.",
+    path: "/industries/chemical",
+  },
 } as const satisfies Record<string, PageSeoConfig>;
+
+const VERTICAL_SEO_MAP: Record<string, PageSeoConfig> = {
+  automotive: PAGE_SEO.industriesAutomotive,
+  cement: PAGE_SEO.industriesCement,
+  steel: PAGE_SEO.industriesSteel,
+  pharma: PAGE_SEO.industriesPharma,
+  chemical: PAGE_SEO.industriesChemical,
+};
+
+export function getVerticalPageSeo(slug: string): PageSeoConfig | undefined {
+  return VERTICAL_SEO_MAP[slug];
+}

@@ -1,6 +1,6 @@
 # Stamped Energy
 
-> Prescriptive energy intelligence software for Indian manufacturers. Stamped Energy connects existing incomer meters, SCADA, PLCs, and DISCOM electricity bills into rupee-denominated prescriptions — ranked actions with owners, effort, and verified savings on the next bill. Typical outcomes: 12–20% monthly bill reduction; 15–25% maximum demand charge reduction. Built by IIT Roorkee electrical engineers for auto component suppliers (die casting, forging, heat treatment, rubber moulding).
+> Prescriptive energy intelligence for Indian manufacturers spending ₹20 lakh+ on electricity monthly. Stamped Energy connects existing incomer meters, SCADA, PLCs, and DISCOM bills into rupee-denominated prescriptions — ranked actions with owners, effort, and verified savings on the next bill. Typical outcomes: 12–20% monthly bill reduction; 15–25% maximum demand charge reduction. Serves cement, steel, pharmaceutical, chemical, and automotive plants.
 
 Public marketing site: https://stamped.work
 Contact: contact@stamped.work
@@ -10,24 +10,28 @@ Sitemap: https://stamped.work/sitemap.xml
 
 - [Home](https://stamped.work/): Product overview, outcomes, five-step energy loop, FAQ schema
 - [How It Works](https://stamped.work/how-it-works): Connect → Observe → Decide → Execute → Verify workflow; HowTo schema
-- [Industries — Automotive](https://stamped.work/industries/automotive): Die casting, forging, heat treatment, rubber moulding energy cost reduction
-- [Industries hub](https://stamped.work/industries): Industry verticals
+- [Industries hub](https://stamped.work/industries): Five industry verticals
+- [Industries — Automotive](https://stamped.work/industries/automotive): Die casting, forging, heat treatment, rubber moulding
+- [Industries — Cement](https://stamped.work/industries/cement): kWh/ton, WHR/grid dispatch, MD management
+- [Industries — Steel](https://stamped.work/industries/steel): Induction furnaces, rolling mills, PAT SEC
+- [Industries — Pharmaceutical](https://stamped.work/industries/pharma): HVAC staging, chiller MD, GMP-safe utilities
+- [Industries — Chemical](https://stamped.work/industries/chemical): Batch SEC, reactor stagger, idle hold
 - [Case Studies](https://stamped.work/case-studies): Verified savings outcomes from real plants
 - [About](https://stamped.work/about): Founders, IIT Roorkee background, mission
 - [Contact](https://stamped.work/contact): Book a discovery call
 
 ## Blog — field notes for plant heads
 
-- [Blog index](https://stamped.work/blog): Maximum demand, shift-start overlap, furnace holding, compressor waste
+- [Blog index](https://stamped.work/blog): Maximum demand, shift-start overlap, furnace holding, HVAC waste
 - Individual articles at `https://stamped.work/blog/{slug}` — Article JSON-LD on each post
 
 ## Priority keywords
 
-stamped energy, prescriptive energy intelligence India, energy management software for manufacturers India, reduce electricity bill manufacturing India, maximum demand reduction India, energy cost reduction auto component manufacturers, DISCOM bill savings India, SEC reduction manufacturing India
+stamped energy, prescriptive energy intelligence India, energy management software for manufacturers India, reduce electricity bill manufacturing India, maximum demand reduction India, cement plant energy management India, steel plant energy efficiency India, pharmaceutical plant HVAC energy savings, batch process energy optimization, DISCOM bill savings India, SEC reduction manufacturing India
 
 ## Target audience
 
-Plant heads, electrical HODs, and CFOs at Indian manufacturing SMEs (₹10Cr–₹1000Cr revenue), especially auto component suppliers.
+Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20–30 lakh+ monthly electricity bills).
 
 ## What Stamped Energy is not
 

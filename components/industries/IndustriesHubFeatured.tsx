@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { industriesContent } from "@/lib/content";
+import { getFeaturedVerticals, industriesContent } from "@/lib/content";
 import { getSegmentImageFocus } from "@/lib/industries/imageFocus";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,9 @@ import { cn } from "@/lib/utils";
 export function IndustriesHubFeatured() {
   const sectionRef = useRef<HTMLElement>(null);
   const { featured } = industriesContent.hub;
-  const vertical = industriesContent.verticals[0];
+  const featuredVerticals = getFeaturedVerticals();
+  const [activeSlug, setActiveSlug] = useState(featuredVerticals[0]?.slug ?? "automotive");
+  const vertical = featuredVerticals.find((v) => v.slug === activeSlug) ?? featuredVerticals[0];
   const [showSegments, setShowSegments] = useState(false);
   const { isReady, prefersReducedMotion } = useMotion();
 
@@ -52,7 +54,7 @@ export function IndustriesHubFeatured() {
   }
 
   return (
-    <section ref={sectionRef} className="bg-surface-low section-y">
+    <section ref={sectionRef} className="bg-surface-low section-y" id="verticals">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
@@ -63,6 +65,26 @@ export function IndustriesHubFeatured() {
             className="mx-auto"
           />
         </Reveal>
+
+        {featuredVerticals.length > 1 ? (
+          <div className="mx-auto mt-6 flex max-w-md flex-wrap justify-center gap-2">
+            {featuredVerticals.map((item) => (
+              <button
+                key={item.slug}
+                type="button"
+                className={cn(
+                  "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                  item.slug === vertical.slug
+                    ? "border-primary/40 bg-primary/10 text-primary"
+                    : "border-outline-variant/50 text-on-surface-variant hover:border-primary/30",
+                )}
+                onClick={() => setActiveSlug(item.slug)}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         <div
           data-hub-featured
@@ -97,61 +119,69 @@ export function IndustriesHubFeatured() {
                 </p>
               </div>
 
-              <div
-                className={cn(
-                  "mt-0 grid gap-3 sm:grid-cols-2 lg:mt-8",
-                  !showSegments && "hidden md:grid",
-                )}
-              >
-                {vertical.segments.map((segment) => (
-                  <Link
-                    key={segment.id}
-                    data-hub-segment
-                    href={segment.href}
-                    className="group flex gap-3 rounded-xl border border-outline-variant/40 bg-surface-low/60 p-3 transition-colors hover:border-primary/35 hover:bg-primary/5"
-                  >
-                    <div className="relative h-14 w-[4.5rem] shrink-0 overflow-hidden rounded-lg">
-                      <Image
-                        src={segment.imageSrc}
-                        alt={segment.imageAlt}
-                        fill
-                        className={getSegmentImageFocus(segment.id)}
-                        sizes="72px"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-bold text-on-surface group-hover:text-primary">
-                        {segment.name}
-                      </p>
-                      <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-on-surface-variant">
-                        {segment.focus}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-outline-variant/60 bg-surface-low px-4 py-3 text-sm font-semibold text-on-surface transition-colors hover:border-primary/35 hover:bg-primary/5 md:hidden"
-                aria-expanded={showSegments}
-                onClick={() => setShowSegments((open) => !open)}
-              >
-                {showSegments ? featured.showLessLabel : featured.showMoreLabel}
-                <span
-                  aria-hidden="true"
+              {vertical.segments.length > 0 ? (
+                <div
                   className={cn(
-                    "text-primary transition-transform duration-200",
-                    showSegments && "rotate-180",
+                    "mt-0 grid gap-3 sm:grid-cols-2 lg:mt-8",
+                    !showSegments && "hidden md:grid",
                   )}
                 >
-                  ▾
-                </span>
-              </button>
+                  {vertical.segments.map((segment) => (
+                    <Link
+                      key={segment.id}
+                      data-hub-segment
+                      href={segment.href}
+                      className="group flex gap-3 rounded-xl border border-outline-variant/40 bg-surface-low/60 p-3 transition-colors hover:border-primary/35 hover:bg-primary/5"
+                    >
+                      <div className="relative h-14 w-[4.5rem] shrink-0 overflow-hidden rounded-lg">
+                        <Image
+                          src={segment.imageSrc}
+                          alt={segment.imageAlt}
+                          fill
+                          className={getSegmentImageFocus(segment.id)}
+                          sizes="72px"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-bold text-on-surface group-hover:text-primary">
+                          {segment.name}
+                        </p>
+                        <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-on-surface-variant">
+                          {segment.focus}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-4 text-sm leading-6 text-on-surface-variant lg:mt-8">
+                  {vertical.description}
+                </p>
+              )}
+
+              {vertical.segments.length > 0 ? (
+                <button
+                  type="button"
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-outline-variant/60 bg-surface-low px-4 py-3 text-sm font-semibold text-on-surface transition-colors hover:border-primary/35 hover:bg-primary/5 md:hidden"
+                  aria-expanded={showSegments}
+                  onClick={() => setShowSegments((open) => !open)}
+                >
+                  {showSegments ? featured.showLessLabel : featured.showMoreLabel}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "text-primary transition-transform duration-200",
+                      showSegments && "rotate-180",
+                    )}
+                  >
+                    ▾
+                  </span>
+                </button>
+              ) : null}
 
               <div className="mt-5 lg:mt-auto lg:pt-6">
-                <Button href={featured.cta.href} variant="primary" className="w-full sm:w-auto">
-                  {featured.cta.label}
+                <Button href={vertical.href} variant="primary" className="w-full sm:w-auto">
+                  Open {vertical.name.toLowerCase()} page
                 </Button>
               </div>
             </div>

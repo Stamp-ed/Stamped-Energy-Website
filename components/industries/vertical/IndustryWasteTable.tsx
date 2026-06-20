@@ -6,23 +6,27 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { industriesContent } from "@/lib/content";
+import { getVerticalPage, type VerticalSlug } from "@/lib/content";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 
-export function AutomotiveValueExplorer() {
+type IndustryWasteTableProps = {
+  slug: VerticalSlug;
+};
+
+export function IndustryWasteTable({ slug }: IndustryWasteTableProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const { valueExplorer } = industriesContent.automotive;
-  const [activeId, setActiveId] = useState(valueExplorer.areas[0]?.id ?? "");
-  const active =
-    valueExplorer.areas.find((area) => area.id === activeId) ?? valueExplorer.areas[0];
+  const page = getVerticalPage(slug);
+  const wasteTable = page?.wasteTable;
+  const [activeId, setActiveId] = useState(wasteTable?.areas[0]?.id ?? "");
+  const active = wasteTable?.areas.find((area) => area.id === activeId) ?? wasteTable?.areas[0];
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
     () => {
-      if (!isReady || prefersReducedMotion || !panelRef.current) {
+      if (!isReady || prefersReducedMotion) {
         return;
       }
 
@@ -53,7 +57,7 @@ export function AutomotiveValueExplorer() {
     { scope: panelRef, dependencies: [activeId, isReady, prefersReducedMotion] },
   );
 
-  if (!active) {
+  if (!wasteTable || !active) {
     return null;
   }
 
@@ -70,11 +74,11 @@ export function AutomotiveValueExplorer() {
       <Container className="relative z-10">
         <Reveal className="mx-auto">
           <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.14em] text-on-secondary/65">
-            {valueExplorer.eyebrow}
+            {wasteTable.eyebrow}
           </p>
           <SectionHeading
-            title={valueExplorer.title}
-            description={valueExplorer.description}
+            title={wasteTable.title}
+            description={wasteTable.description}
             align="center"
             dark
             className="mx-auto"
@@ -83,7 +87,7 @@ export function AutomotiveValueExplorer() {
 
         <div className="mx-auto mt-8 grid max-w-6xl gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-8">
           <div className="flex flex-col gap-2">
-            {valueExplorer.areas.map((area) => {
+            {wasteTable.areas.map((area) => {
               const isActive = area.id === active.id;
               return (
                 <button

@@ -6,13 +6,17 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { industriesContent } from "@/lib/content";
+import { getVerticalPage, type VerticalSlug } from "@/lib/content";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-export function AutomotiveOutcomes() {
+type IndustryEconomicsProps = {
+  slug: VerticalSlug;
+};
+
+export function IndustryEconomics({ slug }: IndustryEconomicsProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const { outcomes } = industriesContent.automotive;
+  const page = getVerticalPage(slug);
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -21,11 +25,11 @@ export function AutomotiveOutcomes() {
         return;
       }
 
-      gsap.from("[data-outcome-card]", {
+      gsap.from("[data-challenge-stat]", {
         autoAlpha: 0,
-        y: 22,
-        duration: 0.5,
-        stagger: 0.08,
+        y: 24,
+        duration: 0.55,
+        stagger: 0.1,
         ease: "power2.out",
         scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
       });
@@ -33,29 +37,39 @@ export function AutomotiveOutcomes() {
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion] },
   );
 
+  if (!page) {
+    return null;
+  }
+
+  const { economics } = page;
+
   return (
     <section ref={sectionRef} className="bg-surface-low section-y">
       <Container>
         <Reveal className="mx-auto">
           <SectionHeading
-            eyebrow={outcomes.eyebrow}
-            title={outcomes.title}
+            eyebrow={economics.eyebrow}
+            title={economics.title}
+            description={economics.description}
             align="center"
             className="mx-auto"
           />
         </Reveal>
 
-        <div className="mx-auto mt-8 grid md:mt-12 max-w-5xl gap-4 md:grid-cols-2 md:gap-5">
-          {outcomes.items.map((item) => (
+        <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
+          {economics.stats.map((stat) => (
             <article
-              key={item.id}
-              data-outcome-card
-              className="rounded-xl border border-outline-variant/50 bg-surface-lowest p-5 md:p-6"
+              key={stat.id}
+              data-challenge-stat
+              className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-6 text-center shadow-sm"
             >
-              <h3 className="text-lg font-bold text-on-surface">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-on-surface-variant md:leading-7">
-                {item.description}
+              <p className="font-display text-4xl font-extrabold text-primary md:text-5xl">
+                {stat.value}
               </p>
+              <p className="mt-2 text-sm font-bold text-on-surface md:text-base">{stat.label}</p>
+              {stat.detail ? (
+                <p className="mt-2 text-xs leading-5 text-on-surface-variant">{stat.detail}</p>
+              ) : null}
             </article>
           ))}
         </div>

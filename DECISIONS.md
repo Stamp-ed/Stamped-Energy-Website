@@ -62,7 +62,7 @@ Architecture and workflow decisions for this project.
 
 **Date:** 2026-06-08
 
-**Context:** Framer Motion scroll reveals and hero entrance did not run reliably in Next.js 15 due to SSR/hydration and `whileInView` remount issues. Greenovative’s live platform uses GSAP 3.11, ScrollTrigger, Lenis, and AOS — all client-only.
+**Context:** Framer Motion scroll reveals and hero entrance did not run reliably in Next.js 15 due to SSR/hydration and `whileInView` remount issues. Greenovative’s live platform uses GSAP 3.11, ScrollTrigger, Lenis, and AOS - all client-only.
 
 **Alternatives:**
 
@@ -76,7 +76,7 @@ Architecture and workflow decisions for this project.
 
 ---
 
-## ADR-005: How It Works opening — interactive SLD (Option C)
+## ADR-005: How It Works opening - interactive SLD (Option C)
 
 **Date:** 2026-06-08
 
@@ -88,6 +88,26 @@ Architecture and workflow decisions for this project.
 2. Static illustrated SLD (clear but passive)
 3. Interactive SVG SLD with hover/tap tooltips + core capabilities strip below hero
 
-**Selected:** Option C — `PlantSldDiagram` (9 nodes, hub-and-spoke) + `HiwCapabilities` (4 cards) + refreshed hero copy.
+**Selected:** Option C - `PlantSldDiagram` (9 nodes, hub-and-spoke) + `HiwCapabilities` (4 cards) + refreshed hero copy.
 
 **Rationale:** Teaches the data model on first paint; no asset dependency for MVP; optional custom icons can be swapped in later without layout changes.
+
+---
+
+## ADR-006: Generic vertical page template vs duplicated industry pages
+
+**Date:** 2026-06-08
+
+**Context:** Expand from automotive-only to five industry verticals (cement, steel, pharma, chemical, automotive) with full 8-section template and new ICP (₹200 Cr+, ₹20–30L+/month bills).
+
+**Alternatives:**
+
+1. Duplicate automotive page structure per vertical (5× page files + components)
+2. Shared `VerticalPageContent` model + generic `components/industries/vertical/*` + dynamic `app/industries/[slug]/page.tsx`
+3. CMS-driven vertical pages (deferred — no CMS for marketing copy yet)
+
+**Selected:** Shared content model (`lib/content/vertical-pages/`) + slug-agnostic components + dynamic route with `generateStaticParams`. Keep `/industries/automotive` as thin wrapper for backward compatibility.
+
+**Rationale:** One template enforces strategy doc section order; copy changes stay in typed content files; adding a sixth vertical is content-only. Automotive segments preserved; other verticals use optional segments block.
+
+**Impact:** Hub, mega menu, homepage tiles, sitemap, and FAQ schema auto-include all live verticals from `industriesContent.verticals[]`.

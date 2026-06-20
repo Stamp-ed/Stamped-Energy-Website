@@ -8,6 +8,9 @@ import type {
   HiwStackLayer,
   PrescriptionEmbedConfig,
 } from "./types";
+import { getBeforeAfterScenario } from "./scenarios";
+
+const pharmaBeforeAfter = getBeforeAfterScenario();
 
 export const howItWorksContent = {
   hero: {
@@ -249,9 +252,9 @@ export const howItWorksContent = {
     after: {
       title: "After Stamped",
       items: [
-        "07:15 MD spike tied to Compressor 1 + Furnace 2",
+        pharmaBeforeAfter.afterHighlight,
         "One timeline: production, kW, tariff cost",
-        "₹38,000/month prescription assigned",
+        pharmaBeforeAfter.afterPrescription,
         "Verified saving on next DISCOM bill",
       ],
     },
