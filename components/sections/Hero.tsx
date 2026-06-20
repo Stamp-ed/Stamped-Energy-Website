@@ -75,7 +75,7 @@ export function Hero() {
   return (
     <section ref={sectionRef} className="landing-hero relative overflow-x-clip bg-surface pb-0">
       <Container className="relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-8 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:gap-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-6 xl:grid-cols-[minmax(0,0.76fr)_minmax(0,1.24fr)] xl:gap-8">
           <div className="max-w-xl lg:max-w-md xl:max-w-lg">
             <p
               data-hero-animate="eyebrow"
@@ -107,7 +107,7 @@ export function Hero() {
 
             <p
               data-hero-animate="supporting"
-              className="value-proposition mt-4 max-w-md text-sm leading-7 text-on-surface-variant sm:text-base"
+              className="value-proposition mt-4 max-w-lg text-sm leading-7 text-on-surface-variant sm:text-base"
             >
               {hero.supportingLine}
             </p>

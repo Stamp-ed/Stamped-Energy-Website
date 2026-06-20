@@ -8,16 +8,17 @@ import type {
   WhyStampedItem,
   WorkflowStep,
 } from "./types";
-import { icp, icpBillLine } from "./icp";
+import { icp } from "./icp";
 import { getHeroCallouts, getHeroVisual, getScenarioPrescription } from "./scenarios";
 
 export const landingContent = {
   hero: {
-    eyebrow: "Prescriptive energy intelligence",
-    headlineLine1: "Prescriptive intelligence",
-    headlineLine2: "for energy-intensive manufacturing",
+    eyebrow: "Prescriptive Energy Intelligence",
+    headlineLine1: "From plant data",
+    headlineLine2: "to verified savings",
     subheadline: "",
-    supportingLine: `Connect meters, SCADA, and DISCOM bills into assigned actions with monthly rupee impact. ${icpBillLine()}, verified on your next bill.`,
+    supportingLine:
+      "Stamped turns plant data into ranked actions with monthly cost reduction, assigned owners, and bill-verified savings. Built for Indian manufacturers spending ₹20 lakh+ per month on electricity.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [

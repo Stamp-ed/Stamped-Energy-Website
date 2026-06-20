@@ -7,9 +7,9 @@ export function HeroIsometricVisual() {
   return (
     <div
       data-hero-animate="visual"
-      className="relative min-w-0 lg:flex lg:justify-end lg:items-center"
+      className="relative min-w-0 lg:flex lg:items-center lg:justify-end"
     >
-      <div className="relative mx-auto w-full max-w-[640px] sm:max-w-[720px] lg:mx-0 lg:w-[118%] lg:max-w-none xl:w-[128%] 2xl:w-[135%]">
+      <div className="relative mx-auto w-full max-w-[640px] translate-x-0 sm:max-w-[720px] lg:mx-0 lg:w-[112%] lg:max-w-none lg:translate-x-6 xl:w-[120%] xl:translate-x-10 2xl:translate-x-14">
         <Image
           src="/images/hero/energy-facility-isometric.png"
           alt={HERO_IMAGE_ALT}
