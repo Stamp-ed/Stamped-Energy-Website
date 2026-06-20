@@ -37,16 +37,22 @@ const variantClasses: Record<ButtonVariant, string> = {
     "disabled:hover:translate-y-0 disabled:hover:shadow-[0_2px_10px_-4px_color-mix(in_srgb,var(--brand-primary)_45%,transparent)] disabled:hover:brightness-100",
     "disabled:before:hidden",
   ),
-  secondary:
-    "bg-secondary text-on-secondary border border-secondary hover:opacity-90",
-  ghost:
-    "bg-transparent text-on-surface border border-transparent hover:bg-surface-low",
-  outline:
-    "bg-transparent text-primary border-2 border-primary hover:bg-primary/8",
+  secondary: cn(
+    "bg-secondary text-on-secondary border border-secondary transition-colors duration-200",
+    "hover:opacity-90",
+  ),
+  ghost: cn(
+    "bg-transparent text-on-surface border border-transparent transition-colors duration-200",
+    "hover:bg-surface-low",
+  ),
+  outline: cn(
+    "bg-transparent text-primary border-2 border-primary transition-colors duration-200",
+    "hover:bg-primary/8",
+  ),
 };
 
 const baseClasses =
-  "inline-flex h-11 items-center justify-center rounded-md px-5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:h-12 sm:px-6";
+  "inline-flex h-11 items-center justify-center rounded-md px-5 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:h-12 sm:px-6";
 
 function isLinkProps(props: ButtonProps): props is ButtonAsLink {
   return "href" in props && Boolean(props.href);

@@ -15,9 +15,9 @@ const pharmaBeforeAfter = getBeforeAfterScenario();
 export const howItWorksContent = {
   hero: {
     eyebrow: "How Stamped works on your plant",
-    title: "One view of consumption, production, and cost, prescriptions in rupees",
+    title: "Prescriptive intelligence across your entire energy stack",
     description:
-      "Connect incomer meters, bills, SCADA, and PLCs you already run. Assign fixes to your team. Verify savings when the DISCOM bill lands.",
+      "Most plants already have meters and SCADA. The gap is analysis, root cause, and assigned fixes. Stamped monitors parameters across your plant, detects waste and anomalies, explains causes, and guides operations on what to resolve - with bill-verified savings.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "Back to home", href: "/" } satisfies CtaLink,
   },
