@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getFeaturedVerticals, industriesContent } from "@/lib/content";
+import { getLiveVerticals, industriesContent } from "@/lib/content";
 import { getSegmentImageFocus } from "@/lib/industries/imageFocus";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
@@ -17,9 +17,9 @@ import { cn } from "@/lib/utils";
 export function IndustriesHubFeatured() {
   const sectionRef = useRef<HTMLElement>(null);
   const { featured } = industriesContent.hub;
-  const featuredVerticals = getFeaturedVerticals();
-  const [activeSlug, setActiveSlug] = useState(featuredVerticals[0]?.slug ?? "automotive");
-  const vertical = featuredVerticals.find((v) => v.slug === activeSlug) ?? featuredVerticals[0];
+  const verticals = getLiveVerticals();
+  const [activeSlug, setActiveSlug] = useState(verticals[0]?.slug ?? "automotive");
+  const vertical = verticals.find((v) => v.slug === activeSlug) ?? verticals[0];
   const [showSegments, setShowSegments] = useState(false);
   const { isReady, prefersReducedMotion } = useMotion();
 
@@ -66,22 +66,23 @@ export function IndustriesHubFeatured() {
           />
         </Reveal>
 
-        {featuredVerticals.length > 1 ? (
-          <div className="mx-auto mt-6 flex max-w-md flex-wrap justify-center gap-2">
-            {featuredVerticals.map((item) => (
-              <button
+        {verticals.length > 1 ? (
+          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap justify-center gap-2">
+            {verticals.map((item) => (
+              <Link
                 key={item.slug}
-                type="button"
+                href={item.href}
                 className={cn(
                   "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
                   item.slug === vertical.slug
                     ? "border-primary/40 bg-primary/10 text-primary"
-                    : "border-outline-variant/50 text-on-surface-variant hover:border-primary/30",
+                    : "border-outline-variant/50 text-on-surface-variant hover:border-primary/30 hover:bg-primary/5",
                 )}
-                onClick={() => setActiveSlug(item.slug)}
+                onMouseEnter={() => setActiveSlug(item.slug)}
+                onFocus={() => setActiveSlug(item.slug)}
               >
                 {item.name}
-              </button>
+              </Link>
             ))}
           </div>
         ) : null}

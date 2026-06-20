@@ -23,12 +23,12 @@ const automotiveSegments: IndustrySegment[] = [
     id: "die-casting",
     slug: "die-casting",
     name: "Die Casting",
-    focus: "Furnace–compressor coordination & shift-start spikes",
+    focus: "Furnace-compressor coordination & shift-start spikes",
     description:
       "High-pressure die casting cells where melting, holding, and auxiliary loads create simultaneous demand at shift start and leak rupees through idle holding.",
     href: "/industries/automotive#die-casting",
     imageSrc: INDUSTRY_IMAGES.dieCasting,
-    imageAlt: "Die casting plant energy management — shift-start MD spike reduction",
+    imageAlt: "Die casting plant energy management - shift-start MD spike reduction",
     relatedArticle: {
       href: "/blog/why-shift-start-kills-die-casting-margins",
       label: "How shift-start overlap drives maximum demand charges in die casting plants",
@@ -44,8 +44,8 @@ const automotiveSegments: IndustrySegment[] = [
       "WhatsApp alerts when holding load exceeds adjusted baseline",
     ],
     metrics: [
-      { id: "dc-sec", value: "8–15%", label: "Typical SEC improvement range" },
-      { id: "dc-md", value: "₹2–5L", label: "Monthly MD / demand charge savings" },
+      { id: "dc-sec", value: "8-15%", label: "Typical SEC improvement range" },
+      { id: "dc-md", value: "₹2-5L", label: "Monthly MD / demand charge savings" },
     ],
   },
   {
@@ -57,7 +57,7 @@ const automotiveSegments: IndustrySegment[] = [
       "Forging hammers and press lines with extreme demand spikes, power-factor penalties, and production-linked SEC that passive monitoring never explains.",
     href: "/industries/automotive#forging",
     imageSrc: INDUSTRY_IMAGES.forging,
-    imageAlt: "Forging press line energy cost reduction — maximum demand control",
+    imageAlt: "Forging press line energy cost reduction - maximum demand control",
     challenges: [
       "Hammer and press startups overlap with utility baseload",
       "Maximum demand charges from short, high-kVA cycles",
@@ -69,8 +69,8 @@ const automotiveSegments: IndustrySegment[] = [
       "Verified savings ledger tied to adjusted production baselines",
     ],
     metrics: [
-      { id: "fg-md", value: "12–22%", label: "MD / demand charge reduction potential" },
-      { id: "fg-sec", value: "₹3–8L", label: "Monthly energy cost reduction" },
+      { id: "fg-md", value: "12-22%", label: "MD / demand charge reduction potential" },
+      { id: "fg-sec", value: "₹3-8L", label: "Monthly energy cost reduction" },
     ],
   },
   {
@@ -82,10 +82,10 @@ const automotiveSegments: IndustrySegment[] = [
       "Carburizing, induction, and batch furnaces where setback gaps, weekend holding, and tariff windows determine whether heat energy converts to shipped parts.",
     href: "/industries/automotive#heat-treatment",
     imageSrc: INDUSTRY_IMAGES.heatTreatment,
-    imageAlt: "Heat treatment furnace energy optimization — weekend holding waste reduction",
+    imageAlt: "Heat treatment furnace energy optimization - weekend holding waste reduction",
     relatedArticle: {
       href: "/blog/weekend-furnace-holding-silent-cost",
-      label: "Weekend furnace holding — the silent cost in heat treatment plants",
+      label: "Weekend furnace holding - the silent cost in heat treatment plants",
     },
     challenges: [
       "Furnaces held at temperature through breaks and low-load windows",
@@ -98,8 +98,8 @@ const automotiveSegments: IndustrySegment[] = [
       "Track open → done on furnace tuning actions via WhatsApp",
     ],
     metrics: [
-      { id: "ht-hold", value: "15–25%", label: "Holding loss recoverable" },
-      { id: "ht-tariff", value: "₹1.5–4L", label: "Monthly tariff-window savings" },
+      { id: "ht-hold", value: "15-25%", label: "Holding loss recoverable" },
+      { id: "ht-tariff", value: "₹1.5-4L", label: "Monthly tariff-window savings" },
     ],
   },
   {
@@ -111,7 +111,7 @@ const automotiveSegments: IndustrySegment[] = [
       "Injection and compression moulding lines where curing cycles, steam or hot-oil systems, and compressed air leaks inflate SEC between batches.",
     href: "/industries/automotive#rubber-moulding",
     imageSrc: INDUSTRY_IMAGES.rubberMoulding,
-    imageAlt: "Rubber moulding plant energy intelligence — curing cycle SEC baseline",
+    imageAlt: "Rubber moulding plant energy intelligence - curing cycle SEC baseline",
     challenges: [
       "Curing timers and press heat run through planned downtime",
       "Compressed air leaks masked by overall plant load",
@@ -123,8 +123,8 @@ const automotiveSegments: IndustrySegment[] = [
       "Closed-loop verification on realised ₹ per line",
     ],
     metrics: [
-      { id: "rm-air", value: "5–12%", label: "Compressed air system savings" },
-      { id: "rm-cure", value: "₹1.2–3L", label: "Monthly curing & idle-load savings" },
+      { id: "rm-air", value: "5-12%", label: "Compressed air system savings" },
+      { id: "rm-cure", value: "₹1.2-3L", label: "Monthly curing & idle-load savings" },
     ],
   },
 ];
@@ -133,13 +133,13 @@ const steelSegments: IndustrySegment[] = [
   {
     id: "eaf-induction",
     slug: "eaf-induction",
-    name: "EAF / Induction furnace",
+    name: "EAF / Induction",
     focus: "Holding power between heats & power factor",
     description:
       "Induction and EAF routes where holding load between heats and PF penalties inflate the bill without production output.",
     href: "/industries/steel#eaf-induction",
     imageSrc: INDUSTRY_IMAGES.steel,
-    imageAlt: "Hot metal billets on a steel rolling mill line — induction and EAF energy management",
+    imageAlt: "Hot metal billets on a steel rolling mill line - induction and EAF energy management",
     challenges: [
       "Furnace held at full power between heats with no pour scheduled",
       "Power factor penalties from reactive load during holding",
@@ -151,8 +151,8 @@ const steelSegments: IndustrySegment[] = [
       "PF sequencing recommendations assigned to electrical",
     ],
     metrics: [
-      { id: "eaf-hold", value: "₹3–8L", label: "Monthly holding waste recoverable [~]" },
-      { id: "eaf-pf", value: "5–12%", label: "PF penalty reduction potential [~]" },
+      { id: "eaf-hold", value: "₹3-8L", label: "Monthly holding waste recoverable [~]" },
+      { id: "eaf-pf", value: "5-12%", label: "PF penalty reduction potential [~]" },
     ],
   },
   {
@@ -164,7 +164,7 @@ const steelSegments: IndustrySegment[] = [
       "Rolling mills where simultaneous stand startup creates MD spikes and SEC varies by product mix without baseline tracking.",
     href: "/industries/steel#rolling",
     imageSrc: INDUSTRY_IMAGES.steel,
-    imageAlt: "Glowing steel billets on rolling mill conveyor — maximum demand control",
+    imageAlt: "Glowing steel billets on rolling mill conveyor - maximum demand control",
     challenges: [
       "Multiple stands restart simultaneously after breaks",
       "SEC drift by product mix invisible until billing",
@@ -176,17 +176,17 @@ const steelSegments: IndustrySegment[] = [
       "Pump duty-cycle recommendations ranked by ROI",
     ],
     metrics: [
-      { id: "roll-md", value: "₹4–10L", label: "Monthly MD savings potential [~]" },
-      { id: "roll-sec", value: "8–17%", label: "SEC improvement benchmark [~]" },
+      { id: "roll-md", value: "₹4-10L", label: "Monthly MD savings potential [~]" },
+      { id: "roll-sec", value: "8-17%", label: "SEC improvement benchmark [~]" },
     ],
   },
   {
     id: "forging-foundry",
     slug: "forging-foundry",
-    name: "Forging & foundry",
-    focus: "Auto-adjacent playbook — furnaces & compressors",
+    name: "Foundry",
+    focus: "Auto-adjacent playbook - furnaces & compressors",
     description:
-      "Forging and foundry operations overlapping automotive heat treatment and forging playbooks — same prescription patterns, steel cluster context.",
+      "Forging and foundry operations overlapping automotive heat treatment and forging playbooks - same prescription patterns, steel cluster context.",
     href: "/industries/steel#forging-foundry",
     imageSrc: INDUSTRY_IMAGES.forging,
     imageAlt: "Forging and foundry energy cost reduction",
@@ -201,8 +201,8 @@ const steelSegments: IndustrySegment[] = [
       "Leak detection prescriptions with supervisor routing",
     ],
     metrics: [
-      { id: "ff-hold", value: "₹2–6L", label: "Monthly holding savings [~]" },
-      { id: "ff-md", value: "12–22%", label: "MD reduction potential [~]" },
+      { id: "ff-hold", value: "₹2-6L", label: "Monthly holding savings [~]" },
+      { id: "ff-md", value: "12-22%", label: "MD reduction potential [~]" },
     ],
   },
 ];
@@ -211,7 +211,7 @@ export const industriesContent = {
   hub: {
     eyebrow: "Industries",
     title: "Prescriptive intelligence for plants where energy is structural margin",
-    description: `Cement, steel, pharma, chemical, and automotive — for ${icp.geography} at ${icp.revenueFloor} spending ${icp.monthlyBillBand} on electricity. Same decision layer, vertical-specific prescriptions.`,
+    description: `Cement, steel, pharma, chemical, and automotive - for ${icp.geography} at ${icp.revenueFloor} spending ${icp.monthlyBillBand} on electricity. Same decision layer, vertical-specific prescriptions.`,
     heroImageSrc: INDUSTRY_IMAGES.cement,
     heroImageAlt: "Cement plant with silos and kiln illuminated at twilight",
     primaryCta: { label: "Explore industries", href: "#verticals" } satisfies CtaLink,
@@ -219,13 +219,13 @@ export const industriesContent = {
     stats: [
       {
         id: "hub-sec",
-        value: "12–20%",
+        value: "12-20%",
         label: "Typical electricity cost reduction",
         detail: "Process-intensive mid-market plants [~]",
       },
       {
         id: "hub-md",
-        value: "15–25%",
+        value: "15-25%",
         label: "MD / demand charge reduction",
         detail: "From incomer meter + bill data",
       },
@@ -244,13 +244,13 @@ export const industriesContent = {
           id: "process-baselines",
           title: "Baselines by shift, batch, and line",
           description:
-            "SEC and MD tracked against production context — pour times, batch windows, kWh/ton — not plant-wide averages that hide the leak.",
+            "SEC and MD tracked against production context - pour times, batch windows, kWh/ton - not plant-wide averages that hide the leak.",
         },
         {
           id: "segment-prescriptions",
           title: "Prescriptions your supervisors recognise",
           description:
-            "Shift-start staggering, holding schedule changes, dispatch governance — assigned roles and monthly ₹ impact.",
+            "Shift-start staggering, holding schedule changes, dispatch governance - assigned roles and monthly ₹ impact.",
         },
         {
           id: "verified-outcomes",
@@ -267,12 +267,11 @@ export const industriesContent = {
         "Five industry verticals with plant-floor playbooks. Hover to preview process segments where available.",
     },
     featured: {
-      eyebrow: "Featured verticals",
-      title: "Automotive and cement — live with full playbooks",
+      eyebrow: "Industry verticals",
+      title: "Five verticals. One prescription engine.",
       description:
-        "Auto component suppliers under OEM cost-down pressure, plus cement plants governing kWh/ton and dispatch. Steel, pharma, and chemical pages live with prescription templates.",
+        "Cement, steel, pharma, chemical, and automotive - each with plant-floor playbooks, prescription templates, and bill-verified outcomes.",
       cta: { label: "Open automotive page", href: "/industries/automotive" } satisfies CtaLink,
-      secondaryCta: { label: "Open cement page", href: "/industries/cement" } satisfies CtaLink,
       showMoreLabel: "Show process segments",
       showLessLabel: "Show fewer segments",
     },
@@ -280,7 +279,7 @@ export const industriesContent = {
       eyebrow: "Start with your plant",
       title: "Not sure which vertical fits?",
       description:
-        "Discovery call: we map your meters, main loads, and bill pattern — and say honestly if a pilot makes sense.",
+        "Discovery call: we map your meters, main loads, and bill pattern - and say honestly if a pilot makes sense.",
       primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     },
     cta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
@@ -293,12 +292,11 @@ export const industriesContent = {
       name: "Automotive",
       tagline: "Energy cost control for auto component suppliers",
       description:
-        "Die casting, forging, heat treatment, and rubber moulding — where OEM price pressure and HT tariffs squeeze margin on every rupee of electricity.",
+        "Die casting, forging, heat treatment, and rubber moulding - where OEM price pressure and HT tariffs squeeze margin on every rupee of electricity.",
       href: "/industries/automotive",
       heroImageSrc: INDUSTRY_IMAGES.dieCasting,
       heroImageAlt: "Molten metal pour in an automotive die casting plant",
       segments: automotiveSegments,
-      featured: true,
       priority: 1,
       status: "live",
     },
@@ -308,12 +306,11 @@ export const industriesContent = {
       name: "Cement",
       tagline: "Govern power mix and kWh/ton",
       description:
-        "Raw mill, kiln, finish mill, and utilities — dispatch governance and SEC drift prescriptions for mid-market cement plants.",
+        "Raw mill, kiln, finish mill, and utilities - dispatch governance and SEC drift prescriptions for mid-market cement plants.",
       href: "/industries/cement",
       heroImageSrc: INDUSTRY_IMAGES.cement,
       heroImageAlt: "Cement manufacturing plant with silos, towers, and conveyors at dusk",
       segments: [],
-      featured: true,
       priority: 2,
       status: "live",
     },
@@ -323,12 +320,11 @@ export const industriesContent = {
       name: "Steel & metals",
       tagline: "Furnaces, rolling mills, PAT discipline",
       description:
-        "Secondary steel, rolling, forging, and foundry — induction holding, startup MD, and SEC improvement verified on your bill.",
+        "Secondary steel, rolling, forging, and foundry - induction holding, startup MD, and SEC improvement verified on your bill.",
       href: "/industries/steel",
       heroImageSrc: INDUSTRY_IMAGES.steel,
       heroImageAlt: "Steel rolling mill with glowing hot metal billets on the production line",
       segments: steelSegments,
-      featured: false,
       priority: 3,
       status: "live",
     },
@@ -338,12 +334,11 @@ export const industriesContent = {
       name: "Pharmaceutical",
       tagline: "HVAC is ~85% of your bill",
       description:
-        "Formulation and API plants — chiller staging, AHU schedules, and MD control with GMP-safe operational levers.",
+        "Formulation and API plants - chiller staging, AHU schedules, and MD control with GMP-safe operational levers.",
       href: "/industries/pharma",
       heroImageSrc: INDUSTRY_IMAGES.pharma,
       heroImageAlt: "Automated pharmaceutical vial filling line in a sterile manufacturing plant",
       segments: [],
-      featured: false,
       priority: 4,
       status: "live",
     },
@@ -353,12 +348,11 @@ export const industriesContent = {
       name: "Chemical & paint",
       tagline: "Batch idle hold and kWh per batch",
       description:
-        "Specialty chemicals, resins, and paint — reactor stagger, soak setback, and off-peak utility prescriptions between batches.",
+        "Specialty chemicals, resins, and paint - reactor stagger, soak setback, and off-peak utility prescriptions between batches.",
       href: "/industries/chemical",
       heroImageSrc: INDUSTRY_IMAGES.chemical,
       heroImageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",
       segments: [],
-      featured: false,
       priority: 5,
       status: "live",
     },
@@ -380,7 +374,7 @@ export function getLiveVerticals() {
 }
 
 export function getFeaturedVerticals() {
-  return industriesContent.verticals.filter((vertical) => vertical.featured);
+  return getLiveVerticals();
 }
 
 /** @deprecated Use getVerticalSegments("automotive") */

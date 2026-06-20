@@ -263,7 +263,7 @@ export type HiwSldNode = {
   id: string;
   label: string;
   tooltip: string;
-  /** 0–100 position within the diagram frame */
+  /** 0-100 position within the diagram frame */
   x: number;
   y: number;
   kind: "source" | "hub" | "load";

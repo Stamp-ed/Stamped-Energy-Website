@@ -23,7 +23,7 @@ Every die casting plant knows the rhythm: furnaces ramp, compressors kick in, an
 
 ## What the data shows
 
-Across automotive-adjacent die casting units we've studied, **15–22% of billed maximum demand** traces to the first 30–40 minutes of shift start. The pattern is predictable:
+Across automotive-adjacent die casting units we've studied, **15-22% of billed maximum demand** traces to the first 30-40 minutes of shift start. The pattern is predictable:
 
 - Three furnaces pre-heating simultaneously
 - Holding compressors running before moulds are staged
@@ -34,7 +34,7 @@ Across automotive-adjacent die casting units we've studied, **15–22% of billed
 The fix isn't a capital project. It's sequencing:
 
 1. **Map ramp curves** against actual pour timestamps from MES or manual logs
-2. **Stagger pre-heat windows** by 8–12 minutes per furnace
+2. **Stagger pre-heat windows** by 8-12 minutes per furnace
 3. **Alert supervisors** when holding load exceeds baseline with zero scheduled pours
 
 Prescriptions in rupees, "stagger Furnace 2 by 10 minutes, save ₹1.2L/month in demand charges", change behaviour faster than kWh dashboards.
@@ -45,7 +45,7 @@ Prescriptions in rupees, "stagger Furnace 2 by 10 minutes, save ₹1.2L/month in
 - Furnace ramp start times vs first pour time
 - Compressor run hours before first production signal
 
-If shift-start overlap exceeds 20 minutes daily, you're likely leaving **₹4–8L/month** on the table at typical HT tariff bands.
+If shift-start overlap exceeds 20 minutes daily, you're likely leaving **₹4-8L/month** on the table at typical HT tariff bands.
 
 ## Bottom line
 
@@ -55,7 +55,7 @@ Shift-start isn't an operations nuisance. It's a **margin lever** hiding in your
     title: "Weekend furnace holding: the silent cost in heat treatment",
     slug: "weekend-furnace-holding-silent-cost",
     excerpt:
-      "Batch furnaces held temperature over empty weekends, 15–25% of furnace energy with no parts scheduled.",
+      "Batch furnaces held temperature over empty weekends, 15-25% of furnace energy with no parts scheduled.",
     category: "cost-optimization",
     tags: ["heat treatment", "furnace", "non-production energy"],
     featured: true,
@@ -70,9 +70,9 @@ In plants we've baselined, **40% of weekends had zero batches scheduled**, yet f
 
 Furnace holding isn't free. For a typical batch shop with three furnaces:
 
-- Holding load: 60–120 kW per furnace
-- Weekend hours without batches: 36–48 hours
-- At ₹8–12/kWh blended rate: **₹3–6L/month** in pure waste
+- Holding load: 60-120 kW per furnace
+- Weekend hours without batches: 36-48 hours
+- At ₹8-12/kWh blended rate: **₹3-6L/month** in pure waste
 
 That's not maintenance. That's margin walking out the exhaust.
 
@@ -141,8 +141,8 @@ Software-only deployment, incomer meter + existing PLC data, gets you there with
 
 Energy efficiency isn't a sustainability slide. It's **margin per unit**:
 
-- 12–20% electricity cost reduction typical for process-intensive SMEs
-- 3–6 month platform payback at reference benchmarks
+- 12-20% electricity cost reduction typical for process-intensive SMEs
+- 3-6 month platform payback at reference benchmarks
 - Verified on the next bill, not in a consultant report
 
 ## Closing thought
@@ -174,7 +174,7 @@ Analytics that stop at layer 2 are expensive wallpaper. Layer 3 is where payback
 
 ## Why SMEs can move faster than conglomerates
 
-Enterprise EMS deployments take 18 months and six consultants. An SME with one incomer and three problem assets can pilot in **2–3 weeks**:
+Enterprise EMS deployments take 18 months and six consultants. An SME with one incomer and three problem assets can pilot in **2-3 weeks**:
 
 - Week 1: connect data
 - Week 2: baseline

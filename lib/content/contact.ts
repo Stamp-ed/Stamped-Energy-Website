@@ -12,7 +12,7 @@ export const contactContent = {
 
   stats: [
     { id: "response", label: "Response time", value: "Under 24 hours" },
-    { id: "pilot", label: "Pilot kickoff", value: "4–6 weeks" },
+    { id: "pilot", label: "Pilot kickoff", value: "4-6 weeks" },
     { id: "location", label: "Location", value: "India" },
   ],
 

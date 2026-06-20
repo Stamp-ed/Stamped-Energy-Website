@@ -17,7 +17,7 @@ export const resourcesContent = {
       type: "case-study",
       title: "Automotive & pump manufacturing: 18% SEC reduction",
       description:
-        "16 verified measures across compressors, furnaces, and shift-start sequencing, IPMVP-style M&V with ₹12–34L monthly energy savings (reference benchmark).",
+        "16 verified measures across compressors, furnaces, and shift-start sequencing, IPMVP-style M&V with ₹12-34L monthly energy savings (reference benchmark).",
       href: "/case-studies/automotive-pump-sec-reduction",
       tag: "Field pilot",
       imageSrc: RESOURCE_IMAGES.forging,
@@ -41,7 +41,7 @@ export const resourcesContent = {
       type: "blog",
       title: "Weekend furnace holding: the silent cost",
       description:
-        "How batch heat treatment plants lose 15–25% of furnace energy with no parts scheduled.",
+        "How batch heat treatment plants lose 15-25% of furnace energy with no parts scheduled.",
       href: "/blog/weekend-furnace-holding-silent-cost",
       tag: "Blog",
       imageSrc: RESOURCE_IMAGES.heatTreatment,

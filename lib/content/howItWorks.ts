@@ -266,13 +266,13 @@ export const howItWorksContent = {
     phases: [
       {
         id: "week-1-2",
-        week: "Week 1–2",
+        week: "Week 1-2",
         title: "Meter + bill live",
         description: "Baselines and first MD / tariff prescriptions.",
       },
       {
         id: "week-3-4",
-        week: "Week 3–4",
+        week: "Week 3-4",
         title: "First assigned actions",
         description: "Supervisor tasks on WhatsApp. Execution tracked.",
       },

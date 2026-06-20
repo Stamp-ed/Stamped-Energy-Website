@@ -98,7 +98,7 @@ Architecture and workflow decisions for this project.
 
 **Date:** 2026-06-08
 
-**Context:** Expand from automotive-only to five industry verticals (cement, steel, pharma, chemical, automotive) with full 8-section template and new ICP (₹200 Cr+, ₹20–30L+/month bills).
+**Context:** Expand from automotive-only to five industry verticals (cement, steel, pharma, chemical, automotive) with full 8-section template and new ICP (₹200 Cr+, ₹20-30L+/month bills).
 
 **Alternatives:**
 

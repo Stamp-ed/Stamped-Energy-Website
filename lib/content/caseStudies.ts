@@ -74,7 +74,7 @@ export const caseStudiesContent = {
       slug: "automotive-pump-sec-reduction",
       title: "Automotive & pump manufacturing: 18% SEC reduction",
       excerpt:
-        "16 verified measures across compressors, furnaces, and shift-start sequencing, IPMVP-style M&V with ₹12–34L monthly energy savings.",
+        "16 verified measures across compressors, furnaces, and shift-start sequencing, IPMVP-style M&V with ₹12-34L monthly energy savings.",
       clientContext:
         "Tier-2 automotive and industrial pump manufacturer in western India, die casting, machining, and heat treatment under one incomer.",
       category: "unit-economics",
@@ -85,7 +85,7 @@ export const caseStudiesContent = {
       imageAlt: "Automotive component manufacturing facility",
       metrics: [
         { label: "SEC reduction", value: "18%" },
-        { label: "Monthly savings", value: "₹12–34L" },
+        { label: "Monthly savings", value: "₹12-34L" },
         { label: "Measures verified", value: "16" },
       ],
       industry: "Automotive & pumps",
@@ -99,7 +99,7 @@ export const caseStudiesContent = {
       ],
       outcomes: [
         "18% reduction in specific energy consumption (kWh per unit output) within 90 days.",
-        "₹12–34L monthly electricity cost reduction at reference tariff bands.",
+        "₹12-34L monthly electricity cost reduction at reference tariff bands.",
         "15% maximum demand reduction from shift-start overlap elimination.",
         "16 measures verified with plant-head sign-off before annual subscription.",
       ],
@@ -111,7 +111,7 @@ export const caseStudiesContent = {
       slug: "die-casting-shift-start-md",
       title: "Die casting: eliminating the morning MD spike",
       excerpt:
-        "Shift-start furnace pre-heat overlap and holding loads drove a predictable incomer spike every morning, quantified and sequenced for ₹4–8L monthly demand savings.",
+        "Shift-start furnace pre-heat overlap and holding loads drove a predictable incomer spike every morning, quantified and sequenced for ₹4-8L monthly demand savings.",
       clientContext:
         "High-pressure die casting plant supplying two-wheeler OEMs, three furnaces, shared compressor yard, single HT incomer.",
       category: "demand-management",
@@ -121,22 +121,22 @@ export const caseStudiesContent = {
       imageSrc: CASE_IMAGES.dieCasting,
       imageAlt: "Die casting molten metal process",
       metrics: [
-        { label: "MD reduction", value: "15–22%" },
+        { label: "MD reduction", value: "15-22%" },
         { label: "Shift-start overlap", value: "−40 min" },
-        { label: "Monthly savings", value: "₹4–8L" },
+        { label: "Monthly savings", value: "₹4-8L" },
       ],
       industry: "Die casting",
       challenge:
-        "Every morning, all three furnaces ramped simultaneously while compressors started for holding pressure, creating a 20–30 minute MD spike unrelated to production output.",
+        "Every morning, all three furnaces ramped simultaneously while compressors started for holding pressure, creating a 20-30 minute MD spike unrelated to production output.",
       approach: [
         "Mapped furnace ramp curves against actual pour schedules from MES timestamps.",
         "Staggered pre-heat windows with prescriptions pushed to shift supervisors on WhatsApp.",
         "Automated alerts when holding load exceeded baseline for empty mould status.",
       ],
       outcomes: [
-        "15–22% reduction in billed maximum demand within one billing cycle.",
+        "15-22% reduction in billed maximum demand within one billing cycle.",
         "40 minutes average reduction in concurrent high-load window at shift start.",
-        "₹4–8L monthly savings from demand charge and energy overlap reduction.",
+        "₹4-8L monthly savings from demand charge and energy overlap reduction.",
       ],
       disclaimer: "Anonymised reference benchmark from automotive die casting segment.",
     },
@@ -145,7 +145,7 @@ export const caseStudiesContent = {
       slug: "heat-treatment-weekend-holding",
       title: "Heat treatment: weekend furnace holding waste",
       excerpt:
-        "Batch furnaces held temperature over empty weekends, 15–25% of furnace energy with no parts scheduled. Holding schedules aligned to production calendar.",
+        "Batch furnaces held temperature over empty weekends, 15-25% of furnace energy with no parts scheduled. Holding schedules aligned to production calendar.",
       clientContext:
         "Commercial heat treatment shop, batch furnaces, quench tanks, and ageing ovens serving forging and automotive clients.",
       category: "process-optimization",
@@ -157,7 +157,7 @@ export const caseStudiesContent = {
       metrics: [
         { label: "Non-prod energy", value: "−18%" },
         { label: "Weekend holding", value: "−60%" },
-        { label: "Monthly savings", value: "₹3–6L" },
+        { label: "Monthly savings", value: "₹3-6L" },
       ],
       industry: "Heat treatment",
       challenge:
@@ -170,7 +170,7 @@ export const caseStudiesContent = {
       outcomes: [
         "18% reduction in non-production furnace energy within 60 days.",
         "60% reduction in weekend holding hours when no batches scheduled.",
-        "₹3–6L monthly savings without capital expenditure.",
+        "₹3-6L monthly savings without capital expenditure.",
       ],
       disclaimer: "Reference benchmark from heat treatment segment pilots.",
     },
@@ -189,7 +189,7 @@ export const caseStudiesContent = {
       metrics: [
         { label: "Compressor SEC", value: "−12%" },
         { label: "Unload hours", value: "−35%" },
-        { label: "Monthly savings", value: "₹2–5L" },
+        { label: "Monthly savings", value: "₹2-5L" },
       ],
       industry: "Forging",
       challenge:
@@ -202,7 +202,7 @@ export const caseStudiesContent = {
       outcomes: [
         "12% reduction in compressor-specific energy consumption.",
         "35% fewer unload hours per shift after timer and header maintenance prescriptions.",
-        "₹2–5L monthly savings at reference tariff.",
+        "₹2-5L monthly savings at reference tariff.",
       ],
     },
     {
@@ -210,7 +210,7 @@ export const caseStudiesContent = {
       slug: "rubber-moulding-baseline",
       title: "Rubber moulding: SEC baseline in 30 days",
       excerpt:
-        "First 30-day baseline across curing presses and chillers, identified ₹1.2–3L monthly quick wins before full prescription rollout.",
+        "First 30-day baseline across curing presses and chillers, identified ₹1.2-3L monthly quick wins before full prescription rollout.",
       clientContext:
         "Rubber component supplier, injection moulding, curing presses, and chilled water loop for mould temperature control.",
       category: "unit-economics",
@@ -220,7 +220,7 @@ export const caseStudiesContent = {
       metrics: [
         { label: "Baseline window", value: "30 days" },
         { label: "Quick wins", value: "7" },
-        { label: "Monthly potential", value: "₹1.2–3L" },
+        { label: "Monthly potential", value: "₹1.2-3L" },
       ],
       industry: "Rubber moulding",
       challenge:
@@ -232,7 +232,7 @@ export const caseStudiesContent = {
       ],
       outcomes: [
         "SEC baseline established across all curing presses in 30 days.",
-        "Seven quick-win prescriptions identified worth ₹1.2–3L monthly combined.",
+        "Seven quick-win prescriptions identified worth ₹1.2-3L monthly combined.",
         "Foundation for full prescriptive rollout in month two.",
       ],
     },

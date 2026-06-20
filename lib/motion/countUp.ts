@@ -1,6 +1,6 @@
 import { gsap } from "@/lib/motion/gsap";
 
-const RANGE_PATTERN = /^(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)\s*(.*)$/;
+const RANGE_PATTERN = /^(\d+(?:\.\d+)?)\s*[--]\s*(\d+(?:\.\d+)?)\s*(.*)$/;
 
 export function animateStatValue(
   element: HTMLElement,
@@ -23,7 +23,7 @@ export function animateStatValue(
   const suffixText = suffix ? ` ${suffix}` : "";
   const state = { current: start };
 
-  element.textContent = `${start}–${start}${suffixText}`;
+  element.textContent = `${start}-${start}${suffixText}`;
 
   return gsap.to(state, {
     current: end,
@@ -31,7 +31,7 @@ export function animateStatValue(
     ease: "power2.out",
     onUpdate: () => {
       const current = Math.round(state.current);
-      element.textContent = `${start}–${current}${suffixText}`;
+      element.textContent = `${start}-${current}${suffixText}`;
     },
   });
 }

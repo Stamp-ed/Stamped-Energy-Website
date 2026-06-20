@@ -13,7 +13,7 @@ Living record of search, generative-engine, and answer-engine optimizations for 
 | **AEO** | Be cited as the authoritative answer in AI assistants (ChatGPT, Perplexity, Google AI Overviews) |
 | **GEO** | Establish **Stamped Energy** as a recognizable entity across the web (schema, profiles, Wikidata) |
 
-**Primary audience:** Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20–30 lakh+ monthly electricity bills). Verticals: cement, steel, pharmaceutical, chemical, automotive.
+**Primary audience:** Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20-30 lakh+ monthly electricity bills). Verticals: cement, steel, pharmaceutical, chemical, automotive.
 
 **Priority keywords (in order):**
 
@@ -57,7 +57,7 @@ All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `
 
 ## Completed — technical SEO
 
-### Metadata (Sections 1–2)
+### Metadata (Sections 1-2)
 
 Every public route has spec-aligned **title**, **meta description**, **canonical URL**, **Open Graph**, and **Twitter Card** tags.
 
@@ -199,7 +199,7 @@ sameAs: [
 | **Wikidata entry** (Section 12 #5) | Not created yet — helps AI engines recognize brand entity | Marketing |
 | **Add LinkedIn Company URL to Organization schema** | Blocked until company page exists; update `lib/seo/schemas.ts` | Dev |
 | **OG image QA on social platforms** | Run [Twitter Card Validator](https://cards-dev.twitter.com/validator) and [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) on homepage + a blog post after each deploy | Marketing |
-| **GSC monitoring** | Watch Coverage, Core Web Vitals, and AI Overview impressions weekly for 4–8 weeks post-launch | Marketing |
+| **GSC monitoring** | Watch Coverage, Core Web Vitals, and AI Overview impressions weekly for 4-8 weeks post-launch | Marketing |
 | **Blog FAQ content** | Use `## Question ending with?` headings in posts to trigger auto FAQ schema (already wired) | Content |
 
 ### Medium priority (content & coverage)
@@ -289,6 +289,6 @@ sameAs: [
 
 - `PROGRESS.md` — high-level project phase tracking  
 - `DECISIONS.md` — architecture decisions (add ADR when SEO strategy changes)  
-- Original engineering spec — pasted in Cursor chat (Sections 1–15)
+- Original engineering spec — pasted in Cursor chat (Sections 1-15)
 
 **Maintenance rule:** Update this file whenever SEO, GEO, or AEO implementation changes — new pages, schema types, crawler policy, or completed manual validation steps.

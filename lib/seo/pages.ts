@@ -1,4 +1,4 @@
-/** Canonical title tags and meta descriptions per SEO spec (Sections 1–2). */
+/** Canonical title tags and meta descriptions per SEO spec (Sections 1-2). */
 
 export type PageSeoConfig = {
   absoluteTitle: string;
@@ -11,7 +11,7 @@ export const PAGE_SEO = {
     absoluteTitle:
       "Stamped Energy | Prescriptive Energy Intelligence for Indian Manufacturers",
     description:
-      "Stamped Energy turns your existing meters, SCADA, and bills into rupee-denominated prescriptions. Cut your electricity bill by 12–20%. Verified on your DISCOM bill.",
+      "Stamped Energy turns your existing meters, SCADA, and bills into rupee-denominated prescriptions. Cut your electricity bill by 12-20%. Verified on your DISCOM bill.",
     path: "/",
   },
   howItWorks: {

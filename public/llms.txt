@@ -1,6 +1,6 @@
 # Stamped Energy
 
-> Prescriptive energy intelligence for Indian manufacturers spending ₹20 lakh+ on electricity monthly. Stamped Energy connects existing incomer meters, SCADA, PLCs, and DISCOM bills into rupee-denominated prescriptions — ranked actions with owners, effort, and verified savings on the next bill. Typical outcomes: 12–20% monthly bill reduction; 15–25% maximum demand charge reduction. Serves cement, steel, pharmaceutical, chemical, and automotive plants.
+> Prescriptive energy intelligence for Indian manufacturers spending ₹20 lakh+ on electricity monthly. Stamped Energy connects existing incomer meters, SCADA, PLCs, and DISCOM bills into rupee-denominated prescriptions — ranked actions with owners, effort, and verified savings on the next bill. Typical outcomes: 12-20% monthly bill reduction; 15-25% maximum demand charge reduction. Serves cement, steel, pharmaceutical, chemical, and automotive plants.
 
 Public marketing site: https://stamped.work
 Contact: contact@stamped.work
@@ -31,7 +31,7 @@ stamped energy, prescriptive energy intelligence India, energy management softwa
 
 ## Target audience
 
-Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20–30 lakh+ monthly electricity bills).
+Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20-30 lakh+ monthly electricity bills).
 
 ## What Stamped Energy is not
 

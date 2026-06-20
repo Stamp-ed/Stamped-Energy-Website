@@ -86,7 +86,7 @@ export const homepageFaqSchema = {
       name: "How much can Indian manufacturers reduce their electricity bill with Stamped Energy?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Manufacturers using Stamped Energy typically see 12–20% off their monthly electricity bill. Maximum demand charges are often reduced by 15–25%, frequently from incomer meter and bill data alone with no capital expenditure. These are benchmark ranges; your verified figures come from the pilot.",
+        text: "Manufacturers using Stamped Energy typically see 12-20% off their monthly electricity bill. Maximum demand charges are often reduced by 15-25%, frequently from incomer meter and bill data alone with no capital expenditure. These are benchmark ranges; your verified figures come from the pilot.",
       },
     },
     {
@@ -102,7 +102,7 @@ export const homepageFaqSchema = {
       name: "How long does it take to see verified rupee savings with Stamped Energy?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stamped Energy delivers first prescriptions in weeks 1–2 after meter and bill integration. First assigned supervisor actions follow in weeks 3–4. Verified rupee savings are confirmed on the DISCOM bill by month 3 after deployment.",
+        text: "Stamped Energy delivers first prescriptions in weeks 1-2 after meter and bill integration. First assigned supervisor actions follow in weeks 3-4. Verified rupee savings are confirmed on the DISCOM bill by month 3 after deployment.",
       },
     },
     {
@@ -429,7 +429,7 @@ export const automotiveFaqSchema = {
       name: "How much can auto component manufacturers reduce their electricity bill?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Auto component suppliers using prescriptive energy intelligence typically see 12–20% monthly bill reduction. Die casting and forging plants often recover 15–25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
+        text: "Auto component suppliers using prescriptive energy intelligence typically see 12-20% monthly bill reduction. Die casting and forging plants often recover 15-25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
       },
     },
     {

@@ -3,7 +3,7 @@
 export const icp = {
   revenueFloor: "₹200 Cr+",
   revenueFloorShort: "₹200 Cr",
-  monthlyBillBand: "₹20–30 lakh+",
+  monthlyBillBand: "₹20-30 lakh+",
   monthlyBillFloor: "₹20 lakh",
   monthlyBillFloorShort: "₹20L",
   buyerTitles: [
@@ -15,7 +15,7 @@ export const icp = {
   buyerTitlesShort: "plant directors, VP Ops, and electrical heads",
   geography: "Indian manufacturers",
   positioning:
-    "Prescriptive energy intelligence — specific prescriptions, rupee impact, verified on your next DISCOM bill.",
+    "Prescriptive energy intelligence - specific prescriptions, rupee impact, verified on your next DISCOM bill.",
 } as const;
 
 export function icpBillLine() {

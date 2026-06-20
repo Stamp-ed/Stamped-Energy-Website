@@ -20,13 +20,13 @@ export const steelPage: VerticalPageContent = {
   },
   economics: {
     eyebrow: "Energy economics",
-    title: "Energy is 20–40% of production cost — and PAT discipline is mandatory",
+    title: "Energy is 20-40% of production cost — and PAT discipline is mandatory",
     description:
       "EAF, induction furnaces, and rolling mills create extreme MD exposure. ~270 PAT-covered plants with 20,000 TOE threshold [~] — SEC improvement is regulated and monetizable.",
     stats: [
       {
         id: "cost-share",
-        value: "20–40%",
+        value: "20-40%",
         label: "Energy share of production cost",
         detail: "TERI steel sector review [~]",
       },
@@ -57,7 +57,7 @@ export const steelPage: VerticalPageContent = {
         description:
           "Holding power between heats and power factor penalties — schedule and PF sequencing prescriptions.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹3–8L",
+        potentialValue: "₹3-8L",
       },
       {
         id: "reheating",
@@ -66,7 +66,7 @@ export const steelPage: VerticalPageContent = {
         description:
           "Weekend hold and idle soak — same playbook as heat treatment in auto-adjacent forging plants.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–6L",
+        potentialValue: "₹2-6L",
       },
       {
         id: "rolling-md",
@@ -74,7 +74,7 @@ export const steelPage: VerticalPageContent = {
         title: "Rolling mill startup",
         description: "Simultaneous stand startup → MD spike. Stagger prescriptions assigned to electrical.",
         potentialLabel: "Est. MD savings [~]",
-        potentialValue: "₹4–10L",
+        potentialValue: "₹4-10L",
       },
       {
         id: "pumps-vfd",
@@ -82,7 +82,7 @@ export const steelPage: VerticalPageContent = {
         title: "Cooling water & fume extraction",
         description: "Constant-speed pumps running at full flow — VFD opportunity ranked by ROI.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–4L",
+        potentialValue: "₹1.5-4L",
       },
       {
         id: "compressed-air",
@@ -90,16 +90,16 @@ export const steelPage: VerticalPageContent = {
         title: "Compressed air",
         description: "Leak and overpressure — Category 1 waste across steel utilities.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1–3L",
+        potentialValue: "₹1-3L",
       },
       {
         id: "gas-electric",
         step: "06",
-        title: "Gas–electric mix",
+        title: "Gas-electric mix",
         description:
           "Suboptimal scheduling when grid time-of-day is high — shift production to tariff windows [Path B].",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–5L",
+        potentialValue: "₹2-5L",
       },
     ],
   },
@@ -116,7 +116,7 @@ export const steelPage: VerticalPageContent = {
         title: "Reduce induction furnace holding power between heats",
         description:
           "Furnace held at full power 45 minutes between heats with no pour scheduled. Setback schedule aligned to production calendar.",
-        impactRange: "₹3–8L/month [~]",
+        impactRange: "₹3-8L/month [~]",
         assignee: "Furnace operator / electrical",
       },
       {
@@ -124,7 +124,7 @@ export const steelPage: VerticalPageContent = {
         title: "Sequence rolling mill stand startup after morning break",
         description:
           "Four stands restarted simultaneously at 06:30 — incomer MD breached by 220 kVA. Stagger over 15 minutes.",
-        impactRange: "₹4–10L/month [~]",
+        impactRange: "₹4-10L/month [~]",
         assignee: "Rolling mill supervisor",
       },
       {
@@ -132,7 +132,7 @@ export const steelPage: VerticalPageContent = {
         title: "Duty-cycle cooling water pumps during low-production window",
         description:
           "CW pumps at 100% flow with 40% rolling output. VFD setpoint adjustment — capital action ranked by payback.",
-        impactRange: "₹1.5–4L/month [~]",
+        impactRange: "₹1.5-4L/month [~]",
         assignee: "Utilities / maintenance",
       },
     ],
@@ -209,7 +209,7 @@ export const steelPage: VerticalPageContent = {
       id: "induction-consumption",
       question: "How much does induction furnace holding power cost?",
       answer:
-        "Holding power between heats can run 30–50% of furnace electricity with no production output [~]. Stamped quantifies this per furnace and assigns setback schedules with monthly rupee impact.",
+        "Holding power between heats can run 30-50% of furnace electricity with no production output [~]. Stamped quantifies this per furnace and assigns setback schedules with monthly rupee impact.",
     },
     {
       id: "pat-sec",
@@ -219,9 +219,9 @@ export const steelPage: VerticalPageContent = {
     },
     {
       id: "integrated-steel",
-      question: "Is Stamped suitable for integrated BF–BOF plants?",
+      question: "Is Stamped suitable for integrated BF-BOF plants?",
       answer:
-        "Phase 1–2 focus is secondary steel, rolling, and forging (₹10L–₹1Cr+/mo electricity [~]). Integrated BF route plants with enterprise-scale bills require a different sales motion — we qualify honestly on discovery calls.",
+        "Phase 1-2 focus is secondary steel, rolling, and forging (₹10L-₹1Cr+/mo electricity [~]). Integrated BF route plants with enterprise-scale bills require a different sales motion — we qualify honestly on discovery calls.",
     },
   ],
   finalCta: {

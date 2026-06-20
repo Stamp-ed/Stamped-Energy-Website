@@ -61,8 +61,8 @@ export function IndustriesExplorerPanel({
               const isActive = vertical.id === active.id;
               return (
                 <li key={vertical.id}>
-                  <button
-                    type="button"
+                  <Link
+                    href={vertical.href}
                     className={cn(
                       "flex w-full items-center gap-2.5 rounded-lg text-left text-sm font-semibold transition-colors",
                       compact ? "px-3 py-3" : "px-2.5 py-2.5",
@@ -72,6 +72,7 @@ export function IndustriesExplorerPanel({
                     )}
                     onMouseEnter={() => setActiveId(vertical.id)}
                     onFocus={() => setActiveId(vertical.id)}
+                    onClick={onNavigate}
                   >
                     <span
                       className={cn(
@@ -81,7 +82,7 @@ export function IndustriesExplorerPanel({
                       aria-hidden="true"
                     />
                     {vertical.name}
-                  </button>
+                  </Link>
                 </li>
               );
             })}

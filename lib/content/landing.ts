@@ -14,10 +14,10 @@ import { getHeroCallouts, getHeroVisual, getScenarioPrescription } from "./scena
 export const landingContent = {
   hero: {
     eyebrow: "Prescriptive energy intelligence",
-    headlineLine1: "Your plant has the data.",
-    headlineLine2: "It lacks the decision layer.",
+    headlineLine1: "Prescriptive intelligence",
+    headlineLine2: "for energy-intensive manufacturing",
     subheadline: "",
-    supportingLine: `${icpBillLine()} — specific prescriptions, rupee impact, verified on your next DISCOM bill.`,
+    supportingLine: `Connect meters, SCADA, and DISCOM bills into assigned actions with monthly rupee impact. ${icpBillLine()}, verified on your next bill.`,
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [
@@ -74,25 +74,25 @@ export const landingContent = {
     stats: [
       {
         id: "bill-reduction",
-        value: "12–20%",
+        value: "12-20%",
         label: "Off your monthly electricity bill",
         detail: "Cement, steel, pharma, chemical, automotive [~]",
       },
       {
         id: "md-reduction",
-        value: "15–25%",
+        value: "15-25%",
         label: "Off maximum demand charges",
         detail: "Often from incomer meter + bill data alone, no capex",
       },
       {
         id: "waste-elimination",
-        value: "10–20%",
+        value: "10-20%",
         label: "Non-production energy flagged",
         detail: "Idle loads, holding, HVAC staging, batch gaps within 90 days",
       },
       {
         id: "payback",
-        value: "3–6 mo",
+        value: "3-6 mo",
         label: "Subscription paid back from savings",
         detail: "Target payback once prescriptions are executed",
       },
@@ -211,7 +211,7 @@ export const landingContent = {
   industries: {
     eyebrow: "Industries",
     title: "Five verticals. One decision layer. Verified on your bill.",
-    description: `Cement, steel, pharma, chemical, and automotive — for plants spending ${icp.monthlyBillFloor}+ on electricity every month.`,
+    description: `Cement, steel, pharma, chemical, and automotive - for plants spending ${icp.monthlyBillFloor}+ on electricity every month.`,
     cta: { label: "View all industries", href: "/industries" } satisfies CtaLink,
     items: [
       {
@@ -219,8 +219,7 @@ export const landingContent = {
         name: "Automotive",
         focus: "OEM margin + shift-start MD",
         description:
-          "Die casting, forging, heat treatment, rubber moulding — furnaces and compressors under OEM cost-down pressure.",
-        featured: true,
+          "Die casting, forging, heat treatment, rubber moulding - furnaces and compressors under OEM cost-down pressure.",
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
       },
@@ -229,8 +228,7 @@ export const landingContent = {
         name: "Cement",
         focus: "kWh/ton + dispatch governance",
         description:
-          "Raw mill, kiln, finish mill — govern WHR/grid mix and SEC drift with daily prescriptions.",
-        featured: true,
+          "Raw mill, kiln, finish mill - govern WHR/grid mix and SEC drift with daily prescriptions.",
         imageSrc: "/industries/cement.png",
         imageAlt: "Cement manufacturing plant with silos and towers at dusk",
       },
@@ -239,7 +237,7 @@ export const landingContent = {
         name: "Steel & metals",
         focus: "Furnace holding + rolling MD",
         description:
-          "Induction furnaces, rolling mills, forging — PAT-aligned SEC improvement verified monthly.",
+          "Induction furnaces, rolling mills, forging - PAT-aligned SEC improvement verified monthly.",
         imageSrc: "/industries/steel.png",
         imageAlt: "Steel rolling mill with glowing hot metal billets",
       },
@@ -248,7 +246,7 @@ export const landingContent = {
         name: "Pharmaceutical",
         focus: "HVAC is ~85% of your bill",
         description:
-          "Chiller staging, AHU schedules, MD control — GMP-safe utility levers for formulation and API plants.",
+          "Chiller staging, AHU schedules, MD control - GMP-safe utility levers for formulation and API plants.",
         imageSrc: "/industries/pharma.png",
         imageAlt: "Pharmaceutical vial filling line in a sterile manufacturing plant",
       },
@@ -257,7 +255,7 @@ export const landingContent = {
         name: "Chemical & paint",
         focus: "Batch idle hold + kWh/batch",
         description:
-          "Reactor stagger, soak setback, off-peak utilities — waste between batches made visible in rupees.",
+          "Reactor stagger, soak setback, off-peak utilities - waste between batches made visible in rupees.",
         imageSrc: "/industries/chemical.png",
         imageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",
       },

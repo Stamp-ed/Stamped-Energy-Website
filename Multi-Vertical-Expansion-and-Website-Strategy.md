@@ -15,15 +15,15 @@
 
 Stamped Energy is a **prescriptive energy intelligence** layer: connect bills + meters (+ optional SCADA/PLC), detect waste, assign **rupee-denominated actions**, verify savings on the next DISCOM bill. The auto component wedge is validated first; **cement, steel, pharma, and chemical** are strategic expansions where the **same six waste categories** (Zerowatt framework) and **prescription patterns** (Greenovative case studies) recur — but **buyer language, integration depth, and facility scale differ**.
 
-| Vertical | Stamped sub-segment to target (Phase 1–2) | Primary energy pain | Stamped entry wedge | Website priority |
+| Vertical | Stamped sub-segment to target (Phase 1-2) | Primary energy pain | Stamped entry wedge | Website priority |
 | --- | --- | --- | --- | --- |
-| **Automotive & components** | Tier-2/3 suppliers, 200–1,500 employees, ₹3–25L+/mo bill `[~]` | MD spikes, furnace hold, compressed air | **Core — live now** | P1 — flagship |
-| **Cement** | Single-site / regional plants, 1–3 MTPA, not only mega-groups | Multi-source dispatch, kWh/ton drift, peak grid | Bill + MD + dispatch prescriptions (daily/shift) | P1 — new vertical page |
-| **Steel & metals** | Secondary steel, rolling, forging, mini-mills, foundry | Furnaces, MD, gas–electric mix, PAT/CCTS pressure | Furnace + utility prescriptions (auto playbook overlap) | P2 |
-| **Pharma** | MSME formulation/API, Baddi–Solan, Hyderabad, Ahmedabad | HVAC **~85%** of electricity (BEE MSME mapping) | HVAC scheduling, CA, RE utilization | P2 |
+| **Automotive & components** | Tier-2/3 suppliers, 200-1,500 employees, ₹3-25L+/mo bill `[~]` | MD spikes, furnace hold, compressed air | **Core — live now** | P1 — flagship |
+| **Cement** | Single-site / regional plants, 1-3 MTPA, not only mega-groups | Multi-source dispatch, kWh/ton drift, peak grid | Bill + MD + dispatch prescriptions (daily/shift) | P1 — new vertical page |
+| **Steel & metals** | Secondary steel, rolling, forging, mini-mills, foundry | Furnaces, MD, gas-electric mix, PAT/CCTS pressure | Furnace + utility prescriptions (auto playbook overlap) | P2 |
+| **Pharma** | MSME formulation/API, Baddi-Solan, Hyderabad, Ahmedabad | HVAC **~85%** of electricity (BEE MSME mapping) | HVAC scheduling, CA, RE utilization | P2 |
 | **Chemical & paint** | Batch specialty, resins, coatings, agrochemical | Batch thermal, reactors, steam, idle utilities | Batch SEC + shift idle + MD | P2 |
 
-**Strategic tension (internal):** Greenovative’s published wins skew **enterprise** (₹8–10 Cr/yr cement dispatch; ₹3,000 Cr/yr energy conglomerate). Stamped wins by **same mechanics at mid-market scale** — Path A (bill + MD) first, Path B (PLC/SCADA) when data exists. Do **not** sell 15-minute cement dispatch to a ₹8L/month bill plant; sell **“three prescriptions this week, verified on your bill.”**
+**Strategic tension (internal):** Greenovative’s published wins skew **enterprise** (₹8-10 Cr/yr cement dispatch; ₹3,000 Cr/yr energy conglomerate). Stamped wins by **same mechanics at mid-market scale** — Path A (bill + MD) first, Path B (PLC/SCADA) when data exists. Do **not** sell 15-minute cement dispatch to a ₹8L/month bill plant; sell **“three prescriptions this week, verified on your bill.”**
 
 ---
 
@@ -33,7 +33,7 @@ Stamped Energy is a **prescriptive energy intelligence** layer: connect bills + 
 
 **Who:** Plant owner, VP Operations, or Electrical HOD at an energy-intensive Indian manufacturer.
 
-**Why:** Electricity is **10–50% of production cost** depending on vertical `[~]`, tariffs are **structurally high** (Greenovative 2025 reality check: HV **₹10–11+/kWh** in multiple states), and **monitoring alone does not close the loop**.
+**Why:** Electricity is **10-50% of production cost** depending on vertical `[~]`, tariffs are **structurally high** (Greenovative 2025 reality check: HV **₹10-11+/kWh** in multiple states), and **monitoring alone does not close the loop**.
 
 **What before:** SCADA/EMS dashboards, annual energy audits, Excel SEC tracking, intuition (“compressor sounds wrong”), no owner assigned, no bill verification.
 
@@ -54,7 +54,7 @@ CONNECT → OBSERVE → PRESCRIBE → ASSIGN → VERIFY ON BILL
 
 **Alternatives:** Enterprise EMS (Greenovative, Schneider), audit consultants (one-off), internal Excel, Zerowatt-style full-stack at **₹50L+/mo** spend bands. Stamped: **prescription + verify**, weeks to value, SME price band.
 
-**Target outcome band:** `[~]` **12–20%** electricity cost reduction (master doc); **15–25%** MD charge reduction often achievable from Stage 1 data alone. External benchmarks: Zerowatt **12–30%** bill recovery on published cases; Greenovative **15–20%** category claim.
+**Target outcome band:** `[~]` **12-20%** electricity cost reduction (master doc); **15-25%** MD charge reduction often achievable from Stage 1 data alone. External benchmarks: Zerowatt **12-30%** bill recovery on published cases; Greenovative **15-20%** category claim.
 
 ---
 
@@ -81,7 +81,7 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 #### Industry energy profile
 
-- Energy **8–15%** of operating cost for process-heavy segments (die casting, forging, HT) `[~]` — see `customer-profile/ICP-AutoComponent-LeadSearch-Criteria.md`.
+- Energy **8-15%** of operating cost for process-heavy segments (die casting, forging, HT) `[~]` — see `customer-profile/ICP-AutoComponent-LeadSearch-Criteria.md`.
 - Industry uses **~41%** of national electricity (Greenovative 2025 blog, IEA consumption data cited).
 - Dominant loads: **HPDC cells, forge furnaces, heat treatment, paint, compressors, chillers**.
 
@@ -101,15 +101,15 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 #### ICP (Stamped)
 
-- Revenue **₹100–500 Cr**, **200–1,500 employees**, NCR / Pune / Chennai clusters.
-- Bill **₹3–25L+/month** `[~]`.
+- Revenue **₹100-500 Cr**, **200-1,500 employees**, NCR / Pune / Chennai clusters.
+- Bill **₹3-25L+/month** `[~]`.
 - Champion: Electrical HOD, Plant Head.
 
 #### Marketing
 
 | Channel | Message |
 | --- | --- |
-| Outbound | OEM margin squeeze + tariff hike — *“OEMs cut 2–5%/yr; energy is the cost you control.”* |
+| Outbound | OEM margin squeeze + tariff hike — *“OEMs cut 2-5%/yr; energy is the cost you control.”* |
 | SEO | MD reduction, die casting audit, furnace holding (content roadmap P1) |
 | Proof | Shivam dossier, validation call → bill upload |
 | Events | ACMA, regional auto clusters |
@@ -128,11 +128,11 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 | Metric | Range | Source |
 | --- | --- | --- |
-| Energy share of production cost | **35–50%** | Industry literature / research `[~]` |
-| Power & fuel as % of revenue | **10–33%** (company-dependent) | Listed cement cos. analysis `[~]` |
-| Electrical SEC | **~70–80 kWh/ton** cement; best plants **<67** | Industry benchmarks `[~]` |
-| Electrical intensity (modern dry process) | **110–120 kWh/ton** cement (incl. clinker grinding) | Mejeoumov / industry reviews `[~]` |
-| WHR typical | **5–10 MW** per plant | Industry estimates `[~]` |
+| Energy share of production cost | **35-50%** | Industry literature / research `[~]` |
+| Power & fuel as % of revenue | **10-33%** (company-dependent) | Listed cement cos. analysis `[~]` |
+| Electrical SEC | **~70-80 kWh/ton** cement; best plants **<67** | Industry benchmarks `[~]` |
+| Electrical intensity (modern dry process) | **110-120 kWh/ton** cement (incl. clinker grinding) | Mejeoumov / industry reviews `[~]` |
+| WHR typical | **5-10 MW** per plant | Industry estimates `[~]` |
 
 **Process context:** Continuous **24/7** operation. Electrical energy heavy in **raw mill, kiln drives, finish grinding, material handling**. Thermal energy dominates clinker — Stamped focuses on **electrical bill + dispatch + auxiliary SEC**, not replacing kiln physics models.
 
@@ -145,7 +145,7 @@ These recur in **all five verticals**. Website and sales should map industry pag
 - **15+ power feeds:** grid ToD, captive thermal, WHR, RE.
 - Decisions every **15 minutes**; operators chose safe expensive mix.
 - **₹0.10/unit** × 96 intervals/day → multi-crore exposure.
-- Result: **₹8–10 Cr/yr** savings potential `[Greenovative claim]`.
+- Result: **₹8-10 Cr/yr** savings potential `[Greenovative claim]`.
 
 **Stamped translation:** Same **decision-system** story; SME/mid cement may need **daily MD + shift-level source mix** prescriptions, not 15-min agent stack.
 
@@ -153,7 +153,7 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 | Load | Waste pattern | Stamped prescription type |
 | --- | --- | --- |
-| Raw/finish **mills** | SEC drift 5–12% when bearings/separator degrade `[~]` | Anomaly → maintenance work order + schedule |
+| Raw/finish **mills** | SEC drift 5-12% when bearings/separator degrade `[~]` | Anomaly → maintenance work order + schedule |
 | **Kiln auxiliaries** | Idling fans, cooler inefficiency | Idle load + SEC/kWh clinker |
 | **Crushers + mills** | Simultaneous start → MD spike | Category 5 — stagger startup |
 | **WHR + grid + RE** | Under-use cheap power in peak window | Category 5 + RE utilization (platform peak example: 6.2 vs 3.9 MW) |
@@ -162,10 +162,10 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 #### Stamped ICP within cement (honest scope)
 
-**Target (Phase 1–2):**
+**Target (Phase 1-2):**
 
-- Standalone or group **grinding units / regional plants** — **0.5–3 MTPA**, not only UltraTech-scale integrated sites.
-- Monthly electricity **₹15L–₹2Cr+** `[~]` — large enough for MD pain, small enough for Stamped sales motion.
+- Standalone or group **grinding units / regional plants** — **0.5-3 MTPA**, not only UltraTech-scale integrated sites.
+- Monthly electricity **₹15L-₹2Cr+** `[~]` — large enough for MD pain, small enough for Stamped sales motion.
 - Existing **EMS/PMS** or at minimum **HT metering + monthly bills**.
 - Geography: Rajasthan, MP, Chhattisgarh, Gujarat, AP — high HV tariff states (Greenovative cites **₹11.50/kWh** HV Chhattisgarh FY24-25).
 
@@ -205,13 +205,13 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 **Page structure:**
 
-1. **Pain bar:** Energy **35–50%** of cost · HV tariffs **₹10–11+/kWh** `[~]` · Multi-source power stack
+1. **Pain bar:** Energy **35-50%** of cost · HV tariffs **₹10-11+/kWh** `[~]` · Multi-source power stack
 2. **Process diagram:** Raw mill → Kiln → Finish mill → Utilities (annotate electrical hotspots)
 3. **Three example prescriptions** (illustrative, not customer claims):
-   - Peak window: increase WHR/solar draw 18:00–22:00 — **₹X/month**
+   - Peak window: increase WHR/solar draw 18:00-22:00 — **₹X/month**
    - Stagger mill restart after outage — avoid MD breach
    - Finish mill SEC drift vs baseline — maintenance trigger
-4. **Greenovative pattern callout (attributed):** Enterprise cement saved **₹8–10 Cr/yr potential** through dispatch governance — *“Stamped brings governed decisions to mid-market plants.”*
+4. **Greenovative pattern callout (attributed):** Enterprise cement saved **₹8-10 Cr/yr potential** through dispatch governance — *“Stamped brings governed decisions to mid-market plants.”*
 5. **Integration:** Works with existing EMS/PMS/SCADA — no rip-and-replace
 6. **CTA:** Book validation call · Upload bill
 7. **FAQ schema:** kWh/ton benchmark, PAT, EMS vs prescriptive
@@ -226,19 +226,19 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 | Metric | Value | Source |
 | --- | --- | --- |
-| Energy share of production cost | **20–40%** | TERI steel review `[~]` |
+| Energy share of production cost | **20-40%** | TERI steel review `[~]` |
 | PAT coverage | **~270 plants**, threshold **20,000 TOE** | BEE / TERI `[~]` |
 | Zerowatt published SEC win | **17%** reduction; **2,126 → 1,765 kWh/ton** | `[Zerowatt external]` |
 | Zerowatt integrated plant case | **₹9.8 Cr/mo** electricity; **₹161.7L/mo** savings | `[Zerowatt external]` — enterprise scale |
 | CCTS | Steel among first sectors; intensity targets FY2025-26+ | Public policy `[~]` |
 
-**Process routes:** Blast furnace–BOF (integrated), **EAF/induction** (secondary), **rolling, forging, heat treatment**. Stamped Phase 1–2 focus: **secondary steel, rolling mills, forging, foundry** — overlaps auto wedge; integrated BF route is enterprise-long-cycle.
+**Process routes:** Blast furnace-BOF (integrated), **EAF/induction** (secondary), **rolling, forging, heat treatment**. Stamped Phase 1-2 focus: **secondary steel, rolling mills, forging, foundry** — overlaps auto wedge; integrated BF route is enterprise-long-cycle.
 
 #### Greenovative + Zerowatt learning
 
 - Greenovative **Steel** vertical: fuel + power balance, competitiveness framing.
 - Zerowatt **six waste categories** all apply; **furnaces** and **MD** highest ROI.
-- PAT: structured **3–5% SEC** gains industry-wide (Greenovative 2025 blog, BEE PAT Cycle I).
+- PAT: structured **3-5% SEC** gains industry-wide (Greenovative 2025 blog, BEE PAT Cycle I).
 
 #### Where waste hides
 
@@ -249,11 +249,11 @@ These recur in **all five verticals**. Website and sales should map industry pag
 | **Rolling mill** | Simultaneous stand startup | MD stagger |
 | **Cooling water / fume extraction** | Constant speed pumps | VFD opportunity (Cat 6) |
 | **Compressed air** | Leak + overpressure | Cat 1 |
-| **Gas–electric mix** | Suboptimal when grid ToD high | Shift schedule to tariff `[Path B]` |
+| **Gas-electric mix** | Suboptimal when grid ToD high | Shift schedule to tariff `[Path B]` |
 
 #### Stamped ICP within steel
 
-- **Mid-market:** Induction furnace + rolling, **50–500 Cr** revenue, **₹10L–₹1Cr+/mo** electricity `[~]`.
+- **Mid-market:** Induction furnace + rolling, **50-500 Cr** revenue, **₹10L-₹1Cr+/mo** electricity `[~]`.
 - **Forging / foundry:** Treat as **auto-adjacent** — same sales playbook.
 - **Avoid initially:** Single-site integrated BF with ₹9.8 Cr/mo bill unless enterprise motion built.
 
@@ -289,12 +289,12 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 | Metric | Value | Source |
 | --- | --- | --- |
-| MSME pharma units in India | **~8,000–9,000** | BEE MSME cluster mapping `[~]` |
+| MSME pharma units in India | **~8,000-9,000** | BEE MSME cluster mapping `[~]` |
 | Sector electricity (MSME) | **~22,873 GWh/yr** | BEE `[~]` |
 | **HVAC share of plant electricity** | **~85%** | BEE pharma MSME study |
 | HVAC + CA + pumps + vacuum | **~92%** of electrical focus | BEE |
 | EE potential (MSME pharma) | **~24%** electricity savings identified | BEE `[~]` |
-| Greenovative pharma case | **₹500–600 Cr RE CAPEX**, **₹1–2 Cr/yr** leakage prevented | `[Greenovative external]` |
+| Greenovative pharma case | **₹500-600 Cr RE CAPEX**, **₹1-2 Cr/yr** leakage prevented | `[Greenovative external]` |
 
 **Process context:** GMP drives **24/7 HVAC**, clean rooms, chillers, AHUs, WFI systems. Batch production creates **scheduleable** load — unlike cement 24/7 uniformity. **Regulated environment** → change control friction; prescriptions must be **low-risk operational tweaks** first (setpoints, schedules, staging), not HVAC redesign.
 
@@ -311,8 +311,8 @@ These recur in **all five verticals**. Website and sales should map industry pag
 
 #### Stamped ICP within pharma
 
-- **MSME / mid-market formulation, API, nutraceutical** — Baddi–Solan, Hyderabad, Ahmedabad, Goa.
-- Bill **₹5L–₹50L+/month** `[~]` — BEE cluster data supports meaningful HVAC savings.
+- **MSME / mid-market formulation, API, nutraceutical** — Baddi-Solan, Hyderabad, Ahmedabad, Goa.
+- Bill **₹5L-₹50L+/month** `[~]` — BEE cluster data supports meaningful HVAC savings.
 - **Champion:** Engineering head / utilities; **economic buyer:** Plant head / owner (many MSME).
 - **Not Phase 1:** Top-20 listed pharma multi-plant RE governance (Greenovative case scale).
 
@@ -376,7 +376,7 @@ Greenovative lists **Chemical & Paint** as core vertical — *continuous energy 
 #### Stamped ICP within chemicals
 
 - **Specialty chemicals, resins, agrochemical formulation, paint** — not necessarily mega chlor-alkali DCs.
-- **₹8L–₹80L+/month** electricity `[~]`; batch MES or at least batch logs helpful.
+- **₹8L-₹80L+/month** electricity `[~]`; batch MES or at least batch logs helpful.
 - Clusters: Vapi, Ankleshwar, Dahej, Cuddalore, Alwar.
 
 #### Value proposition
@@ -435,7 +435,7 @@ stamped.work/
 - **Sub:** Not monitoring. Specific actions. Rupee impact. Closed loop.
 - **Industry selector:** 5 tiles (Auto · Cement · Steel · Pharma · Chemical) — each links to vertical page with `?from=home` for analytics.
 
-**Social proof band:** External benchmarks attributed — *“Industry prescriptive platforms report 15–20% cost reductions [Greenovative category]; IPMVP-verified audits show 12–30% bill recovery [Zerowatt cases]. Stamped verifies on your bill.”*
+**Social proof band:** External benchmarks attributed — *“Industry prescriptive platforms report 15-20% cost reductions [Greenovative category]; IPMVP-verified audits show 12-30% bill recovery [Zerowatt cases]. Stamped verifies on your bill.”*
 
 **Universal 3-step:** Upload bill → Get prescriptions → Verify savings.
 
@@ -448,7 +448,7 @@ Each vertical page follows the same template for consistency and faster CMS buil
 | Section | Content |
 | --- | --- |
 | 1. Hero | Vertical-specific pain in **₹** + one-line Stamped promise |
-| 2. Energy economics | 3–4 stats with sources (BEE, industry, external vendors) |
+| 2. Energy economics | 3-4 stats with sources (BEE, industry, external vendors) |
 | 3. Where waste hides | Table: load → pattern → prescription type |
 | 4. Example prescriptions | 3 anonymized illustrations with ₹ ranges `[~]` |
 | 5. How Stamped works | Path A / Path B integration diagram |
@@ -503,19 +503,19 @@ Different from **Greenovative** (enterprise multi-plant AI) and **Zerowatt** (fu
 | Phase | Timeline | Focus |
 | --- | --- | --- |
 | **Phase 0** | Now | Auto validation calls + website auto page live |
-| **Phase 1** | +4–8 weeks | Cement + steel **pages live**; 10 outbound conversations each; refine prescriptions |
-| **Phase 2** | +8–16 weeks | Pharma + chemical pages; cluster outbound (Baddi, Vapi) |
+| **Phase 1** | +4-8 weeks | Cement + steel **pages live**; 10 outbound conversations each; refine prescriptions |
+| **Phase 2** | +8-16 weeks | Pharma + chemical pages; cluster outbound (Baddi, Vapi) |
 | **Phase 3** | After 3 verified saves | Vertical case studies (anonymized) on site |
 
 ### 4.2 KPIs per vertical (90-day)
 
 | Metric | Target `[~]` |
 | --- | --- |
-| Validation calls booked | 8–12 per vertical |
+| Validation calls booked | 8-12 per vertical |
 | Bill uploads | 50% of calls |
 | Prescriptions delivered | 100% of onboarded pilots |
 | Verified ₹ on bill | ≥1 per vertical (stretch) |
-| Page → call conversion | 2–4% |
+| Page → call conversion | 2-4% |
 
 ### 4.3 Risks & mitigations
 

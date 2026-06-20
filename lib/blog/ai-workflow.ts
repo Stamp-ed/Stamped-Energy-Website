@@ -60,9 +60,9 @@ ${AI_DISCOVERY_PHASE}
 ## Editorial goals (Phase 2)
 - Teach something actionable from real manufacturing energy patterns (MD spikes, shift-start, furnaces, compressors, SEC, holding loads)
 - Use Indian context where natural (₹, HT tariffs, SME plants, shift patterns)
-- 800–1,400 words unless discovery agreed on a different length
+- 800-1,400 words unless discovery agreed on a different length
 - Structure with \`##\` section headings (not H1; title is separate in frontmatter)
-- Include 1–2 concrete examples or numbers as **reference ranges** when citing savings (e.g. "₹4–8L/month", "15–22% MD reduction") and label as benchmarks if not a named client
+- Include 1-2 concrete examples or numbers as **reference ranges** when citing savings (e.g. "₹4-8L/month", "15-22% MD reduction") and label as benchmarks if not a named client
 - If discovery agreed on diagrams or GIFs, include Markdown image placeholders: \`![describe the visual](/path/or-url.jpg)\` with a short caption in alt text, or note \`[GIF: description]\` where the author will swap in a file
 
 ## Categories (pick exactly one \`category\` id)
@@ -78,9 +78,9 @@ Reply with **only** the blog package below.
 ---
 title: [Compelling title, sentence case, max ~90 chars]
 slug: [lowercase-hyphenated-url-slug]
-excerpt: [2–3 sentences, max 320 chars, works as card preview]
+excerpt: [2-3 sentences, max 320 chars, works as card preview]
 category: [one category id from list above]
-tags: [comma-separated, 2–5 tags, lowercase where sensible]
+tags: [comma-separated, 2-5 tags, lowercase where sensible]
 status: draft
 featured: false
 cover_image: [one path from list above, or leave empty]
@@ -106,7 +106,7 @@ The blog body is imported into a **TipTap rich-text editor**. Use only Markdown 
 ### Structure
 - Start the body with \`##\` headings only — never \`#\` (title lives in frontmatter)
 - Use \`##\` for main sections and \`###\` for subsections
-- Keep paragraphs short (2–4 sentences)
+- Keep paragraphs short (2-4 sentences)
 - Separate sections with a blank line
 
 ### Inline formatting
@@ -124,8 +124,8 @@ Use pipe tables with a header row and \`| --- |\` separator. Example:
 
 | Metric | Typical range | Notes |
 | --- | --- | --- |
-| MD reduction | 15–22% | After shift-start tuning |
-| Monthly savings | ₹4–8L | HT industrial tariff |
+| MD reduction | 15-22% | After shift-start tuning |
+| Monthly savings | ₹4-8L | HT industrial tariff |
 
 Rules: include header row; align columns with pipes; no HTML tables; keep cell text concise
 

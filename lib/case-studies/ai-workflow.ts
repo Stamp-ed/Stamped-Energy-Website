@@ -65,9 +65,9 @@ ${AI_DISCOVERY_PHASE}
 - Avoid: em dashes, vague AI language, unverified superlatives, naming clients without confirmation
 
 ## Case study structure (Phase 2)
-- Hero fields: title, excerpt, client context, 2–4 headline metrics, 3–5 outcome bullets
+- Hero fields: title, excerpt, client context, 2-4 headline metrics, 3-5 outcome bullets
 - Body: Problem → Approach → Results (and optional "What we learned")
-- 900–1,600 words unless discovery agreed otherwise
+- 900-1,600 words unless discovery agreed otherwise
 - If discovery agreed on diagrams or GIFs, use \`![describe the visual](/path/or-url.jpg)\` or \`[GIF: description]\` placeholders
 
 ## Categories (pick exactly one \`category\` id)
@@ -83,7 +83,7 @@ Reply with **only** the case study package below.
 ---
 title: [Outcome-led title, e.g. "Rubber moulding: SEC baseline in 30 days"]
 slug: [lowercase-hyphenated-url-slug]
-excerpt: [2–3 sentences for cards, max 320 chars]
+excerpt: [2-3 sentences for cards, max 320 chars]
 category: [one category id from list above]
 industry: [e.g. Rubber moulding supplier, western India]
 client_context: [One sentence for hero/card, plant type and scope]
@@ -92,7 +92,7 @@ status: draft
 featured: false
 cover_image: [path from list above, or leave empty]
 cover_image_alt: [describe the cover photo]
-metrics_json: [{"label":"Monthly savings","value":"₹8–12L"},{"label":"MD reduction","value":"15–18%"}]
+metrics_json: [{"label":"Monthly savings","value":"₹8-12L"},{"label":"MD reduction","value":"15-18%"}]
 outcomes_json: ["Outcome bullet one","Outcome bullet two","Outcome bullet three"]
 disclaimer: [Optional M&V or benchmark disclaimer, or leave empty]
 ---
@@ -115,8 +115,8 @@ Optional short closing takeaway for similar plants.
 \`\`\`
 
 ## Field rules
-- \`metrics_json\` must be valid JSON array of \`{"label":"...","value":"..."}\` objects (2–4 items)
-- \`outcomes_json\` must be valid JSON array of strings (3–5 short bullets)
+- \`metrics_json\` must be valid JSON array of \`{"label":"...","value":"..."}\` objects (2-4 items)
+- \`outcomes_json\` must be valid JSON array of strings (3-5 short bullets)
 - Body uses \`##\` headings only (no H1)
 - No HTML in the body
 

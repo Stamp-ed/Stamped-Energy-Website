@@ -22,7 +22,7 @@ export const pharmaPage: VerticalPageContent = {
     eyebrow: "Energy economics",
     title: "HVAC is ~85% of your electricity bill — and ~24% savings are identifiable",
     description:
-      "BEE MSME pharma cluster mapping [~]: ~8,000–9,000 units, ~22,873 GWh/yr sector electricity. Chillers, AHUs, CA, and pumps dominate — but nobody ties run-hours to production and tariff windows.",
+      "BEE MSME pharma cluster mapping [~]: ~8,000-9,000 units, ~22,873 GWh/yr sector electricity. Chillers, AHUs, CA, and pumps dominate — but nobody ties run-hours to production and tariff windows.",
     stats: [
       {
         id: "hvac-share",
@@ -57,7 +57,7 @@ export const pharmaPage: VerticalPageContent = {
         description:
           "Over-cooling and fixed setpoints vs occupancy — schedule and setpoint band prescriptions.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–8L",
+        potentialValue: "₹2-8L",
       },
       {
         id: "chiller-staging",
@@ -65,7 +65,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Chiller staging & MD",
         description: "All chiller units start together at shift change → MD spike. Stagger and load-balance.",
         potentialLabel: "Est. MD savings [~]",
-        potentialValue: "₹3–10L",
+        potentialValue: "₹3-10L",
       },
       {
         id: "compressed-air",
@@ -73,7 +73,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Compressed air",
         description: 'Overpressure for "safety margin" — pressure band and leak-tag prescriptions.',
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1–3L",
+        potentialValue: "₹1-3L",
       },
       {
         id: "pumps-cw",
@@ -81,7 +81,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Pumps & chilled water loops",
         description: "Constant flow when batch load varies — duty cycle and VFD opportunities.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–4L",
+        potentialValue: "₹1.5-4L",
       },
       {
         id: "clean-room-idle",
@@ -90,7 +90,7 @@ export const pharmaPage: VerticalPageContent = {
         description:
           "Full HVAC during non-production windows — qualified setback prescriptions with GMP documentation note.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–6L",
+        potentialValue: "₹2-6L",
       },
       {
         id: "captive-re",
@@ -99,7 +99,7 @@ export const pharmaPage: VerticalPageContent = {
         description:
           "Banking leakage and peak grid draw — RE utilization prescriptions for plants with solar.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–5L",
+        potentialValue: "₹2-5L",
       },
     ],
   },
@@ -111,7 +111,7 @@ export const pharmaPage: VerticalPageContent = {
     footnote:
       "Impact ranges are benchmark estimates [~]. Stamped frames prescriptions as utilities operations — not GMP room classification changes. Validate with your quality team before execution.",
     attribution: {
-      text: "Large pharma RE governance cases report ₹1–2 Cr/yr leakage prevented at enterprise scale [Greenovative external]. Stamped targets MSME and mid-market formulation plants.",
+      text: "Large pharma RE governance cases report ₹1-2 Cr/yr leakage prevented at enterprise scale [Greenovative external]. Stamped targets MSME and mid-market formulation plants.",
       source: "Greenovative external benchmark",
     },
     items: [
@@ -120,7 +120,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Stagger chiller bank startup at morning production ramp",
         description:
           "Three chillers started simultaneously at 06:00 — incomer MD hit 980 kVA with only 60% AHU load required.",
-        impactRange: "₹3–10L/month [~]",
+        impactRange: "₹3-10L/month [~]",
         assignee: "Utilities / engineering head",
       },
       {
@@ -128,7 +128,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Align AHU run-hours with batch production calendar",
         description:
           "AHUs at full flow 4 hours before first batch start. Schedule adjustment — no setpoint change in classified zones.",
-        impactRange: "₹2–6L/month [~]",
+        impactRange: "₹2-6L/month [~]",
         assignee: "Production planner / utilities",
       },
       {
@@ -136,7 +136,7 @@ export const pharmaPage: VerticalPageContent = {
         title: "Reduce compressed air header pressure band",
         description:
           "Header at 8.2 bar for 7.5 bar process requirement — 9% energy reduction on CA system [~].",
-        impactRange: "₹1–3L/month [~]",
+        impactRange: "₹1-3L/month [~]",
         assignee: "Maintenance / utilities",
       },
     ],
@@ -219,7 +219,7 @@ export const pharmaPage: VerticalPageContent = {
       id: "api-vs-formulation",
       question: "Does Stamped work for API and formulation plants?",
       answer:
-        "Yes — MSME and mid-market formulation, API, and nutraceutical plants in Baddi, Hyderabad, Ahmedabad, and Goa clusters. Bill band ₹5L–₹50L+/month [~] with meaningful HVAC savings potential.",
+        "Yes — MSME and mid-market formulation, API, and nutraceutical plants in Baddi, Hyderabad, Ahmedabad, and Goa clusters. Bill band ₹5L-₹50L+/month [~] with meaningful HVAC savings potential.",
     },
   ],
   finalCta: {

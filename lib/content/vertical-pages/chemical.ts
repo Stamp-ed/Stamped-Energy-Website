@@ -26,13 +26,13 @@ export const chemicalPage: VerticalPageContent = {
     stats: [
       {
         id: "batch-idle",
-        value: "15–30%",
+        value: "15-30%",
         label: "Energy in idle hold between batches",
         detail: "Heated vessels idle, utilities at baseload [~]",
       },
       {
         id: "md-overlap",
-        value: "₹3–10L",
+        value: "₹3-10L",
         label: "Monthly MD from simultaneous batch starts",
         detail: "Multiple reactors heating together [~]",
       },
@@ -57,7 +57,7 @@ export const chemicalPage: VerticalPageContent = {
         description:
           "Soak temperature maintained with no batch scheduled — setback schedule vs production calendar.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–6L",
+        potentialValue: "₹2-6L",
       },
       {
         id: "batch-md",
@@ -65,7 +65,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Simultaneous batch heating",
         description: "Three reactors ramp together at shift start → MD breach. Stagger prescriptions.",
         potentialLabel: "Est. MD savings [~]",
-        potentialValue: "₹3–10L",
+        potentialValue: "₹3-10L",
       },
       {
         id: "steam-thermal",
@@ -73,7 +73,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Steam & thermal systems",
         description: "Trap maintenance signals from condensate temperature drift [Path B].",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–5L",
+        potentialValue: "₹1.5-5L",
       },
       {
         id: "cooling-between",
@@ -81,7 +81,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Cooling between batches",
         description: "Chiller setpoint vs next batch start — avoid full cool when short gap scheduled.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1–3L",
+        potentialValue: "₹1-3L",
       },
       {
         id: "solvent-recovery",
@@ -89,7 +89,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Solvent recovery units",
         description: "Run window vs tariff — shift recovery to off-peak when batch schedule allows.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–4L",
+        potentialValue: "₹1.5-4L",
       },
       {
         id: "paint-oven",
@@ -97,7 +97,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Paint oven & coating lines",
         description: "Cure cycle alignment — avoid partial oven heat between short batch gaps.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.2–3L",
+        potentialValue: "₹1.2-3L",
       },
     ],
   },
@@ -114,7 +114,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Stagger reactor heating start across three batch lines",
         description:
           "Reactors R1, R2, R3 heated simultaneously at 07:00 — incomer MD breached by 195 kVA. Sequence over 25 minutes.",
-        impactRange: "₹3–10L/month [~]",
+        impactRange: "₹3-10L/month [~]",
         assignee: "Batch supervisor / electrical",
       },
       {
@@ -122,7 +122,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Setback reactor soak during 4-hour batch gap",
         description:
           "Reactor held at 180°C with no batch until 14:00. Setback to 140°C during gap — production calendar confirmed.",
-        impactRange: "₹2–6L/month [~]",
+        impactRange: "₹2-6L/month [~]",
         assignee: "Process operator",
       },
       {
@@ -130,7 +130,7 @@ export const chemicalPage: VerticalPageContent = {
         title: "Shift solvent recovery run to off-peak tariff window",
         description:
           "Recovery unit running peak hours when batch schedule allows night-window operation.",
-        impactRange: "₹1.5–4L/month [~]",
+        impactRange: "₹1.5-4L/month [~]",
         assignee: "Utilities / production planner",
       },
     ],
@@ -213,7 +213,7 @@ export const chemicalPage: VerticalPageContent = {
       id: "chlor-alkali",
       question: "Is Stamped for large chlor-alkali plants?",
       answer:
-        "Phase 1–2 focus is specialty chemicals, resins, agrochemical formulation, and paint — ₹8L–₹80L+/month electricity [~]. Mega chlor-alkali DCs require enterprise motion — we qualify on discovery calls.",
+        "Phase 1-2 focus is specialty chemicals, resins, agrochemical formulation, and paint — ₹8L-₹80L+/month electricity [~]. Mega chlor-alkali DCs require enterprise motion — we qualify on discovery calls.",
     },
   ],
   finalCta: {

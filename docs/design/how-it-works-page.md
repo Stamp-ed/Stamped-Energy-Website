@@ -66,10 +66,10 @@ All colors resolve to CSS variables in `styles/theme.css`. Tailwind utilities ma
 | **Primary** | `#F75440` | CTAs, eyebrows, active states, diagram strokes, savings emphasis |
 | **On-primary** | `#ffffff` | Text on primary buttons, check badges |
 | **Inverse-primary** | `#ffb4a8` | Eyebrows on dark sections, stack arrows, glow accents |
-| **Primary / opacity** | `primary/5` – `primary/45` | Active nav cards, chips, callouts, gradients |
+| **Primary / opacity** | `primary/5` - `primary/45` | Active nav cards, chips, callouts, gradients |
 | **Secondary** | `#051F13` | Dark section backgrounds (capabilities, intelligence, CTA) |
 | **On-secondary** | `#ffffff` | Headlines on dark bands |
-| **On-secondary / 80–90** | - | Body copy on dark bands |
+| **On-secondary / 80-90** | - | Body copy on dark bands |
 | **Inverse-surface** | `#2d312e` | Capability & stack card fills (`inverse-surface/50`) |
 | **Surface** | `#f7faf5` | Opening hero background |
 | **Surface-low** | `#f1f4f0` | Default light section fill |
@@ -143,13 +143,13 @@ radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand-primary) 12%, t
 | Capability title | `text-lg md:text-xl` | bold |
 | Capability body | `text-sm md:text-[15px] leading-6/7` | regular |
 | Diagram eyebrow | `text-xs uppercase tracking-[0.12em]` | semibold |
-| Diagram microcopy | `text-[10px]` – `text-[11px]` | semibold / regular |
+| Diagram microcopy | `text-[10px]` - `text-[11px]` | semibold / regular |
 | Stack layer subtitle | `text-[10px] uppercase tracking-[0.14em]` | semibold, `inverse-primary` |
 | Deployment week | `text-xs uppercase tracking-[0.12em]` | semibold, primary |
 
 ### Copy conventions
 - **₹** always for Indian currency impact
-- **En-dash** in ranges: `Week 1–2`, `Open → Done`
+- **En-dash** in ranges: `Week 1-2`, `Open → Done`
 - **Middle dot** for lists: `Modbus · OPC-UA · MQTT`
 - **Before vs With Stamped** - capital W, no period after “vs”
 
@@ -234,7 +234,7 @@ All four use **`bg-surface-lowest`** canvas, ~**5s** animation duration, ScrollT
 | `intelligence` | Chart, baseline band, anomaly, prescription card | `top 76%` |
 | `governance` | Square loop (Assign → Verify) → arrow down → Verified savings | `top 76%` |
 
-Shared stroke language: `var(--brand-primary)`, dashed connectors, rounded node cards `text-[9px]–text-[11px]`.
+Shared stroke language: `var(--brand-primary)`, dashed connectors, rounded node cards `text-[9px]-text-[11px]`.
 
 ### 6.7 Dashboard embed placeholder
 - Aspect `16/10`, dashed `border-primary/35`
@@ -252,7 +252,7 @@ Shared stroke language: `var(--brand-primary)`, dashed connectors, rounded node 
 ### Global easing
 - Enter: `power2.out`
 - Draw / scrub: `power2.inOut`
-- Pop: `back.out(1.4–1.6)`
+- Pop: `back.out(1.4-1.6)`
 
 ### Section animation contracts
 
@@ -278,7 +278,7 @@ Unified sequence per step:
 
 ### Pin scroll (desktop journey)
 - `scrub: 0.35`
-- `snap: 1/(steps-1)`, duration 0.15–0.35s
+- `snap: 1/(steps-1)`, duration 0.15-0.35s
 - Active step: `border-primary/50 bg-primary/5 shadow-md`, scale 1.02
 
 ---

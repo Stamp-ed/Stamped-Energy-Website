@@ -22,7 +22,7 @@ type BeforeAfterScenario = {
 const cementPrescription: PrescriptionField[] = [
   {
     label: "What",
-    value: "Increase WHR and solar draw 18:00–22:00; reduce grid import during peak tariff window",
+    value: "Increase WHR and solar draw 18:00-22:00; reduce grid import during peak tariff window",
   },
   {
     label: "Why",
@@ -31,7 +31,7 @@ const cementPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Plant electrical / dispatch coordinator" },
   { label: "Effort", value: "Dispatch schedule change only. No capital spend." },
-  { label: "Impact", value: "₹4.2–8L/month at current tariff and source mix [~]" },
+  { label: "Impact", value: "₹4.2-8L/month at current tariff and source mix [~]" },
   { label: "When", value: "Before next billing cycle. MD resets monthly." },
 ];
 
@@ -47,7 +47,7 @@ const pharmaPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Utilities / engineering head" },
   { label: "Effort", value: "BMS schedule change. No HVAC redesign." },
-  { label: "Impact", value: "₹3–10L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-10L/month at current tariff [~]" },
   { label: "When", value: "Before next billing cycle." },
 ];
 
@@ -63,7 +63,7 @@ const steelPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Furnace operator / electrical" },
   { label: "Effort", value: "Schedule change only. No capital spend." },
-  { label: "Impact", value: "₹3–8L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-8L/month at current tariff [~]" },
   { label: "When", value: "Effective next shift. Verify on monthly bill." },
 ];
 
@@ -79,7 +79,7 @@ const chemicalPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Batch supervisor / electrical" },
   { label: "Effort", value: "Batch schedule change only." },
-  { label: "Impact", value: "₹3–10L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-10L/month at current tariff [~]" },
   { label: "When", value: "Before next billing cycle." },
 ];
 
@@ -101,7 +101,7 @@ const autoPrescription: PrescriptionField[] = [
 
 const pharmaBeforeAfter: BeforeAfterScenario = {
   afterHighlight: "06:00 MD spike tied to Chiller 1 + 2 + 3 simultaneous start",
-  afterPrescription: "₹3–10L/month chiller stagger prescription assigned",
+  afterPrescription: "₹3-10L/month chiller stagger prescription assigned",
 };
 
 const neutralCallouts: HeroCallout[] = [

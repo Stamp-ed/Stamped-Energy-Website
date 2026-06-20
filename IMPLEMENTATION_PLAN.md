@@ -19,23 +19,23 @@ See `DECISIONS.md`.
 
 ## Phase Breakdown
 
-### Phase 1 — Scaffold (complete)
+### Phase 1 - Scaffold (complete)
 
 - Next.js project setup, theme tokens, content layer, layout shells, route stubs
 
-### Phase 2 — Motion + Hero (complete)
+### Phase 2 - Motion + Hero (complete)
 
 - Lenis smooth scroll, GSAP registration, Reveal helper, animated hero
 
-### Phase 3 — Trust + Outcomes + Problem (complete)
+### Phase 3 - Trust + Outcomes + Problem (complete)
 
-### Phase 4 — Workflow loop + Prescription (complete)
+### Phase 4 - Workflow loop + Prescription (complete)
 
-### Phase 5 — How It Works + Industries + Why Stamped (complete)
+### Phase 5 - How It Works + Industries + Why Stamped (complete)
 
-### Phase 6 — Future media + CTA + Contact API (complete)
+### Phase 6 - Future media + CTA + Contact API (complete)
 
-### Phase 7 — QA (partial)
+### Phase 7 - QA (partial)
 
 - Build and lint: passed
 - Remaining: manual responsive review, reduced-motion check in browser, performance tuning

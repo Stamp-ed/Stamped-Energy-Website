@@ -21,25 +21,25 @@ export const automotivePage: VerticalPageContent = {
   },
   economics: {
     eyebrow: "Energy economics",
-    title: "Utilities are 12–18% of operating cost, and rising every tariff revision",
+    title: "Utilities are 12-18% of operating cost, and rising every tariff revision",
     description:
       "Furnaces, compressors, and heat treatment run whether parts are in the press or not. Visibility stops at the incomer meter; the bill explains nothing asset by asset.",
     stats: [
       {
         id: "cost-share",
-        value: "12–18%",
+        value: "12-18%",
         label: "Of operating cost linked to energy",
         detail: "Typical for process-intensive auto component suppliers",
       },
       {
         id: "uncontrolled",
-        value: "50–60%",
+        value: "50-60%",
         label: "Energy outside direct production control",
         detail: "Auxiliaries, holding loads, and startup overlap",
       },
       {
         id: "variability",
-        value: "20–30%",
+        value: "20-30%",
         label: "Lost to operational variability",
         detail: "Shift starts, idle windows, and uncoordinated startups",
       },
@@ -58,7 +58,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Stagger press and auxiliary startup to avoid simultaneous MD spikes. Zero-investment sequencing prescriptions plus ROI-ranked capital actions.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–3L",
+        potentialValue: "₹1.5-3L",
       },
       {
         id: "die-cast",
@@ -67,7 +67,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Furnace holding, core cooling compressors, and shot-cycle SEC, normalized by alloy mix and production rate.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–5L",
+        potentialValue: "₹2-5L",
       },
       {
         id: "heat-treat",
@@ -76,7 +76,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Setback gaps, weekend holding, and batch timing against tariff windows, prescribed per furnace with M&V.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–4L",
+        potentialValue: "₹1.5-4L",
       },
       {
         id: "compressed-air",
@@ -85,7 +85,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Leak detection, over-pressure, and overlapping compressors — a recurring theme across auto component plants.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.2–2.5L",
+        potentialValue: "₹1.2-2.5L",
       },
       {
         id: "rubber-cure",
@@ -94,7 +94,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Curing cycle optimization, idle press heat, and batch changeover windows with supervisor-ready actions.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.2–3L",
+        potentialValue: "₹1.2-3L",
       },
       {
         id: "demand-md",
@@ -103,7 +103,7 @@ export const automotivePage: VerticalPageContent = {
         description:
           "Demand windows, power factor, and shift-overlap spikes, tied to rupee impact on your utility bill.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–6L",
+        potentialValue: "₹2-6L",
       },
     ],
   },
@@ -120,15 +120,15 @@ export const automotivePage: VerticalPageContent = {
         title: "Stagger furnace pre-heat and compressor startup at shift change",
         description:
           "Incomer MD hit 1,240 kVA at 07:15 — three furnaces and two compressors ramped together before first pour.",
-        impactRange: "₹2–5L/month",
+        impactRange: "₹2-5L/month",
         assignee: "Electrical maintenance / shift supervisor",
       },
       {
         id: "weekend-hold",
         title: "Setback heat treatment furnaces over empty weekends",
         description:
-          "Furnaces 3 and 4 held at soak with zero batches scheduled Saturday–Sunday. Holding load visible per furnace.",
-        impactRange: "₹1.5–4L/month",
+          "Furnaces 3 and 4 held at soak with zero batches scheduled Saturday-Sunday. Holding load visible per furnace.",
+        impactRange: "₹1.5-4L/month",
         assignee: "Heat treatment supervisor",
       },
       {
@@ -136,7 +136,7 @@ export const automotivePage: VerticalPageContent = {
         title: "Reduce compressor unload hours between press strokes",
         description:
           "Screw compressors sized for peak stroke demand running 60%+ of shift in unload with no production benefit.",
-        impactRange: "₹1.2–2.5L/month",
+        impactRange: "₹1.2-2.5L/month",
         assignee: "Utilities / maintenance",
       },
     ],
@@ -211,7 +211,7 @@ export const automotivePage: VerticalPageContent = {
       id: "bill-reduction",
       question: "How much can auto component manufacturers reduce their electricity bill?",
       answer:
-        "Auto component suppliers using prescriptive energy intelligence typically see 12–20% monthly bill reduction [~]. Die casting and forging plants often recover 15–25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
+        "Auto component suppliers using prescriptive energy intelligence typically see 12-20% monthly bill reduction [~]. Die casting and forging plants often recover 15-25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
     },
     {
       id: "maximum-demand",

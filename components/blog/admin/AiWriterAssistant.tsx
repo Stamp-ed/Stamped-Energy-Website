@@ -61,7 +61,7 @@ status: draft
 featured: false
 cover_image: /industries/die-casting.jpeg
 cover_image_alt: Plant floor description
-metrics_json: [{"label":"Monthly savings","value":"₹8–12L"}]
+metrics_json: [{"label":"Monthly savings","value":"₹8-12L"}]
 outcomes_json: ["Outcome one","Outcome two"]
 disclaimer: Reference benchmark until client approval.
 ---

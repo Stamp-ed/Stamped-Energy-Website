@@ -3,7 +3,7 @@ import { DiagramBadge, DiagramCard, DiagramShell } from "./DiagramShell";
 const fields = [
   { label: "What", value: "Stagger compressor and press startup" },
   { label: "Why", value: "Simultaneous start caused MD spike" },
-  { label: "Impact", value: "₹2.5–4L / month" },
+  { label: "Impact", value: "₹2.5-4L / month" },
 ];
 
 export function DecideDiagram() {

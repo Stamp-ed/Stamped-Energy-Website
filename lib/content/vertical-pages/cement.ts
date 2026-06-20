@@ -20,25 +20,25 @@ export const cementPage: VerticalPageContent = {
   },
   economics: {
     eyebrow: "Energy economics",
-    title: "Power is 35–50% of cost — and tariffs keep climbing",
+    title: "Power is 35-50% of cost — and tariffs keep climbing",
     description:
-      "HV tariffs above ₹10–11/kWh [~] in key states. Multi-source stacks — grid, WHR, captive solar — exceed what operator heuristics can govern shift by shift.",
+      "HV tariffs above ₹10-11/kWh [~] in key states. Multi-source stacks — grid, WHR, captive solar — exceed what operator heuristics can govern shift by shift.",
     stats: [
       {
         id: "cost-share",
-        value: "35–50%",
+        value: "35-50%",
         label: "Energy share of production cost",
         detail: "Company-dependent; structural margin driver [~]",
       },
       {
         id: "sec",
-        value: "70–80",
+        value: "70-80",
         label: "kWh/ton cement (electrical SEC)",
         detail: "Best plants under 67 kWh/ton [~]",
       },
       {
         id: "tariff",
-        value: "₹10–11+",
+        value: "₹10-11+",
         label: "HV tariff per kWh in key states",
         detail: "Rajasthan, MP, Chhattisgarh, Gujarat [~]",
       },
@@ -55,9 +55,9 @@ export const cementPage: VerticalPageContent = {
         step: "01",
         title: "Raw & finish mills",
         description:
-          "SEC drift 5–12% when bearings or separator degrade [~]. Anomaly triggers maintenance work order and schedule adjustment.",
+          "SEC drift 5-12% when bearings or separator degrade [~]. Anomaly triggers maintenance work order and schedule adjustment.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹2–6L",
+        potentialValue: "₹2-6L",
       },
       {
         id: "kiln-aux",
@@ -65,7 +65,7 @@ export const cementPage: VerticalPageContent = {
         title: "Kiln auxiliaries",
         description: "Idling fans, cooler inefficiency — idle load plus kWh/clinker SEC tracked per line.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1.5–4L",
+        potentialValue: "₹1.5-4L",
       },
       {
         id: "crushers-md",
@@ -73,7 +73,7 @@ export const cementPage: VerticalPageContent = {
         title: "Crushers & mill startups",
         description: "Simultaneous restart after outage → MD breach. Stagger startup prescriptions assigned to electrical.",
         potentialLabel: "Est. MD savings [~]",
-        potentialValue: "₹3–8L",
+        potentialValue: "₹3-8L",
       },
       {
         id: "whr-re",
@@ -82,7 +82,7 @@ export const cementPage: VerticalPageContent = {
         description:
           "Under-use of cheap power in peak grid windows. Daily source-mix prescription — increase WHR/solar draw when grid tariff peaks.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹4–12L",
+        potentialValue: "₹4-12L",
       },
       {
         id: "compressed-air",
@@ -90,7 +90,7 @@ export const cementPage: VerticalPageContent = {
         title: "Compressed air",
         description: "Instrument and plant air leaks — recurring Category 1 waste across cement utilities.",
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹1–2.5L",
+        potentialValue: "₹1-2.5L",
       },
       {
         id: "dispatch",
@@ -99,7 +99,7 @@ export const cementPage: VerticalPageContent = {
         description:
           '"Safe" thermal when RE is available — governed dispatch habits replace operator guesswork.',
         potentialLabel: "Est. monthly savings [~]",
-        potentialValue: "₹5–15L",
+        potentialValue: "₹5-15L",
       },
     ],
   },
@@ -109,18 +109,18 @@ export const cementPage: VerticalPageContent = {
     description:
       "Illustrative actions from cement plant benchmarks [~]. Your pilot generates prescriptions from your meters, EMS feeds, and bill.",
     footnote:
-      "Impact ranges are benchmark estimates [~] — not customer guarantees. External reference: enterprise cement dispatch governance cases report ₹8–10 Cr/yr potential at large scale [Greenovative external]. Stamped targets mid-market plants.",
+      "Impact ranges are benchmark estimates [~] — not customer guarantees. External reference: enterprise cement dispatch governance cases report ₹8-10 Cr/yr potential at large scale [Greenovative external]. Stamped targets mid-market plants.",
     attribution: {
-      text: "Enterprise cement plants saved ₹8–10 Cr/yr potential through dispatch governance — Stamped brings governed decisions to mid-market scale.",
+      text: "Enterprise cement plants saved ₹8-10 Cr/yr potential through dispatch governance — Stamped brings governed decisions to mid-market scale.",
       source: "Greenovative external benchmark",
     },
     items: [
       {
         id: "peak-whr",
-        title: "Increase WHR and solar draw 18:00–22:00 peak grid window",
+        title: "Increase WHR and solar draw 18:00-22:00 peak grid window",
         description:
           "Grid tariff peaks while WHR output available. Shift load to cheaper sources before MD window closes.",
-        impactRange: "₹4–12L/month [~]",
+        impactRange: "₹4-12L/month [~]",
         assignee: "Plant electrical / dispatch coordinator",
       },
       {
@@ -128,7 +128,7 @@ export const cementPage: VerticalPageContent = {
         title: "Stagger finish mill restart after power outage",
         description:
           "Three mills restarted simultaneously — incomer breached contracted MD by 180 kVA. Sequence restart over 20 minutes.",
-        impactRange: "₹3–8L/month [~]",
+        impactRange: "₹3-8L/month [~]",
         assignee: "Head electrical",
       },
       {
@@ -136,7 +136,7 @@ export const cementPage: VerticalPageContent = {
         title: "Finish mill SEC drift vs baseline — maintenance trigger",
         description:
           "kWh/ton up 8% over 14 days with stable output. Separator and bearing inspection before SEC degrades further.",
-        impactRange: "₹2–5L/month [~]",
+        impactRange: "₹2-5L/month [~]",
         assignee: "Maintenance planner",
       },
     ],
@@ -207,7 +207,7 @@ export const cementPage: VerticalPageContent = {
       id: "kwh-ton-benchmark",
       question: "What is a good kWh/ton benchmark for cement plants?",
       answer:
-        "Electrical SEC for cement typically runs 70–80 kWh/ton [~], with best-performing plants under 67 kWh/ton. Stamped tracks your plant's baseline by line and shift — benchmarks are starting points, not targets.",
+        "Electrical SEC for cement typically runs 70-80 kWh/ton [~], with best-performing plants under 67 kWh/ton. Stamped tracks your plant's baseline by line and shift — benchmarks are starting points, not targets.",
     },
     {
       id: "ems-vs-stamped",

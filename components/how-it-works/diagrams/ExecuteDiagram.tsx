@@ -27,7 +27,7 @@ export function ExecuteDiagram() {
           </p>
           <p className="mt-1.5 text-[11px] leading-snug text-on-surface md:text-xs">
             <span className="font-semibold text-on-surface">Impact:</span>{" "}
-            <span className="font-bold text-primary">₹2.5–4L / month</span> potential savings
+            <span className="font-bold text-primary">₹2.5-4L / month</span> potential savings
           </p>
           <p className="mt-1.5 text-[11px] leading-snug text-on-surface md:text-xs">
             <span className="font-semibold text-on-surface">Owner:</span> Plant Supervisor ·{" "}
