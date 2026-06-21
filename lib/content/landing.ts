@@ -13,12 +13,14 @@ import { getHeroCallouts, getHeroVisual, getScenarioPrescription } from "./scena
 
 export const landingContent = {
   hero: {
-    eyebrow: "Prescriptive Energy Intelligence",
+    eyebrow: "AI-Powered Energy Intelligence",
     headlineLine1: "From plant data",
     headlineLine2: "to verified savings",
     subheadline: "",
     supportingLine:
-      "Stamped turns plant data into ranked actions with monthly cost reduction, assigned owners, and bill-verified savings. Built for Indian manufacturers spending ₹20 lakh+ per month on electricity.",
+      "AI-powered prescriptive intelligence that identifies cost-saving opportunities and delivers actions to improve efficiency.",
+    supportingLine2:
+      "Built for Indian manufacturers spending ₹20 lakh+ per month on electricity.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [
@@ -211,52 +213,53 @@ export const landingContent = {
 
   industries: {
     eyebrow: "Industries",
-    title: "Five verticals. One decision layer. Verified on your bill.",
-    description: `Cement, steel, pharma, chemical, and automotive - for plants spending ${icp.monthlyBillFloor}+ on electricity every month.`,
+    title: "Industries we serve",
+    description:
+      "Purpose-built AI-powered energy intelligence for energy-intensive manufacturing - cement, steel, pharma, chemical, and automotive.",
     cta: { label: "View all industries", href: "/industries" } satisfies CtaLink,
     items: [
       {
         id: "automotive",
         name: "Automotive",
-        focus: "OEM margin + shift-start MD",
+        focus: "AI-led energy control",
         description:
-          "Die casting, forging, heat treatment, rubber moulding - furnaces and compressors under OEM cost-down pressure.",
+          "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale - influencing cost stability, uptime, and operational competitiveness.",
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
       },
       {
         id: "cement",
         name: "Cement",
-        focus: "kWh/ton + dispatch governance",
+        focus: "AI-driven energy intelligence",
         description:
-          "Raw mill, kiln, finish mill - govern WHR/grid mix and SEC drift with daily prescriptions.",
+          "AI enables cement plants to prescribe optimal energy actions across continuous processes and utilities in real time - improving cost stability and uptime.",
         imageSrc: "/industries/cement.png",
         imageAlt: "Cement manufacturing plant with silos and towers at dusk",
       },
       {
         id: "steel",
         name: "Steel & metals",
-        focus: "Furnace holding + rolling MD",
+        focus: "AI-driven energy management",
         description:
-          "Induction furnaces, rolling mills, forging - PAT-aligned SEC improvement verified monthly.",
+          "AI enables steel manufacturers to manage fuel- and power-intensive operations at scale - where energy balance directly determines cost competitiveness and throughput stability.",
         imageSrc: "/industries/steel.png",
         imageAlt: "Steel rolling mill with glowing hot metal billets",
       },
       {
         id: "pharma",
         name: "Pharmaceutical",
-        focus: "HVAC is ~85% of your bill",
+        focus: "AI-driven energy management",
         description:
-          "Chiller staging, AHU schedules, MD control - GMP-safe utility levers for formulation and API plants.",
+          "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale - impacting operating cost, compliance, uptime, and product quality.",
         imageSrc: "/industries/pharma.png",
         imageAlt: "Pharmaceutical vial filling line in a sterile manufacturing plant",
       },
       {
         id: "chemical",
         name: "Chemical & paint",
-        focus: "Batch idle hold + kWh/batch",
+        focus: "AI-powered energy intelligence",
         description:
-          "Reactor stagger, soak setback, off-peak utilities - waste between batches made visible in rupees.",
+          "AI brings continuous energy discipline to chemical and paint manufacturing - improving cost control, operational predictability, and long-term competitiveness.",
         imageSrc: "/industries/chemical.png",
         imageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",
       },

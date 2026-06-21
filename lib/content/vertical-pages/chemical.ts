@@ -1,5 +1,4 @@
 import type { CtaLink, StatItem, VerticalPageContent } from "../types";
-import { icp } from "../icp";
 
 const CTA = { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink;
 const HOW = { label: "How it works", href: "/how-it-works" } satisfies CtaLink;
@@ -8,8 +7,9 @@ export const chemicalPage: VerticalPageContent = {
   slug: "chemical",
   hero: {
     eyebrow: "Chemical & paint",
-    title: "Batch energy waste is invisible until the bill arrives.",
-    description: `Prescribe stagger, setback, and utility changes between batches — for specialty chemical and paint plants spending ${icp.monthlyBillFloor}+ monthly. kWh per batch, verified on your DISCOM bill.`,
+    title: "AI-powered energy intelligence for chemical and paint manufacturing",
+    description:
+      "AI brings continuous energy discipline to chemical and paint manufacturing, improving cost control, operational predictability, and long-term competitiveness - with prescriptions assigned to your batch team and savings verified on your DISCOM bill.",
     primaryCta: CTA,
     secondaryCta: HOW,
     seoHeadings: [
@@ -19,36 +19,36 @@ export const chemicalPage: VerticalPageContent = {
     ],
   },
   economics: {
-    eyebrow: "Energy economics",
-    title: "Batch plants fail on kWh per batch — not total kWh",
+    eyebrow: "Energy challenges",
+    title: "Energy challenges in chemical and paint manufacturing",
     description:
-      "Reactors, distillation, steam, and agitators create time-shifted demand. Waste hides in idle hold between batches, simultaneous heating, and utility baseload — analogous to shift-start overlap in discrete manufacturing.",
+      "Chemical and paint plants operate energy-critical batch and continuous processes where heat, mixing, and separation dominate consumption, requiring tight control to avoid excess energy use while maintaining safety and product stability.",
     stats: [
       {
         id: "batch-idle",
-        value: "15-30%",
-        label: "Energy in idle hold between batches",
-        detail: "Heated vessels idle, utilities at baseload [~]",
+        value: "10-20%",
+        label: "Share of energy in manufacturing cost",
+        detail: "Batch and continuous process mix [~]",
       },
       {
         id: "md-overlap",
-        value: "₹3-10L",
-        label: "Monthly MD from simultaneous batch starts",
-        detail: "Multiple reactors heating together [~]",
+        value: "20-40%",
+        label: "Plant energy consumed by utilities",
+        detail: "Steam, chillers, compressed air, and ETP [~]",
       },
       {
         id: "pat",
-        value: "PAT",
-        label: "Chlor-alkali and chemical subsectors covered",
-        detail: "GtG SEC, gate-to-gate discipline [~]",
+        value: "50-60%",
+        label: "Thermal energy share complicates energy control",
+        detail: "Reactors, distillation, and drying loads [~]",
       },
     ] satisfies StatItem[],
   },
   wasteTable: {
-    eyebrow: "Where lakhs leak",
-    title: "Batch timeline waste: heat → hold → idle → cool",
+    eyebrow: "Actionable energy intelligence",
+    title: "Where energy value sits across processes and utilities",
     description:
-      "Five prescription types across batch chemical plants [~]. Reference ranges — your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Reference ranges [~] - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "reactor-idle",
@@ -166,33 +166,33 @@ export const chemicalPage: VerticalPageContent = {
     ],
   },
   outcomes: {
-    eyebrow: "Target outcomes",
-    title: "kWh per batch — not plant-wide averages",
+    eyebrow: "What you gain",
+    title: "Controlled energy intensity and predictable operations",
     disclaimer: "Benchmark bands [~]. Your pilot replaces these with bill-verified figures.",
     items: [
       {
         id: "batch-sec",
-        title: "kWh/batch baseline per reactor line",
+        title: "Controlled energy intensity",
         description:
-          "SEC normalized by batch type and volume — idle hold drift triggers prescriptions before month-end.",
+          "Energy stays within defined operating bands across batch and continuous operations, with AI prescribing adjustments to prevent drift, reducing SEC by 8-12% [~].",
       },
       {
         id: "idle-hold",
-        title: "Idle hold quantified in rupees",
+        title: "Reduced over-design margins",
         description:
-          "Heated vessel hold between batches tied to production calendar — setback assignments to operators.",
+          "AI identifies energy inefficiencies caused by conservative process over-design in heating, cooling, and purging, locking in 5-10% energy savings [~] without impacting safety or throughput.",
       },
       {
         id: "md-stagger",
-        title: "Batch-start MD staggered",
+        title: "Early loss visibility",
         description:
-          "Simultaneous reactor heating explained asset by asset — electrical gets sequence prescription.",
+          "Small deviations are surfaced early, with AI recommending corrective actions before they compound into sustained losses.",
       },
       {
         id: "ledger",
-        title: "Verified ₹ ledger monthly",
+        title: "Predictable operations",
         description:
-          "Potential vs realised savings on DISCOM bill — defensible for PAT and internal cost reviews.",
+          "Stable energy behavior improves run consistency and planning confidence, enabling 10-15% more predictable energy costs [~] across shifts and units.",
       },
     ],
   },

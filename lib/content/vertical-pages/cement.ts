@@ -1,5 +1,4 @@
 import type { CtaLink, StatItem, VerticalPageContent } from "../types";
-import { icp } from "../icp";
 
 const CTA = { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink;
 const HOW = { label: "How it works", href: "/how-it-works" } satisfies CtaLink;
@@ -8,8 +7,9 @@ export const cementPage: VerticalPageContent = {
   slug: "cement",
   hero: {
     eyebrow: "Cement",
-    title: "Your plant has the data. It lacks the decision layer.",
-    description: `Govern power mix, kWh/ton, and MD for cement plants spending ${icp.monthlyBillFloor}+ monthly — specific prescriptions verified on your DISCOM bill, not another EMS dashboard.`,
+    title: "AI-driven energy intelligence for cement",
+    description:
+      "AI enables cement plants to prescribe optimal energy actions across continuous processes and utilities in real time, directly influencing cost stability, uptime, and long-term operational competitiveness - with savings verified on your DISCOM bill.",
     primaryCta: CTA,
     secondaryCta: HOW,
     seoHeadings: [
@@ -19,36 +19,36 @@ export const cementPage: VerticalPageContent = {
     ],
   },
   economics: {
-    eyebrow: "Energy economics",
-    title: "Power is 35-50% of cost — and tariffs keep climbing",
+    eyebrow: "Energy challenges",
+    title: "Energy challenges in cement manufacturing",
     description:
-      "HV tariffs above ₹10-11/kWh [~] in key states. Multi-source stacks — grid, WHR, captive solar — exceed what operator heuristics can govern shift by shift.",
+      "Cement plants operate continuous, energy-intensive processes with limited real-time coordination across stages and utilities, leading to cost leakage, SEC variability, and inconsistent plant performance.",
     stats: [
       {
         id: "cost-share",
-        value: "35-50%",
-        label: "Energy share of production cost",
-        detail: "Company-dependent; structural margin driver [~]",
+        value: "40-50%",
+        label: "Total manufacturing cost linked to energy and utilities",
+        detail: "Structural margin driver for cement [~]",
       },
       {
         id: "sec",
-        value: "70-80",
-        label: "kWh/ton cement (electrical SEC)",
-        detail: "Best plants under 67 kWh/ton [~]",
+        value: "50-60%",
+        label: "Electrical energy consumed by core process equipment",
+        detail: "Mills, kiln auxiliaries, and process fans [~]",
       },
       {
         id: "tariff",
-        value: "₹10-11+",
-        label: "HV tariff per kWh in key states",
-        detail: "Rajasthan, MP, Chhattisgarh, Gujarat [~]",
+        value: "85%",
+        label: "Thermal energy share complicates energy control",
+        detail: "Multi-source dispatch requires governed decisions [~]",
       },
     ] satisfies StatItem[],
   },
   wasteTable: {
-    eyebrow: "Where lakhs leak",
-    title: "Electrical hotspots across the cement line",
+    eyebrow: "Actionable energy intelligence",
+    title: "Where energy value sits across processes and utilities",
     description:
-      "Load → pattern → prescription. Reference ranges from industry benchmarks [~] — your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Reference ranges from industry benchmarks [~] - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "mills",
@@ -172,33 +172,33 @@ export const cementPage: VerticalPageContent = {
     ],
   },
   outcomes: {
-    eyebrow: "Target outcomes",
-    title: "What plant directors and electrical heads measure",
+    eyebrow: "What you gain",
+    title: "Prescriptive cost optimization and sustained efficiency outcomes",
     disclaimer: "Benchmark bands [~]. Your pilot replaces these with bill-verified figures.",
     items: [
       {
         id: "kwh-ton",
-        title: "kWh/ton visible per line, not plant average",
+        title: "Prescriptive energy cost optimization",
         description:
-          "Finish mill and raw mill SEC tracked against production mix — drift triggers prescriptions before month-end.",
+          "Prescriptive AI optimizes the mix of captive power, WHRS, renewables, and grid in real time, locking in 5-10% energy cost reduction [~] without operational disruption.",
       },
       {
         id: "dispatch",
-        title: "Governed source-mix habits",
+        title: "Stage-wise SEC control",
         description:
-          "WHR, grid, and RE utilization tied to tariff windows — daily prescriptions, not quarterly reviews.",
+          "AI monitors SEC at each manufacturing stage and prescribes corrective actions across raw grinding, kiln, and cement grinding, reducing stage-wise SEC by 8-12% [~].",
       },
       {
         id: "md",
-        title: "MD explained by asset startup",
+        title: "Utility-level efficiency and reliability",
         description:
-          "Crusher and mill restart overlap quantified in rupees — stagger assignments to shift supervisors.",
+          "AI tracks large utilities like fans, blowers, and mills, prescribing early interventions to prevent degradation and cut unplanned downtime by 15-20% [~].",
       },
       {
         id: "ledger",
-        title: "Verified ₹ ledger for management",
+        title: "Sustained efficiency outcomes",
         description:
-          "Potential vs realised savings quarter over quarter — defensible for PAT and internal cost reviews.",
+          "Prescriptive feedback loops continuously enforce efficiency gains, reducing dependence on manual supervision and preventing regression after one-time improvements.",
       },
     ],
   },

@@ -1,5 +1,4 @@
 import type { CtaLink, StatItem, VerticalPageContent } from "../types";
-import { icp } from "../icp";
 
 const CTA = { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink;
 const HOW = { label: "How it works", href: "/how-it-works" } satisfies CtaLink;
@@ -8,8 +7,9 @@ export const pharmaPage: VerticalPageContent = {
   slug: "pharma",
   hero: {
     eyebrow: "Pharmaceutical",
-    title: "Most of your electricity is HVAC. Stamped shows exactly where — in rupees.",
-    description: `HVAC is ~85% of the bill [BEE]. For formulation and API plants spending ${icp.monthlyBillFloor}+ monthly — chiller staging, AHU schedules, and MD prescriptions verified on your DISCOM bill.`,
+    title: "AI-driven energy management for pharma",
+    description:
+      "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale, directly impacting operating cost, compliance, uptime, and consistent product quality across regulated manufacturing environments - with bill-verified savings.",
     primaryCta: CTA,
     secondaryCta: HOW,
     seoHeadings: [
@@ -19,36 +19,36 @@ export const pharmaPage: VerticalPageContent = {
     ],
   },
   economics: {
-    eyebrow: "Energy economics",
-    title: "HVAC is ~85% of your electricity bill — and ~24% savings are identifiable",
+    eyebrow: "Energy challenges",
+    title: "Energy challenges in pharmaceutical manufacturing",
     description:
-      "BEE MSME pharma cluster mapping [~]: ~8,000-9,000 units, ~22,873 GWh/yr sector electricity. Chillers, AHUs, CA, and pumps dominate — but nobody ties run-hours to production and tariff windows.",
+      "Pharma facilities rely heavily on utility-driven support systems to maintain strict indoor air quality conditions, where continuous control requirements drive sustained energy consumption and operational rigidity.",
     stats: [
       {
         id: "hvac-share",
-        value: "~85%",
-        label: "HVAC share of plant electricity",
-        detail: "BEE MSME pharma study [~]",
+        value: "55-65%",
+        label: "Plant energy consumed by utilities",
+        detail: "HVAC, steam, chilled water, and CA dominate [~]",
       },
       {
         id: "ee-potential",
-        value: "~24%",
-        label: "Electricity savings identified",
-        detail: "BEE MSME cluster mapping [~]",
+        value: "40-50%",
+        label: "Energy driven by HVAC and clean-room systems",
+        detail: "BEE MSME pharma cluster mapping [~]",
       },
       {
         id: "focus-loads",
-        value: "~92%",
-        label: "Electrical focus: HVAC + CA + pumps",
-        detail: "Remaining loads comparatively minor [~]",
+        value: "20-30%",
+        label: "Seasonal energy demand shifts for IAQ",
+        detail: "Climate and production mix drive variability [~]",
       },
     ] satisfies StatItem[],
   },
   wasteTable: {
-    eyebrow: "Where lakhs leak",
-    title: "HVAC and utility waste in pharma plants",
+    eyebrow: "Actionable energy intelligence",
+    title: "Where energy value sits across processes and utilities",
     description:
-      "Low-risk operational levers first — setpoints, schedules, staging. Not HVAC redesign. Reference ranges [~].",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Low-risk operational levers first - setpoints, schedules, staging [~].",
     areas: [
       {
         id: "chillers-ahu",
@@ -172,33 +172,33 @@ export const pharmaPage: VerticalPageContent = {
     ],
   },
   outcomes: {
-    eyebrow: "Target outcomes",
-    title: "What engineering heads and plant owners measure",
+    eyebrow: "What you gain",
+    title: "Targeted waste elimination and stable thermal performance",
     disclaimer: "BEE benchmark bands [~]. Your pilot replaces these with bill-verified figures.",
     items: [
       {
         id: "hvac-rupees",
-        title: "HVAC waste in rupees, not kWh charts",
+        title: "Targeted energy waste elimination",
         description:
-          "Chiller and AHU run-hours tied to production calendar — prescriptions your utilities team executes this week.",
+          "Prescriptive AI identifies hidden wastage across utilities and support systems, converting deviations into operator actions without compromising quality or compliance.",
       },
       {
         id: "md-chiller",
-        title: "Chiller MD explained and staggered",
+        title: "Optimized HVAC and AHU efficiency",
         description:
-          "Morning startup overlap quantified — stagger assignments before next billing cycle.",
+          "Prescriptive intelligence continuously maintains HVAC KPIs such as kW/TR and kW/CFM, tuning AHU performance in real time to balance temperature, humidity, air quality, and energy consumption.",
       },
       {
         id: "schedule",
-        title: "Schedule alignment without GMP risk",
+        title: "Stable thermal system performance",
         description:
-          "Utility-level schedule changes documented — not room classification or validation changes.",
+          "AI monitors boilers, steam, and hot-water systems and prescribes actions to prevent efficiency drift, sustaining reliable thermal output.",
       },
       {
         id: "ledger",
-        title: "Verified ₹ ledger on DISCOM bill",
+        title: "Seasonal energy demand control",
         description:
-          "Potential vs realised savings — cost-focused proof for MSME owners and plant heads.",
+          "AI adapts utility setpoints and load strategies across seasonal shifts to maintain compliance, stability, and energy efficiency.",
       },
     ],
   },

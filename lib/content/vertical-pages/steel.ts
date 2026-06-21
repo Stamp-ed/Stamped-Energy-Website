@@ -1,5 +1,4 @@
 import type { CtaLink, StatItem, VerticalPageContent } from "../types";
-import { icp } from "../icp";
 
 const CTA = { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink;
 const HOW = { label: "How it works", href: "/how-it-works" } satisfies CtaLink;
@@ -8,8 +7,9 @@ export const steelPage: VerticalPageContent = {
   slug: "steel",
   hero: {
     eyebrow: "Steel & metals",
-    title: "Steel margins are set globally. Your electricity bill is local and controllable.",
-    description: `Prescriptive intelligence for furnaces, rolling mills, and utilities — for ${icp.geography} spending ${icp.monthlyBillFloor}+ monthly. PAT-aligned SEC discipline, verified on your bill.`,
+    title: "AI-driven energy management for steel",
+    description:
+      "AI enables steel manufacturers to manage fuel- and power-intensive operations at scale, where energy balance and operating discipline directly determine cost competitiveness, throughput stability, and operational consistency - with bill-verified savings.",
     primaryCta: CTA,
     secondaryCta: HOW,
     seoHeadings: [
@@ -19,36 +19,36 @@ export const steelPage: VerticalPageContent = {
     ],
   },
   economics: {
-    eyebrow: "Energy economics",
-    title: "Energy is 20-40% of production cost — and PAT discipline is mandatory",
+    eyebrow: "Energy challenges",
+    title: "Energy challenges in steel manufacturing",
     description:
-      "EAF, induction furnaces, and rolling mills create extreme MD exposure. ~270 PAT-covered plants with 20,000 TOE threshold [~] — SEC improvement is regulated and monetizable.",
+      "Steel production is inherently energy-intensive, with energy cost tightly coupled to profits. Even small deviations during operation quickly translate into higher energy losses and margin pressure.",
     stats: [
       {
         id: "cost-share",
-        value: "20-40%",
-        label: "Energy share of production cost",
+        value: "30-40%",
+        label: "Share of energy in manufacturing cost",
         detail: "TERI steel sector review [~]",
       },
       {
         id: "sec-win",
-        value: "17%",
-        label: "SEC reduction (external benchmark)",
-        detail: "Zerowatt published case: 2,126 → 1,765 kWh/ton [external]",
+        value: "3-5%",
+        label: "Minor instability causes measurable energy loss",
+        detail: "Small deviations compound into sustained losses [~]",
       },
       {
         id: "pat",
-        value: "~270",
-        label: "PAT-covered steel plants",
-        detail: "20,000 TOE threshold [~]",
+        value: "60-70%",
+        label: "Captive power energy drives production margins",
+        detail: "Fuel-power balance determines competitiveness [~]",
       },
     ] satisfies StatItem[],
   },
   wasteTable: {
-    eyebrow: "Where lakhs leak",
-    title: "Furnace, rolling, and utility waste patterns",
+    eyebrow: "Actionable energy intelligence",
+    title: "Where energy value sits across processes and utilities",
     description:
-      "Six waste categories apply across steel routes [~]. Reference ranges — your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Reference ranges [~] - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "eaf-induction",
@@ -168,33 +168,33 @@ export const steelPage: VerticalPageContent = {
     ],
   },
   outcomes: {
-    eyebrow: "Target outcomes",
-    title: "Outcomes aligned with PAT and plant economics",
+    eyebrow: "What you gain",
+    title: "Tighter process efficiency and per-unit cost stability",
     disclaimer: "Benchmark bands [~]. External SEC wins cited with attribution only.",
     items: [
       {
         id: "furnace-md",
-        title: "Furnace holding quantified in rupees",
+        title: "Tighter process efficiency",
         description:
-          "Induction and reheating idle load tied to heat schedule — prescriptions before the bill, not after.",
+          "Prescriptive AI keeps furnaces and rolling processes within efficient operating windows, reducing avoidable energy loss during real production by 5-10% [~].",
       },
       {
         id: "rolling-sec",
-        title: "Rolling SEC and MD within shift bands",
+        title: "Per-unit energy cost stability",
         description:
-          "kWh/ton tracked by product mix — startup overlap flagged with stagger assignments.",
+          "AI detects captive power generation inefficiencies early and prescribes corrections before small deviations escalate into sustained cost losses, reducing per-unit energy cost by almost 5% [~].",
       },
       {
         id: "pat-sec",
-        title: "SEC ledger for PAT reviews",
+        title: "Operator-ready guidance",
         description:
-          "Verified improvement quarter over quarter — defensible for internal cost reviews and PAT evidence.",
+          "Actionable insights guide operators on what to adjust and when, reducing reliance on manual judgment and delayed interventions.",
       },
       {
         id: "ledger",
-        title: "Verified ₹ ledger on DISCOM bill",
+        title: "Utility efficiency discipline",
         description:
-          "Potential vs realised savings — plant director and CFO see closed-loop M&V.",
+          "Continuous monitoring keeps SEC of large utilities such as pumps, compressors, and cooling systems within efficient limits, cutting unplanned utility downtime by 10-15% [~].",
       },
     ],
   },

@@ -210,8 +210,9 @@ const steelSegments: IndustrySegment[] = [
 export const industriesContent = {
   hub: {
     eyebrow: "Industries",
-    title: "Prescriptive intelligence for plants where energy is structural margin",
-    description: `Cement, steel, pharma, chemical, and automotive - for ${icp.geography} at ${icp.revenueFloor} spending ${icp.monthlyBillBand} on electricity. Same decision layer, vertical-specific prescriptions.`,
+    title: "Industries we serve",
+    description:
+      "Purpose-built AI-powered energy intelligence for energy-intensive sectors - prescriptions with rupee impact, verified on your DISCOM bill.",
     heroImageSrc: INDUSTRY_IMAGES.cement,
     heroImageAlt: "Cement plant with silos and kiln illuminated at twilight",
     primaryCta: { label: "Explore industries", href: "#verticals" } satisfies CtaLink,
@@ -268,9 +269,9 @@ export const industriesContent = {
     },
     featured: {
       eyebrow: "Industry verticals",
-      title: "Five verticals. One prescription engine.",
+      title: "AI-powered energy intelligence by sector",
       description:
-        "Cement, steel, pharma, chemical, and automotive - each with plant-floor playbooks, prescription templates, and bill-verified outcomes.",
+        "Each vertical gets process-aware baselines, actionable prescriptions, and bill-verified savings - built for plants spending ₹20 lakh+ monthly on electricity.",
       cta: { label: "Open automotive page", href: "/industries/automotive" } satisfies CtaLink,
       showMoreLabel: "Show process segments",
       showLessLabel: "Show fewer segments",
@@ -290,9 +291,9 @@ export const industriesContent = {
       id: "automotive",
       slug: "automotive",
       name: "Automotive",
-      tagline: "Energy cost control for auto component suppliers",
+      tagline: "AI-led energy control for automotive manufacturing",
       description:
-        "Die casting, forging, heat treatment, and rubber moulding - where OEM price pressure and HT tariffs squeeze margin on every rupee of electricity.",
+        "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale, directly influencing cost stability, uptime, and long-term operational competitiveness.",
       href: "/industries/automotive",
       heroImageSrc: INDUSTRY_IMAGES.dieCasting,
       heroImageAlt: "Molten metal pour in an automotive die casting plant",
@@ -304,9 +305,9 @@ export const industriesContent = {
       id: "cement",
       slug: "cement",
       name: "Cement",
-      tagline: "Govern power mix and kWh/ton",
+      tagline: "AI-driven energy intelligence for cement",
       description:
-        "Raw mill, kiln, finish mill, and utilities - dispatch governance and SEC drift prescriptions for mid-market cement plants.",
+        "AI enables cement plants to prescribe optimal energy actions across continuous processes and utilities in real time, directly influencing cost stability, uptime, and operational competitiveness.",
       href: "/industries/cement",
       heroImageSrc: INDUSTRY_IMAGES.cement,
       heroImageAlt: "Cement manufacturing plant with silos, towers, and conveyors at dusk",
@@ -318,9 +319,9 @@ export const industriesContent = {
       id: "steel",
       slug: "steel",
       name: "Steel & metals",
-      tagline: "Furnaces, rolling mills, PAT discipline",
+      tagline: "AI-driven energy management for steel",
       description:
-        "Secondary steel, rolling, forging, and foundry - induction holding, startup MD, and SEC improvement verified on your bill.",
+        "AI enables steel manufacturers to manage fuel- and power-intensive operations at scale, where energy balance and operating discipline directly determine cost competitiveness and throughput stability.",
       href: "/industries/steel",
       heroImageSrc: INDUSTRY_IMAGES.steel,
       heroImageAlt: "Steel rolling mill with glowing hot metal billets on the production line",
@@ -332,9 +333,9 @@ export const industriesContent = {
       id: "pharma",
       slug: "pharma",
       name: "Pharmaceutical",
-      tagline: "HVAC is ~85% of your bill",
+      tagline: "AI-driven energy management for pharma",
       description:
-        "Formulation and API plants - chiller staging, AHU schedules, and MD control with GMP-safe operational levers.",
+        "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale, directly impacting operating cost, compliance, uptime, and consistent product quality.",
       href: "/industries/pharma",
       heroImageSrc: INDUSTRY_IMAGES.pharma,
       heroImageAlt: "Automated pharmaceutical vial filling line in a sterile manufacturing plant",
@@ -346,9 +347,9 @@ export const industriesContent = {
       id: "chemical",
       slug: "chemical",
       name: "Chemical & paint",
-      tagline: "Batch idle hold and kWh per batch",
+      tagline: "AI-powered energy intelligence for chemical & paint",
       description:
-        "Specialty chemicals, resins, and paint - reactor stagger, soak setback, and off-peak utility prescriptions between batches.",
+        "AI brings continuous energy discipline to chemical and paint manufacturing, improving cost control, operational predictability, and long-term competitiveness.",
       href: "/industries/chemical",
       heroImageSrc: INDUSTRY_IMAGES.chemical,
       heroImageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",

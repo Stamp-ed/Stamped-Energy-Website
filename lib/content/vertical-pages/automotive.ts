@@ -1,5 +1,4 @@
 import type { CtaLink, StatItem, VerticalPageContent } from "../types";
-import { icp } from "../icp";
 import { resourcesContent } from "../resources";
 
 const CTA = { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink;
@@ -9,8 +8,9 @@ export const automotivePage: VerticalPageContent = {
   slug: "automotive",
   hero: {
     eyebrow: "Automotive",
-    title: "Where utility cost hits margin on every OEM price-down",
-    description: `Die casting, forging, heat treatment, rubber moulding — for ${icp.geography} spending ${icp.monthlyBillFloor}+ on electricity. Prescriptions tied to furnaces, compressors, and shift-start MD, verified on your bill.`,
+    title: "AI-powered energy intelligence for automotive manufacturing",
+    description:
+      "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale, directly influencing cost stability, uptime, and long-term operational competitiveness - with prescriptions assigned to your plant floor and savings verified on your DISCOM bill.",
     primaryCta: CTA,
     secondaryCta: HOW,
     seoHeadings: [
@@ -20,10 +20,10 @@ export const automotivePage: VerticalPageContent = {
     ],
   },
   economics: {
-    eyebrow: "Energy economics",
-    title: "Utilities are 12-18% of operating cost, and rising every tariff revision",
+    eyebrow: "Energy challenges",
+    title: "Energy challenges in automotive manufacturing",
     description:
-      "Furnaces, compressors, and heat treatment run whether parts are in the press or not. Visibility stops at the incomer meter; the bill explains nothing asset by asset.",
+      "Automotive plants run energy-intensive utilities across paint shops, compressed air, HVAC, and material handling systems, where fragmented visibility and manual control lead to persistent inefficiencies, cost leakage, and inconsistent performance across shifts, assets, and plants.",
     stats: [
       {
         id: "cost-share",
@@ -46,10 +46,10 @@ export const automotivePage: VerticalPageContent = {
     ] satisfies StatItem[],
   },
   wasteTable: {
-    eyebrow: "Where lakhs leak",
-    title: "Typical savings areas in auto component plants",
+    eyebrow: "Actionable energy intelligence",
+    title: "Where energy value sits across processes and utilities",
     description:
-      "Select a process area. Figures are reference ranges from comparable plants [~] — your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Figures are reference ranges from comparable plants [~] - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "press-body",
@@ -170,33 +170,33 @@ export const automotivePage: VerticalPageContent = {
   },
   outcomes: {
     eyebrow: "What you gain",
-    title: "Outcomes your plant head and CFO will ask for",
+    title: "Controlled energy intensity and sustained efficiency outcomes",
     disclaimer:
       "Target bands from comparable plants [~]. Your pilot replaces these with bill-verified figures.",
     items: [
       {
         id: "real-time",
-        title: "MD spikes explained asset by asset",
+        title: "Real-time energy command",
         description:
-          "Shift-start overlap, simultaneous furnace ramp, compressor idle — tied to monthly rupee impact, not plant-wide kWh.",
+          "AI converts live operational data into prescribed energy actions across production and auxiliary systems, eliminating 5-10% utility energy waste without impacting throughput or process stability.",
       },
       {
         id: "sec",
-        title: "SEC held within shift bands",
+        title: "Stable SECs and KPIs",
         description:
-          "kWh per unit output tracked by process and shift, so drift shows up before the bill, not after.",
+          "Continuous supervision prescribes corrective actions to maintain SECs and efficiency KPIs within defined operating bands, reducing performance drift by 8-12% [~].",
       },
       {
         id: "reliability",
-        title: "Maintenance tickets before breakdown",
+        title: "Higher asset reliability",
         description:
-          "Compressor inlet filter degradation, furnace holding anomalies — flagged when specific power drifts, not when the motor fails.",
+          "Performance intelligence prescribes early interventions on degradation patterns, cutting unplanned utility downtime by 15-20% [~] and improving asset availability.",
       },
       {
         id: "sustained",
-        title: "Verified ₹ ledger quarter over quarter",
+        title: "Sustained efficiency outcomes",
         description:
-          "Potential vs realised savings tracked — defensible for OEM energy audits and internal cost reviews.",
+          "Continuous feedback loops prescribe, validate, and refine actions over time, locking in 10-15% verified energy cost reduction [~] with bill-verified M&V.",
       },
     ],
   },
