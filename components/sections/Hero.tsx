@@ -101,8 +101,8 @@ export function Hero() {
               ) : null}
             </h1>
             <span className="sr-only">
-              Prescriptive energy intelligence for cement, steel, pharma, chemical, and automotive
-              plants across India.
+              AI-powered prescriptive energy intelligence for cement, steel, pharma, chemical, and
+              automotive plants in India.
             </span>
 
             <p

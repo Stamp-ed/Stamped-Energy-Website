@@ -9,75 +9,75 @@ export type PageSeoConfig = {
 export const PAGE_SEO = {
   home: {
     absoluteTitle:
-      "Stamped Energy | Prescriptive Energy Intelligence for Indian Manufacturers",
+      "Stamped Energy | AI-Powered Energy Intelligence for Plants in India",
     description:
-      "Stamped Energy turns your existing meters, SCADA, and bills into rupee-denominated prescriptions. Cut your electricity bill by 12-20%. Verified on your DISCOM bill.",
+      "AI-powered prescriptive intelligence for plants with ₹20 lakh+ monthly electricity bills. Ranked actions, assigned owners, bill-verified savings on your DISCOM bill. Cement, steel, pharma, chemical, automotive.",
     path: "/",
   },
   howItWorks: {
-    absoluteTitle: "How It Works | Stamped Energy — 5-Step Energy Loop",
+    absoluteTitle: "How It Works | Stamped Energy - 5-Step Energy Loop",
     description:
-      "See how Stamped Energy connects your incomer meters, SCADA, and plant data into verified rupee savings — in five operational steps. No hardware retrofit required.",
+      "See how Stamped connects incomer meters, SCADA, and plant data into AI-powered prescriptions with verified rupee savings - Connect, Observe, Decide, Execute, Verify. No hardware retrofit required.",
     path: "/how-it-works",
   },
   about: {
     absoluteTitle: "About Stamped Energy | IIT Roorkee Engineers, Verified Savings",
     description:
-      "Stamped Energy is built by IIT Roorkee electrical engineers for plant heads who need verified savings on the DISCOM bill, not another monitoring dashboard.",
+      "Stamped Energy is AI-powered prescriptive energy intelligence built by IIT Roorkee electrical engineers for plant heads who need verified savings on the DISCOM bill, not another monitoring dashboard.",
     path: "/about",
   },
   blog: {
     absoluteTitle: "Energy Intelligence Blog | Stamped Energy",
     description:
-      "Field notes on maximum demand, shift-start overlap, furnace holding, and compressor waste — written for plant heads and electrical HODs in Indian manufacturing.",
+      "Field notes on maximum demand, shift-start overlap, furnace holding, and HVAC waste - written for plant directors and electrical HODs at energy-intensive plants in India.",
     path: "/blog",
   },
   caseStudies: {
     absoluteTitle: "Energy Savings Case Studies | Stamped Energy",
     description:
-      "Real energy savings outcomes from die casting, forging, and heat treatment plants. Every figure tied to IPMVP M&V or labelled as benchmark until pilot data is publishable.",
+      "Verified energy savings outcomes from die casting, forging, heat treatment, and process plants. Figures tied to IPMVP M&V or labelled as benchmark until pilot data is publishable.",
     path: "/case-studies",
   },
   contact: {
     absoluteTitle: "Book a Discovery Call | Stamped Energy",
     description:
-      "Book a discovery call with Stamped Energy. We review your last three DISCOM bills, plant meter setup, and outline a pilot — only if the numbers justify it.",
+      "Book a discovery call with Stamped Energy. We review your last three DISCOM bills, plant meter setup, and outline a pilot - only if the numbers justify it.",
     path: "/contact",
   },
   industries: {
-    absoluteTitle: "Industries | Stamped Energy — Cement, Steel, Pharma, Auto",
+    absoluteTitle: "Industries | Stamped Energy - Cement, Steel, Pharma, Chemical, Auto",
     description:
-      "Prescriptive energy intelligence for cement, steel, pharmaceutical, chemical, and automotive plants across India. ₹20 lakh+ monthly bills — verified on your DISCOM bill.",
+      "AI-powered energy intelligence for cement, steel, pharmaceutical, chemical, and automotive plants in India. Purpose-built for plants with ₹20 lakh+ monthly electricity bills - verified on your DISCOM bill.",
     path: "/industries",
   },
   industriesAutomotive: {
-    absoluteTitle: "Auto Component Energy Cost Reduction | Stamped Energy",
+    absoluteTitle: "Automotive Plant Energy Intelligence | Stamped Energy",
     description:
-      "Prescriptive energy intelligence for auto component suppliers. Die casting, forging, heat treatment, rubber moulding — savings tied to furnaces, compressors, and shift-start MD.",
+      "AI-powered energy intelligence for automotive and auto component plants. Die casting, forging, heat treatment, rubber moulding - prescriptions with rupee impact, verified on your DISCOM bill.",
     path: "/industries/automotive",
   },
   industriesCement: {
     absoluteTitle: "Cement Plant Energy Management India | Stamped Energy",
     description:
-      "Cut cement plant electricity cost with prescriptions on kWh/ton, MD, and WHR/grid dispatch — verified on your DISCOM bill. For mid-market plants spending ₹20 lakh+ monthly.",
+      "AI-driven energy intelligence for cement plants. kWh/ton, MD, WHR and grid dispatch prescriptions - verified on your DISCOM bill. For plants with ₹20 lakh+ monthly electricity bills.",
     path: "/industries/cement",
   },
   industriesSteel: {
     absoluteTitle: "Steel Plant Energy Efficiency India | Stamped Energy",
     description:
-      "Prescriptive energy intelligence for steel and metals — induction furnaces, rolling mills, MD control, and PAT-aligned SEC improvement verified on your bill.",
+      "AI-driven energy management for steel and metals plants. Induction furnaces, rolling mills, MD control, PAT-aligned SEC - bill-verified prescriptions for plants in India.",
     path: "/industries/steel",
   },
   industriesPharma: {
     absoluteTitle: "Pharmaceutical Plant HVAC Energy Savings | Stamped Energy",
     description:
-      "HVAC is ~85% of your pharma plant bill. Chiller staging, AHU schedules, and MD prescriptions — GMP-safe operational levers, verified on your DISCOM bill.",
+      "AI-driven energy management for pharma plants. Chiller staging, AHU schedules, MD prescriptions - GMP-safe utility levers with savings verified on your DISCOM bill.",
     path: "/industries/pharma",
   },
   industriesChemical: {
     absoluteTitle: "Chemical Plant Batch Energy Optimization | Stamped Energy",
     description:
-      "Batch energy waste between reactors — stagger, soak setback, and off-peak utility prescriptions for specialty chemical and paint plants. Verified monthly on your bill.",
+      "AI-powered energy intelligence for chemical and paint plants. Batch SEC, reactor stagger, idle hold prescriptions - verified monthly on your DISCOM bill.",
     path: "/industries/chemical",
   },
 } as const satisfies Record<string, PageSeoConfig>;

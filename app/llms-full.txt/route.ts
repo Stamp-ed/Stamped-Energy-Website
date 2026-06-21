@@ -1,5 +1,6 @@
 import { listPublishedPosts } from "@/lib/blog/posts";
 import { listPublishedCaseStudies } from "@/lib/case-studies/studies";
+import { icp } from "@/lib/content/icp";
 import { SITE_URL } from "@/lib/seo/constants";
 
 export const revalidate = 3600;
@@ -15,8 +16,12 @@ export async function GET() {
     "",
     "> Auto-generated index of all published blog posts and case studies for AI crawlers and answer engines.",
     "",
+    icp.seo.entityDefinition,
+    "",
     `Site: ${SITE_URL}`,
-    `Generated from CMS. For overview see ${SITE_URL}/llms.txt`,
+    `Category: ${icp.seo.categoryLabel}`,
+    `Audience: ${icp.seo.audienceLine}`,
+    `For overview see ${SITE_URL}/llms.txt`,
     "",
     "## Blog posts",
     "",

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const HERO_IMAGE_ALT =
-  "Stamped Energy prescriptive energy intelligence platform for Indian manufacturers";
+  "Stamped Energy AI-powered prescriptive energy intelligence platform for plants in India";
 
 export function HeroIsometricVisual() {
   return (

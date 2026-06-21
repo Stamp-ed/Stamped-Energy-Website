@@ -270,8 +270,7 @@ export const industriesContent = {
     featured: {
       eyebrow: "Industry verticals",
       title: "AI-powered energy intelligence by sector",
-      description:
-        "Each vertical gets process-aware baselines, actionable prescriptions, and bill-verified savings - built for plants spending ₹20 lakh+ monthly on electricity.",
+      description: `Each vertical gets process-aware baselines, actionable prescriptions, and bill-verified savings. ${icp.heroBillLine}`,
       cta: { label: "Open automotive page", href: "/industries/automotive" } satisfies CtaLink,
       showMoreLabel: "Show process segments",
       showLessLabel: "Show fewer segments",

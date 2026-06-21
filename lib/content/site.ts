@@ -1,10 +1,10 @@
 import type { NavLink } from "./types";
+import { icp } from "./icp";
 
 export const siteConfig = {
   name: "Stamped Energy",
-  tagline: "Precision energy intelligence. Verified savings. Built for manufacturers.",
-  description:
-    "Prescriptive energy intelligence for Indian manufacturers. Connect existing meters, SCADA, and bills — get rupee-denominated prescriptions verified on your next DISCOM bill.",
+  tagline: "AI-powered energy intelligence. Verified savings. Built for plants.",
+  description: icp.seo.entityDefinition,
   blogUrl: "/blog",
   contactEmail: "contact@stamped.work",
 } as const;

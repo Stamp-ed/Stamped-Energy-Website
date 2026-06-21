@@ -5,49 +5,106 @@ Living record of search, generative-engine, and answer-engine optimizations for 
 
 ---
 
+## Positioning (source of truth)
+
+All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcode positioning in components.
+
+| Field | Current value |
+|-------|----------------|
+| **Category** | AI-powered energy intelligence |
+| **Alternate category** | AI-powered prescriptive energy intelligence |
+| **Entity definition** | Stamped Energy is AI-powered prescriptive energy intelligence software for energy-intensive plants in India. Connects meters, SCADA, PLCs, and DISCOM bills into ranked prescriptions with bill-verified savings. |
+| **ICP bill filter** | Built for plants with ₹20 lakh+ monthly electricity bills. |
+| **Audience** | Plant directors, VP Operations, electrical heads, CFOs at energy-intensive plants in India (₹200 Cr+ revenue). |
+| **Verticals** | Cement, steel, pharmaceutical, chemical, automotive |
+| **Benchmark outcomes** | 12-20% monthly bill reduction; 15-25% MD reduction [~] — always verified in pilot M&V |
+| **Not** | Passive EMS dashboard or SCADA replacement |
+
+**Homepage hero (2026-06):**
+
+- Eyebrow: AI-Powered Energy Intelligence
+- H1: From plant data / to verified savings
+- Sub: AI-powered prescriptive intelligence that identifies cost-saving opportunities and delivers actions to improve efficiency.
+- ICP line: Built for plants with ₹20 lakh+ monthly electricity bills.
+
+**Why "plants" not "manufacturers":** ICP includes cement, steel, pharma, chemical, and automotive sites that may not self-identify as generic "manufacturers." Bill size (₹20L+/month) is the qualifying filter for copy and SEO.
+
+---
+
 ## Purpose
 
 | Discipline | Goal |
 |------------|------|
-| **SEO** | Rank for brand and category queries in Google/Bing |
-| **AEO** | Be cited as the authoritative answer in AI assistants (ChatGPT, Perplexity, Google AI Overviews) |
-| **GEO** | Establish **Stamped Energy** as a recognizable entity across the web (schema, profiles, Wikidata) |
+| **SEO** | Rank for brand, category, and vertical-intent queries in Google/Bing |
+| **AEO** | Be cited as the authoritative answer in AI assistants (ChatGPT, Perplexity, Google AI Overviews, Claude) |
+| **GEO** | Establish **Stamped Energy** as a recognizable entity across the web (schema, profiles, Wikidata, consistent entity sentences) |
 
-**Primary audience:** Plant directors, VP Operations, electrical heads, and CFOs at Indian manufacturers (₹200 Cr+ revenue, ₹20-30 lakh+ monthly electricity bills). Verticals: cement, steel, pharmaceutical, chemical, automotive.
+---
 
-**Priority keywords (in order):**
+## Keyword strategy
 
-1. `stamped energy` (brand — must dominate)
-2. `prescriptive energy intelligence India`
-3. `energy management software for manufacturers India`
-4. `reduce electricity bill manufacturing India`
-5. `maximum demand reduction India`
-6. `cement plant energy management India`
-7. `steel plant energy efficiency India`
-8. `pharmaceutical plant HVAC energy savings`
-9. `batch process energy optimization India`
-10. `DISCOM bill savings India`
-11. `SEC reduction manufacturing India`
+### Tier 1 — Brand (must dominate)
+
+| Keyword | Intent | Primary page |
+|---------|--------|--------------|
+| `stamped energy` | Navigational | `/` |
+| `stamped energy india` | Navigational | `/` |
+| `stamped.work` | Navigational | `/` |
+
+### Tier 2 — Category (solution-aware)
+
+| Keyword | Primary page |
+|---------|--------------|
+| `AI-powered energy intelligence India` | `/` |
+| `prescriptive energy intelligence India` | `/`, `/how-it-works` |
+| `energy management software for plants India` | `/` |
+| `reduce electricity bill industrial plant India` | `/`, `/blog` |
+| `maximum demand reduction India` | `/how-it-works`, `/blog` |
+| `DISCOM bill savings India` | `/how-it-works`, `/case-studies` |
+| `SEC reduction industrial plant India` | `/industries`, vertical pages |
+
+### Tier 3 — Vertical (high intent)
+
+| Vertical | Primary page | Supporting keywords |
+|----------|--------------|---------------------|
+| Cement | `/industries/cement` | cement plant energy management India, kWh/ton cement, WHR dispatch |
+| Steel | `/industries/steel` | steel plant energy efficiency India, induction furnace MD, PAT SEC steel |
+| Pharma | `/industries/pharma` | pharmaceutical plant HVAC energy savings, chiller staging pharma |
+| Chemical | `/industries/chemical` | chemical plant batch energy optimization, reactor stagger MD |
+| Automotive | `/industries/automotive` | auto component energy cost reduction, die casting MD, shift-start |
+
+### Tier 4 — Long-tail / AEO questions
+
+Target these in FAQ schema, blog H2/H3 (`?` headings), and sr-only AEO headings:
+
+- What is prescriptive energy intelligence?
+- What is AI-powered energy intelligence for plants?
+- How is Stamped Energy different from EMS or SCADA?
+- How much can plants reduce their electricity bill?
+- Does Stamped require hardware retrofit?
+- How are energy savings verified on the DISCOM bill?
+- How does Stamped work for [cement / steel / pharma / chemical / automotive] plants?
 
 ---
 
 ## Code architecture
 
-All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `layout.tsx` files. **No SEO config in UI components** except content classes (e.g. `.hero-headline` for Speakable schema).
+All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `layout.tsx` files. **No SEO config in UI components** except content classes (e.g. `.hero-headline`, `.value-proposition` for Speakable schema).
 
 | File | Responsibility |
 |------|----------------|
+| `lib/content/icp.ts` | **Positioning source of truth** — category, entity definition, audience, ICP bill line |
 | `lib/seo/pages.ts` | Canonical **title tags** and **meta descriptions** for static routes |
-| `lib/seo/metadata.ts` | `buildPageMetadata()`, `buildPageMetadataFromConfig()`, OG/Twitter, canonical, `en-IN` geo tags |
-| `lib/seo/constants.ts` | `SITE_URL`, default OG image, organization/website `@id`s |
-| `lib/seo/schemas.ts` | JSON-LD objects (Organization, FAQ, HowTo, Article, Person, etc.) |
+| `lib/seo/metadata.ts` | `buildPageMetadata()`, OG/Twitter, canonical, `en-IN` geo tags |
+| `lib/seo/constants.ts` | `SITE_URL`, OG image, `SEO_KEYWORDS`, re-exports entity definition |
+| `lib/seo/schemas.ts` | JSON-LD (Organization, FAQ, HowTo, Article, SoftwareApplication, etc.) |
 | `lib/seo/breadcrumbs.ts` | `generateBreadcrumbSchema()` helper |
 | `lib/seo/crawlers.ts` | Search + AI crawler allow-list for `robots.ts` |
 | `components/seo/JsonLd.tsx` | Renders `<script type="application/ld+json">` |
-| `app/robots.ts` | Dynamic `/robots.txt` (replaces static `public/robots.txt`) |
-| `app/sitemap.ts` | Dynamic `/sitemap.xml` (static routes + blog + case studies) |
-| `lib/seo/extract-faq.ts` | Auto-extract FAQ JSON-LD from blog/case study headings ending with `?` |
-| `app/llms-full.txt/route.ts` | Dynamic CMS index for AI crawlers (all posts + case studies) |
+| `app/robots.ts` | Dynamic `/robots.txt` |
+| `app/sitemap.ts` | Dynamic `/sitemap.xml` (all static routes + blog + case studies) |
+| `lib/seo/extract-faq.ts` | Auto-extract FAQ JSON-LD from blog/case study `?` headings |
+| `app/llms-full.txt/route.ts` | Dynamic CMS index with entity definition header |
 | `public/llms.txt` | Static site guide for AI crawlers (**not linked in UI**) |
 | `public/og-default.png` | Default Open Graph image (1200×630) |
 
@@ -57,221 +114,302 @@ All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `
 
 ## Completed — technical SEO
 
-### Metadata (Sections 1-2)
+### Metadata (all public routes)
 
-Every public route has spec-aligned **title**, **meta description**, **canonical URL**, **Open Graph**, and **Twitter Card** tags.
+Every public route has spec-aligned **title**, **meta description**, **canonical URL**, **Open Graph**, and **Twitter Card** tags via `PAGE_SEO` in `lib/seo/pages.ts`.
 
-| Route | Title source |
-|-------|----------------|
-| `/` | `PAGE_SEO.home` |
-| `/how-it-works` | `PAGE_SEO.howItWorks` |
-| `/about` | `PAGE_SEO.about` |
-| `/blog` | `PAGE_SEO.blog` |
-| `/case-studies` | `PAGE_SEO.caseStudies` |
-| `/contact` | `PAGE_SEO.contact` |
-| `/industries` | `PAGE_SEO.industries` |
-| `/industries/automotive` | `PAGE_SEO.industriesAutomotive` |
+| Route | Title pattern |
+|-------|---------------|
+| `/` | Stamped Energy \| AI-Powered Energy Intelligence for Plants in India |
+| `/how-it-works` | How It Works \| Stamped Energy - 5-Step Energy Loop |
+| `/about` | About Stamped Energy \| IIT Roorkee Engineers, Verified Savings |
+| `/blog` | Energy Intelligence Blog \| Stamped Energy |
+| `/case-studies` | Energy Savings Case Studies \| Stamped Energy |
+| `/contact` | Book a Discovery Call \| Stamped Energy |
+| `/industries` | Industries \| Stamped Energy - Cement, Steel, Pharma, Chemical, Auto |
+| `/industries/[slug]` | Vertical-specific titles (automotive, cement, steel, pharma, chemical) |
 | `/blog/[slug]` | `{Post Title} \| Stamped Energy` |
-| `/case-studies/[slug]` | `{Title} — Case Study \| Stamped Energy` |
+| `/case-studies/[slug]` | `{Title} - Case Study \| Stamped Energy` |
 
-Blog posts also emit `article` Open Graph with `publishedTime`, `modifiedTime`, `authors`, and `tags`.
+Blog posts emit `article` Open Graph with `publishedTime`, `modifiedTime`, `authors`, and `tags`.
 
 ### Global metadata defaults (root layout)
 
-- **`SEO_KEYWORDS`** — priority keywords on all static pages via `buildPageMetadataFromConfig()`
+- **`SEO_KEYWORDS`** — from `lib/seo/constants.ts`; applied via `buildPageMetadataFromConfig()`
 - **`robots`** — `index, follow` with `googleBot` `max-image-preview: large`, `max-snippet: -1`
 - **Default OG/Twitter** — fallback images on all pages via `siteMetadataBase`
 - **`app/not-found.tsx`** — `noindex, nofollow` for 404 pages
 
-### Region & language (Section 14)
+### Region & language
 
 - `<html lang="en-IN">` in root layout
-- Metadata `other` fields: `geo.region: IN`, `geo.placename: India`, `content-language: en-IN`
+- Metadata `other`: `geo.region: IN`, `geo.placename: India`, `content-language: en-IN`
 - Open Graph `locale: en_IN`
 
 ### Crawling & discovery
 
-- **`app/robots.ts`** — welcomes `*` plus named **search crawlers** (Googlebot, Bingbot, etc.) and **AI crawlers** (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, and others). Only blocks `/blog/admin`, `/api/`, `/_next/`.
-- **`app/sitemap.ts`** — dynamic sitemap with route priorities (`/` = 1.0, `/how-it-works` & `/industries/automotive` = 0.9, etc.) plus all published blog posts and case studies.
-- **`public/llms.txt`** — site summary, core page links, keywords, audience, and crawling policy for AI systems. Served at `/llms.txt`; intentionally **not linked anywhere in the UI**.
-- **`/llms-full.txt`** — auto-generated CMS index (all blog posts + case studies); linked from `llms.txt` only, not in UI.
-- Static `public/robots.txt` **removed** so `app/robots.ts` is the single source of truth (Next.js ignores `robots.ts` when a static file exists).
+- **`app/robots.ts`** — welcomes `*` plus search crawlers (Googlebot, Bingbot) and AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, and others). Blocks `/blog/admin`, `/api/`, `/_next/`.
+- **`app/sitemap.ts`** — all five industry verticals at priority 0.85-0.9; homepage 1.0; dynamic blog/case study URLs.
+- **`public/llms.txt`** — entity definition, AEO Q&A block, core pages, keywords, audience, disambiguation ("what we are not").
+- **`/llms-full.txt`** — auto-generated CMS index with entity definition header from `icp.seo.entityDefinition`.
 
 ### Admin & non-public routes
 
 All `/blog/admin/*` pages export `robots: { index: false, follow: false }`.
 
-### Default OG image (Section 9)
-
-- `public/og-default.png` — used when a page has no custom cover image
-- Referenced in `buildPageMetadata()` with width, height, and alt text
-
 ---
 
-## Completed — structured data / JSON-LD (Section 7)
+## Completed — structured data / JSON-LD
 
 | Schema | Where | Purpose |
 |--------|-------|---------|
-| **Organization** | `app/layout.tsx` (every page) | Brand entity, logo, `contactPoint`, `knowsAbout`, founder LinkedIn `sameAs` |
-| **SoftwareApplication** | Homepage | Product entity for energy intelligence software |
+| **Organization** | `app/layout.tsx` (every page) | Brand entity; `knowsAbout` includes all five verticals + AI-powered energy intelligence |
+| **SoftwareApplication** | Homepage | Product entity; feature list includes AI-powered prescriptive intelligence |
 | **WebSite** + SearchAction | Homepage | Site entity; blog search template |
-| **FAQPage** | Homepage | 5 product FAQs for rich results / AI extraction |
-| **FAQPage** | `/industries/automotive` | 3 industry FAQs |
-| **FAQPage** | Blog/case study posts (auto) | Extracted from `?`-ending H2/H3 headings in content |
-| **HowTo** (5 steps) | `/how-it-works` | Workflow with `#connect` … `#verify` anchors |
-| **ContactPage** | `/contact` | Contact/discovery call page entity |
-| **CollectionPage** | `/blog`, `/case-studies` | Listing pages for crawlers |
-| **Person** × 2 | `/about` | Vinayak Raizada, Utso Sarkar (IIT Roorkee alumni) |
-| **Article** | Each `/blog/[slug]` | Headline, dates, author, publisher with logo, keywords |
-| **Article** | Each `/case-studies/[slug]` | Case study with industry/category keywords |
-| **SpeakableSpecification** | Homepage | CSS selectors: `.hero-headline`, `.value-proposition`, `.key-numbers` |
+| **FAQPage** | Homepage | 5 product FAQs (plants in India wording) |
+| **FAQPage** | Each `/industries/[slug]` | Vertical-specific FAQs from content model |
+| **FAQPage** | Blog/case study posts (auto) | Extracted from `?`-ending H2/H3 headings |
+| **HowTo** (5 steps) | `/how-it-works` | Connect → Verify workflow with anchor URLs |
+| **ContactPage** | `/contact` | Discovery call page entity |
+| **CollectionPage** | `/blog`, `/case-studies` | Listing pages |
+| **Person** × 2 | `/about` | Founders (IIT Roorkee alumni) |
+| **Article** | Each blog post + case study | With `about` pointing to plant energy management in India |
+| **SpeakableSpecification** | Homepage | `.hero-headline`, `.value-proposition`, `.key-numbers` |
 | **SpeakableSpecification** | Each blog post | `.blog-article-prose h1`, `.blog-article-prose p` |
 | **BreadcrumbList** | All non-homepage routes | Home → section → page |
 
----
-
-## Completed — content & AEO (Sections 8, 10, 11, 13)
-
-### Heading & snippet targeting
-
-- **Homepage H1** — single `<h1>`: “Energy decisions. Verified savings. Built for manufacturers.” + `sr-only` keyword span
-- **Homepage H2** — “The Stamped Energy Loop” (was generic five-step title)
-- **How It Works** — definition paragraph under H1 (“what is prescriptive energy intelligence”); sr-only AEO question headings; step anchor IDs (`#connect`, `#observe`, `#decide`, `#execute`, `#verify`)
-- **Automotive** — sr-only FAQ-style H2/H3 headings; inline blog links on die casting and heat treatment segments
-
-### Internal linking (Section 10)
-
-- **Homepage / resources section** — descriptive “Read: …” anchor text (not “Read more →”)
-- **Blog posts** — “Related Articles” footer: related posts + `/industries/automotive#die-casting` + `/how-it-works`
-- **Industry segments** — `relatedArticle` links in content for die casting and heat treatment
-
-### Image alt text (Section 13)
-
-Updated alts on hero isometric, die casting, forging, heat treatment, rubber moulding, founder photo, and resource cards — keyword-aware where natural.
+**Entity sentence rule:** Organization, WebSite, and SoftwareApplication `description` fields use `icp.seo.entityDefinition` verbatim for cross-platform consistency (GEO).
 
 ---
 
-## Entity establishment & validation (Sections 12 & 15)
+## AEO — Answer Engine Optimization
 
-### Done (manual + technical)
+### Entity clarity (required on every major surface)
 
-| # | Item | Status |
-|---|------|--------|
-| 1 | Google Search Console — property verified | **Done** |
-| 2 | Sitemap submitted (`https://stamped.work/sitemap.xml`) | **Done** |
-| 6 | Rich Results Test — Homepage FAQ, Blog Article, HowTo, BreadcrumbList | **Done** |
-| 7 | Schema.org validator — Organization, Person | **Done** |
-| 8 | All public pages return HTTP 200 | **Done** |
-| 9 | `/sitemap.xml` accessible | **Done** |
-| 10 | `/robots.txt` accessible | **Done** |
+Use this sentence (from `icp.seo.entityDefinition`) wherever AI systems might scrape for "what is Stamped Energy":
 
-### Not done yet — Section 12 entity establishment
+> Stamped Energy is AI-powered prescriptive energy intelligence software for energy-intensive plants in India. It connects existing incomer meters, SCADA, PLCs, and DISCOM bills into ranked prescriptions - what to change, who owns it, rupee impact, and verified savings on the next electricity bill.
 
-These are **manual, off-site** steps. Required for the `stamped energy` brand query to dominate and for GEO/AEO entity recognition.
+Surfaces that must carry it or a derivative:
 
-| # | Item | Status | How to complete |
-|---|------|--------|-----------------|
-| 3 | **Google Business Profile** | **Not done** | [business.google.com](https://business.google.com) — category: Software Company or Energy Consultant; founding location: IIT Roorkee, Roorkee, Uttarakhand; website: `https://stamped.work` |
-| 4 | **LinkedIn Company Page** | **Not done** | Create **Stamped Energy** company page (separate from founder profiles). Then add URL to `sameAs` in `lib/seo/schemas.ts` and link from About page |
-| 5 | **Wikidata entry** | **Not done** | [wikidata.org](https://www.wikidata.org) — minimal item: name, website, instance of software company, country India, founded 2025, IIT Roorkee founding location |
+- `public/llms.txt` (entity definition block)
+- `/llms-full.txt` (header)
+- Organization + SoftwareApplication JSON-LD
+- `lib/content/site.ts` description
+- Homepage FAQ schema answers
 
-**After completing #4:** update Organization schema:
+### Disambiguation (what we are NOT)
+
+Always pair category claims with:
+
+> Not a passive EMS dashboard or SCADA replacement. Stamped is the prescription and accountability layer.
+
+This prevents AI systems from categorizing Stamped as generic "energy monitoring software."
+
+### Speakable / voice search targets
+
+Homepage CSS selectors wired in `homepageSpeakableSchema`:
+
+- `.hero-headline` — From plant data to verified savings
+- `.value-proposition` — AI-powered prescriptive intelligence subheading
+- `.key-numbers` — Outcome stats section
+
+### FAQ extraction for blog/case studies
+
+Posts with H2/H3 headings ending in `?` followed by answer paragraphs auto-generate FAQPage JSON-LD via `lib/seo/extract-faq.ts`. **Content guideline:** write one FAQ-style heading per post on a question plant heads actually ask.
+
+### AI crawler policy
+
+`lib/seo/crawlers.ts` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, and others on public routes. Keep this list updated as new AI crawlers emerge.
+
+---
+
+## GEO — Generative Engine Optimization
+
+GEO = entity recognition across the web so LLMs and search AI associate "Stamped Energy" with a specific product category.
+
+### On-site entity graph
+
+```
+Stamped Energy (Organization)
+├── SoftwareApplication (product)
+├── WebSite (stamped.work)
+├── Person × 2 (founders)
+├── FAQPage (homepage + verticals)
+├── HowTo (5-step loop)
+└── Article (blog + case studies)
+    └── about: energy management for plants in India
+```
+
+### Off-site entity establishment (manual)
+
+| # | Item | Status | Action |
+|---|------|--------|--------|
+| 1 | Google Search Console | Done | Monitor AI Overview impressions |
+| 2 | Sitemap submitted | Done | Resubmit after major URL additions |
+| 3 | **Google Business Profile** | Not done | Category: Software Company; location: IIT Roorkee; URL: stamped.work |
+| 4 | **LinkedIn Company Page** | Not done | Create Stamped Energy page; add to Organization `sameAs` |
+| 5 | **Wikidata entry** | Not done | Instance of software company; country India; website stamped.work; founded 2025 |
+
+After LinkedIn Company Page exists:
 
 ```ts
 // lib/seo/schemas.ts → organizationSchema.sameAs
 sameAs: [
   "https://www.linkedin.com/in/vinayak-rz/",
   "https://www.linkedin.com/in/utso/",
-  "https://www.linkedin.com/company/stamped-energy", // add actual URL
+  "https://www.linkedin.com/company/stamped-energy", // actual URL
 ],
 ```
+
+### Consistency rule
+
+Name, URL, category label, and entity definition must match across:
+
+- Website schema + llms.txt
+- LinkedIn Company Page
+- Google Business Profile
+- Wikidata
+- Any directory listings
+
+Inconsistency degrades AI entity confidence.
+
+---
+
+## E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness)
+
+| Signal | Implementation |
+|--------|----------------|
+| **Experience** | Case studies with M&V methodology; blog field notes from plant contexts |
+| **Expertise** | IIT Roorkee electrical engineering founders; Person schema with `knowsAbout` |
+| **Authoritativeness** | Vertical-specific pages with process-aware content; FAQ schema per vertical |
+| **Trustworthiness** | Benchmark ranges labelled [~]; bill-verified savings claim; no fabricated stats |
+
+**Trust copy rules:**
+
+- Never state customer results without M&V citation
+- Use `[~]` for benchmark ranges in body copy
+- "Verified on your DISCOM bill" is the trust anchor — repeat in meta descriptions and FAQs
+
+---
+
+## Content & on-page SEO (current state)
+
+### Homepage
+
+- H1: From plant data / to verified savings (two-line)
+- Eyebrow: AI-Powered Energy Intelligence
+- Subheading: AI-powered prescriptive intelligence + ICP bill line
+- sr-only span: vertical keywords for crawlers
+- Speakable targets wired
+
+### How It Works
+
+- H1: Prescriptive intelligence across your entire energy stack
+- Sub: meters/SCADA gap → bill-verified savings narrative
+- HowTo schema with 5 anchored steps
+- sr-only AEO question headings in pinned journey section
+
+### Industries hub + 5 verticals
+
+- Hub: "Industries we serve" + purpose-built AI-powered energy intelligence
+- Each vertical: Greenovative-style hero (AI-driven/powered energy intelligence), Energy challenges section, Actionable energy intelligence waste table, What you gain outcomes
+- FAQ schema per vertical from content model
+- All verticals in sitemap at priority 0.85-0.9
+
+### Internal linking
+
+- Homepage industries section → each vertical
+- Blog posts → related articles + industry anchors + `/how-it-works`
+- Industry segments → `relatedArticle` blog links where configured
+- Mega menu → vertical pages with hover preview
 
 ---
 
 ## Remaining & ongoing maintenance
 
-### High priority (SEO/AEO / GEO impact)
+### High priority
 
-| Item | Notes | Owner |
-|------|-------|-------|
-| **Google Business Profile** (Section 12 #3) | Not created yet — see entity table above | Marketing |
-| **LinkedIn Company Page** (Section 12 #4) | Not created yet — then update `sameAs` in schema + About page link | Marketing + Dev |
-| **Wikidata entry** (Section 12 #5) | Not created yet — helps AI engines recognize brand entity | Marketing |
-| **Add LinkedIn Company URL to Organization schema** | Blocked until company page exists; update `lib/seo/schemas.ts` | Dev |
-| **OG image QA on social platforms** | Run [Twitter Card Validator](https://cards-dev.twitter.com/validator) and [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) on homepage + a blog post after each deploy | Marketing |
-| **GSC monitoring** | Watch Coverage, Core Web Vitals, and AI Overview impressions weekly for 4-8 weeks post-launch | Marketing |
-| **Blog FAQ content** | Use `## Question ending with?` headings in posts to trigger auto FAQ schema (already wired) | Content |
+| Item | Owner |
+|------|-------|
+| Google Business Profile | Marketing |
+| LinkedIn Company Page + schema `sameAs` | Marketing + Dev |
+| Wikidata entry | Marketing |
+| GSC monitoring — AI Overview impressions weekly | Marketing |
+| OG image QA (Twitter Card Validator, LinkedIn Post Inspector) after deploys | Marketing |
 
-### Medium priority (content & coverage)
+### Medium priority
 
 | Item | Notes |
 |------|-------|
-| **Forging blog post** | Spec references forging industry → blog link; write post and add `relatedArticle` on forging segment |
-| **Custom OG images per major page** | Replace `og-default.png` on homepage, how-it-works, automotive with branded 1200×630 assets |
-| **Heading audit on remaining pages** | Verify single H1 and no skipped levels on `/about`, `/case-studies`, `/blog` listing |
+| Custom OG images per major page | Branded 1200×630 for home, how-it-works, top verticals |
+| Blog content for each vertical | Improves long-tail and AEO citation depth |
+| Forging blog post + segment link | Spec gap |
+| Heading audit on `/about`, listing pages | Single H1, no skipped levels |
 
 ### Low priority / periodic
 
 | Item | Notes |
 |------|-------|
-| **Refresh `llms.txt`** | When new industry verticals or major pages ship |
-| **Sitemap `lastModified`** | Already dynamic for blog/case studies; static routes use build time |
-| **New AI crawler user-agents** | Add to `AI_CRAWLERS` in `lib/seo/crawlers.ts` as the landscape evolves |
-| **AEO mention tracking** | Periodically search brand in ChatGPT, Perplexity, Google AI Overviews |
-| **Wikidata / GBP sync** | After GBP and Wikidata exist — keep name, URL, location aligned with Organization schema |
-
-### Not in scope (site features, not SEO blockers)
-
-- Contact form email/CRM forwarding  
-- Separate admin subdomain hardening  
-- Customer logos / testimonial section  
-- Full non-automotive industry pages  
+| Refresh `llms.txt` when positioning changes | Sync with `icp.seo` |
+| Add new AI crawlers to `lib/seo/crawlers.ts` | As landscape evolves |
+| AEO mention tracking | Search brand in ChatGPT, Perplexity, Google AI Overviews monthly |
+| Resubmit sitemap in GSC after major URL changes | |
 
 ---
 
-## How to update when adding content
+## How to update when positioning changes
+
+1. Update **`lib/content/icp.ts`** first (`seo.entityDefinition`, `heroBillLine`, `categoryLabel`, etc.).
+2. Sync **`lib/seo/constants.ts`** keywords if category terms change.
+3. Update **`lib/seo/pages.ts`** titles/descriptions.
+4. Verify **`lib/seo/schemas.ts`** pulls from `icp` (Organization, FAQ, SoftwareApplication).
+5. Update **`public/llms.txt`** entity block and AEO Q&A section.
+6. Update **`SEO_GEO_AEO.md`** (this file).
+7. Run validation checklist below.
+
+---
+
+## How to add new content
 
 ### New static page
 
-1. Add entry to `lib/seo/pages.ts` (`absoluteTitle`, `description`, `path`).
-2. In the route's `page.tsx`:
-   ```ts
-   export const metadata = buildPageMetadataFromConfig(PAGE_SEO.myPage);
-   ```
-3. Add `<JsonLd data={breadcrumbSchema} />` and any page-specific schema.
-4. Add path to `STATIC_PATHS` and `STATIC_PRIORITIES` in `app/sitemap.ts`.
-5. Add link + one-line description to `public/llms.txt` (Core pages section).
+1. Add entry to `lib/seo/pages.ts`.
+2. In route `page.tsx`: `export const metadata = buildPageMetadataFromConfig(PAGE_SEO.myPage)`.
+3. Add `<JsonLd>` for breadcrumb + page-specific schema.
+4. Add to `STATIC_PATHS` and `STATIC_PRIORITIES` in `app/sitemap.ts`.
+5. Add link + description to `public/llms.txt`.
 
 ### New blog post
 
-- Title format is automatic: `{title} | Stamped Energy`.
-- Article + Speakable + Breadcrumb JSON-LD are automatic via `app/blog/[slug]/page.tsx`.
-- **FAQ schema** auto-generated when post uses H2/H3 headings ending with `?` followed by answer paragraphs.
+- Title: `{title} | Stamped Energy` (automatic).
+- Article + Speakable + Breadcrumb JSON-LD automatic.
+- FAQ schema auto-generated from `?` headings.
 - Sitemap and `/llms-full.txt` pick up published posts automatically.
-- Consider adding to a related post's footer or an industry segment's `relatedArticle`.
-
-### New case study
-
-- Title format: `{title} — Case Study | Stamped Energy`.
-- Article + Breadcrumb + optional FAQ JSON-LD are automatic via `app/case-studies/[slug]/page.tsx`.
+- Prefer one FAQ-style H2 per post for AEO.
 
 ### New industry vertical
 
-- Add `PAGE_SEO` entry, page metadata, FAQ schema if applicable, segment blog links, and sitemap path.
+1. Add vertical content in `lib/content/vertical-pages/`.
+2. Add `PAGE_SEO.industries*` entry.
+3. Add route with FAQ schema via `verticalFaqSchema(slug)`.
+4. Add to sitemap, `llms.txt`, industries hub.
+5. Add to Organization `knowsAbout` in schemas if new sector.
 
 ---
 
 ## Validation checklist (run after major SEO changes)
 
 - [ ] `npm run build` passes
-- [ ] [Rich Results Test](https://search.google.com/test/rich-results) on homepage + one blog post + `/how-it-works`
-- [ ] [Schema validator](https://validator.schema.org) on Organization + one Article
+- [ ] Positioning consistent: grep for "Indian manufacturers" — should only appear in legacy blog/seed content, not live SEO surfaces
+- [ ] [Rich Results Test](https://search.google.com/test/rich-results) on `/`, one blog post, `/how-it-works`, one vertical
+- [ ] [Schema validator](https://validator.schema.org) on Organization + SoftwareApplication + one Article
 - [ ] `https://stamped.work/robots.txt` — AI bots listed with `Allow: /`
-- [ ] `https://stamped.work/sitemap.xml` — new URLs present
-- [ ] `https://stamped.work/llms.txt` — updated if static pages added
-- [ ] `https://stamped.work/llms-full.txt` — lists all published posts and case studies
-- [ ] No duplicate H1s; canonical URLs match production (no trailing-slash mismatch)
-- [ ] Resubmit sitemap in GSC if URL count changed significantly
+- [ ] `https://stamped.work/sitemap.xml` — all five verticals present
+- [ ] `https://stamped.work/llms.txt` — entity definition matches `icp.seo.entityDefinition`
+- [ ] `https://stamped.work/llms-full.txt` — entity header present
+- [ ] No duplicate H1s; canonical URLs match production
+- [ ] Resubmit sitemap in GSC if URL count changed
 
 ---
 
@@ -279,16 +417,19 @@ sameAs: [
 
 | Commit | Summary |
 |--------|---------|
-| `0b6a98d` | Full SEO/AEO metadata, JSON-LD, content optimizations, `og-default.png` |
-| `07c5f75` | AI + search crawler welcome policy, `llms.txt`, removed static `robots.txt` |
-| *(this commit)* | Phase 2: FAQ auto-extract, case study Article, llms-full.txt, SoftwareApplication, global robots/keywords |
+| `0b6a98d` | Full SEO/AEO metadata, JSON-LD, content optimizations |
+| `07c5f75` | AI + search crawler welcome policy, llms.txt |
+| `efe740f` | Phase 2: FAQ auto-extract, case study Article, llms-full.txt |
+| `2104277` | Hero + industries copy refresh (AI-powered energy intelligence) |
+| *(pending)* | Positioning shift: plants ICP, expanded SEO/AEO doc, schema + llms sync |
 
 ---
 
 ## Related docs
 
-- `PROGRESS.md` — high-level project phase tracking  
-- `DECISIONS.md` — architecture decisions (add ADR when SEO strategy changes)  
-- Original engineering spec — pasted in Cursor chat (Sections 1-15)
+- `lib/content/icp.ts` — positioning source of truth
+- `PROGRESS.md` — project phase tracking
+- `DECISIONS.md` — architecture decision log
+- `.agents/skills/seo-aeo-best-practices/` — general SEO/AEO principles reference
 
-**Maintenance rule:** Update this file whenever SEO, GEO, or AEO implementation changes — new pages, schema types, crawler policy, or completed manual validation steps.
+**Maintenance rule:** Update this file whenever SEO, GEO, or AEO implementation changes — especially when `icp.seo` positioning changes.

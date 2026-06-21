@@ -19,8 +19,7 @@ export const landingContent = {
     subheadline: "",
     supportingLine:
       "AI-powered prescriptive intelligence that identifies cost-saving opportunities and delivers actions to improve efficiency.",
-    supportingLine2:
-      "Built for Indian manufacturers spending ₹20 lakh+ per month on electricity.",
+    supportingLine2: icp.heroBillLine,
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [

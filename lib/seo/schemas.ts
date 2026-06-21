@@ -1,3 +1,4 @@
+import { icp } from "@/lib/content/icp";
 import { getVerticalPage, type VerticalSlug } from "@/lib/content/vertical-pages";
 import type { IndustryFaqItem } from "@/lib/content/types";
 import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from "@/lib/seo/constants";
@@ -22,8 +23,7 @@ export const organizationSchema = {
   name: "Stamped Energy",
   url: SITE_URL,
   logo: organizationPublisher.logo,
-  description:
-    "Prescriptive energy intelligence software for Indian manufacturers. Turns existing meters, SCADA, and DISCOM bills into rupee-denominated prescriptions with verified savings.",
+  description: icp.seo.entityDefinition,
   email: "contact@stamped.work",
   foundingDate: "2025",
   foundingLocation: {
@@ -42,12 +42,17 @@ export const organizationSchema = {
     availableLanguage: ["English", "Hindi"],
   },
   knowsAbout: [
-    "Energy management",
+    icp.seo.categoryLabel,
     "Prescriptive energy intelligence",
     "Maximum demand reduction",
     "DISCOM billing",
     "SCADA integration",
-    "Manufacturing energy cost reduction",
+    "Industrial plant energy cost reduction",
+    "Cement plant energy management",
+    "Steel plant energy efficiency",
+    "Pharmaceutical HVAC energy optimization",
+    "Chemical batch energy optimization",
+    "Automotive plant energy management",
     "IPMVP measurement and verification",
   ],
   sameAs: [
@@ -62,8 +67,7 @@ export const websiteSchema = {
   "@id": WEBSITE_ID,
   name: "Stamped Energy",
   url: SITE_URL,
-  description:
-    "Prescriptive energy intelligence for Indian manufacturers — verified rupee savings on the DISCOM bill.",
+  description: `${icp.seo.categoryLabelAlt} for energy-intensive plants in India - verified rupee savings on the DISCOM bill.`,
   publisher: {
     "@id": ORGANIZATION_ID,
   },
@@ -83,10 +87,10 @@ export const homepageFaqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "How much can Indian manufacturers reduce their electricity bill with Stamped Energy?",
+      name: "How much can plants in India reduce their electricity bill with Stamped Energy?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Manufacturers using Stamped Energy typically see 12-20% off their monthly electricity bill. Maximum demand charges are often reduced by 15-25%, frequently from incomer meter and bill data alone with no capital expenditure. These are benchmark ranges; your verified figures come from the pilot.",
+        text: `Energy-intensive plants using Stamped Energy typically see ${icp.seo.outcomes.billReduction} off their monthly electricity bill. Maximum demand charges are often reduced by ${icp.seo.outcomes.mdReduction}, frequently from incomer meter and bill data alone with no capital expenditure. These are benchmark ranges; your verified figures come from the pilot.`,
       },
     },
     {
@@ -110,7 +114,7 @@ export const homepageFaqSchema = {
       name: "Which industries does Stamped Energy serve?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stamped Energy serves cement, steel, pharmaceutical, chemical, and automotive manufacturing plants across India. Each vertical has tailored prescription playbooks — kWh/ton for cement, HVAC staging for pharma, batch SEC for chemical, furnace MD for steel and automotive — verified on your DISCOM bill.",
+        text: "Stamped Energy serves cement, steel, pharmaceutical, chemical, and automotive plants across India. Each vertical has tailored AI-powered prescription playbooks - kWh/ton for cement, HVAC staging for pharma, batch SEC for chemical, furnace MD for steel and automotive - verified on your DISCOM bill.",
       },
     },
     {
@@ -127,7 +131,7 @@ export const homepageFaqSchema = {
 export const homepageSpeakableSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Stamped Energy — Prescriptive Energy Intelligence for Indian Manufacturers",
+  name: "Stamped Energy - AI-Powered Energy Intelligence for Plants in India",
   speakable: {
     "@type": "SpeakableSpecification",
     cssSelector: [".hero-headline", ".value-proposition", ".key-numbers"],
@@ -273,7 +277,7 @@ export function buildArticleSchema(post: ArticleSchemaInput) {
     inLanguage: "en-IN",
     about: {
       "@type": "Thing",
-      name: "Energy management for Indian manufacturers",
+      name: "Energy management for energy-intensive plants in India",
     },
   };
 }
@@ -317,8 +321,7 @@ export const softwareApplicationSchema = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web browser",
   url: SITE_URL,
-  description:
-    "Prescriptive energy intelligence for Indian manufacturers. Connects incomer meters, SCADA, and DISCOM bills into rupee-denominated prescriptions with verified savings.",
+  description: icp.seo.entityDefinition,
   provider: {
     "@id": ORGANIZATION_ID,
   },
@@ -333,6 +336,7 @@ export const softwareApplicationSchema = {
     description: "Discovery call and pilot — pricing based on verified savings potential",
   },
   featureList: [
+    "AI-powered prescriptive energy intelligence",
     "Read-only meter and SCADA integration",
     "Rupee-denominated energy prescriptions",
     "WhatsApp action assignment to plant floor",
@@ -415,7 +419,7 @@ export function buildCaseStudySchema(study: CaseStudySchemaInput) {
     inLanguage: "en-IN",
     about: {
       "@type": "Thing",
-      name: `${study.industry} energy cost reduction for Indian manufacturers`,
+      name: `${study.industry} energy cost reduction for plants in India`,
     },
   };
 }
