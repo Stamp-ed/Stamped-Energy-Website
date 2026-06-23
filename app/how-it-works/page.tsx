@@ -8,7 +8,7 @@ import { HiwOpening } from "@/components/how-it-works/HiwOpening";
 import { HiwPageCta } from "@/components/how-it-works/HiwPageCta";
 import { HiwPinnedJourney } from "@/components/how-it-works/HiwPinnedJourney";
 import { HiwPrescriptionWalkthrough } from "@/components/how-it-works/HiwPrescriptionWalkthrough";
-import { IndustryResources } from "@/components/industries/shared/IndustryResources";
+import { DynamicIndustryResources } from "@/components/industries/shared/DynamicIndustryResources";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
@@ -33,7 +33,7 @@ export default function HowItWorksPage() {
       <HiwCapabilities />
       <HiwBeforeAfter />
       <HiwDeployment />
-      <IndustryResources />
+      <DynamicIndustryResources />
       <HiwPageCta />
     </>
   );

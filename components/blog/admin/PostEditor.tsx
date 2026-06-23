@@ -31,6 +31,8 @@ type FormState = {
   tags: string;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   featured: boolean;
+  homepageFeatured: boolean;
+  homepageOrder: string;
   authorProfile: AuthorProfileId;
 };
 
@@ -62,6 +64,9 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
     tags: initial?.tags.join(", ") ?? "",
     status: initial?.status ?? "DRAFT",
     featured: initial?.featured ?? false,
+    homepageFeatured: initial?.homepageFeatured ?? false,
+    homepageOrder:
+      initial?.homepageOrder != null ? String(initial.homepageOrder) : "",
     authorProfile: initial?.authorProfile ?? DEFAULT_AUTHOR_PROFILE_ID,
   });
   const [error, setError] = useState("");
@@ -86,6 +91,8 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
       tags: data.tags?.length ? data.tags.join(", ") : current.tags,
       status: data.status ?? current.status,
       featured: data.featured ?? current.featured,
+      homepageFeatured: current.homepageFeatured,
+      homepageOrder: current.homepageOrder,
       authorProfile: current.authorProfile,
     }));
     setError("");
@@ -110,6 +117,9 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
         .filter(Boolean),
       status: form.status,
       featured: form.featured,
+      homepageFeatured: form.homepageFeatured,
+      homepageOrder:
+        form.homepageOrder.trim() === "" ? null : Number.parseInt(form.homepageOrder, 10),
       authorProfile: form.authorProfile,
     };
 
@@ -269,6 +279,29 @@ export function PostEditor({ mode, initial }: PostEditorProps) {
                 />
                 Feature on blog homepage
               </label>
+              <label className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)] sm:col-span-2">
+                <input
+                  type="checkbox"
+                  checked={form.homepageFeatured}
+                  onChange={(event) => update("homepageFeatured", event.target.checked)}
+                  className="h-4 w-4 rounded border-[var(--admin-border)]"
+                />
+                Show on main site homepage (max 3 across blogs and case studies)
+              </label>
+              {form.homepageFeatured ? (
+                <div>
+                  <label className={labelClass}>Homepage order (optional)</label>
+                  <input
+                    type="number"
+                    min={0}
+                    max={2}
+                    value={form.homepageOrder}
+                    onChange={(event) => update("homepageOrder", event.target.value)}
+                    placeholder="0 = first card"
+                    className={fieldClass}
+                  />
+                </div>
+              ) : null}
             </div>
           ) : null}
         </div>

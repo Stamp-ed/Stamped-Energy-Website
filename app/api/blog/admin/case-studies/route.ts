@@ -4,7 +4,8 @@ import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { CASE_STUDY_CATEGORY_IDS } from "@/lib/case-studies/constants";
 import { createCaseStudy, listAdminCaseStudies, type CreateCaseStudyInput } from "@/lib/case-studies/studies";
-import { revalidateCaseStudyPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { revalidateCaseStudyPages, revalidateContentSitemap, revalidateHomepageSpotlight } from "@/lib/blog/revalidate-public";
+import { HomepageSpotlightFullError } from "@/lib/content/homepage-spotlight";
 import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type CreateBody = {
@@ -25,6 +26,8 @@ type CreateBody = {
   disclaimer?: string | null;
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorProfile?: string;
 };
@@ -70,33 +73,45 @@ export async function POST(request: Request) {
     return jsonError("Invalid author profile.", 400);
   }
 
-  const study = await createCaseStudy({
-    title: body.title,
-    slug: body.slug,
-    excerpt: body.excerpt,
-    content: body.content,
-    contentFormat: body.contentFormat,
-    bodyJson: body.bodyJson,
-    coverImage: body.coverImage,
-    coverImageAlt: body.coverImageAlt,
-    category: body.category,
-    industry: body.industry,
-    clientContext: body.clientContext,
-    tag: body.tag,
-    metrics: body.metrics,
-    outcomes: body.outcomes,
-    disclaimer: body.disclaimer,
-    status: body.status,
-    featured: body.featured,
-    readTimeMin: body.readTimeMin,
-    authorId: session.userId,
-    authorProfile: body.authorProfile as CreateCaseStudyInput["authorProfile"],
-  });
+  try {
+    const study = await createCaseStudy({
+      title: body.title,
+      slug: body.slug,
+      excerpt: body.excerpt,
+      content: body.content,
+      contentFormat: body.contentFormat,
+      bodyJson: body.bodyJson,
+      coverImage: body.coverImage,
+      coverImageAlt: body.coverImageAlt,
+      category: body.category,
+      industry: body.industry,
+      clientContext: body.clientContext,
+      tag: body.tag,
+      metrics: body.metrics,
+      outcomes: body.outcomes,
+      disclaimer: body.disclaimer,
+      status: body.status,
+      featured: body.featured,
+      homepageFeatured: body.homepageFeatured,
+      homepageOrder: body.homepageOrder,
+      readTimeMin: body.readTimeMin,
+      authorId: session.userId,
+      authorProfile: body.authorProfile as CreateCaseStudyInput["authorProfile"],
+    });
 
-  if (study.status === "PUBLISHED") {
-    revalidateCaseStudyPages(study.slug);
-    revalidateContentSitemap();
+    if (study.status === "PUBLISHED") {
+      revalidateCaseStudyPages(study.slug);
+      revalidateContentSitemap();
+    }
+    if (study.homepageFeatured) {
+      revalidateHomepageSpotlight();
+    }
+
+    return jsonOk({ study }, { status: 201 });
+  } catch (error) {
+    if (error instanceof HomepageSpotlightFullError) {
+      return jsonError("Homepage spotlight is full. Unpin another item first (max 3).", 409);
+    }
+    throw error;
   }
-
-  return jsonOk({ study }, { status: 201 });
 }

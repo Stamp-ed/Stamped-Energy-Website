@@ -10,11 +10,11 @@ import type { BlogPostListItem } from "@/lib/blog/posts";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-type BlogFeaturedProps = {
+type BlogRelatedArticlesProps = {
   posts: BlogPostListItem[];
 };
 
-export function BlogFeatured({ posts }: BlogFeaturedProps) {
+export function BlogRelatedArticles({ posts }: BlogRelatedArticlesProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { isReady, prefersReducedMotion } = useMotion();
 
@@ -24,11 +24,11 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
         return;
       }
 
-      gsap.from("[data-blog-featured]", {
+      gsap.from("[data-blog-related]", {
         autoAlpha: 0,
-        y: 28,
-        duration: 0.6,
-        stagger: 0.12,
+        y: 24,
+        duration: 0.55,
+        stagger: 0.1,
         ease: "power2.out",
         scrollTrigger: { trigger: sectionRef.current, ...scrollTriggerDefaults },
       });
@@ -41,19 +41,19 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
   }
 
   return (
-    <section ref={sectionRef} className="border-b border-outline-variant/40 bg-surface py-10 md:section-y">
+    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface-low section-y">
       <Container>
         <SectionHeading
-          eyebrow="Featured"
-          title="Latest perspectives"
-          description="Shift-start MD, furnace holding, compressor waste, practical notes for plant heads."
+          eyebrow="Keep reading"
+          title="Related articles"
+          description="More perspectives from the same topic area."
           align="center"
           className="mx-auto max-w-2xl"
         />
 
-        <div className="mt-6 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
+        <div className="mx-auto mt-8 grid max-w-6xl gap-5 md:mt-12 lg:grid-cols-3">
           {posts.map((post) => (
-            <BlogPostCard key={post.id} post={post} dataAttr="data-blog-featured" />
+            <BlogPostCard key={post.id} post={post} dataAttr="data-blog-related" />
           ))}
         </div>
       </Container>

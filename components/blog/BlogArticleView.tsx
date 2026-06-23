@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 
 import { ArticleAuthorCard } from "@/components/blog/ArticleAuthorCard";
+import { BlogRelatedArticles } from "@/components/blog/BlogRelatedArticles";
 import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
@@ -230,45 +231,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
         </Container>
       </section>
 
-      <section className="border-t border-outline-variant/40 bg-surface-low section-y">
-        <Container>
-          <div className={ARTICLE_LAYOUT}>
-            <div className="min-w-0 lg:col-span-1">
-              <h2 className="font-display text-2xl font-extrabold text-on-surface">
-                Related Articles
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {related.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={`/blog/${item.slug}`}
-                      className="text-base font-semibold leading-7 text-on-surface hover:text-primary"
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href="/industries/automotive#die-casting"
-                    className="text-base font-semibold leading-7 text-on-surface hover:text-primary"
-                  >
-                    Auto component energy cost reduction — die casting, forging, heat treatment
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/how-it-works"
-                    className="text-base font-semibold leading-7 text-on-surface hover:text-primary"
-                  >
-                    See how Stamped Energy closes the loop on verified DISCOM bill savings
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <BlogRelatedArticles posts={related} />
 
       <IndustryPageCta content={BLOG_CTA} />
     </>

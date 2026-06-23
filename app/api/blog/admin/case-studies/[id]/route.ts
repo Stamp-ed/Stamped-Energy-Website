@@ -9,7 +9,8 @@ import {
   updateCaseStudy,
   type UpdateCaseStudyInput,
 } from "@/lib/case-studies/studies";
-import { revalidateCaseStudyPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { revalidateCaseStudyPages, revalidateContentSitemap, revalidateHomepageSpotlight } from "@/lib/blog/revalidate-public";
+import { HomepageSpotlightFullError } from "@/lib/content/homepage-spotlight";
 import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type RouteContext = {
@@ -34,6 +35,8 @@ type UpdateBody = {
   disclaimer?: string | null;
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorProfile?: string;
 };
@@ -95,8 +98,12 @@ async function updateHandler(request: Request, context: RouteContext) {
     });
     revalidateCaseStudyPages(study.slug);
     revalidateContentSitemap();
+    revalidateHomepageSpotlight();
     return jsonOk({ study });
   } catch (error) {
+    if (error instanceof HomepageSpotlightFullError) {
+      return jsonError("Homepage spotlight is full. Unpin another item first (max 3).", 409);
+    }
     if (error instanceof Error && error.message === "NOT_FOUND") {
       return jsonError("Case study not found.", 404);
     }

@@ -9,11 +9,19 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { resourcesContent } from "@/lib/content";
+import type { ResourceCard } from "@/lib/content/types";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
+type ResourcesContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: ResourceCard[];
+};
+
 type IndustryResourcesProps = {
-  content?: typeof resourcesContent;
+  content?: ResourcesContent;
 };
 
 export function IndustryResources({ content }: IndustryResourcesProps) {

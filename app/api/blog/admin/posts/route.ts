@@ -4,7 +4,8 @@ import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { BLOG_CATEGORY_IDS } from "@/lib/blog/constants";
 import { createPost, listAdminPosts, type CreatePostInput } from "@/lib/blog/posts";
-import { revalidateBlogPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { revalidateBlogPages, revalidateContentSitemap, revalidateHomepageSpotlight } from "@/lib/blog/revalidate-public";
+import { HomepageSpotlightFullError } from "@/lib/content/homepage-spotlight";
 import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type CreateBody = {
@@ -19,6 +20,8 @@ type CreateBody = {
   tags?: string[];
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorProfile?: string;
 };
@@ -64,27 +67,39 @@ export async function POST(request: Request) {
     return jsonError("Invalid author profile.", 400);
   }
 
-  const post = await createPost({
-    title: body.title,
-    slug: body.slug,
-    excerpt: body.excerpt,
-    content: body.content,
-    contentFormat: body.contentFormat,
-    bodyJson: body.bodyJson,
-    coverImage: body.coverImage,
-    category: body.category,
-    tags: body.tags,
-    status: body.status,
-    featured: body.featured,
-    readTimeMin: body.readTimeMin,
-    authorId: session.userId,
-    authorProfile: body.authorProfile as CreatePostInput["authorProfile"],
-  });
+  try {
+    const post = await createPost({
+      title: body.title,
+      slug: body.slug,
+      excerpt: body.excerpt,
+      content: body.content,
+      contentFormat: body.contentFormat,
+      bodyJson: body.bodyJson,
+      coverImage: body.coverImage,
+      category: body.category,
+      tags: body.tags,
+      status: body.status,
+      featured: body.featured,
+      homepageFeatured: body.homepageFeatured,
+      homepageOrder: body.homepageOrder,
+      readTimeMin: body.readTimeMin,
+      authorId: session.userId,
+      authorProfile: body.authorProfile as CreatePostInput["authorProfile"],
+    });
 
-  if (post.status === "PUBLISHED") {
-    revalidateBlogPages(post.slug);
-    revalidateContentSitemap();
+    if (post.status === "PUBLISHED") {
+      revalidateBlogPages(post.slug);
+      revalidateContentSitemap();
+    }
+    if (post.homepageFeatured) {
+      revalidateHomepageSpotlight();
+    }
+
+    return jsonOk({ post }, { status: 201 });
+  } catch (error) {
+    if (error instanceof HomepageSpotlightFullError) {
+      return jsonError("Homepage spotlight is full. Unpin another item first (max 3).", 409);
+    }
+    throw error;
   }
-
-  return jsonOk({ post }, { status: 201 });
 }

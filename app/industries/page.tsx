@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { IndustriesHubPage } from "@/components/industries/IndustriesHubPage";
+import { DynamicIndustryResources } from "@/components/industries/shared/DynamicIndustryResources";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
@@ -17,7 +18,7 @@ export default function IndustriesPage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
-      <IndustriesHubPage />
+      <IndustriesHubPage resourcesSlot={<DynamicIndustryResources />} />
     </>
   );
 }

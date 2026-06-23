@@ -3,6 +3,12 @@ import type { BlogPost, ContentFormat, PostStatus, Prisma } from "@prisma/client
 import { getCategoryLabel } from "@/lib/blog/constants";
 import { prisma } from "@/lib/blog/db";
 import {
+  assertHomepageSpotlightAvailable,
+  getNextHomepageOrder,
+  HomepageSpotlightFullError,
+} from "@/lib/content/homepage-spotlight";
+export { HomepageSpotlightFullError };
+import {
   getAuthorProfile,
   type AuthorProfile,
   type AuthorProfileId,
@@ -28,6 +34,8 @@ export type BlogPostDTO = {
   tags: string[];
   status: PostStatus;
   featured: boolean;
+  homepageFeatured: boolean;
+  homepageOrder: number | null;
   readTimeMin: number;
   authorName: string;
   authorProfile: AuthorProfileId;
@@ -51,6 +59,8 @@ export type CreatePostInput = {
   tags?: string[];
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorId: string;
   authorProfile?: AuthorProfileId;
@@ -89,6 +99,8 @@ function mapPost(post: BlogPost & { author: { name: string } }): BlogPostDTO {
     tags: parseTags(post.tags),
     status: post.status,
     featured: post.featured,
+    homepageFeatured: post.homepageFeatured,
+    homepageOrder: post.homepageOrder,
     readTimeMin: post.readTimeMin,
     authorName: author.name,
     authorProfile: author.id,
@@ -261,6 +273,15 @@ export async function createPost(input: CreatePostInput): Promise<BlogPostDTO> {
   const content =
     input.content ?? (bodyJson ? richDocToPlainText(parseRichDoc(bodyJson)) : "");
   const readTimeMin = input.readTimeMin ?? resolveReadTime(bodyJson, content);
+  const homepageFeatured = input.homepageFeatured ?? false;
+
+  if (homepageFeatured) {
+    await assertHomepageSpotlightAvailable({ enabling: true });
+  }
+
+  const homepageOrder = homepageFeatured
+    ? (input.homepageOrder ?? (await getNextHomepageOrder()))
+    : null;
 
   const post = await prisma.blogPost.create({
     data: {
@@ -275,6 +296,8 @@ export async function createPost(input: CreatePostInput): Promise<BlogPostDTO> {
       tags: serializeTags(input.tags ?? []),
       status,
       featured: input.featured ?? false,
+      homepageFeatured,
+      homepageOrder,
       readTimeMin,
       authorId: input.authorId,
       authorProfile: input.authorProfile ?? "vinayak",
@@ -308,6 +331,24 @@ export async function updatePost(id: string, input: UpdatePostInput): Promise<Bl
         : existing.content;
   const readTimeMin = input.readTimeMin ?? resolveReadTime(bodyJson, content);
 
+  const homepageFeatured =
+    input.homepageFeatured !== undefined ? input.homepageFeatured : existing.homepageFeatured;
+
+  if (input.homepageFeatured === true && !existing.homepageFeatured) {
+    await assertHomepageSpotlightAvailable({ enabling: true, excludeBlogPostId: id });
+  }
+
+  let homepageOrder =
+    input.homepageOrder !== undefined ? input.homepageOrder : existing.homepageOrder;
+
+  if (input.homepageFeatured === true && homepageOrder == null) {
+    homepageOrder = await getNextHomepageOrder();
+  }
+
+  if (input.homepageFeatured === false) {
+    homepageOrder = null;
+  }
+
   const post = await prisma.blogPost.update({
     where: { id },
     data: {
@@ -322,6 +363,9 @@ export async function updatePost(id: string, input: UpdatePostInput): Promise<Bl
       ...(input.tags !== undefined ? { tags: serializeTags(input.tags) } : {}),
       status,
       ...(input.featured !== undefined ? { featured: input.featured } : {}),
+      ...(input.homepageFeatured !== undefined || input.homepageOrder !== undefined
+        ? { homepageFeatured, homepageOrder }
+        : {}),
       ...(input.authorProfile !== undefined ? { authorProfile: input.authorProfile } : {}),
       readTimeMin,
       publishedAt:

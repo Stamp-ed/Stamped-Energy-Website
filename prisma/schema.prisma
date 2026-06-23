@@ -41,19 +41,22 @@ model BlogPost {
   coverImage    String?
   category      String
   tags          String        @default("[]")
-  status        PostStatus    @default(DRAFT)
-  featured      Boolean       @default(false)
-  readTimeMin   Int           @default(5)
-  authorId      String
-  authorProfile String        @default("vinayak")
-  author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  publishedAt   DateTime?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  status           PostStatus    @default(DRAFT)
+  featured           Boolean       @default(false)
+  homepageFeatured   Boolean       @default(false)
+  homepageOrder      Int?
+  readTimeMin        Int           @default(5)
+  authorId           String
+  authorProfile      String        @default("vinayak")
+  author             AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt        DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
 
   @@index([status, publishedAt])
   @@index([category])
   @@index([featured])
+  @@index([homepageFeatured, homepageOrder])
 }
 
 model CaseStudy {
@@ -73,19 +76,22 @@ model CaseStudy {
   metrics       String        @default("[]")
   outcomes      String        @default("[]")
   disclaimer    String?
-  status        PostStatus    @default(DRAFT)
-  featured      Boolean       @default(false)
-  readTimeMin   Int           @default(5)
-  authorId      String
-  authorProfile String        @default("vinayak")
-  author        AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  publishedAt   DateTime?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  status           PostStatus    @default(DRAFT)
+  featured           Boolean       @default(false)
+  homepageFeatured   Boolean       @default(false)
+  homepageOrder      Int?
+  readTimeMin        Int           @default(5)
+  authorId           String
+  authorProfile      String        @default("vinayak")
+  author             AdminUser     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt        DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
 
   @@index([status, publishedAt])
   @@index([category])
   @@index([featured])
+  @@index([homepageFeatured, homepageOrder])
 }
 
 model ContactSubmission {

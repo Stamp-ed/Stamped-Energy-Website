@@ -17,3 +17,9 @@ export function revalidateCaseStudyPages(slug?: string) {
 export function revalidateContentSitemap() {
   revalidatePath("/sitemap.xml");
 }
+
+export function revalidateHomepageSpotlight() {
+  revalidatePath("/");
+  revalidatePath("/how-it-works");
+  revalidatePath("/industries");
+}

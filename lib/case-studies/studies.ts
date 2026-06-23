@@ -10,6 +10,12 @@ import {
 } from "@/lib/case-studies/constants";
 import { prisma } from "@/lib/blog/db";
 import {
+  assertHomepageSpotlightAvailable,
+  getNextHomepageOrder,
+  HomepageSpotlightFullError,
+} from "@/lib/content/homepage-spotlight";
+export { HomepageSpotlightFullError };
+import {
   getAuthorProfile,
   type AuthorProfile,
   type AuthorProfileId,
@@ -44,6 +50,8 @@ export type CaseStudyDTO = {
   disclaimer: string | null;
   status: PostStatus;
   featured: boolean;
+  homepageFeatured: boolean;
+  homepageOrder: number | null;
   readTimeMin: number;
   authorName: string;
   authorProfile: AuthorProfileId;
@@ -79,6 +87,8 @@ export type CreateCaseStudyInput = {
   disclaimer?: string | null;
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorId: string;
   authorProfile?: AuthorProfileId;
@@ -109,6 +119,8 @@ function mapStudy(study: CaseStudy & { author: { name: string } }): CaseStudyDTO
     disclaimer: study.disclaimer,
     status: study.status,
     featured: study.featured,
+    homepageFeatured: study.homepageFeatured,
+    homepageOrder: study.homepageOrder,
     readTimeMin: study.readTimeMin,
     authorName: author.name,
     authorProfile: author.id,
@@ -274,6 +286,15 @@ export async function createCaseStudy(input: CreateCaseStudyInput): Promise<Case
   const status = input.status ?? "DRAFT";
   const bodyJson = input.bodyJson ?? null;
   const content = input.content ?? richDocToPlainText(parseRichDoc(bodyJson));
+  const homepageFeatured = input.homepageFeatured ?? false;
+
+  if (homepageFeatured) {
+    await assertHomepageSpotlightAvailable({ enabling: true });
+  }
+
+  const homepageOrder = homepageFeatured
+    ? (input.homepageOrder ?? (await getNextHomepageOrder()))
+    : null;
 
   const study = await prisma.caseStudy.create({
     data: {
@@ -294,6 +315,8 @@ export async function createCaseStudy(input: CreateCaseStudyInput): Promise<Case
       disclaimer: input.disclaimer?.trim() || null,
       status,
       featured: input.featured ?? false,
+      homepageFeatured,
+      homepageOrder,
       readTimeMin: input.readTimeMin ?? resolveReadTime(bodyJson, content),
       authorId: input.authorId,
       authorProfile: input.authorProfile ?? "vinayak",
@@ -326,6 +349,24 @@ export async function updateCaseStudy(id: string, input: UpdateCaseStudyInput): 
         ? richDocToPlainText(parseRichDoc(bodyJson))
         : existing.content;
 
+  const homepageFeatured =
+    input.homepageFeatured !== undefined ? input.homepageFeatured : existing.homepageFeatured;
+
+  if (input.homepageFeatured === true && !existing.homepageFeatured) {
+    await assertHomepageSpotlightAvailable({ enabling: true, excludeCaseStudyId: id });
+  }
+
+  let homepageOrder =
+    input.homepageOrder !== undefined ? input.homepageOrder : existing.homepageOrder;
+
+  if (input.homepageFeatured === true && homepageOrder == null) {
+    homepageOrder = await getNextHomepageOrder();
+  }
+
+  if (input.homepageFeatured === false) {
+    homepageOrder = null;
+  }
+
   const study = await prisma.caseStudy.update({
     where: { id },
     data: {
@@ -346,6 +387,9 @@ export async function updateCaseStudy(id: string, input: UpdateCaseStudyInput): 
       ...(input.disclaimer !== undefined ? { disclaimer: input.disclaimer?.trim() || null } : {}),
       status,
       ...(input.featured !== undefined ? { featured: input.featured } : {}),
+      ...(input.homepageFeatured !== undefined || input.homepageOrder !== undefined
+        ? { homepageFeatured, homepageOrder }
+        : {}),
       ...(input.authorProfile !== undefined ? { authorProfile: input.authorProfile } : {}),
       readTimeMin: input.readTimeMin ?? resolveReadTime(bodyJson, content),
       publishedAt:

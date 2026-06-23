@@ -4,7 +4,8 @@ import { jsonError, jsonOk, parseJsonBody } from "@/lib/blog/api";
 import { requireAdminSession } from "@/lib/blog/auth";
 import { BLOG_CATEGORY_IDS } from "@/lib/blog/constants";
 import { deletePost, getAdminPostById, updatePost, type UpdatePostInput } from "@/lib/blog/posts";
-import { revalidateBlogPages, revalidateContentSitemap } from "@/lib/blog/revalidate-public";
+import { revalidateBlogPages, revalidateContentSitemap, revalidateHomepageSpotlight } from "@/lib/blog/revalidate-public";
+import { HomepageSpotlightFullError } from "@/lib/content/homepage-spotlight";
 import { isAuthorProfileId } from "@/lib/content/author-profiles";
 
 type RouteContext = {
@@ -23,6 +24,8 @@ type UpdateBody = {
   tags?: string[];
   status?: PostStatus;
   featured?: boolean;
+  homepageFeatured?: boolean;
+  homepageOrder?: number | null;
   readTimeMin?: number;
   authorProfile?: string;
 };
@@ -84,8 +87,12 @@ async function updatePostHandler(request: Request, context: RouteContext) {
     });
     revalidateBlogPages(post.slug);
     revalidateContentSitemap();
+    revalidateHomepageSpotlight();
     return jsonOk({ post });
   } catch (error) {
+    if (error instanceof HomepageSpotlightFullError) {
+      return jsonError("Homepage spotlight is full. Unpin another item first (max 3).", 409);
+    }
     if (error instanceof Error && error.message === "NOT_FOUND") {
       return jsonError("Post not found.", 404);
     }

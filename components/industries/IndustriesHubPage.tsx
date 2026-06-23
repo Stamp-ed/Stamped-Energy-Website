@@ -1,4 +1,4 @@
-"use client";
+import type { ReactNode } from "react";
 
 import { IndustriesHubApproach } from "@/components/industries/IndustriesHubApproach";
 import { IndustriesHubExplorer } from "@/components/industries/IndustriesHubExplorer";
@@ -9,7 +9,11 @@ import { IndustryPageCta } from "@/components/industries/shared/IndustryPageCta"
 import { IndustryResources } from "@/components/industries/shared/IndustryResources";
 import { industriesContent } from "@/lib/content";
 
-export function IndustriesHubPage() {
+type IndustriesHubPageProps = {
+  resourcesSlot?: ReactNode;
+};
+
+export function IndustriesHubPage({ resourcesSlot }: IndustriesHubPageProps) {
   return (
     <>
       <IndustriesHubHero />
@@ -17,7 +21,7 @@ export function IndustriesHubPage() {
       <IndustriesHubApproach />
       <IndustriesHubFeatured />
       <IndustriesHubExplorer />
-      <IndustryResources />
+      {resourcesSlot ?? <IndustryResources />}
       <IndustryPageCta content={industriesContent.hub.finalCta} />
     </>
   );

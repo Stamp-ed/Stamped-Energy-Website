@@ -9,7 +9,7 @@ import { Outcomes } from "@/components/sections/Outcomes";
 import { PrescriptionExample } from "@/components/sections/PrescriptionExample";
 import { Problem } from "@/components/sections/Problem";
 import { WhyStamped } from "@/components/sections/WhyStamped";
-import { IndustryResources } from "@/components/industries/shared/IndustryResources";
+import { DynamicIndustryResources } from "@/components/industries/shared/DynamicIndustryResources";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
@@ -41,7 +41,7 @@ export default function HomePage() {
       <Industries />
       <WhyStamped />
       <FutureMedia />
-      <IndustryResources />
+      <DynamicIndustryResources />
       <LandingClosingCta />
     </>
   );
