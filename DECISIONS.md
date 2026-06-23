@@ -111,3 +111,23 @@ Architecture and workflow decisions for this project.
 **Rationale:** One template enforces strategy doc section order; copy changes stay in typed content files; adding a sixth vertical is content-only. Automotive segments preserved; other verticals use optional segments block.
 
 **Impact:** Hub, mega menu, homepage tiles, sitemap, and FAQ schema auto-include all live verticals from `industriesContent.verticals[]`.
+
+---
+
+## ADR-007: Homepage FAQ — single content source feeding both UI and schema
+
+**Date:** 2026-06-24
+
+**Context:** Sustainability positioning required 3 new FAQ items. Previously `homepageFaqSchema` held 5 hard-coded Q&As that were never rendered to users (schema-only). Google expects FAQPage schema content to be visible on the page.
+
+**Alternatives:**
+
+1. Add the 3 items to schema only (keeps invisible-content risk, duplicates copy)
+2. Single `landingContent.faq` source rendered as a visible accordion (`HomeFaq`) and used to derive `homepageFaqSchema`
+3. Separate visible FAQ component with its own copy, schema unchanged (drift between the two)
+
+**Selected:** Option 2 — one typed source (`landingContent.faq`, 8 items), a visible `HomeFaq` accordion, and `homepageFaqSchema.mainEntity` mapped from the same array.
+
+**Rationale:** Eliminates schema/UI drift, makes all FAQ content visible (Google requirement), and adds the sustainability items in both places from one edit point.
+
+**Impact:** Editing `landingContent.faq` updates both the rendered accordion and the JSON-LD. Positioning update is additive only — hero H1 and the four-stat recovery band (`Outcomes`) are unchanged.

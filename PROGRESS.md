@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Multi-vertical industries expansion — complete (2026-06-08)
+Sustainability & Industry 4.0 homepage positioning — complete (2026-06-24)
 
 ## Completed Phases
 
@@ -35,6 +35,8 @@ Multi-vertical industries expansion — complete (2026-06-08)
 - [x] **ICP copy refresh** — homepage hero, hub, landing industries tiles, `site.ts` description
 - [x] **Scenario shuffle** — `scenarios.ts` (cement prescription, pharma before/after, neutral hero callouts)
 - [x] **SEO/docs** — sitemap, `PAGE_SEO`, `llms.txt`, placeholder industry images, ADR-006
+- [x] **Sustainability positioning (homepage)** — additive only; hero subhead, `OperationalSustainability` (NEW B), `IndustryFourPointZero` (NEW C), `HomeFaq` accordion (NEW D), 5th WhyStamped card, per-tile sustainability line; H1 + recovery band unchanged
+- [x] **FAQ as single source** — `landingContent.faq` (8 items) rendered visibly and used to derive `homepageFaqSchema`; `knowsAbout` + home meta description extended
 
 ## Remaining Phases
 

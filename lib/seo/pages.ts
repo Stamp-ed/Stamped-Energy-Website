@@ -11,7 +11,7 @@ export const PAGE_SEO = {
     absoluteTitle:
       "Stamped Energy | AI-Powered Energy Intelligence for Plants in India",
     description:
-      "AI-powered prescriptive intelligence for plants with ₹20 lakh+ monthly electricity bills. Ranked actions, assigned owners, bill-verified savings on your DISCOM bill. Cement, steel, pharma, chemical, automotive.",
+      "AI-powered prescriptive intelligence for plants with ₹20 lakh+ monthly electricity bills. Ranked actions, assigned owners, bill-verified savings on your DISCOM bill. Cement, steel, pharma, chemical, automotive. Verified savings and auditable energy intensity for Indian manufacturers.",
     path: "/",
   },
   howItWorks: {

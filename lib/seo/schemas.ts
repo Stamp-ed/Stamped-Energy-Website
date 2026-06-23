@@ -1,3 +1,4 @@
+import { landingContent } from "@/lib/content/landing";
 import { icp } from "@/lib/content/icp";
 import { getVerticalPage, type VerticalSlug } from "@/lib/content/vertical-pages";
 import type { IndustryFaqItem } from "@/lib/content/types";
@@ -54,6 +55,12 @@ export const organizationSchema = {
     "Chemical batch energy optimization",
     "Automotive plant energy management",
     "IPMVP measurement and verification",
+    "Operational sustainability",
+    "Scope 2 emissions reduction",
+    "Specific energy consumption (SEC)",
+    "Perform Achieve Trade (PAT)",
+    "Energy intensity tracking",
+    "Industry 4.0 manufacturing",
   ],
   sameAs: [
     "https://www.linkedin.com/in/vinayak-rz/",
@@ -84,48 +91,14 @@ export const websiteSchema = {
 export const homepageFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much can plants in India reduce their electricity bill with Stamped Energy?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Energy-intensive plants using Stamped Energy typically see ${icp.seo.outcomes.billReduction} off their monthly electricity bill. Maximum demand charges are often reduced by ${icp.seo.outcomes.mdReduction}, frequently from incomer meter and bill data alone with no capital expenditure. These are benchmark ranges; your verified figures come from the pilot.`,
-      },
+  mainEntity: landingContent.faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
     },
-    {
-      "@type": "Question",
-      name: "Does Stamped Energy require a hardware retrofit or new meters?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. Stamped Energy integrates with your existing incomer meters, SCADA, PLCs, and DISCOM bills using read-only protocols (Modbus, OPC-UA, MQTT). Sub-meters are only recommended when the ROI is clear. No control writes in the pilot phase.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How long does it take to see verified rupee savings with Stamped Energy?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Stamped Energy delivers first prescriptions in weeks 1-2 after meter and bill integration. First assigned supervisor actions follow in weeks 3-4. Verified rupee savings are confirmed on the DISCOM bill by month 3 after deployment.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Which industries does Stamped Energy serve?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Stamped Energy serves cement, steel, pharmaceutical, chemical, and automotive plants across India. Each vertical has tailored AI-powered prescription playbooks - kWh/ton for cement, HVAC staging for pharma, batch SEC for chemical, furnace MD for steel and automotive - verified on your DISCOM bill.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How is Stamped Energy different from a regular EMS or SCADA dashboard?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Traditional EMS tools show charts and kWh trends. Stamped Energy adds a prescription layer: it tells your team what to do, who owns it, the rupee impact, and verifies that saving appeared on the next DISCOM bill. It is a decision and accountability layer, not another dashboard.",
-      },
-    },
-  ],
+  })),
 };
 
 export const homepageSpeakableSchema = {

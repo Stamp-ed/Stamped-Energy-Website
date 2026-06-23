@@ -3,8 +3,11 @@ import type { Metadata } from "next";
 import { LandingClosingCta } from "@/components/sections/LandingClosingCta";
 import { FutureMedia } from "@/components/sections/FutureMedia";
 import { Hero } from "@/components/sections/Hero";
+import { HomeFaq } from "@/components/sections/HomeFaq";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Industries } from "@/components/sections/Industries";
+import { IndustryFourPointZero } from "@/components/sections/IndustryFourPointZero";
+import { OperationalSustainability } from "@/components/sections/OperationalSustainability";
 import { Outcomes } from "@/components/sections/Outcomes";
 import { PrescriptionExample } from "@/components/sections/PrescriptionExample";
 import { Problem } from "@/components/sections/Problem";
@@ -35,13 +38,16 @@ export default function HomePage() {
       />
       <Hero />
       <Outcomes />
+      <OperationalSustainability />
       <Problem />
       <PrescriptionExample />
       <HowItWorks />
+      <IndustryFourPointZero />
       <Industries />
       <WhyStamped />
       <FutureMedia />
       <DynamicIndustryResources />
+      <HomeFaq />
       <LandingClosingCta />
     </>
   );
