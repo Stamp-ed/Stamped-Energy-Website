@@ -1,7 +1,9 @@
 import type {
   CtaLink,
   HeroFeatureItem,
+  HomeFaqItem,
   HowItWorksStep,
+  IconBulletItem,
   IndustryItem,
   ProblemItem,
   StatItem,
@@ -18,7 +20,7 @@ export const landingContent = {
     headlineLine2: "to verified savings",
     subheadline: "",
     supportingLine:
-      "AI-powered prescriptive intelligence that identifies cost-saving opportunities and delivers actions to improve efficiency.",
+      "AI-powered prescriptive intelligence that turns plant data into assigned actions - verified on your DISCOM bill and traceable for energy-intensity reporting.",
     supportingLine2: icp.heroBillLine,
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
@@ -223,6 +225,8 @@ export const landingContent = {
         focus: "AI-led energy control",
         description:
           "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale - influencing cost stability, uptime, and operational competitiveness.",
+        sustainability:
+          "Support OEM supplier intensity and audit requests with verified SEC trends [~].",
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
       },
@@ -232,6 +236,8 @@ export const landingContent = {
         focus: "AI-driven energy intelligence",
         description:
           "AI enables cement plants to prescribe optimal energy actions across continuous processes and utilities in real time - improving cost stability and uptime.",
+        sustainability:
+          "kWh/ton drift and PAT-aligned SEC evidence on verified actions.",
         imageSrc: "/industries/cement.png",
         imageAlt: "Cement manufacturing plant with silos and towers at dusk",
       },
@@ -241,6 +247,8 @@ export const landingContent = {
         focus: "AI-driven energy management",
         description:
           "AI enables steel manufacturers to manage fuel- and power-intensive operations at scale - where energy balance directly determines cost competitiveness and throughput stability.",
+        sustainability:
+          "PAT / intensity discipline for furnace and rolling utilities.",
         imageSrc: "/industries/steel.png",
         imageAlt: "Steel rolling mill with glowing hot metal billets",
       },
@@ -250,6 +258,8 @@ export const landingContent = {
         focus: "AI-driven energy management",
         description:
           "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale - impacting operating cost, compliance, uptime, and product quality.",
+        sustainability:
+          "Lower grid intensity for HVAC-heavy MSME and mid-market sites [~].",
         imageSrc: "/industries/pharma.png",
         imageAlt: "Pharmaceutical vial filling line in a sterile manufacturing plant",
       },
@@ -259,6 +269,8 @@ export const landingContent = {
         focus: "AI-powered energy intelligence",
         description:
           "AI brings continuous energy discipline to chemical and paint manufacturing - improving cost control, operational predictability, and long-term competitiveness.",
+        sustainability:
+          "Batch SEC and utility intensity - decision layer for advanced batch plants.",
         imageSrc: "/industries/chemical.png",
         imageAlt: "Chemical refinery with storage tanks and distillation towers at twilight",
       },
@@ -293,6 +305,12 @@ export const landingContent = {
         description:
           "Prescriptions go to people who can act, not a screen only the plant head opens once a month.",
       },
+      {
+        id: "sustainability-evidence",
+        title: "Sustainability evidence, not slides",
+        description:
+          "Export realised vs potential savings and intensity trends for leadership reviews, customer audits, and corporate reporting - sourced from verified plant operations, not manual spreadsheets.",
+      },
     ] satisfies WhyStampedItem[],
   },
 
@@ -312,6 +330,125 @@ export const landingContent = {
     title: "Electrical engineering depth. Prescriptions in rupees, not slides.",
     founderNote:
       "Founded by an IIT Roorkee electrical engineering graduate with research in energy systems. Built for plant heads who need verified outcomes on the DISCOM bill, not another monitoring layer.",
+  },
+
+  operationalSustainability: {
+    eyebrow: "Operational sustainability",
+    title: "Reduce grid intensity with decisions your auditors can follow",
+    paragraphs: [
+      "Every rupee you recover on the DISCOM bill is also grid electricity you no longer draw. The same prescriptions that cut cost lower your Scope 2 footprint - measured on real consumption, not modelled estimates.",
+      "When production data is tagged, Stamped tracks energy per unit so you can show specific energy consumption trends to OEM customers, lenders, and corporate parents asking for evidence.",
+      "Verification runs on your monthly bill, not a once-a-year audit. Leadership sees realised intensity movement on a cadence that matches operations.",
+    ],
+    stats: [
+      {
+        id: "grid-recovery",
+        value: "12-20% [~]",
+        label: "Typical grid electricity cost recovery",
+        detail: "Comparable process plants; pilot verifies",
+      },
+      {
+        id: "lower-intensity",
+        value: "Lower intensity",
+        label: "Energy per unit trend when production tagged",
+        detail: "SEC / kWh per batch or ton where data exists",
+      },
+      {
+        id: "verification-cadence",
+        value: "Monthly",
+        label: "Verification cadence on DISCOM bill",
+        detail: "Not annual audit-only",
+      },
+    ] satisfies StatItem[],
+    cta: { label: "See how verification works", href: "/how-it-works" } satisfies CtaLink,
+  },
+
+  industry40: {
+    eyebrow: "Industry 4.0 - Decision layer",
+    title: "Your plant already digitized visibility. Stamped digitizes closure.",
+    bullets: [
+      {
+        id: "connect",
+        title: "Connect read-only",
+        description:
+          "Pulls from incomer meters, SCADA, PLCs, and historians without writing back to control systems.",
+      },
+      {
+        id: "normalize",
+        title: "Normalize",
+        description:
+          "Cleans and aligns mixed-vendor data into one energy picture across utilities and processes.",
+      },
+      {
+        id: "prescribe",
+        title: "Prescribe",
+        description:
+          "Turns the data into specific, assigned actions with a rupee value - not another dashboard to interpret.",
+      },
+      {
+        id: "verify",
+        title: "Verify",
+        description:
+          "Confirms outcomes on the DISCOM bill and tracks intensity, closing the loop between data and result.",
+      },
+    ] satisfies IconBulletItem[],
+    closer:
+      "Compatible with the systems you already run. Adds the governance layer between data and outcomes.",
+  },
+
+  faq: {
+    eyebrow: "FAQ",
+    title: "Questions plant and sustainability leaders ask",
+    items: [
+      {
+        id: "what-is-stamped",
+        question: "What does Stamped actually do?",
+        answer:
+          "Stamped connects to your existing meters, SCADA, and plant data, finds where energy and rupees are leaking, and sends specific assigned actions to your team. It then verifies the savings on your DISCOM bill.",
+      },
+      {
+        id: "hardware",
+        question: "Do we need to install new hardware?",
+        answer:
+          "No hardware retrofit program is required. Stamped is software-only and connects read-only to the incomer meter, SCADA, PLCs, and CNCs you already run.",
+      },
+      {
+        id: "pilot",
+        question: "How do we start without a large commitment?",
+        answer:
+          "Begin with a low-fee pilot or pay-as-you-save on the first verified month. You see rupees recovered on the bill before scaling spend or signing an annual subscription.",
+      },
+      {
+        id: "team-action",
+        question: "Who receives the prescriptions?",
+        answer:
+          "Actions reach the supervisors and electrical or maintenance staff who can act, delivered on WhatsApp - not a screen only the plant head opens once a month.",
+      },
+      {
+        id: "savings-real",
+        question: "How do we know the savings are real?",
+        answer:
+          "Verification runs monthly against your actual DISCOM bill, comparing realised against potential savings - not modelled estimates or annual audit-only claims.",
+      },
+      {
+        id: "esg-platform",
+        question: "Does Stamped replace our ESG or carbon accounting platform?",
+        answer:
+          "No. Stamped is an operational sustainability decision layer, not an ESG or carbon accounting platform. It reduces grid electricity use and produces verified energy and intensity evidence that feeds the reporting tools you already use.",
+      },
+      {
+        id: "sustainability-reporting",
+        question: "How does Stamped support sustainability reporting?",
+        answer:
+          "Because savings come from lower grid electricity draw, they map to Scope 2 reduction. When production is tagged, Stamped tracks specific energy consumption trends you can export for customer audits, PAT-style intensity discipline, and corporate reporting.",
+      },
+      {
+        id: "ot-safe",
+        question: "Is Stamped safe for our OT and Industry 4.0 architecture?",
+        answer:
+          "Yes. Stamped connects read-only and does not write back to control systems. It adds a decision and governance layer on top of the Industry 4.0 stack you already operate, without disrupting it.",
+      },
+    ] satisfies HomeFaqItem[],
   },
 
   closingCta: {

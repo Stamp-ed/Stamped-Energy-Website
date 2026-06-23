@@ -44,6 +44,12 @@ function IndustryCard({ industry }: { industry: IndustryItem }) {
           <h3 className="text-lg font-bold text-on-surface">{industry.name}</h3>
           <p className="mt-1 text-sm font-medium text-primary/90">{industry.focus}</p>
           <p className="mt-3 text-sm leading-6 text-on-surface-variant">{industry.description}</p>
+          {"sustainability" in industry && industry.sustainability ? (
+            <p className="mt-3 border-t border-outline-variant/40 pt-3 text-xs leading-6 text-on-surface-variant/90">
+              <span className="font-semibold text-on-surface">Sustainability: </span>
+              {industry.sustainability}
+            </p>
+          ) : null}
         </div>
 
         <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">

@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { landingContent } from "@/lib/content";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 
-const WHY_MARKERS = ["01", "02", "03", "04"];
+const WHY_MARKERS = ["01", "02", "03", "04", "05"];
 
 export function WhyStamped() {
   const sectionRef = useRef<HTMLElement>(null);

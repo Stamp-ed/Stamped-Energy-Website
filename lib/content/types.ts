@@ -196,9 +196,23 @@ export type IndustryItem = {
   /** Short pain-point line shown on landing cards for quick context */
   focus: string;
   description: string;
+  /** Operational sustainability one-liner shown under the description */
+  sustainability?: string;
   featured?: boolean;
   imageSrc?: string;
   imageAlt?: string;
+};
+
+export type IconBulletItem = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type HomeFaqItem = {
+  id: string;
+  question: string;
+  answer: string;
 };
 
 export type WhyStampedItem = {
