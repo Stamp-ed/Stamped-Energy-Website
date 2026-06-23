@@ -13,6 +13,7 @@ import type { BlogPostDTO, BlogPostListItem } from "@/lib/blog/posts";
 import { formatBlogDate } from "@/lib/blog/utils";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { cn } from "@/lib/utils";
 
 type BlogArticleViewProps = {
   post: BlogPostDTO;
@@ -32,8 +33,27 @@ const ARTICLE_LAYOUT =
   "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(17.5rem,20rem)] lg:items-start lg:gap-12 xl:gap-14";
 
 export function BlogArticleView({ post, related }: BlogArticleViewProps) {
+  const heroRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const hasCover = Boolean(post.coverImage);
   const { isReady, prefersReducedMotion } = useMotion();
+
+  useGSAP(
+    () => {
+      if (!isReady || prefersReducedMotion) {
+        return;
+      }
+
+      gsap.from("[data-blog-hero]", {
+        autoAlpha: 0,
+        y: 28,
+        duration: 0.85,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+    },
+    { scope: heroRef, dependencies: [isReady, prefersReducedMotion, hasCover] },
+  );
 
   useGSAP(
     () => {
@@ -55,67 +75,107 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
 
   return (
     <>
-      <section className="border-b border-outline-variant/40 bg-surface pt-28 pb-10 md:pt-32 md:pb-14">
-        <Container>
-          <div className={ARTICLE_LAYOUT}>
-            <div data-blog-article className="min-w-0">
-              <Link
-                href="/blog"
-                className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary"
+      <section
+        ref={heroRef}
+        className={cn(
+          "page-hero relative overflow-hidden border-b border-outline-variant/40",
+          hasCover ? "bg-secondary" : "bg-surface",
+        )}
+      >
+        {hasCover ? (
+          <div className="absolute inset-0" aria-hidden="true">
+            <Image
+              src={post.coverImage!}
+              alt=""
+              fill
+              priority
+              className="object-cover object-[center_40%]"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_88%,transparent)_0%,color-mix(in_srgb,var(--brand-secondary)_72%,transparent)_42%,color-mix(in_srgb,var(--brand-secondary)_48%,transparent)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,color-mix(in_srgb,var(--brand-primary)_20%,transparent),transparent_45%)]" />
+          </div>
+        ) : null}
+
+        <Container className="relative z-10">
+          <div className="max-w-3xl">
+            <Link
+              data-blog-hero
+              href="/blog"
+              className={cn(
+                "text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
+                hasCover
+                  ? "text-inverse-primary hover:text-on-secondary"
+                  : "text-on-surface-variant hover:text-primary",
+              )}
+            >
+              ← All blogs
+            </Link>
+
+            <div
+              data-blog-hero
+              className={cn(
+                "mt-6 flex flex-wrap items-center gap-2 text-xs",
+                hasCover ? "text-on-secondary/80" : "text-on-surface-variant",
+              )}
+            >
+              <span
+                className={cn(
+                  "rounded-full px-2.5 py-1 font-semibold uppercase tracking-wide",
+                  hasCover
+                    ? "border border-on-secondary/25 bg-on-secondary/10 text-on-secondary"
+                    : "bg-secondary-container text-on-secondary-container",
+                )}
               >
-                ← All blogs
-              </Link>
-              <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-on-surface-variant">
-                <span className="rounded-full bg-secondary-container px-2.5 py-1 font-semibold uppercase tracking-wide text-on-secondary-container">
-                  {post.categoryLabel}
-                </span>
-                <span>
-                  {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
-                </span>
-              </div>
-              <h1 className="mt-5 max-w-4xl font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-on-surface">
-                {post.title}
-              </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-on-surface-variant md:text-xl md:leading-9">
-                {post.excerpt}
-              </p>
-              {post.tags.length > 0 ? (
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-outline-variant/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-on-surface-variant"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
+                {post.categoryLabel}
+              </span>
+              <span>
+                {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
+              </span>
             </div>
+
+            <h1
+              data-blog-hero
+              className={cn(
+                "mt-5 font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em]",
+                hasCover ? "max-w-2xl text-on-secondary" : "max-w-4xl text-on-surface",
+              )}
+            >
+              {post.title}
+            </h1>
+
+            <p
+              data-blog-hero
+              className={cn(
+                "mt-5 text-lg leading-8 md:text-xl md:leading-9",
+                hasCover
+                  ? "max-w-2xl text-on-secondary/85"
+                  : "max-w-3xl text-on-surface-variant",
+              )}
+            >
+              {post.excerpt}
+            </p>
+
+            {post.tags.length > 0 ? (
+              <div data-blog-hero className="mt-6 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={cn(
+                      "rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide",
+                      hasCover
+                        ? "border border-on-secondary/25 bg-on-secondary/10 text-on-secondary/90"
+                        : "border border-outline-variant/60 text-on-surface-variant",
+                    )}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
           </div>
         </Container>
       </section>
-
-      {post.coverImage ? (
-        <section className="bg-surface pb-8">
-          <Container>
-            <div className={ARTICLE_LAYOUT}>
-              <div data-blog-article className="min-w-0">
-                <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
-                  <Image
-                    src={post.coverImage}
-                    alt={post.title}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, calc(100vw - 22rem)"
-                  />
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-      ) : null}
 
       <section ref={sectionRef} className="section-y bg-surface pb-20">
         <Container>
