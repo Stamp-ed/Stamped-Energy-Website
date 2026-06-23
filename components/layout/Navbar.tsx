@@ -10,15 +10,15 @@ import { NavLinkItem } from "@/components/layout/NavLinkItem";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { navLinks, siteConfig } from "@/lib/content";
-import { usesLightNavText } from "@/lib/layout/nav-theme";
+import { useLightNavText } from "@/lib/layout/use-light-nav";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLightNav =
-    !isScrolled && !isMenuOpen && usesLightNavText(pathname);
+  const lightNavText = useLightNavText();
+  const isLightNav = !isScrolled && !isMenuOpen && lightNavText;
   const showSolidHeader = isScrolled || isMenuOpen;
 
   useEffect(() => {

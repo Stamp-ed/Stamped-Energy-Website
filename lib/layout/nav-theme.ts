@@ -6,8 +6,11 @@ const DARK_HERO_EXACT = new Set(["/blog", "/about", "/case-studies", "/contact"]
 
 const DARK_HERO_PREFIXES = ["/industries", "/case-studies/"];
 
-/** Article and other light-background pages under /blog */
+/** Article pages under /blog default to a light hero unless overridden. */
 const LIGHT_HERO_PREFIXES = ["/blog/"];
+
+/** Set on document.body when a page renders a dark hero dynamically (e.g. blog cover). */
+export const DARK_HERO_BODY_ATTR = "data-dark-hero";
 
 export function usesLightNavText(pathname: string): boolean {
   if (LIGHT_HERO_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
@@ -19,4 +22,12 @@ export function usesLightNavText(pathname: string): boolean {
   }
 
   return DARK_HERO_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
+export function hasDarkHeroBodyOverride(): boolean {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  return document.body.hasAttribute(DARK_HERO_BODY_ATTR);
 }

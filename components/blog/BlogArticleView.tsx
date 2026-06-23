@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import { ArticleAuthorCard } from "@/components/blog/ArticleAuthorCard";
 import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
@@ -13,6 +13,7 @@ import type { BlogPostDTO, BlogPostListItem } from "@/lib/blog/posts";
 import { formatBlogDate } from "@/lib/blog/utils";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
+import { DARK_HERO_BODY_ATTR } from "@/lib/layout/nav-theme";
 import { cn } from "@/lib/utils";
 
 type BlogArticleViewProps = {
@@ -37,6 +38,18 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasCover = Boolean(post.coverImage);
   const { isReady, prefersReducedMotion } = useMotion();
+
+  useLayoutEffect(() => {
+    if (!hasCover) {
+      return;
+    }
+
+    document.body.setAttribute(DARK_HERO_BODY_ATTR, "");
+
+    return () => {
+      document.body.removeAttribute(DARK_HERO_BODY_ATTR);
+    };
+  }, [hasCover]);
 
   useGSAP(
     () => {
@@ -92,8 +105,8 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
               className="object-cover object-[center_40%]"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_88%,transparent)_0%,color-mix(in_srgb,var(--brand-secondary)_72%,transparent)_42%,color-mix(in_srgb,var(--brand-secondary)_48%,transparent)_100%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,color-mix(in_srgb,var(--brand-primary)_20%,transparent),transparent_45%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_42%,#000)_0%,color-mix(in_srgb,#000_48%,transparent)_34%,color-mix(in_srgb,#000_16%,transparent)_58%,transparent_82%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,#000_28%,transparent)_0%,transparent_22%)]" />
           </div>
         ) : null}
 
