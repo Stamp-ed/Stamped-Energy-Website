@@ -99,12 +99,12 @@ More content...
 Short closing paragraph with one clear takeaway.
 \`\`\`
 
-## CMS editor formatting rules (CRITICAL — follow exactly)
+## CMS editor formatting rules (CRITICAL - follow exactly)
 
 The blog body is imported into a **TipTap rich-text editor**. Use only Markdown patterns below so headings, links, tables, images, and embeds render correctly without manual fixes.
 
 ### Structure
-- Start the body with \`##\` headings only — never \`#\` (title lives in frontmatter)
+- Start the body with \`##\` headings only - never \`#\` (title lives in frontmatter)
 - Use \`##\` for main sections and \`###\` for subsections
 - Keep paragraphs short (2-4 sentences)
 - Separate sections with a blank line
@@ -113,7 +113,7 @@ The blog body is imported into a **TipTap rich-text editor**. Use only Markdown 
 - **Bold**: \`**text**\`
 - *Italic*: \`*text*\`
 - Inline code: \`\`code\`\`
-- Links: \`[link label](https://full-url.example)\` — always use descriptive link text, never bare URLs in prose
+- Links: \`[link label](https://full-url.example)\` - always use descriptive link text, never bare URLs in prose
 
 ### Lists
 - Bullet lists: \`- item\` or \`* item\`
@@ -147,7 +147,7 @@ flowchart TD
 ### Do NOT use
 - HTML tags (\`<table>\`, \`<div>\`, \`<br>\`, etc.)
 - H1 (\`#\`) in the body
-- Bare URLs for links — always \`[label](url)\`
+- Bare URLs for links - always \`[label](url)\`
 - Markdown features outside this list (footnotes, task lists, etc.)
 
 When discovery is complete and the author confirms, output the frontmatter block and markdown body.`;

@@ -30,7 +30,7 @@ const BLOG_CTA = {
   primaryCta: { label: "Book a Discovery Call", href: "/contact" },
 };
 
-/** Main column + sidebar — matches site container width without extra centering gutters. */
+/** Main column + sidebar - matches site container width without extra centering gutters. */
 const ARTICLE_LAYOUT =
   "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(17.5rem,20rem)] lg:items-start lg:gap-12 xl:gap-14";
 

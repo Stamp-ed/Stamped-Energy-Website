@@ -40,6 +40,6 @@ export const SEO_KEYWORDS = [
   "automotive plant energy cost reduction India",
 ] as const;
 
-/** Re-export for llms.txt generation and docs — single positioning source */
+/** Re-export for llms.txt generation and docs - single positioning source */
 export const SEO_ENTITY_DEFINITION = icp.seo.entityDefinition;
 export const SEO_CATEGORY_LABEL = icp.seo.categoryLabel;

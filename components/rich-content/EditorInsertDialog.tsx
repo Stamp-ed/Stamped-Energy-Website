@@ -88,7 +88,7 @@ const CONFIG: Record<
   },
   mermaid: {
     title: "Insert diagram",
-    description: "Mermaid syntax — flowcharts, sequence diagrams, and more render on publish.",
+    description: "Mermaid syntax - flowcharts, sequence diagrams, and more render on publish.",
     fields: [
       {
         key: "source",
@@ -181,7 +181,7 @@ export function EditorInsertDialog({
         }
       }}
     >
-      {/* Opaque backdrop — portaled dialogs sit outside .admin-cms so we cannot rely on admin CSS vars alone */}
+      {/* Opaque backdrop - portaled dialogs sit outside .admin-cms so we cannot rely on admin CSS vars alone */}
       <div className="pointer-events-none absolute inset-0 bg-[#0f1713]/60 backdrop-blur-[2px]" aria-hidden />
 
       <div

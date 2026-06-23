@@ -82,7 +82,7 @@
   color: var(--rich-muted);
 }
 
-/* Tailwind preflight sets list-style: none — restore markers in editor + published body */
+/* Tailwind preflight sets list-style: none - restore markers in editor + published body */
 .rich-article ul {
   list-style-type: disc;
   list-style-position: outside;
@@ -256,7 +256,7 @@
   margin-inline: auto;
 }
 
-/* Public reading column — fill available column; blog uses .blog-article-prose for full width */
+/* Public reading column - fill available column; blog uses .blog-article-prose for full width */
 .rich-article-reading {
   margin-inline: auto;
 }

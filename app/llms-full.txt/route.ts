@@ -12,7 +12,7 @@ export async function GET() {
   ]);
 
   const lines: string[] = [
-    "# Stamped Energy — Full Content Index",
+    "# Stamped Energy - Full Content Index",
     "",
     "> Auto-generated index of all published blog posts and case studies for AI crawlers and answer engines.",
     "",
@@ -54,11 +54,11 @@ export async function GET() {
     `- [Home](${SITE_URL}/)`,
     `- [How It Works](${SITE_URL}/how-it-works)`,
     `- [Industries hub](${SITE_URL}/industries)`,
-    `- [Industries — Automotive](${SITE_URL}/industries/automotive)`,
-    `- [Industries — Cement](${SITE_URL}/industries/cement)`,
-    `- [Industries — Steel](${SITE_URL}/industries/steel)`,
-    `- [Industries — Pharmaceutical](${SITE_URL}/industries/pharma)`,
-    `- [Industries — Chemical](${SITE_URL}/industries/chemical)`,
+    `- [Industries - Automotive](${SITE_URL}/industries/automotive)`,
+    `- [Industries - Cement](${SITE_URL}/industries/cement)`,
+    `- [Industries - Steel](${SITE_URL}/industries/steel)`,
+    `- [Industries - Pharmaceutical](${SITE_URL}/industries/pharma)`,
+    `- [Industries - Chemical](${SITE_URL}/industries/chemical)`,
     `- [Case Studies](${SITE_URL}/case-studies)`,
     `- [Blog](${SITE_URL}/blog)`,
     `- [About](${SITE_URL}/about)`,

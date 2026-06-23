@@ -80,7 +80,7 @@ export const landingContent = {
         id: "bill-reduction",
         value: "12-20%",
         label: "Off your monthly electricity bill",
-        detail: "Cement, steel, pharma, chemical, automotive [~]",
+        detail: "Cement, steel, pharma, chemical, automotive",
       },
       {
         id: "md-reduction",
@@ -170,7 +170,7 @@ export const landingContent = {
 
   prescription: {
     eyebrow: "Not a dashboard",
-    title: "This is what your plant team gets — not a kWh chart",
+    title: "This is what your plant team gets - not a kWh chart",
     fields: getScenarioPrescription("homepagePrescription"),
   },
 
@@ -226,7 +226,7 @@ export const landingContent = {
         description:
           "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale - influencing cost stability, uptime, and operational competitiveness.",
         sustainability:
-          "Support OEM supplier intensity and audit requests with verified SEC trends [~].",
+          "Support OEM supplier intensity and audit requests with verified SEC trends.",
         imageSrc: "/industries/forging.jpg",
         imageAlt: "Automotive forging press line",
       },
@@ -259,7 +259,7 @@ export const landingContent = {
         description:
           "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale - impacting operating cost, compliance, uptime, and product quality.",
         sustainability:
-          "Lower grid intensity for HVAC-heavy MSME and mid-market sites [~].",
+          "Lower grid intensity for HVAC-heavy MSME and mid-market sites.",
         imageSrc: "/industries/pharma.png",
         imageAlt: "Pharmaceutical vial filling line in a sterile manufacturing plant",
       },
@@ -336,14 +336,13 @@ export const landingContent = {
     eyebrow: "Operational sustainability",
     title: "Reduce grid intensity with decisions your auditors can follow",
     paragraphs: [
-      "Every rupee you recover on the DISCOM bill is also grid electricity you no longer draw. The same prescriptions that cut cost lower your Scope 2 footprint - measured on real consumption, not modelled estimates.",
-      "When production data is tagged, Stamped tracks energy per unit so you can show specific energy consumption trends to OEM customers, lenders, and corporate parents asking for evidence.",
-      "Verification runs on your monthly bill, not a once-a-year audit. Leadership sees realised intensity movement on a cadence that matches operations.",
+      "Every rupee you recover on the DISCOM bill is grid electricity you no longer draw, so the prescriptions that cut cost also lower your Scope 2 footprint - measured on real consumption, not modelled estimates.",
+      "When production is tagged, Stamped tracks energy per unit, giving you verified intensity evidence for government efficiency programmes and sustainability reporting.",
     ],
     stats: [
       {
         id: "grid-recovery",
-        value: "12-20% [~]",
+        value: "12-20%",
         label: "Typical grid electricity cost recovery",
         detail: "Comparable process plants; pilot verifies",
       },
@@ -352,12 +351,6 @@ export const landingContent = {
         value: "Lower intensity",
         label: "Energy per unit trend when production tagged",
         detail: "SEC / kWh per batch or ton where data exists",
-      },
-      {
-        id: "verification-cadence",
-        value: "Monthly",
-        label: "Verification cadence on DISCOM bill",
-        detail: "Not annual audit-only",
       },
     ] satisfies StatItem[],
     cta: { label: "See how verification works", href: "/how-it-works" } satisfies CtaLink,

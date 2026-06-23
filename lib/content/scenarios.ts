@@ -31,14 +31,14 @@ const cementPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Plant electrical / dispatch coordinator" },
   { label: "Effort", value: "Dispatch schedule change only. No capital spend." },
-  { label: "Impact", value: "₹4.2-8L/month at current tariff and source mix [~]" },
+  { label: "Impact", value: "₹4.2-8L/month at current tariff and source mix " },
   { label: "When", value: "Before next billing cycle. MD resets monthly." },
 ];
 
 const pharmaPrescription: PrescriptionField[] = [
   {
     label: "What",
-    value: "Stagger chiller bank startup — unit 3 starts 12 minutes after units 1 and 2",
+    value: "Stagger chiller bank startup - unit 3 starts 12 minutes after units 1 and 2",
   },
   {
     label: "Why",
@@ -47,14 +47,14 @@ const pharmaPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Utilities / engineering head" },
   { label: "Effort", value: "BMS schedule change. No HVAC redesign." },
-  { label: "Impact", value: "₹3-10L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-10L/month at current tariff " },
   { label: "When", value: "Before next billing cycle." },
 ];
 
 const steelPrescription: PrescriptionField[] = [
   {
     label: "What",
-    value: "Reduce induction furnace holding power between heats — setback to 70% rated power",
+    value: "Reduce induction furnace holding power between heats - setback to 70% rated power",
   },
   {
     label: "Why",
@@ -63,23 +63,23 @@ const steelPrescription: PrescriptionField[] = [
   },
   { label: "Who", value: "Furnace operator / electrical" },
   { label: "Effort", value: "Schedule change only. No capital spend." },
-  { label: "Impact", value: "₹3-8L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-8L/month at current tariff " },
   { label: "When", value: "Effective next shift. Verify on monthly bill." },
 ];
 
 const chemicalPrescription: PrescriptionField[] = [
   {
     label: "What",
-    value: "Stagger reactor R1, R2, R3 heating start — sequence over 25 minutes at batch change",
+    value: "Stagger reactor R1, R2, R3 heating start - sequence over 25 minutes at batch change",
   },
   {
     label: "Why",
     value:
-      "Three reactors heated simultaneously at 07:00 — incomer MD breached by 195 kVA with no production load yet.",
+      "Three reactors heated simultaneously at 07:00 - incomer MD breached by 195 kVA with no production load yet.",
   },
   { label: "Who", value: "Batch supervisor / electrical" },
   { label: "Effort", value: "Batch schedule change only." },
-  { label: "Impact", value: "₹3-10L/month at current tariff [~]" },
+  { label: "Impact", value: "₹3-10L/month at current tariff " },
   { label: "When", value: "Before next billing cycle." },
 ];
 
@@ -117,7 +117,7 @@ const SCENARIO_MAP = {
   heroCallouts: neutralCallouts,
   heroVisual: {
     src: "/industries/cement.png",
-    alt: "Cement manufacturing plant with silos and kiln at twilight — energy-intensive continuous process",
+    alt: "Cement manufacturing plant with silos and kiln at twilight - energy-intensive continuous process",
   },
 } as const;
 
@@ -137,7 +137,7 @@ export function getHeroVisual() {
   return SCENARIO_MAP.heroVisual;
 }
 
-/** Fixed assignment per surface — diverse verticals without client-side randomness. */
+/** Fixed assignment per surface - diverse verticals without client-side randomness. */
 export const scenarioAssignments = {
   homepagePrescription: "cement" as const,
   howItWorksBeforeAfter: "pharma" as const,

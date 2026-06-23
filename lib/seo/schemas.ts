@@ -136,14 +136,14 @@ export const howToSchema = {
       "@type": "HowToStep",
       position: 2,
       name: "Observe",
-      text: "Stamped normalises your plant data into production-aware baselines — SEC and demand by shift, process, and product mix.",
+      text: "Stamped normalises your plant data into production-aware baselines - SEC and demand by shift, process, and product mix.",
       url: `${SITE_URL}/how-it-works#observe`,
     },
     {
       "@type": "HowToStep",
       position: 3,
       name: "Decide",
-      text: "Receive ranked prescriptions with rupee impact — what to change, why, who owns it, and how much it saves per month.",
+      text: "Receive ranked prescriptions with rupee impact - what to change, why, who owns it, and how much it saves per month.",
       url: `${SITE_URL}/how-it-works#decide`,
     },
     {
@@ -157,7 +157,7 @@ export const howToSchema = {
       "@type": "HowToStep",
       position: 5,
       name: "Verify",
-      text: "Savings are verified against the actual DISCOM electricity bill — potential vs. realised rupees, tracked in a running ledger for plant head and CFO review.",
+      text: "Savings are verified against the actual DISCOM electricity bill - potential vs. realised rupees, tracked in a running ledger for plant head and CFO review.",
       url: `${SITE_URL}/how-it-works#verify`,
     },
   ],
@@ -306,7 +306,7 @@ export const softwareApplicationSchema = {
     "@type": "Offer",
     price: "0",
     priceCurrency: "INR",
-    description: "Discovery call and pilot — pricing based on verified savings potential",
+    description: "Discovery call and pilot - pricing based on verified savings potential",
   },
   featureList: [
     "AI-powered prescriptive energy intelligence",
@@ -422,7 +422,7 @@ export const automotiveFaqSchema = {
       name: "How does Stamped Energy work for die casting plants?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stamped connects to your incomer meter and SCADA, builds production-normalized SEC baselines per cell and shift, then sends ranked prescriptions — stagger furnace pre-heat, stage compressors, reduce holding loads — with rupee impact assigned to shift supervisors via WhatsApp.",
+        text: "Stamped connects to your incomer meter and SCADA, builds production-normalized SEC baselines per cell and shift, then sends ranked prescriptions - stagger furnace pre-heat, stage compressors, reduce holding loads - with rupee impact assigned to shift supervisors via WhatsApp.",
       },
     },
   ],

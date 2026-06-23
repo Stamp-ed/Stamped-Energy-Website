@@ -470,8 +470,8 @@ export function RichArticleEditor({
               label={scrollLocked ? "Unlock" : "Lock"}
               title={
                 scrollLocked
-                  ? "Unlock — page scroll works again"
-                  : "Lock — only the editor area scrolls, not the page"
+                  ? "Unlock - page scroll works again"
+                  : "Lock - only the editor area scrolls, not the page"
               }
               active={scrollLocked}
               onClick={() => setScrollLocked((locked) => !locked)}

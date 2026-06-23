@@ -1,4 +1,4 @@
-# SEO, GEO & AEO — Stamped Energy (`stamped.work`)
+# SEO, GEO & AEO - Stamped Energy (`stamped.work`)
 
 Living record of search, generative-engine, and answer-engine optimizations for the marketing site.  
 **Last updated:** 2026-06-08 · **Domain:** `https://stamped.work`
@@ -17,7 +17,7 @@ All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcod
 | **ICP bill filter** | Built for plants with ₹20 lakh+ monthly electricity bills. |
 | **Audience** | Plant directors, VP Operations, electrical heads, CFOs at energy-intensive plants in India (₹200 Cr+ revenue). |
 | **Verticals** | Cement, steel, pharmaceutical, chemical, automotive |
-| **Benchmark outcomes** | 12-20% monthly bill reduction; 15-25% MD reduction [~] — always verified in pilot M&V |
+| **Benchmark outcomes** | 12-20% monthly bill reduction; 15-25% MD reduction - always verified in pilot M&V |
 | **Not** | Passive EMS dashboard or SCADA replacement |
 
 **Homepage hero (2026-06):**
@@ -43,7 +43,7 @@ All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcod
 
 ## Keyword strategy
 
-### Tier 1 — Brand (must dominate)
+### Tier 1 - Brand (must dominate)
 
 | Keyword | Intent | Primary page |
 |---------|--------|--------------|
@@ -51,7 +51,7 @@ All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcod
 | `stamped energy india` | Navigational | `/` |
 | `stamped.work` | Navigational | `/` |
 
-### Tier 2 — Category (solution-aware)
+### Tier 2 - Category (solution-aware)
 
 | Keyword | Primary page |
 |---------|--------------|
@@ -63,7 +63,7 @@ All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcod
 | `DISCOM bill savings India` | `/how-it-works`, `/case-studies` |
 | `SEC reduction industrial plant India` | `/industries`, vertical pages |
 
-### Tier 3 — Vertical (high intent)
+### Tier 3 - Vertical (high intent)
 
 | Vertical | Primary page | Supporting keywords |
 |----------|--------------|---------------------|
@@ -73,7 +73,7 @@ All SEO, GEO, and AEO copy derives from **`lib/content/icp.ts`**. Do not hardcod
 | Chemical | `/industries/chemical` | chemical plant batch energy optimization, reactor stagger MD |
 | Automotive | `/industries/automotive` | auto component energy cost reduction, die casting MD, shift-start |
 
-### Tier 4 — Long-tail / AEO questions
+### Tier 4 - Long-tail / AEO questions
 
 Target these in FAQ schema, blog H2/H3 (`?` headings), and sr-only AEO headings:
 
@@ -93,7 +93,7 @@ All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `
 
 | File | Responsibility |
 |------|----------------|
-| `lib/content/icp.ts` | **Positioning source of truth** — category, entity definition, audience, ICP bill line |
+| `lib/content/icp.ts` | **Positioning source of truth** - category, entity definition, audience, ICP bill line |
 | `lib/seo/pages.ts` | Canonical **title tags** and **meta descriptions** for static routes |
 | `lib/seo/metadata.ts` | `buildPageMetadata()`, OG/Twitter, canonical, `en-IN` geo tags |
 | `lib/seo/constants.ts` | `SITE_URL`, OG image, `SEO_KEYWORDS`, re-exports entity definition |
@@ -112,7 +112,7 @@ All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `
 
 ---
 
-## Completed — technical SEO
+## Completed - technical SEO
 
 ### Metadata (all public routes)
 
@@ -135,10 +135,10 @@ Blog posts emit `article` Open Graph with `publishedTime`, `modifiedTime`, `auth
 
 ### Global metadata defaults (root layout)
 
-- **`SEO_KEYWORDS`** — from `lib/seo/constants.ts`; applied via `buildPageMetadataFromConfig()`
-- **`robots`** — `index, follow` with `googleBot` `max-image-preview: large`, `max-snippet: -1`
-- **Default OG/Twitter** — fallback images on all pages via `siteMetadataBase`
-- **`app/not-found.tsx`** — `noindex, nofollow` for 404 pages
+- **`SEO_KEYWORDS`** - from `lib/seo/constants.ts`; applied via `buildPageMetadataFromConfig()`
+- **`robots`** - `index, follow` with `googleBot` `max-image-preview: large`, `max-snippet: -1`
+- **Default OG/Twitter** - fallback images on all pages via `siteMetadataBase`
+- **`app/not-found.tsx`** - `noindex, nofollow` for 404 pages
 
 ### Region & language
 
@@ -148,10 +148,10 @@ Blog posts emit `article` Open Graph with `publishedTime`, `modifiedTime`, `auth
 
 ### Crawling & discovery
 
-- **`app/robots.ts`** — welcomes `*` plus search crawlers (Googlebot, Bingbot) and AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, and others). Blocks `/blog/admin`, `/api/`, `/_next/`.
-- **`app/sitemap.ts`** — all five industry verticals at priority 0.85-0.9; homepage 1.0; dynamic blog/case study URLs.
-- **`public/llms.txt`** — entity definition, AEO Q&A block, core pages, keywords, audience, disambiguation ("what we are not").
-- **`/llms-full.txt`** — auto-generated CMS index with entity definition header from `icp.seo.entityDefinition`.
+- **`app/robots.ts`** - welcomes `*` plus search crawlers (Googlebot, Bingbot) and AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, and others). Blocks `/blog/admin`, `/api/`, `/_next/`.
+- **`app/sitemap.ts`** - all five industry verticals at priority 0.85-0.9; homepage 1.0; dynamic blog/case study URLs.
+- **`public/llms.txt`** - entity definition, AEO Q&A block, core pages, keywords, audience, disambiguation ("what we are not").
+- **`/llms-full.txt`** - auto-generated CMS index with entity definition header from `icp.seo.entityDefinition`.
 
 ### Admin & non-public routes
 
@@ -159,7 +159,7 @@ All `/blog/admin/*` pages export `robots: { index: false, follow: false }`.
 
 ---
 
-## Completed — structured data / JSON-LD
+## Completed - structured data / JSON-LD
 
 | Schema | Where | Purpose |
 |--------|-------|---------|
@@ -182,7 +182,7 @@ All `/blog/admin/*` pages export `robots: { index: false, follow: false }`.
 
 ---
 
-## AEO — Answer Engine Optimization
+## AEO - Answer Engine Optimization
 
 ### Entity clarity (required on every major surface)
 
@@ -210,9 +210,9 @@ This prevents AI systems from categorizing Stamped as generic "energy monitoring
 
 Homepage CSS selectors wired in `homepageSpeakableSchema`:
 
-- `.hero-headline` — From plant data to verified savings
-- `.value-proposition` — AI-powered prescriptive intelligence subheading
-- `.key-numbers` — Outcome stats section
+- `.hero-headline` - From plant data to verified savings
+- `.value-proposition` - AI-powered prescriptive intelligence subheading
+- `.key-numbers` - Outcome stats section
 
 ### FAQ extraction for blog/case studies
 
@@ -224,7 +224,7 @@ Posts with H2/H3 headings ending in `?` followed by answer paragraphs auto-gener
 
 ---
 
-## GEO — Generative Engine Optimization
+## GEO - Generative Engine Optimization
 
 GEO = entity recognition across the web so LLMs and search AI associate "Stamped Energy" with a specific product category.
 
@@ -283,13 +283,13 @@ Inconsistency degrades AI entity confidence.
 | **Experience** | Case studies with M&V methodology; blog field notes from plant contexts |
 | **Expertise** | IIT Roorkee electrical engineering founders; Person schema with `knowsAbout` |
 | **Authoritativeness** | Vertical-specific pages with process-aware content; FAQ schema per vertical |
-| **Trustworthiness** | Benchmark ranges labelled [~]; bill-verified savings claim; no fabricated stats |
+| **Trustworthiness** | Benchmark ranges labelled; bill-verified savings claim; no fabricated stats |
 
 **Trust copy rules:**
 
 - Never state customer results without M&V citation
-- Use `[~]` for benchmark ranges in body copy
-- "Verified on your DISCOM bill" is the trust anchor — repeat in meta descriptions and FAQs
+- Use `` for benchmark ranges in body copy
+- "Verified on your DISCOM bill" is the trust anchor - repeat in meta descriptions and FAQs
 
 ---
 
@@ -335,7 +335,7 @@ Inconsistency degrades AI entity confidence.
 | Google Business Profile | Marketing |
 | LinkedIn Company Page + schema `sameAs` | Marketing + Dev |
 | Wikidata entry | Marketing |
-| GSC monitoring — AI Overview impressions weekly | Marketing |
+| GSC monitoring - AI Overview impressions weekly | Marketing |
 | OG image QA (Twitter Card Validator, LinkedIn Post Inspector) after deploys | Marketing |
 
 ### Medium priority
@@ -401,13 +401,13 @@ Inconsistency degrades AI entity confidence.
 ## Validation checklist (run after major SEO changes)
 
 - [ ] `npm run build` passes
-- [ ] Positioning consistent: grep for "Indian manufacturers" — should only appear in legacy blog/seed content, not live SEO surfaces
+- [ ] Positioning consistent: grep for "Indian manufacturers" - should only appear in legacy blog/seed content, not live SEO surfaces
 - [ ] [Rich Results Test](https://search.google.com/test/rich-results) on `/`, one blog post, `/how-it-works`, one vertical
 - [ ] [Schema validator](https://validator.schema.org) on Organization + SoftwareApplication + one Article
-- [ ] `https://stamped.work/robots.txt` — AI bots listed with `Allow: /`
-- [ ] `https://stamped.work/sitemap.xml` — all five verticals present
-- [ ] `https://stamped.work/llms.txt` — entity definition matches `icp.seo.entityDefinition`
-- [ ] `https://stamped.work/llms-full.txt` — entity header present
+- [ ] `https://stamped.work/robots.txt` - AI bots listed with `Allow: /`
+- [ ] `https://stamped.work/sitemap.xml` - all five verticals present
+- [ ] `https://stamped.work/llms.txt` - entity definition matches `icp.seo.entityDefinition`
+- [ ] `https://stamped.work/llms-full.txt` - entity header present
 - [ ] No duplicate H1s; canonical URLs match production
 - [ ] Resubmit sitemap in GSC if URL count changed
 
@@ -427,9 +427,9 @@ Inconsistency degrades AI entity confidence.
 
 ## Related docs
 
-- `lib/content/icp.ts` — positioning source of truth
-- `PROGRESS.md` — project phase tracking
-- `DECISIONS.md` — architecture decision log
-- `.agents/skills/seo-aeo-best-practices/` — general SEO/AEO principles reference
+- `lib/content/icp.ts` - positioning source of truth
+- `PROGRESS.md` - project phase tracking
+- `DECISIONS.md` - architecture decision log
+- `.agents/skills/seo-aeo-best-practices/` - general SEO/AEO principles reference
 
-**Maintenance rule:** Update this file whenever SEO, GEO, or AEO implementation changes — especially when `icp.seo` positioning changes.
+**Maintenance rule:** Update this file whenever SEO, GEO, or AEO implementation changes - especially when `icp.seo` positioning changes.

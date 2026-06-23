@@ -151,8 +151,8 @@ const steelSegments: IndustrySegment[] = [
       "PF sequencing recommendations assigned to electrical",
     ],
     metrics: [
-      { id: "eaf-hold", value: "₹3-8L", label: "Monthly holding waste recoverable [~]" },
-      { id: "eaf-pf", value: "5-12%", label: "PF penalty reduction potential [~]" },
+      { id: "eaf-hold", value: "₹3-8L", label: "Monthly holding waste recoverable " },
+      { id: "eaf-pf", value: "5-12%", label: "PF penalty reduction potential " },
     ],
   },
   {
@@ -176,8 +176,8 @@ const steelSegments: IndustrySegment[] = [
       "Pump duty-cycle recommendations ranked by ROI",
     ],
     metrics: [
-      { id: "roll-md", value: "₹4-10L", label: "Monthly MD savings potential [~]" },
-      { id: "roll-sec", value: "8-17%", label: "SEC improvement benchmark [~]" },
+      { id: "roll-md", value: "₹4-10L", label: "Monthly MD savings potential " },
+      { id: "roll-sec", value: "8-17%", label: "SEC improvement benchmark " },
     ],
   },
   {
@@ -201,8 +201,8 @@ const steelSegments: IndustrySegment[] = [
       "Leak detection prescriptions with supervisor routing",
     ],
     metrics: [
-      { id: "ff-hold", value: "₹2-6L", label: "Monthly holding savings [~]" },
-      { id: "ff-md", value: "12-22%", label: "MD reduction potential [~]" },
+      { id: "ff-hold", value: "₹2-6L", label: "Monthly holding savings " },
+      { id: "ff-md", value: "12-22%", label: "MD reduction potential " },
     ],
   },
 ];
@@ -222,7 +222,7 @@ export const industriesContent = {
         id: "hub-sec",
         value: "12-20%",
         label: "Typical electricity cost reduction",
-        detail: "Process-intensive mid-market plants [~]",
+        detail: "Process-intensive mid-market plants",
       },
       {
         id: "hub-md",

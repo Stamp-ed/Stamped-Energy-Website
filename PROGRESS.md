@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Sustainability & Industry 4.0 homepage positioning — complete (2026-06-24)
+Sustainability & Industry 4.0 homepage positioning - complete (2026-06-24)
 
 ## Completed Phases
 
@@ -22,28 +22,28 @@ Sustainability & Industry 4.0 homepage positioning — complete (2026-06-24)
 - [x] How It Works opening Option C - interactive plant SLD diagram, Greenovative-aligned hero copy, core capabilities strip
 - [x] How It Works visual pass - shortened copy, diagram-first journey, chip labels, removed optional media text block
 - [x] Core capabilities - Greenovative-style visual cards (SVG animations + full copy, 2×2 grid; `mediaSrc` hook for custom assets)
-- [x] SEO/AEO — page titles, meta descriptions, canonical/OG/Twitter on all routes
-- [x] SEO/AEO — JSON-LD (Organization, WebSite, FAQ, HowTo, Article, Breadcrumb, Person, Speakable)
-- [x] SEO/AEO — dynamic sitemap priorities, robots.ts (AI + search crawlers welcome), `og-default.png`, internal linking, heading/AEO pass
-- [x] SEO/AEO — `llms.txt` for AI answer-engine discovery (not linked in UI)
+- [x] SEO/AEO - page titles, meta descriptions, canonical/OG/Twitter on all routes
+- [x] SEO/AEO - JSON-LD (Organization, WebSite, FAQ, HowTo, Article, Breadcrumb, Person, Speakable)
+- [x] SEO/AEO - dynamic sitemap priorities, robots.ts (AI + search crawlers welcome), `og-default.png`, internal linking, heading/AEO pass
+- [x] SEO/AEO - `llms.txt` for AI answer-engine discovery (not linked in UI)
 - [x] SEO validation (Section 15): Rich Results Test, Schema.org validator, HTTP 200s, sitemap + robots.txt live on production
 - [x] Entity establishment (Section 12): Google Search Console verified, sitemap submitted
-- [x] `SEO_GEO_AEO.md` — living SEO/GEO/AEO documentation and remaining checklist
-- [x] **Multi-vertical industries** — `VerticalPageContent` model, `icp.ts`, five vertical pages (automotive, cement, steel, pharma, chemical)
-- [x] **Generic vertical components** — `components/industries/vertical/*`, `IndustryVerticalPage` shell
-- [x] **Dynamic route** — `app/industries/[slug]/page.tsx` with static params, per-vertical SEO + FAQ schema
-- [x] **ICP copy refresh** — homepage hero, hub, landing industries tiles, `site.ts` description
-- [x] **Scenario shuffle** — `scenarios.ts` (cement prescription, pharma before/after, neutral hero callouts)
-- [x] **SEO/docs** — sitemap, `PAGE_SEO`, `llms.txt`, placeholder industry images, ADR-006
-- [x] **Sustainability positioning (homepage)** — additive only; hero subhead, `OperationalSustainability` (NEW B), `IndustryFourPointZero` (NEW C), `HomeFaq` accordion (NEW D), 5th WhyStamped card, per-tile sustainability line; H1 + recovery band unchanged
-- [x] **FAQ as single source** — `landingContent.faq` (8 items) rendered visibly and used to derive `homepageFaqSchema`; `knowsAbout` + home meta description extended
+- [x] `SEO_GEO_AEO.md` - living SEO/GEO/AEO documentation and remaining checklist
+- [x] **Multi-vertical industries** - `VerticalPageContent` model, `icp.ts`, five vertical pages (automotive, cement, steel, pharma, chemical)
+- [x] **Generic vertical components** - `components/industries/vertical/*`, `IndustryVerticalPage` shell
+- [x] **Dynamic route** - `app/industries/[slug]/page.tsx` with static params, per-vertical SEO + FAQ schema
+- [x] **ICP copy refresh** - homepage hero, hub, landing industries tiles, `site.ts` description
+- [x] **Scenario shuffle** - `scenarios.ts` (cement prescription, pharma before/after, neutral hero callouts)
+- [x] **SEO/docs** - sitemap, `PAGE_SEO`, `llms.txt`, placeholder industry images, ADR-006
+- [x] **Sustainability positioning (homepage)** - additive only; hero subhead, `OperationalSustainability` (NEW B), `IndustryFourPointZero` (NEW C), `HomeFaq` accordion (NEW D), 5th WhyStamped card, per-tile sustainability line; H1 + recovery band unchanged
+- [x] **FAQ as single source** - `landingContent.faq` (8 items) rendered visibly and used to derive `homepageFaqSchema`; `knowsAbout` + home meta description extended
 
 ## Remaining Phases
 
 See **`SEO_GEO_AEO.md` → Remaining & ongoing maintenance** for the full list. Highlights:
 
 - [ ] **Google Business Profile** (Section 12 #3)
-- [ ] **LinkedIn Company Page** (Section 12 #4) — then update Organization schema `sameAs`
+- [ ] **LinkedIn Company Page** (Section 12 #4) - then update Organization schema `sameAs`
 - [ ] **Wikidata entry** for Stamped Energy (Section 12 #5)
 - [ ] Replace placeholder industry hero images (cement, steel, pharma, chemical photo shoot)
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)

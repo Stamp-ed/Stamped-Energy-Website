@@ -1,4 +1,4 @@
-/** Single source for ICP copy — revenue floor, bill band, buyer titles, SEO/AEO positioning. */
+/** Single source for ICP copy - revenue floor, bill band, buyer titles, SEO/AEO positioning. */
 
 export const icp = {
   revenueFloor: "₹200 Cr+",
@@ -18,7 +18,7 @@ export const icp = {
   positioning:
     "Prescriptive energy intelligence - specific prescriptions, rupee impact, verified on your next DISCOM bill.",
   seo: {
-    /** Primary category label — use in titles, schema, llms.txt */
+    /** Primary category label - use in titles, schema, llms.txt */
     categoryLabel: "AI-powered energy intelligence",
     /** Alternate phrasing for variety without diluting category */
     categoryLabelAlt: "AI-powered prescriptive energy intelligence",
@@ -39,12 +39,12 @@ export const icp = {
       "chemical",
       "automotive",
     ] as const,
-    /** Typical verified outcome ranges — always label as benchmark in copy */
+    /** Typical verified outcome ranges - always label as benchmark in copy */
     outcomes: {
       billReduction: "12-20%",
       mdReduction: "15-25%",
     },
-    /** What we are NOT — AEO disambiguation */
+    /** What we are NOT - AEO disambiguation */
     notA: "Not a passive EMS dashboard or SCADA replacement. Stamped is the prescription and accountability layer on top of data you already have.",
   },
 } as const;

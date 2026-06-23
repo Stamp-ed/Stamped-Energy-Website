@@ -10,7 +10,7 @@ import { gsap, useGSAP } from "@/lib/motion/gsap";
 const VIEW_W = 800;
 const VIEW_H = 560;
 
-/** Expanded chart area — uses more of the card. */
+/** Expanded chart area - uses more of the card. */
 const CHART = { left: 36, right: 768, top: 56, bottom: 448, baselineY: 348 };
 
 const CONSUMPTION_LINE =

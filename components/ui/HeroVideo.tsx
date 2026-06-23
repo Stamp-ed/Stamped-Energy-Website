@@ -12,7 +12,7 @@ interface HeroVideoProps {
 
 const VISIBILITY_THRESHOLD = 0.4;
 
-/** Hero loop video — plays when ≥40% visible, pauses when off-screen or below threshold. */
+/** Hero loop video - plays when ≥40% visible, pauses when off-screen or below threshold. */
 export function HeroVideo({ webm, poster, label }: HeroVideoProps) {
   const { prefersReducedMotion } = useMotion();
   const containerRef = useRef<HTMLDivElement>(null);

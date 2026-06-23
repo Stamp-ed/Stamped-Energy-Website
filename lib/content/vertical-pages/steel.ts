@@ -28,19 +28,19 @@ export const steelPage: VerticalPageContent = {
         id: "cost-share",
         value: "30-40%",
         label: "Share of energy in manufacturing cost",
-        detail: "TERI steel sector review [~]",
+        detail: "TERI steel sector review",
       },
       {
         id: "sec-win",
         value: "3-5%",
         label: "Minor instability causes measurable energy loss",
-        detail: "Small deviations compound into sustained losses [~]",
+        detail: "Small deviations compound into sustained losses",
       },
       {
         id: "pat",
         value: "60-70%",
         label: "Captive power energy drives production margins",
-        detail: "Fuel-power balance determines competitiveness [~]",
+        detail: "Fuel-power balance determines competitiveness",
       },
     ] satisfies StatItem[],
   },
@@ -48,15 +48,15 @@ export const steelPage: VerticalPageContent = {
     eyebrow: "Actionable energy intelligence",
     title: "Where energy value sits across processes and utilities",
     description:
-      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Reference ranges [~] - your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Reference ranges - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "eaf-induction",
         step: "01",
         title: "EAF / induction furnace",
         description:
-          "Holding power between heats and power factor penalties — schedule and PF sequencing prescriptions.",
-        potentialLabel: "Est. monthly savings [~]",
+          "Holding power between heats and power factor penalties - schedule and PF sequencing prescriptions.",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹3-8L",
       },
       {
@@ -64,8 +64,8 @@ export const steelPage: VerticalPageContent = {
         step: "02",
         title: "Reheating furnace",
         description:
-          "Weekend hold and idle soak — same playbook as heat treatment in auto-adjacent forging plants.",
-        potentialLabel: "Est. monthly savings [~]",
+          "Weekend hold and idle soak - same playbook as heat treatment in auto-adjacent forging plants.",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹2-6L",
       },
       {
@@ -73,23 +73,23 @@ export const steelPage: VerticalPageContent = {
         step: "03",
         title: "Rolling mill startup",
         description: "Simultaneous stand startup → MD spike. Stagger prescriptions assigned to electrical.",
-        potentialLabel: "Est. MD savings [~]",
+        potentialLabel: "Est. MD savings",
         potentialValue: "₹4-10L",
       },
       {
         id: "pumps-vfd",
         step: "04",
         title: "Cooling water & fume extraction",
-        description: "Constant-speed pumps running at full flow — VFD opportunity ranked by ROI.",
-        potentialLabel: "Est. monthly savings [~]",
+        description: "Constant-speed pumps running at full flow - VFD opportunity ranked by ROI.",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1.5-4L",
       },
       {
         id: "compressed-air",
         step: "05",
         title: "Compressed air",
-        description: "Leak and overpressure — Category 1 waste across steel utilities.",
-        potentialLabel: "Est. monthly savings [~]",
+        description: "Leak and overpressure - Category 1 waste across steel utilities.",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1-3L",
       },
       {
@@ -97,8 +97,8 @@ export const steelPage: VerticalPageContent = {
         step: "06",
         title: "Gas-electric mix",
         description:
-          "Suboptimal scheduling when grid time-of-day is high — shift production to tariff windows [Path B].",
-        potentialLabel: "Est. monthly savings [~]",
+          "Suboptimal scheduling when grid time-of-day is high - shift production to tariff windows [Path B].",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹2-5L",
       },
     ],
@@ -107,32 +107,32 @@ export const steelPage: VerticalPageContent = {
     eyebrow: "Example prescriptions",
     title: "Furnace and MD actions assigned this week",
     description:
-      "Illustrative actions from secondary steel and rolling benchmarks [~]. Your pilot generates prescriptions from your meters and bill.",
+      "Illustrative actions from secondary steel and rolling benchmark Your pilot generates prescriptions from your meters and bill.",
     footnote:
-      "Impact ranges are benchmark estimates [~]. External reference: Zerowatt integrated plant case at enterprise scale [external] — Stamped targets mid-market induction and rolling plants.",
+      "Impact ranges are benchmark estimate External reference: Zerowatt integrated plant case at enterprise scale [external] - Stamped targets mid-market induction and rolling plants.",
     items: [
       {
         id: "induction-hold",
         title: "Reduce induction furnace holding power between heats",
         description:
           "Furnace held at full power 45 minutes between heats with no pour scheduled. Setback schedule aligned to production calendar.",
-        impactRange: "₹3-8L/month [~]",
+        impactRange: "₹3-8L/month",
         assignee: "Furnace operator / electrical",
       },
       {
         id: "rolling-startup",
         title: "Sequence rolling mill stand startup after morning break",
         description:
-          "Four stands restarted simultaneously at 06:30 — incomer MD breached by 220 kVA. Stagger over 15 minutes.",
-        impactRange: "₹4-10L/month [~]",
+          "Four stands restarted simultaneously at 06:30 - incomer MD breached by 220 kVA. Stagger over 15 minutes.",
+        impactRange: "₹4-10L/month",
         assignee: "Rolling mill supervisor",
       },
       {
         id: "pump-vfd",
         title: "Duty-cycle cooling water pumps during low-production window",
         description:
-          "CW pumps at 100% flow with 40% rolling output. VFD setpoint adjustment — capital action ranked by payback.",
-        impactRange: "₹1.5-4L/month [~]",
+          "CW pumps at 100% flow with 40% rolling output. VFD setpoint adjustment - capital action ranked by payback.",
+        impactRange: "₹1.5-4L/month",
         assignee: "Utilities / maintenance",
       },
     ],
@@ -145,44 +145,44 @@ export const steelPage: VerticalPageContent = {
         id: "path-a",
         title: "Path A: Incomer meter + DISCOM bills",
         description:
-          "MD windows and furnace holding patterns from bill data alone — first prescriptions within two weeks.",
+          "MD windows and furnace holding patterns from bill data alone - first prescriptions within two weeks.",
       },
       {
         id: "path-b",
         title: "Path B: Furnace SCADA and production data",
         description:
-          "Heat schedules, rolling output, and kWh aligned — SEC baselines per route with PAT evidence support.",
+          "Heat schedules, rolling output, and kWh aligned - SEC baselines per route with PAT evidence support.",
       },
       {
         id: "forging-overlap",
         title: "Forging & foundry overlap",
         description:
-          "Same playbook as automotive heat treatment and forging — one platform for multi-process metal plants.",
+          "Same playbook as automotive heat treatment and forging - one platform for multi-process metal plants.",
       },
       {
         id: "pat-ccts",
         title: "PAT / CCTS alignment",
         description:
-          "SEC improvement tracked and verified — informational support for PAT discipline, not compliance consulting.",
+          "SEC improvement tracked and verified - informational support for PAT discipline, not compliance consulting.",
       },
     ],
   },
   outcomes: {
     eyebrow: "What you gain",
     title: "Tighter process efficiency and per-unit cost stability",
-    disclaimer: "Benchmark bands [~]. External SEC wins cited with attribution only.",
+    disclaimer: "Benchmark band External SEC wins cited with attribution only.",
     items: [
       {
         id: "furnace-md",
         title: "Tighter process efficiency",
         description:
-          "Prescriptive AI keeps furnaces and rolling processes within efficient operating windows, reducing avoidable energy loss during real production by 5-10% [~].",
+          "Prescriptive AI keeps furnaces and rolling processes within efficient operating windows, reducing avoidable energy loss during real production by 5-10",
       },
       {
         id: "rolling-sec",
         title: "Per-unit energy cost stability",
         description:
-          "AI detects captive power generation inefficiencies early and prescribes corrections before small deviations escalate into sustained cost losses, reducing per-unit energy cost by almost 5% [~].",
+          "AI detects captive power generation inefficiencies early and prescribes corrections before small deviations escalate into sustained cost losses, reducing per-unit energy cost by almost 5",
       },
       {
         id: "pat-sec",
@@ -194,41 +194,41 @@ export const steelPage: VerticalPageContent = {
         id: "ledger",
         title: "Utility efficiency discipline",
         description:
-          "Continuous monitoring keeps SEC of large utilities such as pumps, compressors, and cooling systems within efficient limits, cutting unplanned utility downtime by 10-15% [~].",
+          "Continuous monitoring keeps SEC of large utilities such as pumps, compressors, and cooling systems within efficient limits, cutting unplanned utility downtime by 10-15",
       },
     ],
   },
   segments: {
     eyebrow: "Process routes",
-    title: "EAF, rolling, forging — where the bill hurts most",
+    title: "EAF, rolling, forging - where the bill hurts most",
     description:
-      "Secondary steel, rolling mills, and forging-adjacent plants — expand each route for typical leaks and prescriptions.",
+      "Secondary steel, rolling mills, and forging-adjacent plants - expand each route for typical leaks and prescriptions.",
   },
   faq: [
     {
       id: "induction-consumption",
       question: "How much does induction furnace holding power cost?",
       answer:
-        "Holding power between heats can run 30-50% of furnace electricity with no production output [~]. Stamped quantifies this per furnace and assigns setback schedules with monthly rupee impact.",
+        "Holding power between heats can run 30-50% of furnace electricity with no production outpu Stamped quantifies this per furnace and assigns setback schedules with monthly rupee impact.",
     },
     {
       id: "pat-sec",
       question: "How does Stamped support PAT SEC targets?",
       answer:
-        "Stamped tracks SEC improvement with bill-verified M&V — a ledger for management and PAT evidence. Stamped is prescriptive intelligence, not PAT consulting or audit services.",
+        "Stamped tracks SEC improvement with bill-verified M&V - a ledger for management and PAT evidence. Stamped is prescriptive intelligence, not PAT consulting or audit services.",
     },
     {
       id: "integrated-steel",
       question: "Is Stamped suitable for integrated BF-BOF plants?",
       answer:
-        "Phase 1-2 focus is secondary steel, rolling, and forging (₹10L-₹1Cr+/mo electricity [~]). Integrated BF route plants with enterprise-scale bills require a different sales motion — we qualify honestly on discovery calls.",
+        "Phase 1-2 focus is secondary steel, rolling, and forging (₹10L-₹1Cr+/mo electricity ). Integrated BF route plants with enterprise-scale bills require a different sales motion - we qualify honestly on discovery calls.",
     },
   ],
   finalCta: {
     eyebrow: "Next step",
     title: "Map your furnace and rolling mill data",
     description:
-      "Discovery call: meters, main loads, PAT context — we outline a pilot if the numbers justify it.",
+      "Discovery call: meters, main loads, PAT context - we outline a pilot if the numbers justify it.",
     primaryCta: CTA,
   },
 };

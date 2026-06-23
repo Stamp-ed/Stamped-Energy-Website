@@ -49,7 +49,7 @@ export const automotivePage: VerticalPageContent = {
     eyebrow: "Actionable energy intelligence",
     title: "Where energy value sits across processes and utilities",
     description:
-      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Figures are reference ranges from comparable plants [~] - your pilot replaces them with verified numbers.",
+      "The platform identifies and prescribes actions on where energy value typically sits across processes and utilities. Figures are reference ranges from comparable plants - your pilot replaces them with verified numbers.",
     areas: [
       {
         id: "press-body",
@@ -57,7 +57,7 @@ export const automotivePage: VerticalPageContent = {
         title: "Press shop & body components",
         description:
           "Stagger press and auxiliary startup to avoid simultaneous MD spikes. Zero-investment sequencing prescriptions plus ROI-ranked capital actions.",
-        potentialLabel: "Est. monthly savings [~]",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1.5-3L",
       },
       {
@@ -66,7 +66,7 @@ export const automotivePage: VerticalPageContent = {
         title: "Die casting cells",
         description:
           "Furnace holding, core cooling compressors, and shot-cycle SEC, normalized by alloy mix and production rate.",
-        potentialLabel: "Est. monthly savings [~]",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹2-5L",
       },
       {
@@ -75,7 +75,7 @@ export const automotivePage: VerticalPageContent = {
         title: "Heat treatment & carburizing",
         description:
           "Setback gaps, weekend holding, and batch timing against tariff windows, prescribed per furnace with M&V.",
-        potentialLabel: "Est. monthly savings [~]",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1.5-4L",
       },
       {
@@ -83,8 +83,8 @@ export const automotivePage: VerticalPageContent = {
         step: "04",
         title: "Compressed air & utilities",
         description:
-          "Leak detection, over-pressure, and overlapping compressors — a recurring theme across auto component plants.",
-        potentialLabel: "Est. monthly savings [~]",
+          "Leak detection, over-pressure, and overlapping compressors - a recurring theme across auto component plants.",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1.2-2.5L",
       },
       {
@@ -93,7 +93,7 @@ export const automotivePage: VerticalPageContent = {
         title: "Rubber moulding & curing",
         description:
           "Curing cycle optimization, idle press heat, and batch changeover windows with supervisor-ready actions.",
-        potentialLabel: "Est. monthly savings [~]",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹1.2-3L",
       },
       {
@@ -102,24 +102,24 @@ export const automotivePage: VerticalPageContent = {
         title: "Electrical demand & MD management",
         description:
           "Demand windows, power factor, and shift-overlap spikes, tied to rupee impact on your utility bill.",
-        potentialLabel: "Est. monthly savings [~]",
+        potentialLabel: "Est. monthly savings",
         potentialValue: "₹2-6L",
       },
     ],
   },
   prescriptionExamples: {
     eyebrow: "Example prescriptions",
-    title: "What your supervisors receive — not another dashboard",
+    title: "What your supervisors receive - not another dashboard",
     description:
       "Illustrative actions from comparable auto component plants. Your pilot generates prescriptions from your meters and bill.",
     footnote:
-      "Impact ranges are benchmark estimates [~] from comparable plants — not customer guarantees. Verified figures come from your pilot M&V.",
+      "Impact ranges are benchmark estimates from comparable plants - not customer guarantees. Verified figures come from your pilot M&V.",
     items: [
       {
         id: "shift-start",
         title: "Stagger furnace pre-heat and compressor startup at shift change",
         description:
-          "Incomer MD hit 1,240 kVA at 07:15 — three furnaces and two compressors ramped together before first pour.",
+          "Incomer MD hit 1,240 kVA at 07:15 - three furnaces and two compressors ramped together before first pour.",
         impactRange: "₹2-5L/month",
         assignee: "Electrical maintenance / shift supervisor",
       },
@@ -149,12 +149,12 @@ export const automotivePage: VerticalPageContent = {
         id: "connect",
         title: "Connect without retrofit",
         description:
-          "Meters, SCADA, PLCs, and utility bills into one time-aligned graph — Modbus, OPC-UA, MQTT.",
+          "Meters, SCADA, PLCs, and utility bills into one time-aligned graph - Modbus, OPC-UA, MQTT.",
       },
       {
         id: "prescribe",
         title: "Prescriptions, not dashboards",
-        description: "What to change, why, who owns it, and ₹ impact — prioritized for your supervisors.",
+        description: "What to change, why, who owns it, and ₹ impact - prioritized for your supervisors.",
       },
       {
         id: "execute",
@@ -172,7 +172,7 @@ export const automotivePage: VerticalPageContent = {
     eyebrow: "What you gain",
     title: "Controlled energy intensity and sustained efficiency outcomes",
     disclaimer:
-      "Target bands from comparable plants [~]. Your pilot replaces these with bill-verified figures.",
+      "Target bands from comparable plant Your pilot replaces these with bill-verified figures.",
     items: [
       {
         id: "real-time",
@@ -184,19 +184,19 @@ export const automotivePage: VerticalPageContent = {
         id: "sec",
         title: "Stable SECs and KPIs",
         description:
-          "Continuous supervision prescribes corrective actions to maintain SECs and efficiency KPIs within defined operating bands, reducing performance drift by 8-12% [~].",
+          "Continuous supervision prescribes corrective actions to maintain SECs and efficiency KPIs within defined operating bands, reducing performance drift by 8-12",
       },
       {
         id: "reliability",
         title: "Higher asset reliability",
         description:
-          "Performance intelligence prescribes early interventions on degradation patterns, cutting unplanned utility downtime by 15-20% [~] and improving asset availability.",
+          "Performance intelligence prescribes early interventions on degradation patterns, cutting unplanned utility downtime by 15-20% and improving asset availability.",
       },
       {
         id: "sustained",
         title: "Sustained efficiency outcomes",
         description:
-          "Continuous feedback loops prescribe, validate, and refine actions over time, locking in 10-15% verified energy cost reduction [~] with bill-verified M&V.",
+          "Continuous feedback loops prescribe, validate, and refine actions over time, locking in 10-15% verified energy cost reduction with bill-verified M&V.",
       },
     ],
   },
@@ -204,14 +204,14 @@ export const automotivePage: VerticalPageContent = {
     eyebrow: "Automotive processes",
     title: "Four processes where the bill hurts most",
     description:
-      "Die casting, forging, heat treatment, rubber moulding — expand each for typical leaks and how Stamped addresses them.",
+      "Die casting, forging, heat treatment, rubber moulding - expand each for typical leaks and how Stamped addresses them.",
   },
   faq: [
     {
       id: "bill-reduction",
       question: "How much can auto component manufacturers reduce their electricity bill?",
       answer:
-        "Auto component suppliers using prescriptive energy intelligence typically see 12-20% monthly bill reduction [~]. Die casting and forging plants often recover 15-25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
+        "Auto component suppliers using prescriptive energy intelligence typically see 12-20% monthly bill reductio Die casting and forging plants often recover 15-25% on maximum demand charges alone from shift-start sequencing and furnace coordination.",
     },
     {
       id: "maximum-demand",
@@ -223,13 +223,13 @@ export const automotivePage: VerticalPageContent = {
       id: "die-casting",
       question: "How does Stamped Energy work for die casting plants?",
       answer:
-        "Stamped connects to your incomer meter and SCADA, builds production-normalized SEC baselines per cell and shift, then sends ranked prescriptions — stagger furnace pre-heat, stage compressors, reduce holding loads — with rupee impact assigned to shift supervisors via WhatsApp.",
+        "Stamped connects to your incomer meter and SCADA, builds production-normalized SEC baselines per cell and shift, then sends ranked prescriptions - stagger furnace pre-heat, stage compressors, reduce holding loads - with rupee impact assigned to shift supervisors via WhatsApp.",
     },
   ],
   finalCta: {
     eyebrow: "Next step",
     title: "Map your automotive plant data",
-    description: "Walk through meters, processes, and estimated waste — outline a pilot in weeks.",
+    description: "Walk through meters, processes, and estimated waste - outline a pilot in weeks.",
     primaryCta: CTA,
   },
 };

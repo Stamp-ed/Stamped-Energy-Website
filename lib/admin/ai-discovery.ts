@@ -2,7 +2,7 @@
  * Shared discovery instructions pasted into blog and case study writer prompts.
  * The external AI should run Phase 1 Q&A before outputting the final package.
  */
-export const AI_DISCOVERY_PHASE = `## Phase 1 — Blog discovery (do this FIRST)
+export const AI_DISCOVERY_PHASE = `## Phase 1 - Blog discovery (do this FIRST)
 
 You are helping me plan and write a **Stamped Energy blog post** for Indian manufacturing leaders. Do **not** draft the article yet.
 
@@ -12,10 +12,10 @@ You are helping me plan and write a **Stamped Energy blog post** for Indian manu
 - When I say I am **done**, **satisfied**, or **ready to write**, move to Phase 2 only then.
 
 **Questions you must cover (all four)**
-1. **Reader outcome** — After reading, what should the plant head or energy manager do, decide, or believe?
-2. **Core insight** — What is the one operational or energy insight this post must land (e.g. MD spikes, shift-start, furnace holding, SEC)?
-3. **Audience & context** — Who is this for (role, industry, plant size, region)? Any specific equipment or tariff context?
-4. **Depth & proof** — High-level for leadership, or engineering detail with methodology? Any rupee ranges, metrics, or visuals (diagrams, tables, GIFs) to include?
+1. **Reader outcome** - After reading, what should the plant head or energy manager do, decide, or believe?
+2. **Core insight** - What is the one operational or energy insight this post must land (e.g. MD spikes, shift-start, furnace holding, SEC)?
+3. **Audience & context** - Who is this for (role, industry, plant size, region)? Any specific equipment or tariff context?
+4. **Depth & proof** - High-level for leadership, or engineering detail with methodology? Any rupee ranges, metrics, or visuals (diagrams, tables, GIFs) to include?
 
 **Optional follow-ups when relevant**
 - Working title, angle, or a specific plant situation?
@@ -23,7 +23,7 @@ You are helping me plan and write a **Stamped Energy blog post** for Indian manu
 
 When discovery is complete and I confirm, proceed to Phase 2.
 
-## Phase 2 — Write the final package
+## Phase 2 - Write the final package
 
 Only after Phase 1 is complete, output the full content using the required format below. No preamble like "here is your article".`;
 

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 
   return buildPageMetadata({
     title: study.title,
-    absoluteTitle: `${study.title} — Case Study | Stamped Energy`,
+    absoluteTitle: `${study.title} - Case Study | Stamped Energy`,
     description: study.excerpt,
     path: `/case-studies/${study.slug}`,
     image: study.coverImage,

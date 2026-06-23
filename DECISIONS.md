@@ -104,7 +104,7 @@ Architecture and workflow decisions for this project.
 
 1. Duplicate automotive page structure per vertical (5× page files + components)
 2. Shared `VerticalPageContent` model + generic `components/industries/vertical/*` + dynamic `app/industries/[slug]/page.tsx`
-3. CMS-driven vertical pages (deferred — no CMS for marketing copy yet)
+3. CMS-driven vertical pages (deferred - no CMS for marketing copy yet)
 
 **Selected:** Shared content model (`lib/content/vertical-pages/`) + slug-agnostic components + dynamic route with `generateStaticParams`. Keep `/industries/automotive` as thin wrapper for backward compatibility.
 
@@ -114,7 +114,7 @@ Architecture and workflow decisions for this project.
 
 ---
 
-## ADR-007: Homepage FAQ — single content source feeding both UI and schema
+## ADR-007: Homepage FAQ - single content source feeding both UI and schema
 
 **Date:** 2026-06-24
 
@@ -126,8 +126,8 @@ Architecture and workflow decisions for this project.
 2. Single `landingContent.faq` source rendered as a visible accordion (`HomeFaq`) and used to derive `homepageFaqSchema`
 3. Separate visible FAQ component with its own copy, schema unchanged (drift between the two)
 
-**Selected:** Option 2 — one typed source (`landingContent.faq`, 8 items), a visible `HomeFaq` accordion, and `homepageFaqSchema.mainEntity` mapped from the same array.
+**Selected:** Option 2 - one typed source (`landingContent.faq`, 8 items), a visible `HomeFaq` accordion, and `homepageFaqSchema.mainEntity` mapped from the same array.
 
 **Rationale:** Eliminates schema/UI drift, makes all FAQ content visible (Google requirement), and adds the sustainability items in both places from one edit point.
 
-**Impact:** Editing `landingContent.faq` updates both the rendered accordion and the JSON-LD. Positioning update is additive only — hero H1 and the four-stat recovery band (`Outcomes`) are unchanged.
+**Impact:** Editing `landingContent.faq` updates both the rendered accordion and the JSON-LD. Positioning update is additive only - hero H1 and the four-stat recovery band (`Outcomes`) are unchanged.
