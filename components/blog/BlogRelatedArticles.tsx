@@ -41,7 +41,7 @@ export function BlogRelatedArticles({ posts }: BlogRelatedArticlesProps) {
   }
 
   return (
-    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface-low section-y">
+    <section ref={sectionRef} className="border-t border-outline-variant/40 bg-surface-low py-8 md:section-y">
       <Container>
         <SectionHeading
           eyebrow="Keep reading"
@@ -51,7 +51,7 @@ export function BlogRelatedArticles({ posts }: BlogRelatedArticlesProps) {
           className="mx-auto max-w-2xl"
         />
 
-        <div className="mx-auto mt-8 grid max-w-6xl gap-5 md:mt-12 lg:grid-cols-3">
+        <div className="mx-auto mt-6 grid max-w-6xl gap-4 sm:gap-5 md:mt-12 lg:grid-cols-3">
           {posts.map((post) => (
             <BlogPostCard key={post.id} post={post} dataAttr="data-blog-related" />
           ))}

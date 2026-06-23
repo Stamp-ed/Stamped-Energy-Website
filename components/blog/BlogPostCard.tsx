@@ -21,7 +21,7 @@ export function BlogPostCard({ post, className, dataAttr }: BlogPostCardProps) {
         className,
       )}
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
+      <div className="relative aspect-[16/9] overflow-hidden bg-surface-container sm:aspect-[16/10]">
         {post.coverImage ? (
           <Image
             src={post.coverImage}
@@ -39,11 +39,11 @@ export function BlogPostCard({ post, className, dataAttr }: BlogPostCardProps) {
           {post.categoryLabel}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-5 md:p-6">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
+      <div className="flex flex-1 flex-col p-4 sm:p-5 md:p-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary sm:text-[10px]">
           {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read
         </p>
-        <h3 className="mt-1 text-base font-bold leading-snug text-on-surface group-hover:text-primary md:text-lg">
+        <h3 className="mt-1.5 text-[1.05rem] font-bold leading-snug text-on-surface group-hover:text-primary sm:mt-1 sm:text-base md:text-lg">
           {post.title}
         </h3>
         <p className="mt-2 flex-1 text-sm leading-6 text-on-surface-variant line-clamp-3">

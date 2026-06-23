@@ -271,7 +271,60 @@
 
 .blog-article-prose.rich-article-reading .rich-article {
   max-width: none;
-  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  font-size: clamp(1rem, 0.35vw + 0.95rem, 1.2rem);
+  line-height: 1.72;
+}
+
+@media (max-width: 767px) {
+  .blog-article-prose.rich-article-reading .rich-article h2 {
+    font-size: 1.4rem;
+    margin-top: 1.85em;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article h3 {
+    font-size: 1.125rem;
+    margin-top: 1.5em;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article blockquote {
+    font-size: 1.05rem;
+    padding-left: 1rem;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article pre {
+    margin-inline: -0.25rem;
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article table.rich-table,
+  .blog-article-prose.rich-article-reading .rich-article .rich-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    font-size: 0.875rem;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article table.rich-table th,
+  .blog-article-prose.rich-article-reading .rich-article table.rich-table td,
+  .blog-article-prose.rich-article-reading .rich-article .rich-table th,
+  .blog-article-prose.rich-article-reading .rich-article .rich-table td {
+    padding: 0.45rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article img.rich-image {
+    margin-inline: -0.25rem;
+    width: calc(100% + 0.5rem);
+    max-width: calc(100% + 0.5rem);
+    border-radius: 0.375rem;
+  }
+
+  .blog-article-prose.rich-article-reading .rich-article .mermaid-diagram {
+    margin-inline: -0.25rem;
+    padding: 0.75rem;
+  }
 }
 
 .rich-article-reading .rich-article h2:first-child {

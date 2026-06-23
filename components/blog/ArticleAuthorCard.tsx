@@ -18,7 +18,7 @@ type ArticleAuthorCardProps = {
 
 export function ArticleAuthorCard({ author }: ArticleAuthorCardProps) {
   return (
-    <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-5">
+    <div className="rounded-2xl border border-outline-variant/50 bg-surface-low p-4 sm:p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-on-surface-variant">
         Written by
       </p>

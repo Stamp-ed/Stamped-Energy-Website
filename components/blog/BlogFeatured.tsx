@@ -41,7 +41,7 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
   }
 
   return (
-    <section ref={sectionRef} className="border-b border-outline-variant/40 bg-surface py-10 md:section-y">
+    <section ref={sectionRef} className="border-b border-outline-variant/40 bg-surface py-8 md:section-y">
       <Container>
         <SectionHeading
           eyebrow="Featured"
@@ -51,7 +51,7 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
           className="mx-auto max-w-2xl"
         />
 
-        <div className="mt-6 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
           {posts.map((post) => (
             <BlogPostCard key={post.id} post={post} dataAttr="data-blog-featured" />
           ))}

@@ -32,7 +32,7 @@ const BLOG_CTA = {
 
 /** Main column + sidebar - matches site container width without extra centering gutters. */
 const ARTICLE_LAYOUT =
-  "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(17.5rem,20rem)] lg:items-start lg:gap-12 xl:gap-14";
+  "grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(17.5rem,20rem)] lg:items-start lg:gap-12 xl:gap-14";
 
 export function BlogArticleView({ post, related }: BlogArticleViewProps) {
   const heroRef = useRef<HTMLElement>(null);
@@ -93,7 +93,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
         ref={heroRef}
         className={cn(
           "page-hero relative overflow-hidden border-b border-outline-variant/40",
-          hasCover ? "bg-secondary" : "bg-surface",
+          hasCover ? "min-h-[22rem] bg-secondary md:min-h-0" : "bg-surface",
         )}
       >
         {hasCover ? (
@@ -103,21 +103,21 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
               alt=""
               fill
               priority
-              className="object-cover object-[center_40%]"
+              className="object-cover object-[center_35%] md:object-[center_40%]"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_42%,#000)_0%,color-mix(in_srgb,#000_48%,transparent)_34%,color-mix(in_srgb,#000_16%,transparent)_58%,transparent_82%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,#000_28%,transparent)_0%,transparent_22%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_58%,#000)_0%,color-mix(in_srgb,#000_62%,transparent)_38%,color-mix(in_srgb,#000_28%,transparent)_62%,transparent_88%)] md:bg-[linear-gradient(105deg,color-mix(in_srgb,var(--brand-secondary)_42%,#000)_0%,color-mix(in_srgb,#000_48%,transparent)_34%,color-mix(in_srgb,#000_16%,transparent)_58%,transparent_82%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,#000_42%,transparent)_0%,color-mix(in_srgb,#000_12%,transparent)_35%,transparent_55%)] md:bg-[linear-gradient(180deg,color-mix(in_srgb,#000_28%,transparent)_0%,transparent_22%)]" />
           </div>
         ) : null}
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 flex min-h-[inherit] flex-col justify-end md:block">
           <div className="max-w-3xl">
             <Link
               data-blog-hero
               href="/blog"
               className={cn(
-                "text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
+                "inline-flex min-h-11 items-center py-1 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
                 hasCover
                   ? "text-inverse-primary hover:text-on-secondary"
                   : "text-on-surface-variant hover:text-primary",
@@ -129,13 +129,13 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
             <div
               data-blog-hero
               className={cn(
-                "mt-6 flex flex-wrap items-center gap-2 text-xs",
-                hasCover ? "text-on-secondary/80" : "text-on-surface-variant",
+                "mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-2",
+                hasCover ? "text-on-secondary/85" : "text-on-surface-variant",
               )}
             >
               <span
                 className={cn(
-                  "rounded-full px-2.5 py-1 font-semibold uppercase tracking-wide",
+                  "w-fit rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wide",
                   hasCover
                     ? "border border-on-secondary/25 bg-on-secondary/10 text-on-secondary"
                     : "bg-secondary-container text-on-secondary-container",
@@ -143,15 +143,24 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
               >
                 {post.categoryLabel}
               </span>
-              <span>
-                {formatBlogDate(post.publishedAt)} · {post.readTimeMin} min read · {post.author.name}
-              </span>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
+                <time dateTime={post.publishedAt ?? undefined}>
+                  {formatBlogDate(post.publishedAt)}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{post.readTimeMin} min read</span>
+                <span aria-hidden="true" className="hidden min-[380px]:inline">
+                  ·
+                </span>
+                <span className="hidden min-[380px]:inline">{post.author.name}</span>
+              </div>
+              <p className="text-xs min-[380px]:hidden">{post.author.name}</p>
             </div>
 
             <h1
               data-blog-hero
               className={cn(
-                "mt-5 font-display text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em]",
+                "mt-4 font-display text-[1.75rem] font-extrabold leading-[1.14] tracking-[-0.02em] sm:mt-5 sm:text-[clamp(2rem,5vw,2.75rem)] sm:leading-[1.12]",
                 hasCover ? "max-w-2xl text-on-secondary" : "max-w-4xl text-on-surface",
               )}
             >
@@ -161,7 +170,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
             <p
               data-blog-hero
               className={cn(
-                "mt-5 text-lg leading-8 md:text-xl md:leading-9",
+                "mt-4 text-base leading-7 sm:mt-5 md:text-lg md:leading-8",
                 hasCover
                   ? "max-w-2xl text-on-secondary/85"
                   : "max-w-3xl text-on-surface-variant",
@@ -171,12 +180,12 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
             </p>
 
             {post.tags.length > 0 ? (
-              <div data-blog-hero className="mt-6 flex flex-wrap gap-2">
+              <div data-blog-hero className="mt-5 flex flex-wrap gap-2 sm:mt-6">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
                     className={cn(
-                      "rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide",
+                      "rounded-full px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide",
                       hasCover
                         ? "border border-on-secondary/25 bg-on-secondary/10 text-on-secondary/90"
                         : "border border-outline-variant/60 text-on-surface-variant",
@@ -191,7 +200,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
         </Container>
       </section>
 
-      <section ref={sectionRef} className="section-y bg-surface pb-20">
+      <section ref={sectionRef} className="bg-surface py-8 md:section-y md:pb-20">
         <Container>
           <div className={ARTICLE_LAYOUT}>
             <article data-blog-article className="min-w-0">
@@ -203,11 +212,14 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
               />
             </article>
 
-            <aside data-blog-article className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+            <aside
+              data-blog-article
+              className="space-y-5 lg:sticky lg:top-28 lg:self-start lg:space-y-6"
+            >
               <ArticleAuthorCard author={post.author} />
 
               {related.length > 0 ? (
-                <div className="rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 shadow-sm">
+                <div className="hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest p-5 shadow-sm lg:block">
                   <p className="text-sm font-bold text-on-surface">More to read</p>
                   <ul className="mt-4 space-y-4">
                     {related.map((item) => (
