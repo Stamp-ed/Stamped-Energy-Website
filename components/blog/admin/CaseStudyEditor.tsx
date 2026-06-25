@@ -322,8 +322,12 @@ export function CaseStudyEditor({ mode, initial }: CaseStudyEditorProps) {
                 <input
                   value={form.coverImage}
                   onChange={(event) => update("coverImage", event.target.value)}
+                  placeholder="/industries/forging.jpg or https://…"
                   className={fieldClass}
                 />
+                <p className="mt-1.5 text-xs text-[var(--admin-text-muted)]">
+                  Site path from public/ or any https image URL.
+                </p>
               </div>
               <div className="sm:col-span-2">
                 <label className={labelClass}>Cover alt text</label>

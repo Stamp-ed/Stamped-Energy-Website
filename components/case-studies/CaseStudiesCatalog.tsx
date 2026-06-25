@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ContentImage } from "@/components/ui/ContentImage";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
@@ -116,7 +116,7 @@ export function CaseStudiesCatalog({ studies }: CaseStudiesCatalogProps) {
               className="group flex overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow hover:shadow-md"
             >
               <div className="relative min-h-[6.5rem] w-24 shrink-0 self-stretch sm:min-h-0 sm:w-2/5">
-                <Image
+                <ContentImage
                   src={study.imageSrc}
                   alt={study.imageAlt}
                   fill

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ContentImage } from "@/components/ui/ContentImage";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -47,7 +47,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
     <>
       <section className="page-hero relative overflow-hidden border-b border-outline-variant/40 bg-secondary">
         <div className="absolute inset-0">
-          <Image
+          <ContentImage
             src={coverImage}
             alt={study.coverImageAlt || study.title}
             fill

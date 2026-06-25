@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
+import { ContentImage } from "@/components/ui/ContentImage";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { resourcesContent } from "@/lib/content";
@@ -72,7 +72,7 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
                 : {})}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
+                <ContentImage
                   src={item.imageSrc}
                   alt={item.imageAlt}
                   fill

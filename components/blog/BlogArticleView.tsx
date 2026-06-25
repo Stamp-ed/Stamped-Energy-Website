@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 
@@ -9,6 +8,7 @@ import { BlogRelatedArticles } from "@/components/blog/BlogRelatedArticles";
 import { RichArticleBody } from "@/components/rich-content/RichArticleBody";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
+import { ContentImage } from "@/components/ui/ContentImage";
 import { IndustryPageCta } from "@/components/industries/shared/IndustryPageCta";
 import type { BlogPostDTO, BlogPostListItem } from "@/lib/blog/posts";
 import { formatBlogDate } from "@/lib/blog/utils";
@@ -98,7 +98,7 @@ export function BlogArticleView({ post, related }: BlogArticleViewProps) {
       >
         {hasCover ? (
           <div className="absolute inset-0" aria-hidden="true">
-            <Image
+            <ContentImage
               src={post.coverImage!}
               alt=""
               fill

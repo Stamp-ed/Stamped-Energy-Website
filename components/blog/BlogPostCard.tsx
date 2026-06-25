@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { BlogPostListItem } from "@/lib/blog/posts";
 import { formatBlogDate } from "@/lib/blog/utils";
+import { ContentImage } from "@/components/ui/ContentImage";
 import { cn } from "@/lib/utils";
 
 type BlogPostCardProps = {
@@ -23,7 +23,7 @@ export function BlogPostCard({ post, className, dataAttr }: BlogPostCardProps) {
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-surface-container sm:aspect-[16/10]">
         {post.coverImage ? (
-          <Image
+          <ContentImage
             src={post.coverImage}
             alt={post.title}
             fill

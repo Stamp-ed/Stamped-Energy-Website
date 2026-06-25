@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
+import { ContentImage } from "@/components/ui/ContentImage";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { caseStudiesContent } from "@/lib/content/caseStudies";
@@ -66,7 +66,7 @@ export function CaseStudiesFeatured({ studies }: CaseStudiesFeaturedProps) {
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-lowest shadow-sm transition-shadow hover:shadow-md"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
+                <ContentImage
                   src={study.imageSrc}
                   alt={study.imageAlt}
                   fill
