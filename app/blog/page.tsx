@@ -6,6 +6,7 @@ import { BlogHero } from "@/components/blog/BlogHero";
 import { IndustryPageCta } from "@/components/industries/shared/IndustryPageCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { listPublishedPosts } from "@/lib/blog/posts";
+import { safeDbQuery } from "@/lib/db/safe-query";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
@@ -35,10 +36,17 @@ const BLOG_CTA = {
 };
 
 export default async function BlogPage() {
+  const emptyPosts = {
+    posts: [],
+    pagination: { page: 1, limit: 6, total: 0, totalPages: 0, hasMore: false },
+  };
+
   const [featuredResult, catalogResult] = await Promise.all([
-    listPublishedPosts({ featured: true, limit: 3 }),
-    listPublishedPosts({ page: 1, limit: 6 }),
+    safeDbQuery(() => listPublishedPosts({ featured: true, limit: 3 }), emptyPosts),
+    safeDbQuery(() => listPublishedPosts({ page: 1, limit: 6 }), emptyPosts),
   ]);
+
+  const databaseError = featuredResult.databaseError || catalogResult.databaseError;
 
   return (
     <>
@@ -48,11 +56,11 @@ export default async function BlogPage() {
         title="Notes from the plant floor on electricity cost"
         description="Maximum demand, shift-start overlap, furnace holding, compressor waste, written for plant heads and electrical HODs, not software teams."
       />
-      <BlogFeatured posts={featuredResult.posts} />
+      <BlogFeatured posts={featuredResult.data.posts} databaseError={databaseError} />
       <BlogCatalog
-        initialPosts={catalogResult.posts}
-        initialHasMore={catalogResult.pagination.hasMore}
-        initialPage={catalogResult.pagination.page}
+        initialPosts={catalogResult.data.posts}
+        initialHasMore={catalogResult.data.pagination.hasMore}
+        initialPage={catalogResult.data.pagination.page}
       />
       <IndustryPageCta content={BLOG_CTA} />
     </>

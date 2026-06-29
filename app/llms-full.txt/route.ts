@@ -1,14 +1,24 @@
 import { listPublishedPosts } from "@/lib/blog/posts";
 import { listPublishedCaseStudies } from "@/lib/case-studies/studies";
 import { icp } from "@/lib/content/icp";
+import { safeDbQuery } from "@/lib/db/safe-query";
 import { SITE_URL } from "@/lib/seo/constants";
 
 export const revalidate = 3600;
 
 export async function GET() {
+  const emptyPosts = {
+    posts: [],
+    pagination: { page: 1, limit: 500, total: 0, totalPages: 0, hasMore: false },
+  };
+  const emptyStudies = {
+    studies: [],
+    pagination: { page: 1, limit: 100, total: 0, totalPages: 0, hasMore: false },
+  };
+
   const [postsResult, studiesResult] = await Promise.all([
-    listPublishedPosts({ limit: 500 }),
-    listPublishedCaseStudies({ limit: 100 }),
+    safeDbQuery(() => listPublishedPosts({ limit: 500 }), emptyPosts),
+    safeDbQuery(() => listPublishedCaseStudies({ limit: 100 }), emptyStudies),
   ]);
 
   const lines: string[] = [
@@ -27,20 +37,20 @@ export async function GET() {
     "",
   ];
 
-  if (postsResult.posts.length === 0) {
+  if (postsResult.data.posts.length === 0) {
     lines.push("- (No published posts yet)");
   } else {
-    for (const post of postsResult.posts) {
+    for (const post of postsResult.data.posts) {
       lines.push(`- [${post.title}](${SITE_URL}/blog/${post.slug}): ${post.excerpt}`);
     }
   }
 
   lines.push("", "## Case studies", "");
 
-  if (studiesResult.studies.length === 0) {
+  if (studiesResult.data.studies.length === 0) {
     lines.push("- (No published case studies yet)");
   } else {
-    for (const study of studiesResult.studies) {
+    for (const study of studiesResult.data.studies) {
       lines.push(
         `- [${study.title}](${SITE_URL}/case-studies/${study.slug}): ${study.excerpt}`,
       );

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
+import { DatabaseFetchNotice } from "@/components/ui/DatabaseFetchNotice";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { BlogPostListItem } from "@/lib/blog/posts";
 import { scrollTriggerDefaults } from "@/lib/motion/config";
@@ -12,9 +13,10 @@ import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 type BlogFeaturedProps = {
   posts: BlogPostListItem[];
+  databaseError?: boolean;
 };
 
-export function BlogFeatured({ posts }: BlogFeaturedProps) {
+export function BlogFeatured({ posts, databaseError = false }: BlogFeaturedProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { isReady, prefersReducedMotion } = useMotion();
 
@@ -36,7 +38,7 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
     { scope: sectionRef, dependencies: [isReady, prefersReducedMotion, posts.length] },
   );
 
-  if (posts.length === 0) {
+  if (posts.length === 0 && !databaseError) {
     return null;
   }
 
@@ -51,11 +53,15 @@ export function BlogFeatured({ posts }: BlogFeaturedProps) {
           className="mx-auto max-w-2xl"
         />
 
-        <div className="mt-5 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
-          {posts.map((post) => (
-            <BlogPostCard key={post.id} post={post} dataAttr="data-blog-featured" />
-          ))}
-        </div>
+        {databaseError ? <DatabaseFetchNotice className="mx-auto mt-6 max-w-md" /> : null}
+
+        {posts.length > 0 ? (
+          <div className="mt-5 grid gap-4 sm:gap-5 md:mt-10 lg:grid-cols-3">
+            {posts.map((post) => (
+              <BlogPostCard key={post.id} post={post} dataAttr="data-blog-featured" />
+            ))}
+          </div>
+        ) : null}
       </Container>
     </section>
   );

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CaseStudiesPage } from "@/components/case-studies/CaseStudiesPage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { listPublishedCaseStudies } from "@/lib/case-studies/studies";
+import { safeDbQuery } from "@/lib/db/safe-query";
 import { breadcrumbHome, generateBreadcrumbSchema } from "@/lib/seo/breadcrumbs";
 import { buildPageMetadataFromConfig } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/pages";
@@ -24,12 +25,18 @@ const collectionSchema = buildCollectionPageSchema({
 });
 
 export default async function CaseStudiesRoute() {
-  const { studies } = await listPublishedCaseStudies({ limit: 24 });
+  const { data, databaseError } = await safeDbQuery(
+    () => listPublishedCaseStudies({ limit: 24 }),
+    {
+      studies: [],
+      pagination: { page: 1, limit: 24, total: 0, totalPages: 0, hasMore: false },
+    },
+  );
 
   return (
     <>
       <JsonLd data={[collectionSchema, breadcrumbSchema]} />
-      <CaseStudiesPage studies={studies} />
+      <CaseStudiesPage studies={data.studies} databaseError={databaseError} />
     </>
   );
 }

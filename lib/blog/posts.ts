@@ -173,32 +173,42 @@ export async function listPublishedPosts(options?: {
 }
 
 export async function getPublishedPostBySlug(slug: string): Promise<BlogPostDTO | null> {
-  const post = await prisma.blogPost.findFirst({
-    where: {
-      slug,
-      status: "PUBLISHED",
-      publishedAt: { lte: new Date() },
-    },
-    include: { author: { select: { name: true } } },
-  });
+  try {
+    const post = await prisma.blogPost.findFirst({
+      where: {
+        slug,
+        status: "PUBLISHED",
+        publishedAt: { lte: new Date() },
+      },
+      include: { author: { select: { name: true } } },
+    });
 
-  return post ? mapPost(post) : null;
+    return post ? mapPost(post) : null;
+  } catch (error) {
+    console.error("[getPublishedPostBySlug]", error);
+    return null;
+  }
 }
 
 export async function getRelatedPosts(slug: string, category: string, limit = 3) {
-  const posts = await prisma.blogPost.findMany({
-    where: {
-      slug: { not: slug },
-      status: "PUBLISHED",
-      category,
-      publishedAt: { lte: new Date() },
-    },
-    include: { author: { select: { name: true } } },
-    orderBy: { publishedAt: "desc" },
-    take: limit,
-  });
+  try {
+    const posts = await prisma.blogPost.findMany({
+      where: {
+        slug: { not: slug },
+        status: "PUBLISHED",
+        category,
+        publishedAt: { lte: new Date() },
+      },
+      include: { author: { select: { name: true } } },
+      orderBy: { publishedAt: "desc" },
+      take: limit,
+    });
 
-  return posts.map(mapListItem);
+    return posts.map(mapListItem);
+  } catch (error) {
+    console.error("[getRelatedPosts]", error);
+    return [];
+  }
 }
 
 export async function listAdminPosts(options?: {
