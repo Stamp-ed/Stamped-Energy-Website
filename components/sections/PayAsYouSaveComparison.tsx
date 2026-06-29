@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { InvestmentRoiChart } from "@/components/sections/comparison/InvestmentRoiChart";
+import { PayAsYouSaveChartVisual } from "@/components/sections/comparison/PayAsYouSaveChartVisual";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -21,15 +21,15 @@ export function PayAsYouSaveComparison() {
 
   useGSAP(
     () => {
-      if (!isReady || prefersReducedMotion) {
+      if (!isReady || prefersReducedMotion || !sectionRef.current) {
         return;
       }
 
-      gsap.from("[data-pay-card]", {
+      const cardTween = gsap.from("[data-pay-card]", {
         autoAlpha: 0,
-        y: 24,
-        duration: 0.65,
-        stagger: 0.12,
+        y: 28,
+        duration: 0.7,
+        stagger: 0.14,
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -38,11 +38,11 @@ export function PayAsYouSaveComparison() {
         },
       });
 
-      gsap.from("[data-pay-benefit]", {
+      const benefitTween = gsap.from("[data-pay-benefit]", {
         autoAlpha: 0,
-        y: 16,
-        duration: 0.5,
-        stagger: 0.08,
+        y: 18,
+        duration: 0.55,
+        stagger: 0.09,
         ease: "power2.out",
         scrollTrigger: {
           trigger: "[data-pay-benefits]",
@@ -50,6 +50,13 @@ export function PayAsYouSaveComparison() {
           once: true,
         },
       });
+
+      return () => {
+        cardTween.scrollTrigger?.kill();
+        cardTween.kill();
+        benefitTween.scrollTrigger?.kill();
+        benefitTween.kill();
+      };
     },
     {
       scope: sectionRef,
@@ -78,7 +85,7 @@ export function PayAsYouSaveComparison() {
         <div className="relative mx-auto mt-8 grid max-w-6xl gap-6 md:mt-12 md:grid-cols-2 md:gap-10">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-surface-lowest text-primary md:flex"
+            className="pointer-events-none absolute left-1/2 top-[calc(50%+1.5rem)] z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-surface-lowest text-sm font-bold text-primary shadow-sm md:flex"
           >
             vs
           </div>
@@ -99,7 +106,7 @@ export function PayAsYouSaveComparison() {
               >
                 <div
                   className={cn(
-                    "border-b px-6 py-4",
+                    "border-b px-5 py-4 sm:px-6",
                     isStamped
                       ? "border-primary/20 bg-primary/10"
                       : "border-outline-variant/50 bg-surface-dim/60",
@@ -116,18 +123,20 @@ export function PayAsYouSaveComparison() {
                   <p className="mt-1.5 text-sm leading-5 text-on-surface-variant">{approach.description}</p>
                 </div>
 
-                <div className="bg-surface-dim/30 px-3 py-6 sm:px-5 sm:py-8">
-                  <InvestmentRoiChart
-                    variant={approach.variant}
-                    className="mx-auto h-auto w-full min-h-[160px] max-w-none sm:min-h-[200px]"
-                  />
+                <div className="p-3 sm:p-4 md:p-5">
+                  <div className="overflow-hidden rounded-xl border border-outline-variant/40 bg-surface-low/60 p-2 sm:p-3 md:p-4">
+                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary sm:text-xs">
+                      Investment vs return
+                    </p>
+                    <PayAsYouSaveChartVisual variant={approach.variant} />
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-on-surface-variant">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-on-surface-variant">
           {payAsYouSave.legend.map((item, index) => (
             <span key={item} className="inline-flex items-center gap-2">
               {index > 0 ? (
@@ -143,7 +152,7 @@ export function PayAsYouSaveComparison() {
               ) : item === "ROI" ? (
                 <span
                   aria-hidden="true"
-                  className="inline-block h-0.5 w-4 rounded-full bg-primary"
+                  className="inline-block h-0.5 w-5 rounded-full bg-primary"
                 />
               ) : (
                 <span aria-hidden="true" className="inline-block h-2.5 w-2.5 rounded-full bg-primary" />
