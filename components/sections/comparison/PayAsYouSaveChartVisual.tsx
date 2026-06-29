@@ -225,7 +225,7 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
               y={-bar.height}
               width={40}
               height={bar.height}
-              fill="var(--brand-secondary)"
+              fill="var(--brand-on-secondary-container)"
             />
           </g>
         ))}
