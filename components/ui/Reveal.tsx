@@ -37,7 +37,7 @@ export function Reveal({ children, className, from = "up", delay = 0 }: RevealPr
       }
 
       gsap.set(element, getRevealFromVars(from));
-      gsap.to(element, {
+      const tween = gsap.to(element, {
         ...getRevealToVars(from),
         duration: revealDuration,
         ease: easeOut,
@@ -47,6 +47,11 @@ export function Reveal({ children, className, from = "up", delay = 0 }: RevealPr
           ...scrollTriggerDefaults,
         },
       });
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
     },
     {
       scope: containerRef,
