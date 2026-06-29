@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef } from "react";
 
+import { HeroEnergyLoop } from "@/components/sections/hero/HeroEnergyLoop";
 import { HeroFeatureBar } from "@/components/sections/hero/HeroFeatureBar";
 import { HeroPromoVideo } from "@/components/sections/hero/HeroPromoVideo";
 import { ArrowRightIcon, PlayCircleIcon } from "@/components/sections/hero/HeroIcons";
@@ -150,6 +151,7 @@ export function Hero() {
       <div className="relative z-10 mt-10 md:mt-12">
         <HeroFeatureBar />
         <HeroPromoVideo />
+        <HeroEnergyLoop />
       </div>
     </section>
   );
