@@ -75,7 +75,7 @@ export function PayAsYouSaveComparison() {
           />
         </Reveal>
 
-        <div className="relative mx-auto mt-8 grid max-w-5xl gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
+        <div className="relative mx-auto mt-8 grid max-w-6xl gap-6 md:mt-12 md:grid-cols-2 md:gap-10">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-surface-lowest text-primary md:flex"
@@ -113,11 +113,14 @@ export function PayAsYouSaveComparison() {
                   >
                     {approach.label}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-on-surface-variant">{approach.description}</p>
+                  <p className="mt-1.5 text-sm leading-5 text-on-surface-variant">{approach.description}</p>
                 </div>
 
-                <div className="px-4 py-5 sm:px-6">
-                  <InvestmentRoiChart variant={approach.variant} className="mx-auto h-auto w-full max-w-[280px]" />
+                <div className="bg-surface-dim/30 px-3 py-6 sm:px-5 sm:py-8">
+                  <InvestmentRoiChart
+                    variant={approach.variant}
+                    className="mx-auto h-auto w-full min-h-[160px] max-w-none sm:min-h-[200px]"
+                  />
                 </div>
               </article>
             );

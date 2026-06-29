@@ -71,29 +71,26 @@ export function Problem() {
               data-problem-card
               className="group relative h-full overflow-hidden rounded-2xl border border-on-secondary/15 bg-surface-lowest p-5 text-on-surface shadow-lg transition-transform duration-300 hover:-translate-y-1 sm:p-6 md:p-7"
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start gap-4">
                 <span
                   aria-hidden="true"
-                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 font-display text-sm font-extrabold text-primary"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 font-display text-sm font-extrabold text-primary"
                 >
                   {PROBLEM_MARKERS[index]}
                 </span>
-                <p className="font-display text-sm font-extrabold uppercase tracking-[0.14em] text-primary/80">
-                  0{index + 1}
-                </p>
               </div>
-              <h3 className="mt-5 text-xl font-bold text-on-surface">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-on-surface-variant">{item.description}</p>
+              <h3 className="mt-4 text-lg font-bold text-on-surface sm:text-xl">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-on-surface-variant">{item.description}</p>
               {item.solutionPoints && item.solutionPoints.length > 0 ? (
-                <div className="mt-5 border-t border-outline-variant/40 pt-5">
+                <div className="mt-4 border-t border-outline-variant/40 pt-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
                     {item.solutionHeading ?? "How Stamped solves it"}
                   </p>
-                  <ul className="mt-3 space-y-2.5">
+                  <ul className="mt-2.5 space-y-2">
                     {item.solutionPoints.map((point) => (
                       <li
                         key={point}
-                        className="flex gap-2.5 text-sm leading-6 text-on-surface-variant"
+                        className="flex gap-2 text-sm leading-5 text-on-surface-variant"
                       >
                         <span
                           aria-hidden="true"
