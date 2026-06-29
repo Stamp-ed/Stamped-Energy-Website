@@ -131,3 +131,23 @@ Architecture and workflow decisions for this project.
 **Rationale:** Eliminates schema/UI drift, makes all FAQ content visible (Google requirement), and adds the sustainability items in both places from one edit point.
 
 **Impact:** Editing `landingContent.faq` updates both the rendered accordion and the JSON-LD. Positioning update is additive only - hero H1 and the four-stat recovery band (`Outcomes`) are unchanged.
+
+---
+
+## ADR-008: Homepage IA - challenge/solution framing over triple workflow loop
+
+**Date:** 2026-06-29
+
+**Context:** Homepage told the same Connect→Verify story three times (hero loop strip, mid-page HowItWorks, Industry 4.0 band), causing scroll fatigue. ENLYZE-style challenge→solution framing and a Traditional vs Stamped investment/ROI chart were desired without changing brand colors or hero layout.
+
+**Alternatives:**
+
+1. Full IA rewrite per marketing plan (new identity line section, accordion challenges, six pay-as-you-save placements)
+2. Targeted cut of redundancy + extend existing Problem section + add comparison chart
+3. Keep all three loop sections; only edit copy
+
+**Selected:** Option 2 - remove hero `HeroEnergyLoop`, homepage `HowItWorks`, and `IndustryFourPointZero`; extend `Problem` with solution bullets; add `PayAsYouSaveComparison` with SVG chart using brand tokens; surface pay-as-you-save in hero badge, Why Stamped card, FAQ, and closing CTA. Skip separate identity-line section (Problem intro carries the message). ICP bill floor stays ₹20 lakh+.
+
+**Rationale:** ~25% shorter homepage with clearer narrative (problems → commercial model → prescription proof → trust). Reuses existing card patterns; full workflow detail remains on `/how-it-works` only.
+
+**Impact:** Homepage section order changed. `HeroEnergyLoop`, `HowItWorks`, and `IndustryFourPointZero` components remain in repo but are not mounted on `/`. FAQ count increases to 9 items (schema auto-updates from `landingContent.faq`).

@@ -1,6 +1,6 @@
 # Implementation Plan
 
-_Status: approved and in progress (landing page MVP complete)._
+_Status: approved and in progress (landing page MVP complete; homepage IA refresh complete 2026-06-29)._
 
 ## Approved Requirements
 
@@ -39,6 +39,14 @@ See `DECISIONS.md`.
 
 - Build and lint: passed
 - Remaining: manual responsive review, reduced-motion check in browser, performance tuning
+
+### Phase 8 - Homepage content IA (complete)
+
+- Remove triple workflow repetition from homepage
+- ENLYZE-style challenge→solution Problem section
+- Pay-as-you-save comparison chart (Traditional vs Stamped)
+- Hero commercial badge, prescription workflow link, FAQ + Why Stamped updates
+- Section reorder: outcomes → problem → chart → prescription → sustainability → why stamped
 
 ## Deliverables
 
