@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { ContentImage } from "@/components/ui/ContentImage";
+import { DatabaseFetchNotice } from "@/components/ui/DatabaseFetchNotice";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { resourcesContent } from "@/lib/content";
@@ -22,9 +23,10 @@ type ResourcesContent = {
 
 type IndustryResourcesProps = {
   content?: ResourcesContent;
+  databaseError?: boolean;
 };
 
-export function IndustryResources({ content }: IndustryResourcesProps) {
+export function IndustryResources({ content, databaseError = false }: IndustryResourcesProps) {
   const resources = content ?? resourcesContent;
   const sectionRef = useRef<HTMLElement>(null);
   const { isReady, prefersReducedMotion } = useMotion();
@@ -59,6 +61,10 @@ export function IndustryResources({ content }: IndustryResourcesProps) {
             className="mx-auto"
           />
         </Reveal>
+
+        {databaseError ? (
+          <DatabaseFetchNotice className="mx-auto mt-6 max-w-md" />
+        ) : null}
 
         <div className="mx-auto mt-8 grid md:mt-12 max-w-6xl gap-5 md:grid-cols-3">
           {resources.items.map((item) => (

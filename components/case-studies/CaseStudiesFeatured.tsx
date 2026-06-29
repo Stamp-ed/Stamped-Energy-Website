@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Container } from "@/components/ui/Container";
 import { ContentImage } from "@/components/ui/ContentImage";
+import { DatabaseFetchNotice } from "@/components/ui/DatabaseFetchNotice";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { caseStudiesContent } from "@/lib/content/caseStudies";
@@ -15,11 +16,12 @@ import { gsap, useGSAP } from "@/lib/motion/gsap";
 
 type CaseStudiesFeaturedProps = {
   studies: CaseStudyListItem[];
+  databaseError?: boolean;
 };
 
-export function CaseStudiesFeatured({ studies }: CaseStudiesFeaturedProps) {
+export function CaseStudiesFeatured({ studies, databaseError = false }: CaseStudiesFeaturedProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const featured = studies.filter((s) => s.featured);
+  const featured = studies;
   const { isReady, prefersReducedMotion } = useMotion();
 
   useGSAP(
@@ -52,8 +54,10 @@ export function CaseStudiesFeatured({ studies }: CaseStudiesFeaturedProps) {
           />
         </Reveal>
 
+        {databaseError ? <DatabaseFetchNotice className="mx-auto mt-6 max-w-md" /> : null}
+
         <div className="mx-auto mt-8 grid max-w-6xl gap-5 md:mt-12 lg:grid-cols-3">
-          {featured.length === 0 ? (
+          {!databaseError && featured.length === 0 ? (
             <p className="col-span-full text-center text-sm text-on-surface-variant">
               Featured case studies will appear here once published.
             </p>

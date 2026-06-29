@@ -21,11 +21,16 @@ type BlogArticlePageProps = {
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    where: { status: "PUBLISHED" },
-    select: { slug: true },
-  });
-  return posts.map((post) => ({ slug: post.slug }));
+  try {
+    const posts = await prisma.blogPost.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true },
+    });
+    return posts.map((post) => ({ slug: post.slug }));
+  } catch (error) {
+    console.error("[generateStaticParams] blog", error);
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: BlogArticlePageProps): Promise<Metadata> {

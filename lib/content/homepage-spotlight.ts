@@ -184,20 +184,38 @@ function toResourceCard(entry: SpotlightEntry): ResourceCard {
   };
 }
 
-export async function getHomepageResourceContent() {
-  const entries = await listSpotlightEntries();
-
-  if (entries.length === 0) {
-    return resourcesContent;
-  }
-
-  const items = entries.map(toResourceCard);
-  const fallbackItems = resourcesContent.items.filter(
-    (item) => !items.some((selected) => selected.href === item.href),
-  );
-
-  return {
-    ...resourcesContent,
-    items: [...items, ...fallbackItems].slice(0, HOMEPAGE_SPOTLIGHT_LIMIT),
+export async function getHomepageResourceContent(): Promise<{
+  content: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: ResourceCard[];
   };
+  databaseError: boolean;
+}> {
+  try {
+    const entries = await listSpotlightEntries();
+
+    if (entries.length === 0) {
+      return { content: resourcesContent, databaseError: false };
+    }
+
+    const items = entries.map(toResourceCard);
+    const fallbackItems = resourcesContent.items.filter(
+      (item) => !items.some((selected) => selected.href === item.href),
+    );
+
+    return {
+      content: {
+        eyebrow: resourcesContent.eyebrow,
+        title: resourcesContent.title,
+        description: resourcesContent.description,
+        items: [...items, ...fallbackItems].slice(0, HOMEPAGE_SPOTLIGHT_LIMIT),
+      },
+      databaseError: false,
+    };
+  } catch (error) {
+    console.error("[getHomepageResourceContent]", error);
+    return { content: resourcesContent, databaseError: true };
+  }
 }

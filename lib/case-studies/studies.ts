@@ -233,16 +233,21 @@ export async function listPublishedCaseStudies(options?: {
 }
 
 export async function getPublishedCaseStudyBySlug(slug: string): Promise<CaseStudyDTO | null> {
-  const study = await prisma.caseStudy.findFirst({
-    where: {
-      slug,
-      status: "PUBLISHED",
-      publishedAt: { lte: new Date() },
-    },
-    include: { author: { select: { name: true } } },
-  });
+  try {
+    const study = await prisma.caseStudy.findFirst({
+      where: {
+        slug,
+        status: "PUBLISHED",
+        publishedAt: { lte: new Date() },
+      },
+      include: { author: { select: { name: true } } },
+    });
 
-  return study ? mapStudy(study) : null;
+    return study ? mapStudy(study) : null;
+  } catch (error) {
+    console.error("[getPublishedCaseStudyBySlug]", error);
+    return null;
+  }
 }
 
 export async function listAdminCaseStudies(options?: {
