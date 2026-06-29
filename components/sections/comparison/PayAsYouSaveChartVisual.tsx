@@ -12,6 +12,9 @@ const BASELINE = 340;
 const CHART_LEFT = 48;
 const CHART_RIGHT = 752;
 
+/** Position along the Stamped ROI path where scale begins (after verified savings). */
+const SCALE_PATH_RATIO = 0.64;
+
 type BarSpec = { id: string; x: number; height: number };
 
 const TRADITIONAL_BARS: BarSpec[] = [
@@ -38,8 +41,6 @@ const TRADITIONAL_ROI =
 const STAMPED_ROI =
   "M48,340 C96,340 120,332 160,312 C200,292 248,260 308,216 C368,172 428,124 488,80 C548,44 608,24 668,12 C708,4 732,0 752,0";
 
-const SCALE = { cx: 448, cy: 168 };
-
 const INTRO = {
   grid: 0.65,
   barStagger: 0.08,
@@ -60,7 +61,6 @@ type PayAsYouSaveChartVisualProps = {
 
 export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChartVisualProps) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const loopRef = useRef<gsap.core.Timeline | null>(null);
   const { isReady, prefersReducedMotion } = useMotion();
   const isStamped = variant === "stamped";
   const bars = isStamped ? STAMPED_BARS : TRADITIONAL_BARS;
@@ -74,18 +74,23 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
       }
 
       const scope = stageRef.current;
-      loopRef.current?.kill();
+      const line = scope.querySelector<SVGPathElement>("[data-pay-roi-line]");
+      const scaleGroup = scope.querySelector<SVGGElement>("[data-pay-scale-group]");
+
+      if (isStamped && line && scaleGroup) {
+        const scalePoint = line.getPointAtLength(line.getTotalLength() * SCALE_PATH_RATIO);
+        scaleGroup.setAttribute("transform", `translate(${scalePoint.x}, ${scalePoint.y})`);
+      }
 
       if (prefersReducedMotion) {
         gsap.set("[data-pay-grid]", { autoAlpha: 1 });
         gsap.set("[data-pay-bar]", { scaleY: 1 });
-        gsap.set("[data-pay-roi-fill]", { autoAlpha: isStamped ? 0.18 : 0.1 });
+        gsap.set("[data-pay-roi-fill]", { autoAlpha: isStamped ? 0.14 : 0.08 });
         gsap.set("[data-pay-roi-line]", { strokeDashoffset: 0, autoAlpha: 1 });
-        gsap.set("[data-pay-scale-dot]", { autoAlpha: isStamped ? 1 : 0, scale: 1 });
+        gsap.set("[data-pay-scale-group]", { autoAlpha: isStamped ? 1 : 0, scale: 1 });
         return;
       }
 
-      const line = scope.querySelector<SVGPathElement>("[data-pay-roi-line]");
       if (line) {
         const length = line.getTotalLength();
         gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, autoAlpha: 1 });
@@ -94,8 +99,7 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
       gsap.set("[data-pay-grid]", { autoAlpha: 0 });
       gsap.set("[data-pay-bar]", { scaleY: 0, transformOrigin: "50% 100%" });
       gsap.set("[data-pay-roi-fill]", { autoAlpha: 0 });
-      gsap.set("[data-pay-scale-dot]", { autoAlpha: 0, scale: 0 });
-      gsap.set("[data-pay-scale-ring]", { autoAlpha: 0, scale: 0.65 });
+      gsap.set("[data-pay-scale-group]", { autoAlpha: 0, scale: 0 });
 
       const intro = gsap.timeline({
         scrollTrigger: {
@@ -120,7 +124,7 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
 
       intro.to(
         "[data-pay-roi-fill]",
-        { autoAlpha: isStamped ? 0.2 : 0.12, duration: INTRO.fillDur, ease: "power2.out" },
+        { autoAlpha: isStamped ? 0.14 : 0.08, duration: INTRO.fillDur, ease: "power2.out" },
         INTRO.fillAt,
       );
 
@@ -134,59 +138,15 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
 
       if (isStamped) {
         intro.to(
-          "[data-pay-scale-dot]",
+          "[data-pay-scale-group]",
           { autoAlpha: 1, scale: 1, duration: INTRO.scalePop, ease: "back.out(2)" },
           INTRO.scaleAt,
-        );
-        intro.to(
-          "[data-pay-scale-ring]",
-          { autoAlpha: 0.7, scale: 1, duration: 0.45, ease: "power2.out" },
-          INTRO.scaleAt,
-        );
-        intro.to(
-          "[data-pay-scale-ring]",
-          { scale: 1.45, autoAlpha: 0, duration: 0.65, ease: "power2.out" },
-          INTRO.scaleAt + 0.35,
-        );
-      }
-
-      if (isStamped) {
-        loopRef.current = gsap.timeline({
-          repeat: -1,
-          repeatDelay: 1.4,
-          delay: INTRO.scaleAt + INTRO.scalePop + 0.5,
-        });
-
-        loopRef.current.to("[data-pay-scale-ring]", {
-          autoAlpha: 0.55,
-          scale: 0.85,
-          duration: 0.01,
-        });
-
-        loopRef.current.to("[data-pay-scale-ring]", {
-          scale: 1.5,
-          autoAlpha: 0,
-          duration: 1.35,
-          ease: "power2.out",
-        });
-
-        loopRef.current.to(
-          "[data-pay-roi-line]",
-          { strokeOpacity: 0.72, duration: 0.9, ease: "sine.inOut" },
-          0,
-        );
-        loopRef.current.to(
-          "[data-pay-roi-line]",
-          { strokeOpacity: 1, duration: 0.9, ease: "sine.inOut" },
-          0.9,
         );
       }
 
       return () => {
         intro.scrollTrigger?.kill();
         intro.kill();
-        loopRef.current?.kill();
-        loopRef.current = null;
       };
     },
     { scope: stageRef, dependencies: [isReady, prefersReducedMotion, variant] },
@@ -195,7 +155,10 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
   return (
     <div
       ref={stageRef}
-      className={cn("relative h-full min-h-[220px] w-full overflow-hidden bg-surface-lowest sm:min-h-[260px] md:min-h-[300px]", className)}
+      className={cn(
+        "relative h-full min-h-[220px] w-full overflow-hidden bg-surface-lowest sm:min-h-[260px] md:min-h-[300px]",
+        className,
+      )}
     >
       <svg
         className="absolute inset-0 h-full w-full"
@@ -204,17 +167,13 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
         role="img"
         aria-label={
           isStamped
-            ? "Animated chart: moderate pilot investment with faster return and scale point"
-            : "Animated chart: high upfront investment with delayed return"
+            ? "Chart: moderate pilot investment with faster return and scale point"
+            : "Chart: high upfront investment with delayed return"
         }
       >
         <defs>
-          <linearGradient id={`pay-bar-${chartId}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--brand-secondary)" stopOpacity={isStamped ? 0.78 : 0.92} />
-            <stop offset="100%" stopColor="var(--brand-secondary)" stopOpacity={isStamped ? 0.42 : 0.55} />
-          </linearGradient>
           <linearGradient id={`pay-roi-fill-${chartId}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--brand-primary)" stopOpacity={0.28} />
+            <stop offset="0%" stopColor="var(--brand-primary)" stopOpacity={0.22} />
             <stop offset="100%" stopColor="var(--brand-primary)" stopOpacity={0.02} />
           </linearGradient>
         </defs>
@@ -252,17 +211,9 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
           <text
             x={CHART_LEFT}
             y={BASELINE + 28}
-            className="fill-[var(--brand-on-surface-variant)] text-[11px] font-semibold uppercase tracking-[0.1em]"
+            className="fill-[var(--brand-on-surface-variant)] text-[11px] font-semibold uppercase tracking-[0.08em]"
           >
             Time →
-          </text>
-          <text
-            x={CHART_RIGHT - 4}
-            y={72}
-            textAnchor="end"
-            className="fill-[var(--brand-secondary)] text-[10px] font-bold uppercase tracking-[0.08em]"
-          >
-            Investment
           </text>
         </g>
 
@@ -274,8 +225,7 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
               y={-bar.height}
               width={40}
               height={bar.height}
-              rx={5}
-              fill={`url(#pay-bar-${chartId})`}
+              fill="var(--brand-secondary)"
             />
           </g>
         ))}
@@ -298,38 +248,26 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
         />
 
         {isStamped ? (
-          <>
-            <circle
-              data-pay-scale-ring
-              cx={SCALE.cx}
-              cy={SCALE.cy}
-              r={28}
-              fill="none"
-              stroke="var(--brand-primary)"
-              strokeWidth={2}
-              strokeOpacity={0.45}
-              style={{ transformOrigin: `${SCALE.cx}px ${SCALE.cy}px` }}
-            />
+          <g data-pay-scale-group opacity={0}>
             <circle
               data-pay-scale-dot
-              cx={SCALE.cx}
-              cy={SCALE.cy}
+              cx={0}
+              cy={0}
               r={11}
               fill="var(--brand-surface-lowest)"
               stroke="var(--brand-primary)"
               strokeWidth={2.75}
-              style={{ transformOrigin: `${SCALE.cx}px ${SCALE.cy}px` }}
             />
-            <circle cx={SCALE.cx} cy={SCALE.cy} r={4.5} fill="var(--brand-primary)" />
+            <circle cx={0} cy={0} r={4.5} fill="var(--brand-primary)" />
             <text
-              x={SCALE.cx}
-              y={SCALE.cy - 36}
+              x={0}
+              y={-36}
               textAnchor="middle"
               className="fill-[var(--brand-primary)] text-[11px] font-bold uppercase tracking-[0.08em]"
             >
               Scale
             </text>
-          </>
+          </g>
         ) : null}
       </svg>
     </div>
