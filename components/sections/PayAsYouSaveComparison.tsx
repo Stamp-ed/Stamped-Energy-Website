@@ -147,7 +147,7 @@ export function PayAsYouSaveComparison() {
               {item === "Investment" ? (
                 <span
                   aria-hidden="true"
-                  className="inline-block h-2.5 w-2.5 rounded-sm bg-secondary"
+                  className="inline-block h-2.5 w-2.5 rounded-sm bg-[var(--brand-on-secondary-container)]"
                 />
               ) : item === "ROI" ? (
                 <span
