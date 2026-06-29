@@ -5,6 +5,8 @@ import type {
   HowItWorksStep,
   IconBulletItem,
   IndustryItem,
+  PayAsYouSaveApproach,
+  PayAsYouSaveBenefit,
   ProblemItem,
   StatItem,
   WhyStampedItem,
@@ -20,8 +22,9 @@ export const landingContent = {
     headlineLine2: "to verified savings",
     subheadline: "",
     supportingLine:
-      "AI-powered prescriptive intelligence that turns plant data into assigned actions - verified on your DISCOM bill and traceable for energy-intensity reporting.",
+      "AI ranks fixes from your meters, bills, and plant data. Your team executes. We verify on the DISCOM bill.",
     supportingLine2: icp.heroBillLine,
+    commercialBadge: "Pay as you save · Pilot first · Scale after verified bill",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
     features: [
@@ -105,27 +108,85 @@ export const landingContent = {
 
   problem: {
     eyebrow: "Why the bill keeps winning",
-    title: "You have the data. Nobody closes the loop.",
+    title: "You have the data. The project model is what breaks.",
     items: [
       {
-        id: "fragmented",
-        title: "SCADA, PLCs, and bills never meet",
+        id: "technical",
+        title: "Data exists. Nobody connects it to the bill.",
         description:
-          "Incomer kW, furnace states, and shift schedules sit in separate systems, so nobody sees the same picture when the MD spikes at 07:15.",
+          "Every week spent reconciling Excel exports is a week the MD spike goes unexplained. Meters, SCADA, and DISCOM line items live in different places - so Monday's startup sequence never meets the demand charge on the invoice.",
+        solutionHeading: "How Stamped solves it",
+        solutionPoints: [
+          "Read-only connect: meters, bills, SCADA/EMS, production logs - live in 14 days, no PLC writes",
+          "AI + context: normal use by shift, product, and asset - not plant-wide averages",
+          "Assigned output: ranked fixes with ₹/month, owner, effort - WhatsApp to supervisors",
+        ],
       },
       {
-        id: "reactive",
-        title: "The bill arrives after the waste is gone",
+        id: "financial",
+        title: "High upfront cost kills momentum before savings show.",
         description:
-          "You know shift-start overlap costs money. Without a rupee figure tied to Compressor 1 and Furnace 2, it stays a gut feel, not a maintenance ticket.",
+          "Energy audits produce a PDF. EMS rollouts need IT budget. Both charge you before anyone proves a rupee landed on the DISCOM bill.",
+        solutionHeading: "How Stamped solves it",
+        solutionPoints: [
+          "Pay as you save: low fixed 90-day pilot. Full subscription only after savings show on a real bill.",
+          "Prove first: see ₹ on the invoice before you scale spend.",
+          "Exit at Day 90: if verified savings do not justify continuing, stop - no hostage contract.",
+        ],
       },
       {
-        id: "unverified",
-        title: "Good ideas die before the next bill",
+        id: "personnel",
+        title: "Your electrical team does not need another dashboard.",
         description:
-          "Stagger startups, fix holding schedules: discussed in meetings, never tracked, never checked against what the incomer meter actually did.",
+          "They need ranked work with a rupee figure. Plant leadership needs proof for the CFO. Sustainability needs intensity they can defend - without a second data collection project.",
+        solutionHeading: "How Stamped solves it",
+        solutionPoints: [
+          "WhatsApp-native: fixes go to people who flip switches - not another login",
+          "One running total: expected vs actual savings, tied to billing cycle",
+          "Same numbers, two audiences: CFO sees ₹. Sustainability sees kWh and intensity from the same verified actions",
+        ],
       },
     ] satisfies ProblemItem[],
+  },
+
+  payAsYouSave: {
+    eyebrow: "Commercial model",
+    title: "Pay as you save - not pay before you know.",
+    description:
+      "A small pilot fee gets you to verified savings on the bill. Subscription follows proof, not promises.",
+    approaches: [
+      {
+        label: "Traditional approach",
+        description:
+          "Large upfront cost. Months before anyone assigns a fix. Savings stay estimated in a slide deck.",
+        variant: "traditional",
+      },
+      {
+        label: "Stamped approach",
+        description:
+          "Low pilot fee. First fixes in 14 days. Subscription after verified savings month. Scale when the bill proves it.",
+        variant: "stamped",
+      },
+    ] satisfies PayAsYouSaveApproach[],
+    legend: ["Investment", "ROI", "Scale"],
+    benefits: [
+      {
+        id: "protect-capital",
+        title: "Protect capital",
+        description: "Pilot fee, not a transformation budget",
+      },
+      {
+        id: "prove-on-bill",
+        title: "Prove on the bill",
+        description: "Realised vs potential matched to DISCOM line items",
+      },
+      {
+        id: "scale-confidence",
+        title: "Scale with confidence",
+        description: "Add sites and users after M&V, not before",
+      },
+    ] satisfies PayAsYouSaveBenefit[],
+    cta: { label: "Talk to us about a 90-day pilot", href: "/contact" } satisfies CtaLink,
   },
 
   workflow: {
@@ -172,6 +233,8 @@ export const landingContent = {
     eyebrow: "Not a dashboard",
     title: "This is what your plant team gets - not a kWh chart",
     fields: getScenarioPrescription("homepagePrescription"),
+    footerText: "This is what closure looks like.",
+    footerCta: { label: "Full workflow walkthrough", href: "/how-it-works" } satisfies CtaLink,
   },
 
   howItWorks: {
@@ -224,7 +287,7 @@ export const landingContent = {
         name: "Automotive",
         focus: "AI-led energy control",
         description:
-          "AI enables automotive manufacturers to control energy-intensive operations and utilities at scale - influencing cost stability, uptime, and operational competitiveness.",
+          "Shift-start overlap, furnace holding, and utility peaks drive cost stability and uptime across forging, paint, and assembly lines.",
         sustainability:
           "Support OEM supplier intensity and audit requests with verified SEC trends.",
         imageSrc: "/industries/forging.jpg",
@@ -235,7 +298,7 @@ export const landingContent = {
         name: "Cement",
         focus: "AI-driven energy intelligence",
         description:
-          "AI enables cement plants to prescribe optimal energy actions across continuous processes and utilities in real time - improving cost stability and uptime.",
+          "Kiln, raw mill, and WHR dispatch patterns drive cost across continuous processes - where a few minutes of mis-timed load shows up on the incomer.",
         sustainability:
           "kWh/ton drift and PAT-aligned SEC evidence on verified actions.",
         imageSrc: "/industries/cement.png",
@@ -246,7 +309,7 @@ export const landingContent = {
         name: "Steel & metals",
         focus: "AI-driven energy management",
         description:
-          "AI enables steel manufacturers to manage fuel- and power-intensive operations at scale - where energy balance directly determines cost competitiveness and throughput stability.",
+          "Furnace, rolling mill, and auxiliary loads compete for power - energy balance directly determines cost competitiveness and throughput stability.",
         sustainability:
           "PAT / intensity discipline for furnace and rolling utilities.",
         imageSrc: "/industries/steel.png",
@@ -257,7 +320,7 @@ export const landingContent = {
         name: "Pharmaceutical",
         focus: "AI-driven energy management",
         description:
-          "AI enables pharmaceutical plants to manage energy-intensive operations and utilities at scale - impacting operating cost, compliance, uptime, and product quality.",
+          "HVAC, cleanroom, and batch utilities run around the clock - small staging errors show up as MD spikes and intensity drift on every audit.",
         sustainability:
           "Lower grid intensity for HVAC-heavy MSME and mid-market sites.",
         imageSrc: "/industries/pharma.png",
@@ -268,7 +331,7 @@ export const landingContent = {
         name: "Chemical & paint",
         focus: "AI-powered energy intelligence",
         description:
-          "AI brings continuous energy discipline to chemical and paint manufacturing - improving cost control, operational predictability, and long-term competitiveness.",
+          "Batch reactors, solvent recovery, and utility islands run on tight schedules - tariff windows and holding loads decide whether margin survives the month.",
         sustainability:
           "Batch SEC and utility intensity - decision layer for advanced batch plants.",
         imageSrc: "/industries/chemical.png",
@@ -289,9 +352,9 @@ export const landingContent = {
       },
       {
         id: "sme-priced",
-        title: "Pilot before annual commitment",
+        title: "Pay as you save",
         description:
-          "Low-fee pilot or pay-as-you-save on first verified month. You see ₹ on the bill before you scale spend.",
+          "Start with a low-fee 90-day pilot. Subscription kicks in after savings show on your DISCOM bill - not after a deck of estimated opportunities.",
       },
       {
         id: "software-only",
@@ -406,6 +469,12 @@ export const landingContent = {
           "No hardware retrofit program is required. Stamped is software-only and connects read-only to the incomer meter, SCADA, PLCs, and CNCs you already run.",
       },
       {
+        id: "pay-as-you-save",
+        question: "What does pay as you save mean?",
+        answer:
+          "Pay as you save means you start with a fixed-scope 90-day pilot at a low fee. Stamped assigns fixes, your team executes, and we verify savings on your DISCOM bill. Annual subscription starts after at least one billing cycle shows verified savings - not before. You can exit at Day 90 if the numbers do not justify continuing.",
+      },
+      {
         id: "pilot",
         question: "How do we start without a large commitment?",
         answer:
@@ -447,7 +516,7 @@ export const landingContent = {
   closingCta: {
     title: "Verify energy savings before you commit",
     description:
-      "Begin with a pilot on your existing meters and plant data. We quantify outcomes in rupees and confirm them on your next electricity bill before annual subscription.",
+      "Begin with a pilot on your existing meters and plant data. We quantify outcomes in rupees and confirm them on your next electricity bill before annual subscription. Pilot on your existing data. Pay as you save after the bill proves it.",
     primaryCta: { label: "Book a Discovery Call", href: "/contact" } satisfies CtaLink,
     secondaryCta: { label: "See How It Works", href: "/how-it-works" } satisfies CtaLink,
   },

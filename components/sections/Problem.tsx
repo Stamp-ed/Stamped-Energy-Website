@@ -49,7 +49,11 @@ export function Problem() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-secondary section-y text-on-secondary">
+    <section
+      ref={sectionRef}
+      id="why-energy-projects-fail"
+      className="relative overflow-hidden bg-secondary section-y text-on-secondary"
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,color-mix(in_srgb,var(--brand-primary)_14%,transparent),transparent_50%)]"
@@ -80,6 +84,27 @@ export function Problem() {
               </div>
               <h3 className="mt-5 text-xl font-bold text-on-surface">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-on-surface-variant">{item.description}</p>
+              {item.solutionPoints && item.solutionPoints.length > 0 ? (
+                <div className="mt-5 border-t border-outline-variant/40 pt-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                    {item.solutionHeading ?? "How Stamped solves it"}
+                  </p>
+                  <ul className="mt-3 space-y-2.5">
+                    {item.solutionPoints.map((point) => (
+                      <li
+                        key={point}
+                        className="flex gap-2.5 text-sm leading-6 text-on-surface-variant"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <div
                 aria-hidden="true"
                 className="mt-6 h-px w-full bg-gradient-to-r from-primary/50 via-primary/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"

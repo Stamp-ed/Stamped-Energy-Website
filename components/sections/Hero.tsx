@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRef } from "react";
 
-import { HeroEnergyLoop } from "@/components/sections/hero/HeroEnergyLoop";
 import { HeroFeatureBar } from "@/components/sections/hero/HeroFeatureBar";
 import { HeroPromoVideo } from "@/components/sections/hero/HeroPromoVideo";
 import { ArrowRightIcon, PlayCircleIcon } from "@/components/sections/hero/HeroIcons";
@@ -120,6 +119,15 @@ export function Hero() {
               </p>
             ) : null}
 
+            {hero.commercialBadge ? (
+              <p
+                data-hero-animate="supporting"
+                className="mt-4 inline-flex rounded-full border border-primary/25 bg-primary/8 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-primary"
+              >
+                {hero.commercialBadge}
+              </p>
+            ) : null}
+
             <div
               data-hero-animate="ctas"
               className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
@@ -142,7 +150,6 @@ export function Hero() {
       <div className="relative z-10 mt-10 md:mt-12">
         <HeroFeatureBar />
         <HeroPromoVideo />
-        <HeroEnergyLoop />
       </div>
     </section>
   );

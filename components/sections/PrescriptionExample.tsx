@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 
 import { useMotion } from "@/components/motion/MotionProvider";
@@ -125,6 +126,20 @@ export function PrescriptionExample() {
             </article>
           </Reveal>
         </div>
+
+        {prescription.footerText && prescription.footerCta ? (
+          <Reveal className="mt-8 text-center">
+            <p className="text-sm text-on-surface-variant">
+              {prescription.footerText}{" "}
+              <Link
+                href={prescription.footerCta.href}
+                className="font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                {prescription.footerCta.label} →
+              </Link>
+            </p>
+          </Reveal>
+        ) : null}
       </Container>
     </section>
   );

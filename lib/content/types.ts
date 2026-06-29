@@ -175,6 +175,20 @@ export type ProblemItem = {
   id: string;
   title: string;
   description: string;
+  solutionHeading?: string;
+  solutionPoints?: string[];
+};
+
+export type PayAsYouSaveApproach = {
+  label: string;
+  description: string;
+  variant: "traditional" | "stamped";
+};
+
+export type PayAsYouSaveBenefit = {
+  id: string;
+  title: string;
+  description: string;
 };
 
 export type WorkflowStep = {

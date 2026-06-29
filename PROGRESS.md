@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Sustainability & Industry 4.0 homepage positioning - complete (2026-06-24)
+Homepage content IA refresh - complete (2026-06-29)
 
 ## Completed Phases
 
@@ -37,6 +37,7 @@ Sustainability & Industry 4.0 homepage positioning - complete (2026-06-24)
 - [x] **SEO/docs** - sitemap, `PAGE_SEO`, `llms.txt`, placeholder industry images, ADR-006
 - [x] **Sustainability positioning (homepage)** - additive only; hero subhead, `OperationalSustainability` (NEW B), `IndustryFourPointZero` (NEW C), `HomeFaq` accordion (NEW D), 5th WhyStamped card, per-tile sustainability line; H1 + recovery band unchanged
 - [x] **FAQ as single source** - `landingContent.faq` (8 items) rendered visibly and used to derive `homepageFaqSchema`; `knowsAbout` + home meta description extended
+- [x] **Homepage content IA refresh** - removed triple workflow repetition (hero loop, mid-page HowItWorks, Industry 4.0 band); ENLYZE-style challenge→solution Problem cards; Pay-as-you-save comparison chart; hero commercial badge; prescription workflow link; pay-as-you-save FAQ + Why Stamped card rename; industries copy trim
 
 ## Remaining Phases
 
@@ -48,7 +49,8 @@ See **`SEO_GEO_AEO.md` → Remaining & ongoing maintenance** for the full list. 
 - [ ] Replace placeholder industry hero images (cement, steel, pharma, chemical photo shoot)
 - [ ] Custom plant node icons or isometric SLD art (optional polish for interactive diagram)
 - [ ] Dashboard walkthrough video / live embed for prescription section
-- [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`)
+- [ ] Landing workflow loop GIF/WebM (`landing.ts` → `workflow.media.src`) — hero loop strip removed; full loop lives on `/how-it-works` only
+- [ ] `/how-it-works` dedup — remove Industry 4.0 four-step band mirroring homepage loop (follow-up PR)
 - [ ] Per-vertical blog posts (content roadmap P2)
 - [ ] Real case studies for cement/steel/pharma/chemical (Phase 3 in strategy doc)
 - [ ] Blog app (separate deployment + admin portal)
