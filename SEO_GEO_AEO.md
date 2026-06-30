@@ -106,7 +106,7 @@ All SEO logic lives under `lib/seo/` and is applied in App Router `page.tsx` / `
 | `lib/seo/extract-faq.ts` | Auto-extract FAQ JSON-LD from blog/case study `?` headings |
 | `app/llms-full.txt/route.ts` | Dynamic CMS index with entity definition header |
 | `public/llms.txt` | Static site guide for AI crawlers (**not linked in UI**) |
-| `public/og-default.png` | Default Open Graph image (1200×630) |
+| `public/og-default.png` | Default Open Graph image (1200×630). After replacing the file, bump `DEFAULT_OG_IMAGE_VERSION` in `lib/seo/constants.ts` so LinkedIn/WhatsApp refetch (they cache by full `og:image` URL). |
 
 **Environment:** Set `NEXT_PUBLIC_SITE_URL=https://stamped.work` in production so canonicals, OG URLs, and schema `@id`s resolve correctly.
 

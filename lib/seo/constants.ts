@@ -5,10 +5,13 @@ export const SITE_URL = SITE_ORIGIN.replace(/\/$/, "");
 
 export const DEFAULT_OG_IMAGE_PATH = "/og-default.png";
 
-export const DEFAULT_OG_IMAGE = `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+/** Bump when replacing public/og-default.png so social crawlers refetch the asset. */
+export const DEFAULT_OG_IMAGE_VERSION = "20260630-product";
+
+export const DEFAULT_OG_IMAGE = `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}?v=${DEFAULT_OG_IMAGE_VERSION}`;
 
 export const DEFAULT_OG_IMAGE_ALT =
-  "Stamped Energy - AI-Powered Energy Intelligence for Plants in India";
+  "Stamped Energy - AI-powered industrial energy optimization for plants in India";
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 

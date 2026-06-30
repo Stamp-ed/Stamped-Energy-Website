@@ -2,7 +2,7 @@ import { landingContent } from "@/lib/content/landing";
 import { icp } from "@/lib/content/icp";
 import { getVerticalPage, type VerticalSlug } from "@/lib/content/vertical-pages";
 import type { IndustryFaqItem } from "@/lib/content/types";
-import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from "@/lib/seo/constants";
+import { DEFAULT_OG_IMAGE, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from "@/lib/seo/constants";
 import type { FaqItem } from "@/lib/seo/extract-faq";
 
 export const organizationPublisher = {
@@ -224,7 +224,7 @@ export function buildArticleSchema(post: ArticleSchemaInput) {
     ? post.image.startsWith("http")
       ? post.image
       : `${SITE_URL}${post.image}`
-    : `${SITE_URL}/og-default.png`;
+    : DEFAULT_OG_IMAGE;
 
   return {
     "@context": "https://schema.org",
@@ -366,7 +366,7 @@ export function buildCaseStudySchema(study: CaseStudySchemaInput) {
     ? study.image.startsWith("http")
       ? study.image
       : `${SITE_URL}${study.image}`
-    : `${SITE_URL}/og-default.png`;
+    : DEFAULT_OG_IMAGE;
 
   return {
     "@context": "https://schema.org",
