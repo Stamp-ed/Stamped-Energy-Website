@@ -103,8 +103,8 @@ export function Navbar() {
       </Container>
 
       {isMenuOpen ? (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-outline-variant/30 bg-surface-lowest/95 backdrop-blur-md lg:hidden">
-          <Container className="flex flex-col gap-3 py-4">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-outline-variant/30 bg-surface-lowest/98 backdrop-blur-md lg:hidden">
+          <Container className="flex flex-col py-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
             {navLinks.map((link) =>
               link.megaMenu === "industries" ? (
                 <IndustriesMobileNav
@@ -120,7 +120,7 @@ export function Navbar() {
                 />
               ),
             )}
-            <Button href="/contact" variant="primary" className="mt-2 w-full">
+            <Button href="/contact" variant="primary" className="mt-4 w-full">
               Book a Discovery Call
             </Button>
           </Container>

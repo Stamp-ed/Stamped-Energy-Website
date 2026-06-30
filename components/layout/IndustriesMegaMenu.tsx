@@ -94,48 +94,69 @@ export function IndustriesMobileNav({
   }
 
   return (
-    <div className="border-b border-outline-variant/20 pb-3">
-      <button
-        type="button"
-        className="flex w-full items-center justify-between py-3 text-left text-sm font-medium text-on-surface"
-        aria-expanded={isExpanded}
-        onClick={() => setIsExpanded((open) => !open)}
-      >
-        <span>{industriesLink.label}</span>
-        <span
-          aria-hidden="true"
-          className={cn(
-            "text-base leading-none text-on-surface-variant transition-transform duration-200",
-            isExpanded && "rotate-45",
-          )}
+    <div className="border-b border-outline-variant/20">
+      <div className="flex min-h-12 items-stretch">
+        <Link
+          href={industriesLink.href}
+          className="flex flex-1 items-center py-3.5 text-base font-medium text-on-surface transition-colors hover:text-primary"
+          onClick={onNavigate}
         >
-          +
-        </span>
-      </button>
+          {industriesLink.label}
+        </Link>
+        <button
+          type="button"
+          className={cn(
+            "flex w-12 shrink-0 items-center justify-center rounded-md text-on-surface-variant transition-colors duration-200 ease-out",
+            "hover:bg-surface-container-low hover:text-on-surface",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-lowest",
+          )}
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? "Hide industry verticals" : "Show industry verticals"}
+          onClick={() => setIsExpanded((open) => !open)}
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+            className={cn(
+              "h-4 w-4 transition-transform duration-200 ease-out",
+              isExpanded && "rotate-180",
+            )}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </button>
+      </div>
 
       {isExpanded ? (
-        <div className="mt-2 space-y-2 border-l-2 border-primary/25 pl-3">
-          <Link
-            href="/industries"
-            className="block text-sm text-on-surface-variant hover:text-primary"
-            onClick={onNavigate}
-          >
-            All industries
-          </Link>
-          <ul className="space-y-1.5">
-            {industriesContent.verticals.map((item) => (
-              <li key={item.id}>
-                <Link
-                  href={item.href}
-                  className="block text-sm text-on-surface-variant hover:text-primary"
-                  onClick={onNavigate}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="grid gap-2 pb-4 pt-1 sm:grid-cols-2">
+          {industriesContent.verticals.map((item) => (
+            <li key={item.id}>
+              <Link
+                href={item.href}
+                className={cn(
+                  "flex min-h-12 w-full items-center gap-2.5 rounded-xl border border-outline-variant/50",
+                  "bg-surface-container-low px-4 py-3 text-sm font-semibold text-on-surface",
+                  "transition-[background-color,border-color,color,transform] duration-200 ease-out",
+                  "hover:border-primary/45 hover:bg-primary/8 hover:text-primary",
+                  "active:scale-[0.99] active:bg-primary/12",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-lowest",
+                )}
+                onClick={onNavigate}
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/75"
+                />
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       ) : null}
     </div>
   );
