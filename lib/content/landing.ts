@@ -109,41 +109,43 @@ export const landingContent = {
   problem: {
     eyebrow: "Why the bill keeps winning",
     title: "You have the data. The project model is what breaks.",
+    description:
+      "Most plants already meter everything. Savings stall because audits, EMS, and dashboards never close the loop to the bill.",
     items: [
       {
         id: "technical",
-        title: "Data exists. Nobody connects it to the bill.",
+        title: "Data never meets the invoice",
         description:
-          "Meters, SCADA, and DISCOM line items never meet - so MD spikes never tie back to the invoice.",
-        solutionHeading: "How Stamped solves it",
+          "Meters, SCADA, and DISCOM line items live in silos. MD spikes never tie back to a rupee on the bill.",
+        solutionHeading: "How Stamped closes it",
         solutionPoints: [
-          "Read-only connect in 14 days - meters, bills, SCADA/EMS",
-          "AI by shift, product, and asset - not plant averages",
+          "Read-only connect in 14 days: meters, bills, SCADA",
+          "AI by shift, asset, and product - not plant averages",
           "Ranked fixes with ₹/month on WhatsApp",
         ],
       },
       {
         id: "financial",
-        title: "High upfront cost kills momentum.",
+        title: "You pay before savings show",
         description:
-          "Audits deliver PDFs. EMS needs IT budget. You pay before savings show on the bill.",
-        solutionHeading: "How Stamped solves it",
+          "Audits deliver PDFs. EMS needs a capital budget. Momentum dies before the first verified billing cycle.",
+        solutionHeading: "How Stamped closes it",
         solutionPoints: [
-          "Pay as you save: 90-day pilot, subscribe after verified bill",
+          "90-day pilot, subscribe after verified bill",
           "See ₹ on the invoice before scaling spend",
           "Exit at Day 90 - no hostage contract",
         ],
       },
       {
         id: "personnel",
-        title: "Your team doesn't need another dashboard.",
+        title: "Another dashboard is not the answer",
         description:
-          "They need ranked work with a rupee figure - not a screen only the plant head opens monthly.",
-        solutionHeading: "How Stamped solves it",
+          "Supervisors need assigned work with a rupee figure, not a screen the plant head opens once a month.",
+        solutionHeading: "How Stamped closes it",
         solutionPoints: [
           "WhatsApp to people who flip switches",
-          "Expected vs actual savings tied to billing cycle",
-          "CFO sees ₹; sustainability sees intensity - same verified actions",
+          "Expected vs actual tied to billing cycle",
+          "CFO sees ₹; sustainability sees intensity",
         ],
       },
     ] satisfies ProblemItem[],
@@ -151,20 +153,20 @@ export const landingContent = {
 
   payAsYouSave: {
     eyebrow: "Commercial model",
-    title: "Pay as you save - not pay before you know.",
+    title: "Pay as you save, not pay before you know.",
     description:
-      "A small pilot fee gets you to verified savings on the bill. Subscription follows proof, not promises.",
+      "Low pilot fee. Verified savings on your bill. Subscription only after proof.",
     approaches: [
       {
-        label: "Traditional approach",
+        label: "Typical vendor model",
         description:
-          "Large upfront cost. Months before anyone assigns a fix. Savings stay estimated in a slide deck.",
+          "Large upfront spend. Months before anyone assigns a fix. Savings stay estimated in a slide deck.",
         variant: "traditional",
       },
       {
-        label: "Stamped approach",
+        label: "Stamped model",
         description:
-          "Low pilot fee. First fixes in 14 days. Subscription after verified savings month. Scale when the bill proves it.",
+          "Low pilot fee. First fixes in 14 days. Subscribe after a verified savings month.",
         variant: "stamped",
       },
     ] satisfies PayAsYouSaveApproach[],
@@ -178,15 +180,15 @@ export const landingContent = {
       {
         id: "prove-on-bill",
         title: "Prove on the bill",
-        description: "Realised vs potential matched to DISCOM line items",
+        description: "Realised savings matched to DISCOM line items",
       },
       {
         id: "scale-confidence",
-        title: "Scale with confidence",
+        title: "Scale when ready",
         description: "Add sites and users after M&V, not before",
       },
     ] satisfies PayAsYouSaveBenefit[],
-    cta: { label: "Talk to us about a 90-day pilot", href: "/contact" } satisfies CtaLink,
+    cta: { label: "Start a 90-day pilot", href: "/contact" } satisfies CtaLink,
   },
 
   workflow: {

@@ -156,7 +156,7 @@ export function PayAsYouSaveChartVisual({ variant, className }: PayAsYouSaveChar
     <div
       ref={stageRef}
       className={cn(
-        "relative h-full min-h-[220px] w-full overflow-hidden bg-surface-lowest sm:min-h-[260px] md:min-h-[300px]",
+        "relative h-full min-h-[168px] w-full overflow-hidden bg-surface-lowest sm:min-h-[220px] md:min-h-[260px]",
         className,
       )}
     >
